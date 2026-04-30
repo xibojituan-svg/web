@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>学员实战诊断与干预报告</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-color: #f8fafc;
+            --text-color: #1e293b;
+            --card-bg: #ffffff;
+            --border-color: #e2e8f0;
+            --primary-color: #3b82f6;
+            --primary-hover: #2563eb;
+            --accent-color: #f59e0b;
+        }
+        body {
+            font-family: "Inter", system-ui, -apple-system, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.7;
+            padding: 2rem;
+            margin: 0;
+        }
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: var(--card-bg);
+            padding: 3rem;
+            border-radius: 16px;
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.05), 0 8px 10px -6px rgba(0, 0, 0, 0.01);
+        }
+        h1, h2, h3, h4, h5, h6 {
+            color: #0f172a;
+            margin-top: 2rem;
+            margin-bottom: 1rem;
+            font-weight: 600;
+        }
+        h1 {
+            font-size: 2.25rem;
+            border-bottom: 3px solid var(--primary-color);
+            padding-bottom: 0.5rem;
+            display: inline-block;
+        }
+        h2 {
+            font-size: 1.5rem;
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 0.5rem;
+        }
+        p {
+            margin-bottom: 1.25rem;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 2rem 0;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+        }
+        th, td {
+            padding: 1rem;
+            text-align: left;
+            border-bottom: 1px solid var(--border-color);
+        }
+        th {
+            background-color: #f1f5f9;
+            font-weight: 600;
+            color: #334155;
+        }
+        code {
+            background-color: #f1f5f9;
+            padding: 0.2rem 0.4rem;
+            border-radius: 4px;
+            font-size: 0.875rem;
+            color: #ef4444;
+        }
+        pre {
+            background-color: #1e293b;
+            color: #e2e8f0;
+            padding: 1.5rem;
+            border-radius: 8px;
+            overflow-x: auto;
+            margin: 1.5rem 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🔍 喜播学员实战诊断与干预报告 (v5.0 班主任实战版)</h1>
+<hr />
+<h2>一、学员背景与期望信息</h2>
+<table>
+<thead>
+<tr>
+<th>项目</th>
+<th>诊断内容</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>基本情况</strong></td>
+<td>UID: 音影 / 姓名: 未知 / 性别推测: 女</td>
+</tr>
+<tr>
+<td><strong>客观背景</strong></td>
+<td><strong>职业状态</strong>: 推测为在职或自由职业，有较多碎片化时间（如“炫饭”、“在床上蛄蛹着”、“冲浪选手”）。<br><strong>空闲时间</strong>: 时间相对充裕，能参与PIA戏、班会等活动，但会因“家里突然来亲戚”等临时事务打断。<br><strong>家庭状况</strong>: 推测为独居或与家人同住，家庭关系相对和谐，无重大阻力。<br><strong>身体状况</strong>: 情绪敏感，易共情（“听哭”、“红眼病”、“鼻炎”），可能伴有过敏性鼻炎。</td>
+</tr>
+<tr>
+<td><strong>学习期望</strong></td>
+<td><strong>节奏</strong>: 喜欢轻松、有陪伴感的学习氛围。积极参与群内互动（PIA戏、讨论），享受“玩”的过程。对技巧学习持开放态度，但更看重“体验”和“情绪共鸣”。<br><strong>内容</strong>: 对“PIA戏”等互动性强、能即时获得反馈的活动兴趣浓厚。对技巧分享（如叹气法、气泡音）能积极尝试并反馈。</td>
+</tr>
+<tr>
+<td><strong>终极目标</strong></td>
+<td><strong>核心</strong>: <strong>寻求情感共鸣与社群归属感</strong>。她享受在群体中“玩”的感觉，通过声音表达和感受情绪（“听哭”、“听你们撒娇得劲”）。<br><strong>次要</strong>: 提升语言表达和声音表现力，但并非首要的功利性目标（如接单赚钱）。</td>
+</tr>
+<tr>
+<td><strong>经济厚度</strong></td>
+<td><strong>全款充裕</strong>。无任何经济压力或借贷迹象，付费意愿基于对课程内容和社群氛围的认可。</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2>二、📩 专属学习规划（一键转发区）</h2>
+<blockquote>
+<p><strong>大模型指令</strong>：请根据上述客观背景信息（如时间多少、身体状况、家庭知情权等），生成一段可直接由班主任复制发给学员的“专属学习规划”。
+<strong>要求</strong>：<strong>必须用第一人称（班主任视角）</strong>，语气亲切专业。内容需切分为短中长期，并对该学员的特殊情况（如时间少就建议碎片化听课、身体差就建议每天15分钟）给出直接建议。目的在于为未按计划学习导致效果不好建立责任屏障。</p>
+</blockquote>
+<pre><code class="language-text">哈喽 音影，基于我们前期的交流，我专门为你制定了接下来的专属学习方案——这可是我特地为你量身定制的哦！
+
+我知道你平时是个“冲浪选手”，喜欢在群里和大家一起玩，而且你特别容易被情绪感染，是个共情能力超强的小可爱。所以这个方案的核心就是：**把学习变成一场好玩的“声音游戏”，在玩中不知不觉进步！**
+
+🎯 **短期目标（第1个月）：成为“情绪体验官”**
+*   **动作**：每天花15分钟，在群里听1-2个同学的作业，并像你之前那样，用一句话说出你感受到的情绪（比如“我听出了委屈”、“这句好坚定！”）。
+*   **目的**：发挥你的共情天赋，这本身就是最好的“情绪揣摩”练习。同时，通过点评别人，你会更清楚自己该怎么表达。
+
+🚀 **中期目标（2-3个月）：成为“PIA戏小能手”**
+*   **动作**：每周至少参与一次群里的PIA戏活动。不用追求完美，大胆尝试不同的角色，哪怕只录一句台词也行。
+*   **目的**：PIA戏是最高效的“综合练习”，能让你把学到的技巧（叹气法、气泡音）用起来。玩得开心，进步自然就来了。
+
+🏆 **长期目标（半年后）：成为“情绪表达达人”**
+*   **动作**：尝试独立完成一个1-2分钟的完整情绪片段（比如一段独白或一个小故事），发到群里让大家听听。
+*   **目的**：从“感受情绪”到“表达情绪”，完成质的飞跃。你会发现，你已经能用自己的声音打动别人了。
+
+另外，针对你的情况，我特别嘱咐一句：**你鼻子容易敏感，练习气泡音和叹气法时，别太用力，找到“温柔”的感觉就好。如果觉得嗓子干，就停下来喝口水，咱们不急于一时。**
+
+我会在咱们班 30 个人里特别关注你的进度。只要你按照规划走，一定没问题！这个方案你觉得怎么样？
+</code></pre>
+<hr />
+<h2>三、⛔ 核心风险与稳退费策略</h2>
+<h3>1. 退单引爆因子追踪雷达</h3>
+<ul>
+<li><strong>最大退费风险点</strong>：<strong>社群氛围变差或失去新鲜感</strong>。如果群内互动减少、PIA戏活动停止，或她感到被冷落、无法再获得情绪共鸣，她会迅速失去兴趣。</li>
+<li><strong>最危险崩盘时间窗</strong>：<strong>开课 2-3 周后</strong>。初期的新鲜感和热情消退，如果课程进入枯燥的技巧练习阶段，而社群互动又未能持续提供情绪价值，她可能会感到“没意思了”。</li>
+</ul>
+<h3>2. 实战稳退费手段（防爆破策略）</h3>
+<blockquote>
+<p><strong>大模型指令</strong>：给班主任具体的执行建议，如何避免因为没学好而导致的差评和退费。
+- <strong>预先打预防针</strong>：在第二周结束时，私下跟她说：“音影，接下来咱们会进入一些基础技巧的打磨期，可能会有点枯燥。但别担心，这就像给声音‘健身’，练好了才能玩得更嗨。咱们可以约定，每练好一个技巧，就在群里组织一次‘技巧大比拼’PIA戏，怎么样？”
+- <strong>危机应对预案</strong>：如果她情绪低落或表示“不想学了”，班主任第一句话该说：“音影，是不是最近群里没组织活动，觉得有点闷了？我懂，学习有时候就是会有点枯燥。这样，我马上在群里发起一个‘情绪猜猜猜’的小游戏，你来当裁判，怎么样？咱们先玩起来，感觉对了再学。”</p>
+</blockquote>
+<hr />
+<h2>四、📈 分阶段复购推进策略</h2>
+<blockquote>
+<p><strong>大模型指令</strong>：基于该学员的【终极目标】和【经济厚度】，推演未来的复购和转化策略。
+- <strong>前期（破冰期）铺垫动作</strong>：<strong>打造“情绪领袖”人设</strong>。在群里公开表扬她的共情能力和点评，让她感受到被需要和认可。私下收集她最喜欢的PIA戏类型和情绪片段，为后续个性化推荐做准备。
+- <strong>中期（体验期）转化钩子</strong>：<strong>抛出“进阶PIA戏团”概念</strong>。在群里说：“我发现咱们班好多同学PIA戏特别有感觉，想不想组个‘进阶团’，挑战更长的剧本、更复杂的情绪？我认识一个专业的配音导演，可以请他来给我们做一次线上指导哦～”
+- <strong>后期（转化期）长线详细跟进话术示例</strong>：
+🗣️ “音影，你看你这几个月，从听别人哭自己跟着哭，到现在能用自己的声音把别人逗哭、惹笑，进步太大了！其实你现在离成为一个能接单的‘情绪表达者’，就差最后一步系统指导了。我看好你，所以特地帮你去申请了那个‘高阶情绪表达与角色塑造’课程的内部优惠名额，这个班是专门为你们这些有天赋、爱玩的人开的，里面全是PIA戏高手，你去了肯定如鱼得水！”</p>
+</blockquote>
+<hr />
+<h2>五、总后参谋长 10 秒扫读摘要</h2>
+<blockquote>
+<p><strong>【班主任极简决断版】</strong>：
+这个人是典型的 <strong>T3 社交体验型</strong>，他内心真正的渴求是 <strong>在社群中获得情感共鸣与归属感，通过“玩”来学习</strong>。防退费的最关键动作是 <strong>持续维护社群活跃度，组织PIA戏等互动活动</strong>，未来转化复购的切入点是 <strong>推出“高阶PIA戏/情绪表达”等社交属性强、体验感好的进阶课程</strong>。</p>
+</blockquote>
+<hr />
+<h2>模板 5.0 迭代说明（内置指令，请勿输出）</h2>
+<ol>
+<li><strong>全面聚焦实战</strong>：摒弃纯理论标签（如马斯洛五层），将所有诊断直接转化为“可复制的话术”和“可执行的动作”。</li>
+<li><strong>第一人称规划</strong>：【专属学习规划】必须严格采用第一人称撰写，做到“复制即发送”。</li>
+<li><strong>回传 JSON 制式规范（请在大模型末尾另起一行隐藏输出）</strong>：</li>
+</ol>
+    </div>
+</body>
+</html>
