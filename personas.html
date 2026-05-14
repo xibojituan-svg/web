@@ -1,0 +1,462 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>喜播学员画像分类核心共识</title>
+    <style>
+        :root {
+            --primary: #4f46e5;
+            --primary-light: #818cf8;
+            --text-main: #1f2937;
+            --text-light: #6b7280;
+            --bg-color: #f3f4f6;
+            --card-bg: #ffffff;
+            --danger: #ef4444;
+            --warning: #f59e0b;
+            --success: #10b981;
+            --border: #e5e7eb;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            line-height: 1.6;
+            color: var(--text-main);
+            background-color: var(--bg-color);
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            color: var(--primary);
+            margin-bottom: 10px;
+        }
+
+        .subtitle {
+            color: var(--text-light);
+            font-size: 1.1rem;
+        }
+
+        .section-title {
+            font-size: 1.8rem;
+            border-bottom: 3px solid var(--primary-light);
+            padding-bottom: 10px;
+            margin-top: 50px;
+            margin-bottom: 30px;
+        }
+
+        /* 基础面貌卡片 */
+        .basic-profile {
+            background: var(--card-bg);
+            border-radius: 12px;
+            padding: 30px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            margin-bottom: 30px;
+        }
+
+        .basic-profile p {
+            font-size: 1.1rem;
+            margin-bottom: 15px;
+        }
+
+        .highlight-box {
+            background-color: #e0e7ff;
+            border-left: 4px solid var(--primary);
+            padding: 15px 20px;
+            border-radius: 0 8px 8px 0;
+            margin: 20px 0;
+            font-weight: 500;
+        }
+
+        /* ABCD 分层网格 */
+        .abcd-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-bottom: 40px;
+        }
+
+        .layer-card {
+            background: var(--card-bg);
+            border-radius: 12px;
+            padding: 25px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            border-top: 5px solid;
+        }
+
+        .layer-A { border-top-color: var(--success); }
+        .layer-B { border-top-color: var(--primary); }
+        .layer-C { border-top-color: var(--warning); }
+        .layer-D { border-top-color: var(--danger); background-color: #fef2f2; }
+
+        .layer-title {
+            font-size: 1.4rem;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .layer-pct {
+            display: inline-block;
+            background: #f3f4f6;
+            padding: 4px 10px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            margin-bottom: 15px;
+            color: var(--text-light);
+        }
+
+        /* T1-T9 网格 */
+        .t-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 25px;
+        }
+
+        .t-card {
+            background: var(--card-bg);
+            border-radius: 12px;
+            padding: 25px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            transition: transform 0.2s;
+        }
+
+        .t-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+        }
+
+        .t-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .t-title {
+            font-size: 1.3rem;
+            font-weight: bold;
+            color: var(--primary);
+        }
+
+        .t-tag {
+            background: #e0e7ff;
+            color: var(--primary);
+            padding: 4px 8px;
+            border-radius: 6px;
+            font-size: 0.8rem;
+        }
+
+        .t-content p {
+            margin-bottom: 10px;
+            font-size: 0.95rem;
+        }
+
+        .t-label {
+            font-weight: bold;
+            color: var(--text-main);
+        }
+
+        .good-practice {
+            color: var(--success);
+            background: #ecfdf5;
+            padding: 10px;
+            border-radius: 6px;
+            margin-top: 15px;
+        }
+
+        .bad-practice {
+            color: var(--danger);
+            background: #fef2f2;
+            padding: 10px;
+            border-radius: 6px;
+            margin-top: 10px;
+        }
+
+        /* 排名表格 */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background: var(--card-bg);
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            margin-bottom: 30px;
+        }
+
+        th, td {
+            padding: 15px 20px;
+            text-align: left;
+            border-bottom: 1px solid var(--border);
+        }
+
+        th {
+            background-color: #f9fafb;
+            font-weight: bold;
+            color: var(--text-light);
+        }
+
+        tr:last-child td {
+            border-bottom: none;
+        }
+
+        .rank-number {
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: var(--primary);
+        }
+
+        /* 警告框 */
+        .alert {
+            background-color: #fef2f2;
+            border: 1px solid #f87171;
+            border-radius: 8px;
+            padding: 20px;
+            color: #b91c1c;
+            margin: 20px 0;
+        }
+        
+        .alert-title {
+            font-weight: bold;
+            font-size: 1.1rem;
+            margin-bottom: 5px;
+        }
+
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <header>
+        <h1>喜播学员画像分类 —— 团队核心共识</h1>
+        <div class="subtitle">让每一次沟通都直击人心 | 所有人与学员打交道的基础指南</div>
+    </header>
+
+    <div class="basic-profile">
+        <h2 style="margin-top:0; color: var(--primary)">第一章：先把人看清楚</h2>
+        <p><strong>谁在买单？</strong> 35-55岁中年女性是绝对主力。她们可能是全职妈妈、工厂工人、退休人员、小镇个体户。</p>
+        <p><strong>她们怕什么？</strong> 普遍害怕复杂操作，极容易因为一次小挫折就放弃。她们对花这笔钱“值不值”非常在乎。</p>
+        
+        <div class="highlight-box">
+            最关键的一句话：喜播的学员不是“学生”，是“渴望改变命运的普通人”。她们问的不是课程难不难，而是“我这样的人，配拥有更好的生活吗”。
+        </div>
+        
+        <h3 style="margin-top: 30px;">她们真正在乎什么？（基于10万条高满意度对话数据）</h3>
+        <table>
+            <tr>
+                <th>排名</th>
+                <th>学员最在乎的事</th>
+                <th>被提到的次数</th>
+                <th>大白话解释</th>
+            </tr>
+            <tr>
+                <td><span class="rank-number">1</span></td>
+                <td><strong>作品被老师具体点评</strong></td>
+                <td>33,586 次</td>
+                <td>"老师听了我的录音，告诉我气息短了"</td>
+            </tr>
+            <tr>
+                <td><span class="rank-number">2</span></td>
+                <td><strong>有专业老师带着学</strong></td>
+                <td>33,004 次</td>
+                <td>"有人带我，而不是自己摸索"</td>
+            </tr>
+            <tr>
+                <td><span class="rank-number">3</span></td>
+                <td><strong>自己做出了一个成果</strong></td>
+                <td>19,581 次</td>
+                <td>"我交出了一个东西"</td>
+            </tr>
+            <tr>
+                <td><span class="rank-number">4</span></td>
+                <td><strong>有人一直陪着鼓励</strong></td>
+                <td>15,749 次</td>
+                <td>"有人告诉我别放弃"</td>
+            </tr>
+            <tr>
+                <td><span class="rank-number">5</span></td>
+                <td><strong>有真实的事情让我练手</strong></td>
+                <td>11,374 次</td>
+                <td>"有真实任务可以做，不是干听"</td>
+            </tr>
+        </table>
+        
+        <div class="alert">
+            <div class="alert-title">⚠️ 核心警告：别再自嗨了</div>
+            我们现在很多话术还在强调“月入过万”、“三个月接单”——而这些恰恰不是大多数学员最在乎的！这就是退费率超过 40% 的根本原因。
+        </div>
+    </div>
+
+    <h2 class="section-title">第二章：ABCD 分层（先判断能不能卖）</h2>
+    <div class="abcd-grid">
+        <div class="layer-card layer-A">
+            <div class="layer-title">A 类：带头大姐</div>
+            <span class="layer-pct">占比 10%</span>
+            <p>主动学习、自驱力强、社群里的活跃带头人，一般已经报了多门课。</p>
+            <p><strong>怎么对待：</strong> 尊重她的节奏，少催、少干涉，帮她维持“学习带头人”的身份感。</p>
+        </div>
+        
+        <div class="layer-card layer-B">
+            <div class="layer-title">B 类：求知宝妈</div>
+            <span class="layer-pct">占比 30%</span>
+            <p>有真实的学习意愿，但需要人带、需要鼓励。这是我们最应该花时间服务的核心群体。</p>
+            <p><strong>怎么对待：</strong> 给她明确的每一步计划，即时正向反馈，用情感陪伴推动她。</p>
+        </div>
+        
+        <div class="layer-card layer-C">
+            <div class="layer-title">C 类：孤独打工人</div>
+            <span class="layer-pct">占比 40%</span>
+            <p>动力偏弱或精力不足，容易慢慢沉默不见了。</p>
+            <p><strong>怎么对待：</strong> 保持轻量联系，不要催、不要加压，通过让她完成一个小小的成果来激活参与感。</p>
+        </div>
+        
+        <div class="layer-card layer-D">
+            <div class="layer-title">D 类：高危人群</div>
+            <span class="layer-pct">占比 20%</span>
+            <p>借钱/花呗/网贷报名、家人不知情、指望这个马上赚钱还债养家。</p>
+            <p style="color: #b91c1c; font-weight: bold;">处理原则：必须在前期拦截，立刻停止推课！进入关心降温模式。这是底线！</p>
+        </div>
+    </div>
+
+    <h2 class="section-title">第三章：T1-T9 九大细分人群（决定怎么聊、怎么卖）</h2>
+    <div class="t-grid">
+        <!-- T1 -->
+        <div class="t-card">
+            <div class="t-header">
+                <span class="t-title">T1 圈层建造者</span>
+            </div>
+            <div class="t-content">
+                <p><span class="t-label">她是谁：</span>不是来“学技能”的，是来找志同道合圈子的，渴望社交地位。</p>
+                <p><span class="t-label">信号：</span>在群里极度活跃、报高价课、爱组织人。</p>
+                <div class="good-practice">✅ 强调圈层、稀缺名额、身份认证，邀她做班长/代表。推张震大咖班。</div>
+                <div class="bad-practice">❌ 绝不要跟她谈“接单赚多少钱”，她会觉得这很 low，立刻反感。</div>
+            </div>
+        </div>
+
+        <!-- T2 -->
+        <div class="t-card">
+            <div class="t-header">
+                <span class="t-title">T2 幕后承重者</span>
+            </div>
+            <div class="t-content">
+                <p><span class="t-label">她是谁：</span>喜欢做幕后、有技术执行力。不喜欢出镜，偏爱剪辑、后期制作。</p>
+                <p><span class="t-label">信号：</span>对出镜没兴趣，总问怎么剪辑、怎么配乐。</p>
+                <div class="good-practice">✅ 给她具体的、有技术含量的实战任务。推 AI 短视频实战营。</div>
+                <div class="bad-practice">❌ 别推“声音表演类”或出镜类课程。</div>
+            </div>
+        </div>
+
+        <!-- T3 -->
+        <div class="t-card">
+            <div class="t-header">
+                <span class="t-title">T3 技术钻研者</span>
+            </div>
+            <div class="t-content">
+                <p><span class="t-label">她是谁：</span>有基础，来精进而不是入门。对自己要求高，好面子。</p>
+                <p><span class="t-label">信号：</span>问题很专业，提过自己以前学过或做过。</p>
+                <div class="good-practice">✅ 把她当“半个同行”尊重，推进阶大咖课（张震班）。</div>
+                <div class="bad-practice">❌ 绝对别推入门课、别教基础知识，她会觉得被看不起。</div>
+            </div>
+        </div>
+
+        <!-- T4 -->
+        <div class="t-card">
+            <div class="t-header">
+                <span class="t-title">T4 务实变现者</span>
+                <span class="t-tag">销售最顺</span>
+            </div>
+            <div class="t-content">
+                <p><span class="t-label">她是谁：</span>目标极度明确，花钱就是为了赚钱。</p>
+                <p><span class="t-label">信号：</span>上来就问“能赚多少钱”、“怎么接单”、“多久回本”。</p>
+                <div class="good-practice">✅ 直接给路线图，给具体收入参考数据。推攀登计划+剧社陪跑。</div>
+                <div class="bad-practice">❌ 别跟她绕弯子谈爱好谈梦想，她要的是钱。</div>
+            </div>
+        </div>
+
+        <!-- T5 -->
+        <div class="t-card">
+            <div class="t-header">
+                <span class="t-title">T5 试水探索者</span>
+            </div>
+            <div class="t-content">
+                <p><span class="t-label">她是谁：</span>对声音感兴趣，但目标模糊，想随便试试好不好玩。</p>
+                <p><span class="t-label">信号：</span>常说“好玩”、“看看能不能行”，从没提过赚钱。</p>
+                <div class="good-practice">✅ 给她低门槛、出成果快的体验（如半小时做个视频），让她觉得“好玩且我行”。</div>
+                <div class="bad-practice">❌ 别一上来就灌输接单变现压力，会吓跑。</div>
+            </div>
+        </div>
+
+        <!-- T6 -->
+        <div class="t-card">
+            <div class="t-header">
+                <span class="t-title">T6 高焦虑从众者</span>
+            </div>
+            <div class="t-content">
+                <p><span class="t-label">她是谁：</span>频繁自我否定，极度缺乏自信，怕被落下才跟着报名。</p>
+                <p><span class="t-label">信号：</span>“我肯定学不会”、“我年纪大了”、“我没文化”。</p>
+                <div class="good-practice">✅ 极高频、极其具体的夸奖（如“你今天声音停顿特别好”）。推基础班。</div>
+                <div class="bad-practice">❌ 严禁推5000元以上大课！严禁说“你可以的”这种空洞废话。</div>
+            </div>
+        </div>
+
+        <!-- T7 -->
+        <div class="t-card">
+            <div class="t-header">
+                <span class="t-title">T7 复合生态型</span>
+            </div>
+            <div class="t-content">
+                <p><span class="t-label">她是谁：</span>会写文章、懂点AI、懂点自媒体，想多项全能跨界结合。</p>
+                <p><span class="t-label">信号：</span>提过自己做自媒体、写文章，懂各种工具。</p>
+                <div class="good-practice">✅ 帮她规划“声音+写作+AI视频”的独特优势组合路子。</div>
+                <div class="bad-practice">❌ 别只推单一死板的赛道。</div>
+            </div>
+        </div>
+
+        <!-- T8 -->
+        <div class="t-card">
+            <div class="t-header">
+                <span class="t-title">T8 临界观望者</span>
+            </div>
+            <div class="t-content">
+                <p><span class="t-label">她是谁：</span>加了微信但潜水，不交作业，等别人试错，等一个让她动心的瞬间。</p>
+                <p><span class="t-label">信号：</span>不回消息，没反应。</p>
+                <div class="good-practice">✅ 别催！用朋友圈自然发案例吸引她，等她主动问。推低门槛补差课。</div>
+                <div class="bad-practice">❌ 不要主动去私聊推销打扰，秒被拉黑。</div>
+            </div>
+        </div>
+
+        <!-- T9 -->
+        <div class="t-card" style="border: 2px dashed var(--primary-light);">
+            <div class="t-header">
+                <span class="t-title">T9 都市表达者 <span style="font-size: 0.8rem; color: #6b7280; font-weight: normal;">(待开拓)</span></span>
+            </div>
+            <div class="t-content">
+                <p><span class="t-label">她是谁：</span>25-35岁城市女性，经济独立，声音是她打造个人品牌的一部分。</p>
+                <p><span class="t-label">信号：</span>提到播客、小红书、个人IP，反感微商风。</p>
+                <div class="good-practice">✅ 保持专业距离感，别叫“姐”。推高端精品课（大咖班）。</div>
+                <div class="bad-practice">❌ 绝不要用“宝妈逆袭赚奶粉钱”的话术，别送免费东西，她嫌 low。</div>
+            </div>
+        </div>
+    </div>
+    
+    <div style="text-align: center; margin-top: 50px; color: var(--text-light); font-size: 0.9rem;">
+        <p>把人看准了再聊，比盲目推销管用一百倍。</p>
+        <p>© 2026 喜播 AI 工程团队 & 业务团队 联合出品</p>
+    </div>
+</div>
+
+</body>
+</html>
