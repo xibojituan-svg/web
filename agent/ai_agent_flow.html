@@ -1,0 +1,503 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>喜播 AI 智能协作业务流全景图</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: -apple-system, 'PingFang SC', 'Microsoft YaHei', sans-serif; background: #0a0e1a; color: #e0e6ed; min-height: 100vh; overflow-x: hidden; }
+
+  .header { text-align: center; padding: 32px 20px 16px; }
+  .header h1 { font-size: 26px; font-weight: 700; color: #fff; letter-spacing: 2px; }
+  .header .sub { font-size: 13px; color: #6b7a90; margin-top: 6px; }
+
+  .canvas { max-width: 1200px; margin: 0 auto; padding: 20px; }
+
+  /* === TIMELINE === */
+  .timeline { display: flex; align-items: center; justify-content: center; gap: 0; margin-bottom: 36px; }
+  .phase { display: flex; align-items: center; }
+  .phase-box { background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08); border-radius: 8px; padding: 8px 18px; text-align: center; min-width: 130px; }
+  .phase-box .label { font-size: 11px; color: #6b7a90; }
+  .phase-box .name { font-size: 14px; font-weight: 600; color: #c8d6e5; margin-top: 2px; }
+  .phase-box .time { font-size: 11px; color: #4a6fa5; margin-top: 2px; }
+  .phase-arrow { width: 40px; height: 2px; background: linear-gradient(90deg, rgba(74,111,165,0.3), rgba(74,111,165,0.6)); position: relative; }
+  .phase-arrow::after { content: ''; position: absolute; right: -1px; top: -4px; border: 5px solid transparent; border-left: 6px solid rgba(74,111,165,0.6); }
+
+  /* === AGENT GRID === */
+  .agent-grid { display: grid; grid-template-columns: 1fr; gap: 20px; margin-bottom: 28px; }
+
+  .agent-row { display: grid; grid-template-columns: 200px 1fr; gap: 16px; align-items: start; }
+
+  .agent-card { border-radius: 12px; padding: 16px; position: relative; min-height: 80px; }
+  .agent-card .tag { font-size: 10px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; margin-bottom: 4px; }
+  .agent-card .name { font-size: 16px; font-weight: 700; }
+  .agent-card .role { font-size: 12px; margin-top: 4px; opacity: 0.8; }
+  .agent-card .badge { position: absolute; top: 10px; right: 12px; font-size: 10px; padding: 2px 8px; border-radius: 4px; font-weight: 600; }
+
+  .a00 { background: linear-gradient(135deg, #1a1f3a, #0d1225); border: 1px solid #2a3a5c; }
+  .a00 .tag { color: #5b8def; }
+  .a00 .name { color: #7ba4f7; }
+  .a00 .badge { background: rgba(91,141,239,0.15); color: #5b8def; }
+
+  .a01 { background: linear-gradient(135deg, #1a2f1a, #0d1a0d); border: 1px solid #2a5c2a; }
+  .a01 .tag { color: #5bef7b; }
+  .a01 .name { color: #7bf79a; }
+  .a01 .badge { background: rgba(91,239,123,0.15); color: #5bef7b; }
+
+  .a02 { background: linear-gradient(135deg, #2f2a1a, #1a170d); border: 1px solid #5c4a2a; }
+  .a02 .tag { color: #efb85b; }
+  .a02 .name { color: #f7cc7b; }
+  .a02 .badge { background: rgba(239,184,91,0.15); color: #efb85b; }
+
+  .a03 { background: linear-gradient(135deg, #2f1a1a, #1a0d0d); border: 1px solid #5c2a2a; }
+  .a03 .tag { color: #ef5b5b; }
+  .a03 .name { color: #f77b7b; }
+  .a03 .badge { background: rgba(239,91,91,0.15); color: #ef5b5b; }
+
+  .engine { background: linear-gradient(135deg, #2a1a3a, #150d25); border: 1px solid #4a2a6c; }
+  .engine .tag { color: #b05bef; }
+  .engine .name { color: #c87bf7; }
+  .engine .badge { background: rgba(176,91,239,0.15); color: #b05bef; }
+
+  /* === FLOW DETAIL === */
+  .flow-detail { display: flex; flex-direction: column; gap: 8px; }
+  .flow-step { display: flex; align-items: stretch; gap: 10px; }
+  .flow-phase { width: 100px; flex-shrink: 0; font-size: 11px; color: #6b7a90; text-align: right; padding-top: 8px; }
+  .flow-content { flex: 1; background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.06); border-radius: 8px; padding: 10px 14px; font-size: 13px; line-height: 1.6; }
+  .flow-content .action { color: #c8d6e5; }
+  .flow-content .signal { color: #efb85b; font-size: 11px; display: inline-block; background: rgba(239,184,91,0.1); padding: 1px 6px; border-radius: 3px; margin: 2px 0; }
+  .flow-content .route { color: #5bef7b; font-size: 11px; display: inline-block; background: rgba(91,239,123,0.1); padding: 1px 6px; border-radius: 3px; margin: 2px 0; }
+  .flow-content .risk { color: #ef5b5b; font-size: 11px; display: inline-block; background: rgba(239,91,91,0.1); padding: 1px 6px; border-radius: 3px; margin: 2px 0; }
+  .flow-content .engine-tag { color: #b05bef; font-size: 11px; display: inline-block; background: rgba(176,91,239,0.1); padding: 1px 6px; border-radius: 3px; margin: 2px 0; }
+
+  /* === ARCHITECTURE DIAGRAM === */
+  .arch-section { margin: 36px 0 20px; }
+  .arch-section h2 { font-size: 18px; font-weight: 700; color: #fff; margin-bottom: 16px; text-align: center; }
+
+  .arch-diagram { display: grid; grid-template-rows: auto auto auto; gap: 0; max-width: 960px; margin: 0 auto; }
+
+  .arch-layer { position: relative; padding: 20px; border-radius: 12px; margin: 6px 0; }
+
+  .layer-monitor { background: rgba(91,141,239,0.06); border: 1px dashed rgba(91,141,239,0.3); }
+  .layer-exec { background: rgba(91,239,123,0.04); border: 1px dashed rgba(91,239,123,0.2); }
+  .layer-audit { background: rgba(239,91,91,0.04); border: 1px dashed rgba(239,91,91,0.2); }
+
+  .layer-label { font-size: 11px; font-weight: 700; letter-spacing: 2px; color: #6b7a90; margin-bottom: 12px; }
+
+  .arch-nodes { display: flex; justify-content: center; gap: 20px; flex-wrap: wrap; }
+
+  .arch-node { background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.1); border-radius: 10px; padding: 14px 20px; text-align: center; min-width: 160px; }
+  .arch-node .node-id { font-size: 11px; font-weight: 700; letter-spacing: 1px; margin-bottom: 4px; }
+  .arch-node .node-name { font-size: 14px; font-weight: 600; color: #fff; }
+  .arch-node .node-desc { font-size: 11px; color: #6b7a90; margin-top: 4px; }
+  .arch-node.highlight { border-color: rgba(176,91,239,0.4); }
+
+  .arch-arrows { display: flex; justify-content: center; align-items: center; gap: 8px; padding: 8px 0; }
+  .arch-arrows .arrow-down { width: 2px; height: 24px; background: rgba(255,255,255,0.15); position: relative; }
+  .arch-arrows .arrow-label { font-size: 10px; color: #6b7a90; padding: 0 12px; }
+
+  /* === CONNECTION MAP === */
+  .conn-section { margin: 36px 0 20px; }
+  .conn-section h2 { font-size: 18px; font-weight: 700; color: #fff; margin-bottom: 6px; text-align: center; }
+  .conn-section .sub { font-size: 12px; color: #6b7a90; margin-bottom: 16px; text-align: center; }
+
+  .conn-table { width: 100%; border-collapse: separate; border-spacing: 0; background: rgba(255,255,255,0.02); border-radius: 10px; overflow: hidden; }
+  .conn-table th { background: rgba(255,255,255,0.05); padding: 10px 14px; font-size: 12px; font-weight: 600; color: #8a9bb5; text-align: left; border-bottom: 1px solid rgba(255,255,255,0.06); }
+  .conn-table td { padding: 10px 14px; font-size: 13px; border-bottom: 1px solid rgba(255,255,255,0.04); }
+  .conn-table tr:last-child td { border-bottom: none; }
+  .conn-table .from { color: #7ba4f7; font-weight: 600; }
+  .conn-table .to { color: #7bf79a; font-weight: 600; }
+  .conn-table .trigger { color: #efb85b; }
+  .conn-table .payload { color: #c8d6e5; }
+
+  /* === GAP ANALYSIS === */
+  .gap-section { margin: 36px 0 20px; }
+  .gap-section h2 { font-size: 18px; font-weight: 700; color: #fff; margin-bottom: 16px; text-align: center; }
+
+  .gap-card { background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08); border-radius: 10px; padding: 16px 20px; margin-bottom: 12px; }
+  .gap-card .gap-level { font-size: 11px; font-weight: 700; letter-spacing: 1px; display: inline-block; padding: 2px 8px; border-radius: 4px; margin-bottom: 6px; }
+  .gap-card .gap-level.p0 { background: rgba(239,91,91,0.15); color: #ef5b5b; }
+  .gap-card .gap-level.p1 { background: rgba(239,184,91,0.15); color: #efb85b; }
+  .gap-card .gap-level.p2 { background: rgba(91,141,239,0.15); color: #5b8def; }
+  .gap-card .gap-title { font-size: 15px; font-weight: 600; color: #fff; margin-bottom: 6px; }
+  .gap-card .gap-desc { font-size: 13px; color: #8a9bb5; line-height: 1.7; }
+
+  /* === STUDENT JOURNEY === */
+  .journey-section { margin: 36px 0 20px; }
+  .journey-section h2 { font-size: 18px; font-weight: 700; color: #fff; margin-bottom: 16px; text-align: center; }
+
+  .journey-lane { display: grid; grid-template-columns: 100px 1fr 1fr 1fr 1fr; gap: 0; margin-bottom: 2px; }
+  .journey-lane.header-lane .jcell { background: rgba(255,255,255,0.05); font-size: 11px; font-weight: 700; color: #8a9bb5; letter-spacing: 1px; }
+  .jcell { padding: 12px 10px; font-size: 12px; border: 1px solid rgba(255,255,255,0.04); line-height: 1.5; }
+  .jcell.lane-label { background: rgba(255,255,255,0.03); font-weight: 600; font-size: 11px; display: flex; align-items: center; color: #8a9bb5; }
+
+  .jcell.active { background: rgba(91,239,123,0.05); }
+  .jcell.monitor { background: rgba(91,141,239,0.05); }
+  .jcell.audit { background: rgba(239,91,91,0.04); }
+  .jcell.engine-cell { background: rgba(176,91,239,0.05); }
+  .jcell.empty { background: rgba(255,255,255,0.01); }
+
+  .footer { text-align: center; padding: 40px 20px; color: #3a4a5c; font-size: 11px; }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <h1>喜播 AI 智能协作业务流全景图</h1>
+  <div class="sub">基于 分层引擎 v4.1.3 + A00/A01/A02/A03 四大 Agent 架构 · 评审版</div>
+</div>
+
+<div class="canvas">
+
+<!-- ========== 1. 三层架构总览 ========== -->
+<div class="arch-section">
+  <h2>一、三层架构总览</h2>
+  <div class="arch-diagram">
+
+    <!-- 感知层 -->
+    <div class="arch-layer layer-monitor">
+      <div class="layer-label">感知层 · PERCEPTION</div>
+      <div class="arch-nodes">
+        <div class="arch-node">
+          <div class="node-id" style="color:#5b8def;">A00</div>
+          <div class="node-name">学情分析员</div>
+          <div class="node-desc">7×24 监控 · 群聊+私聊双管道</div>
+        </div>
+        <div class="arch-node highlight">
+          <div class="node-id" style="color:#b05bef;">ENGINE</div>
+          <div class="node-name">分层引擎 v4.1.3</div>
+          <div class="node-desc">三轴评分 · 判定树 · T型原型</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 连接箭头 -->
+    <div style="display:flex; justify-content:center; padding:8px 0; gap: 60px;">
+      <div style="text-align:center;">
+        <div style="width:2px; height:20px; background:rgba(91,239,123,0.3); margin:0 auto;"></div>
+        <div style="font-size:10px; color:#6b7a90; margin:2px 0;">信号路由</div>
+        <div style="width:2px; height:20px; background:rgba(91,239,123,0.3); margin:0 auto;"></div>
+      </div>
+      <div style="text-align:center;">
+        <div style="width:2px; height:20px; background:rgba(239,184,91,0.3); margin:0 auto;"></div>
+        <div style="font-size:10px; color:#6b7a90; margin:2px 0;">分层结果</div>
+        <div style="width:2px; height:20px; background:rgba(239,184,91,0.3); margin:0 auto;"></div>
+      </div>
+    </div>
+
+    <!-- 执行层 -->
+    <div class="arch-layer layer-exec">
+      <div class="layer-label">执行层 · EXECUTION</div>
+      <div class="arch-nodes">
+        <div class="arch-node">
+          <div class="node-id" style="color:#5bef7b;">A01</div>
+          <div class="node-name">专属导师</div>
+          <div class="node-desc">销服一体 · 全生命周期陪伴</div>
+        </div>
+        <div class="arch-node">
+          <div class="node-id" style="color:#efb85b;">A02</div>
+          <div class="node-name">就业导师</div>
+          <div class="node-desc">变现对接 · 按需激活</div>
+        </div>
+        <div class="arch-node" style="border-style: dashed; opacity: 0.5;">
+          <div class="node-id" style="color:#aaa;">真人专家</div>
+          <div class="node-name">连麦点评</div>
+          <div class="node-desc">不可替代的真人交互</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 连接箭头 -->
+    <div style="display:flex; justify-content:center; padding:8px 0;">
+      <div style="text-align:center;">
+        <div style="width:2px; height:20px; background:rgba(239,91,91,0.3); margin:0 auto;"></div>
+        <div style="font-size:10px; color:#6b7a90; margin:2px 0;">审查全部输出</div>
+        <div style="width:2px; height:20px; background:rgba(239,91,91,0.3); margin:0 auto;"></div>
+      </div>
+    </div>
+
+    <!-- 监察层 -->
+    <div class="arch-layer layer-audit">
+      <div class="layer-label">监察层 · AUDIT</div>
+      <div class="arch-nodes">
+        <div class="arch-node">
+          <div class="node-id" style="color:#ef5b5b;">A03</div>
+          <div class="node-name">教务督导</div>
+          <div class="node-desc">独立审查 · 抽检打分 · 紧急上报</div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ========== 2. 学员生命周期泳道图 ========== -->
+<div class="journey-section">
+  <h2>二、学员生命周期 × Agent 泳道图</h2>
+
+  <!-- Header -->
+  <div class="journey-lane header-lane">
+    <div class="jcell" style="border-radius: 8px 0 0 0;"></div>
+    <div class="jcell" style="text-align:center;">初识摸底<br><span style="font-weight:400;color:#4a6fa5;">Day 0</span></div>
+    <div class="jcell" style="text-align:center;">体验营转化<br><span style="font-weight:400;color:#4a6fa5;">Day 1-3</span></div>
+    <div class="jcell" style="text-align:center;">正价课教学<br><span style="font-weight:400;color:#4a6fa5;">Day 4-60</span></div>
+    <div class="jcell" style="text-align:center;border-radius: 0 8px 0 0;">就业变现<br><span style="font-weight:400;color:#4a6fa5;">Day 60+</span></div>
+  </div>
+
+  <!-- A00 -->
+  <div class="journey-lane">
+    <div class="jcell lane-label" style="color:#5b8def;">A00<br>学情分析员</div>
+    <div class="jcell monitor">采集来源信号<br>初始行为观察</div>
+    <div class="jcell monitor">实时情绪/行为/意图监控<br><span style="color:#ef5b5b;font-size:11px;">T8-D红线扫描</span></div>
+    <div class="jcell monitor">掉队预警 · 沉默检测<br>升仓/退费信号捕获<br><span style="color:#efb85b;font-size:11px;">迁移扳机监控</span></div>
+    <div class="jcell monitor">接单意向识别<br>→ 唤醒A02</div>
+  </div>
+
+  <!-- 分层引擎 -->
+  <div class="journey-lane">
+    <div class="jcell lane-label" style="color:#b05bef;">分层引擎<br>v4.1.3</div>
+    <div class="jcell engine-cell">三轴初评<br>+ 交易信号拦截<br><span style="color:#b05bef;font-size:11px;">→ ABCD + T型标签</span></div>
+    <div class="jcell engine-cell"><span style="color:#ef5b5b;font-size:11px;">D类/C2熔断判定</span><br>IPD组件配方输出</div>
+    <div class="jcell engine-cell">动态迁移检测<br>标签升降级<br><span style="color:#efb85b;font-size:11px;">混合体进化追踪</span></div>
+    <div class="jcell empty" style="opacity:0.3;">（退出分层活跃区）</div>
+  </div>
+
+  <!-- A01 -->
+  <div class="journey-lane">
+    <div class="jcell lane-label" style="color:#5bef7b;">A01<br>专属导师</div>
+    <div class="jcell active">建档 · 摸底对话<br>来源+设备+动机画像</div>
+    <div class="jcell active">课程提醒 · 答疑<br>针对性转化引导<br><span style="color:#ef5b5b;font-size:11px;">T8-D→战略性拒售</span></div>
+    <div class="jcell active"><strong>主战场</strong><br>作业批改(80%) · 情绪关怀<br>升仓推荐 · 连麦前后准备<br><span style="color:#5bef7b;font-size:11px;">学员档案持续更新</span></div>
+    <div class="jcell active" style="opacity:0.6;">结业祝福<br>长尾关系维护</div>
+  </div>
+
+  <!-- 真人专家 -->
+  <div class="journey-lane">
+    <div class="jcell lane-label" style="color:#888;">真人专家</div>
+    <div class="jcell empty"></div>
+    <div class="jcell empty"></div>
+    <div class="jcell" style="background:rgba(255,255,255,0.03);">连麦点评课<br><span style="font-size:11px;color:#6b7a90;">A01课前准备要点清单<br>专家实时语音指导<br>A01课后整理笔记</span></div>
+    <div class="jcell empty"></div>
+  </div>
+
+  <!-- A02 -->
+  <div class="journey-lane">
+    <div class="jcell lane-label" style="color:#efb85b;">A02<br>就业导师</div>
+    <div class="jcell empty"></div>
+    <div class="jcell empty"></div>
+    <div class="jcell" style="background:rgba(239,184,91,0.04); opacity:0.6;"><span style="font-size:11px;color:#efb85b;">（提前介入通道）</span><br>A00检测到接单意向时激活</div>
+    <div class="jcell" style="background:rgba(239,184,91,0.06);"><strong>主战场</strong><br>能力评估 · 商单匹配<br>报价辅导 · 试音优化</div>
+  </div>
+
+  <!-- A03 -->
+  <div class="journey-lane">
+    <div class="jcell lane-label" style="color:#ef5b5b;border-radius: 0 0 0 8px;">A03<br>教务督导</div>
+    <div class="jcell audit" colspan="4" style="grid-column: 2 / 6; border-radius: 0 0 8px 0; text-align:center;">
+      <strong>全程独立审查</strong> · 抽检A01话术合规 · 抽检A01批改质量 · 审查A02推荐合理性 · 审查真人员工服务 · 系统性问题上报
+    </div>
+  </div>
+</div>
+
+<!-- ========== 3. Agent 间通信矩阵 ========== -->
+<div class="conn-section">
+  <h2>三、Agent 间通信矩阵</h2>
+  <div class="sub">谁在什么条件下触发谁、传递什么数据</div>
+  <table class="conn-table">
+    <thead>
+      <tr>
+        <th>发起方</th>
+        <th>接收方</th>
+        <th>触发条件</th>
+        <th>传递内容</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td class="from">A00 学情分析员</td>
+        <td class="to">A01 专属导师</td>
+        <td class="trigger">情绪突变 / 沉默预警 / 高价值人物识别 / 购买意向</td>
+        <td class="payload">信号类型 + 学员ID + 原始证据片段 + 紧急度</td>
+      </tr>
+      <tr>
+        <td class="from">A00 学情分析员</td>
+        <td class="to">A02 就业导师</td>
+        <td class="trigger">学员讨论试音/接单/赚钱/报价</td>
+        <td class="payload">学员ID + 意向信号 + 当前学习进度</td>
+      </tr>
+      <tr>
+        <td class="from">A00 学情分析员</td>
+        <td class="to">A03 教务督导</td>
+        <td class="trigger">检测到员工/AI服务质量异常</td>
+        <td class="payload">异常类型 + 涉及员工/Agent ID + 原始聊天证据</td>
+      </tr>
+      <tr>
+        <td class="from">分层引擎</td>
+        <td class="to">A01 专属导师</td>
+        <td class="trigger">首次建档 / 标签迁移 / 交易信号触发</td>
+        <td class="payload">ABCD标签 + T型原型 + IPD组件配方 + 禁区清单</td>
+      </tr>
+      <tr>
+        <td class="from">A01 专属导师</td>
+        <td class="to">真人专家</td>
+        <td class="trigger">连麦点评课前</td>
+        <td class="payload">《点评要点清单》：近期薄弱环节 + 重点指导方向</td>
+      </tr>
+      <tr>
+        <td class="from">A03 教务督导</td>
+        <td class="to">管理层</td>
+        <td class="trigger">严重违规 / 系统性退费异常</td>
+        <td class="payload">违规证据 + 影响范围 + 建议处置方案</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- ========== 4. 分层引擎 × Agent 联动热力图 ========== -->
+<div class="conn-section">
+  <h2>四、分层引擎 × Agent 联动：按用户类型的服务配置</h2>
+  <div class="sub">不同T型原型触发不同的Agent组合与服务强度</div>
+  <table class="conn-table">
+    <thead>
+      <tr>
+        <th>用户类型</th>
+        <th>ABCD</th>
+        <th>A01 服务模式</th>
+        <th>A02 介入</th>
+        <th>A03 关注度</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td style="color:#5bef7b;">T1 导演/政委</td>
+        <td>A类</td>
+        <td>退居幕后，D模块权力下放</td>
+        <td>高优先派单</td>
+        <td>低 · 定期抽检</td>
+      </tr>
+      <tr>
+        <td style="color:#5bef7b;">T2 老黄牛</td>
+        <td>B类</td>
+        <td>满配A+B，高难度实操</td>
+        <td>按毕业节点介入</td>
+        <td>中 · 批改质量抽检</td>
+      </tr>
+      <tr>
+        <td style="color:#5bef7b;">T3 极客派</td>
+        <td>A类</td>
+        <td>前后端分离转诊（AI→真人专家）</td>
+        <td>提前介入</td>
+        <td>低</td>
+      </tr>
+      <tr>
+        <td style="color:#efb85b;">T4 搞钱结果论</td>
+        <td>C2风险</td>
+        <td>严控预期 · B模块精确派单</td>
+        <td>延后 · 技能达标后</td>
+        <td><strong style="color:#ef5b5b;">高</strong> · 话术合规重点审</td>
+      </tr>
+      <tr>
+        <td style="color:#efb85b;">T6 情绪巨婴</td>
+        <td>B/C1类</td>
+        <td>傻瓜版A + 满配C保姆模式</td>
+        <td>暂不介入</td>
+        <td>中 · 情绪升级监控</td>
+      </tr>
+      <tr>
+        <td style="color:#efb85b;">T9 数字盲区</td>
+        <td>C1类</td>
+        <td>降维A + 远程代办 + 特种C</td>
+        <td>暂不介入</td>
+        <td>中 · 服务耐心度审查</td>
+      </tr>
+      <tr>
+        <td style="color:#ef5b5b;">T8-D 绝路赌徒</td>
+        <td><strong>D类</strong></td>
+        <td>30分钟危机协议 · 战略性拒售</td>
+        <td>禁止介入</td>
+        <td><strong style="color:#ef5b5b;">最高</strong> · 全流程存档审查</td>
+      </tr>
+      <tr>
+        <td style="color:#ef5b5b;">T0 潜伏猎手</td>
+        <td><strong>D类</strong></td>
+        <td>切断B模块 · 机器承接</td>
+        <td>禁止介入</td>
+        <td><strong style="color:#ef5b5b;">最高</strong> · 48h追踪</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- ========== 5. 评审：结构性缺陷 ========== -->
+<div class="gap-section">
+  <h2>五、架构评审：结构性缺陷与补强建议</h2>
+
+  <div class="gap-card">
+    <div class="gap-level p0">P0 · 结构断裂</div>
+    <div class="gap-title">分层引擎与A00之间没有明确的调用协议</div>
+    <div class="gap-desc">
+      分层引擎是一个独立文档（SKILL），A00是一个独立Agent。但谁来调用分层引擎？文档里A00只写了"信号路由"能力，没有写"对学员执行三轴评分并输出T型标签"。A01的"初识摸底"阶段也没有写明"调用分层引擎进行判定"。<br><br>
+      <strong>结果</strong>：分层引擎的判定树悬在半空，没有任何Agent显式声明"我负责执行它"。<br>
+      <strong>建议</strong>：明确指定：A00负责持续信号采集 → A01在首次建档时调用分层引擎完成初判 → A00在后续监控中触发迁移规则时再次调用分层引擎进行标签更新。写入各自的Agent文档中。
+    </div>
+  </div>
+
+  <div class="gap-card">
+    <div class="gap-level p0">P0 · 能力缺口</div>
+    <div class="gap-title">缺少一个"复购/续费转化"Agent 或模块</div>
+    <div class="gap-desc">
+      A01覆盖"体验营→正价课"的首次转化链路。A02覆盖就业变现。但正价课结业后的<strong>复购升仓</strong>（推L2/L3/跨品类课程）由谁来驱动？<br><br>
+      A01文档只提到"在学员状态好、满意度高的时候自然推荐"——这是一个模糊指引，不是结构化策略。考虑到<strong>复购是2026年"挺进大别山"战役的核心杠杆之一</strong>（订单复购率提升20%），这个环节不能只靠A01的自由裁量。<br><br>
+      <strong>建议</strong>：要么在A01中增加一个显式的"复购决策模块"（含升仓时机判定、拒卖熔断条件、跨品类推荐优先级），要么拆分出一个A04复购运营Agent。前者更简洁，推荐前者。
+    </div>
+  </div>
+
+  <div class="gap-card">
+    <div class="gap-level p1">P1 · 数据断链</div>
+    <div class="gap-title">A01的"学员档案"没有定义数据结构</div>
+    <div class="gap-desc">
+      A01文档反复强调"持续更新学员档案"，但没有定义这份档案包含哪些字段、什么格式、存在哪里。分层引擎输出的ABCD标签/T型原型/IPD配方，要存入这份档案吗？A02需要读取这份档案来评估就业能力吗？A03需要读取来做审查吗？<br><br>
+      <strong>结果</strong>：四个Agent各自为政，缺乏统一的数据底座。<br>
+      <strong>建议</strong>：定义一份《学员主档案》的Schema（至少包含：基础信息、ABCD标签、T型原型、三轴评分、IPD当前配方、学习进度、情绪轨迹、复购历史、A03审查记录），作为所有Agent的共享读写对象。
+    </div>
+  </div>
+
+  <div class="gap-card">
+    <div class="gap-level p1">P1 · 职责冲突</div>
+    <div class="gap-title">A03编号混乱 + 审查范围与A00存在重叠</div>
+    <div class="gap-desc">
+      文件名是"A03_教务督导"，但文件内部标题写的是"A05"。更关键的是：A00的信号检测能力（情绪突变、行为模式异常）和A03的服务质量审查能力存在功能重叠——比如"学员发出退费信号"，到底是A00先检测然后通知A01处理，还是A03审查后认定是A01服务失误？<br><br>
+      <strong>建议</strong>：明确边界——A00只看学员侧信号（学员说了什么、做了什么），A03只看服务侧质量（员工/Agent回了什么、做了什么）。两者的信号源不同，不应重叠。
+    </div>
+  </div>
+
+  <div class="gap-card">
+    <div class="gap-level p1">P1 · 执行空白</div>
+    <div class="gap-title">群运营能力在Agent体系中完全缺位</div>
+    <div class="gap-desc">
+      分层引擎里大量原型的服务策略依赖群环境：T1需要"在群里发号施令"、T7需要"闲聊房"、混合体2号需要"老乡会"、混合体4号需要"Pia戏组局"。但四个Agent没有任何一个的职责包含"群氛围运营/群内容策划/群场景搭建"。<br><br>
+      A01是一对一服务角色。A00是后台监控。A02是就业对接。A03是审查。<br>
+      <strong>谁来管群？</strong><br><br>
+      <strong>建议</strong>：A01需要增加"群场景运营"能力模块，或者引入一个轻量级群运营Agent。否则分层引擎里一半的IPD配方（C模块、D模块）在实际执行时找不到责任主体。
+    </div>
+  </div>
+
+  <div class="gap-card">
+    <div class="gap-level p2">P2 · 冷启动问题</div>
+    <div class="gap-title">A00的"持续运行"特性在技术实现上未定义</div>
+    <div class="gap-desc">
+      A00被定义为"一直醒着的"——但大模型Agent并不天然具备7×24小时持续监听消息流的能力。这需要的是一个事件驱动的中间件（消息队列→规则引擎→LLM按需调用），而不是一个"Always-on Agent"。<br><br>
+      <strong>建议</strong>：将A00拆分为两层：①轻量级规则引擎（关键词匹配+行为频率统计，不用LLM，跑在企微消息webhook上）；②LLM深度分析模块（仅在规则引擎触发预警后被唤醒做深层判断）。这样成本和延迟都可控。
+    </div>
+  </div>
+
+</div>
+
+</div>
+
+<div class="footer">
+  喜播集团 · AI 智能协作业务流评审报告 · 2026-04-13 · CEO Office
+</div>
+
+</body>
+</html>

@@ -1,0 +1,1055 @@
+<!doctype html>
+<html lang="zh-CN">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <title>双轨制组织设计 — 喜播2026</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap"
+    rel="stylesheet">
+  <style>
+    :root {
+      --bg: #09090b;
+      --bg-surface: #18181b;
+      --bg-surface-hover: #27272a;
+      --border: #3f3f46;
+      --text: #f4f4f5;
+      --text-dim: #a1a1aa;
+      --text-muted: #71717a;
+      --red: #ef4444;
+      --orange: #f97316;
+      --green: #10b981;
+      --blue: #3b82f6;
+      --purple: #8b5cf6;
+      --red-glow: rgba(239, 68, 68, 0.2);
+      --green-glow: rgba(16, 185, 129, 0.2);
+      --orange-glow: rgba(249, 115, 22, 0.2);
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', -apple-system, 'PingFang SC', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* BG FX */
+    .bg-glow {
+      position: fixed;
+      top: -20vh;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 100vw;
+      height: 60vh;
+      background: radial-gradient(ellipse at bottom, rgba(16, 185, 129, 0.08) 0%, rgba(9, 9, 11, 0) 70%);
+      z-index: -1;
+      pointer-events: none;
+    }
+
+    /* NAV */
+    .site-nav {
+      position: sticky;
+      top: 0;
+      z-index: 9999;
+      background: rgba(9, 9, 11, 0.85);
+      backdrop-filter: blur(16px);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+      padding: 0 clamp(16px, 4vw, 32px);
+    }
+
+    .site-nav-inner {
+      max-width: 1400px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      height: 60px;
+      gap: 12px;
+      overflow-x: auto;
+      scrollbar-width: none;
+    }
+
+    .site-nav-inner::-webkit-scrollbar {
+      display: none;
+    }
+
+    .nav-logo {
+      font-size: 16px;
+      font-weight: 900;
+      color: var(--text);
+      white-space: nowrap;
+      text-decoration: none;
+      margin-right: 20px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .nav-logo span {
+      color: var(--orange);
+    }
+
+    .nav-link {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      padding: 6px 14px;
+      border-radius: 100px;
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--text-dim);
+      text-decoration: none;
+      white-space: nowrap;
+      transition: all 0.3s;
+    }
+
+    .nav-link:hover {
+      color: var(--text);
+      background: rgba(255, 255, 255, 0.08);
+    }
+
+    .nav-link.active {
+      color: #fff;
+      background: var(--green);
+    }
+
+    /* LAYOUT */
+    .main-container {
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 40px 24px 80px;
+    }
+
+    /* HERO */
+    .hero {
+      text-align: center;
+      margin-bottom: 60px;
+      animation: fadeUp 0.8s ease-out;
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 6px 18px;
+      border-radius: 100px;
+      background: rgba(16, 185, 129, 0.1);
+      border: 1px solid rgba(16, 185, 129, 0.3);
+      color: var(--green);
+      font-size: 12px;
+      font-weight: 800;
+      letter-spacing: 1px;
+      margin-bottom: 24px;
+      text-transform: uppercase;
+    }
+
+    .pulse {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--green);
+      box-shadow: 0 0 10px var(--green);
+      animation: pulse 2s infinite;
+    }
+
+    h1 {
+      font-size: clamp(36px, 6vw, 64px);
+      font-weight: 900;
+      line-height: 1.1;
+      letter-spacing: -2px;
+      margin-bottom: 20px;
+      background: linear-gradient(135deg, #fff 0%, #a1a1aa 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .hero-sub {
+      font-size: clamp(15px, 2vw, 18px);
+      color: var(--text-dim);
+      max-width: 700px;
+      margin: 0 auto;
+    }
+
+    /* CORE PRINCIPLE BOX */
+    .principle-box {
+      background: linear-gradient(135deg, rgba(16, 185, 129, 0.05), rgba(59, 130, 246, 0.05));
+      border: 1px solid rgba(16, 185, 129, 0.25);
+      border-left: 4px solid var(--green);
+      border-radius: 0 16px 16px 0;
+      padding: 28px 32px;
+      margin-bottom: 64px;
+      animation: slideInX 0.8s ease-out 0.2s backwards;
+    }
+
+    .principle-box h3 {
+      font-size: 16px;
+      color: var(--green);
+      font-weight: 800;
+      letter-spacing: 0.5px;
+      margin-bottom: 10px;
+    }
+
+    .principle-box p {
+      font-size: 16px;
+      color: var(--text);
+      font-weight: 500;
+    }
+
+    .principle-box p strong {
+      color: var(--green);
+    }
+
+    /* SECTION HEADER */
+    .section-label {
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: 2px;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      margin-bottom: 8px;
+    }
+
+    .section-title {
+      font-size: 26px;
+      font-weight: 800;
+      color: #fff;
+      margin-bottom: 8px;
+    }
+
+    .section-desc {
+      font-size: 14px;
+      color: var(--text-dim);
+      margin-bottom: 32px;
+    }
+
+    /* DUAL TRACK OVERVIEW */
+    .track-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+      margin-bottom: 80px;
+    }
+
+    @media (max-width: 768px) {
+      .track-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .track-card {
+      background: var(--bg-surface);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 32px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .track-card.new-track {
+      border-color: rgba(16, 185, 129, 0.3);
+    }
+
+    .track-card.old-track {
+      border-color: rgba(249, 115, 22, 0.3);
+    }
+
+    .track-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 3px;
+    }
+
+    .track-card.new-track::before {
+      background: linear-gradient(90deg, var(--green), #06b6d4);
+    }
+
+    .track-card.old-track::before {
+      background: linear-gradient(90deg, var(--orange), var(--red));
+    }
+
+    .track-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: 1px;
+      padding: 4px 12px;
+      border-radius: 100px;
+      margin-bottom: 20px;
+    }
+
+    .track-tag.new {
+      background: rgba(16, 185, 129, 0.15);
+      color: var(--green);
+    }
+
+    .track-tag.old {
+      background: rgba(249, 115, 22, 0.15);
+      color: var(--orange);
+    }
+
+    .track-name {
+      font-size: 24px;
+      font-weight: 900;
+      margin-bottom: 8px;
+    }
+
+    .track-name.green {
+      color: var(--green);
+    }
+
+    .track-name.orange {
+      color: var(--orange);
+    }
+
+    .track-subtitle {
+      font-size: 14px;
+      color: var(--text-dim);
+      margin-bottom: 24px;
+    }
+
+    .track-rows {
+      list-style: none;
+    }
+
+    .track-rows li {
+      display: flex;
+      gap: 12px;
+      padding: 12px 0;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+      font-size: 13px;
+    }
+
+    .track-rows li:last-child {
+      border-bottom: none;
+    }
+
+    .tr-label {
+      color: var(--text-muted);
+      min-width: 70px;
+      font-weight: 600;
+      flex-shrink: 0;
+    }
+
+    .tr-val {
+      color: var(--text);
+    }
+
+    .highlight-green {
+      color: var(--green);
+      font-weight: 700;
+    }
+
+    .highlight-orange {
+      color: var(--orange);
+      font-weight: 700;
+    }
+
+    /* TEAM TABLE */
+    .team-section {
+      margin-bottom: 80px;
+    }
+
+    .team-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      gap: 16px;
+    }
+
+    .team-card {
+      background: var(--bg-surface);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 24px;
+      transition: all 0.3s;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .team-card:hover {
+      border-color: rgba(16, 185, 129, 0.3);
+      transform: translateY(-3px);
+    }
+
+    .team-role-icon {
+      font-size: 28px;
+      margin-bottom: 14px;
+    }
+
+    .team-role {
+      font-size: 15px;
+      font-weight: 800;
+      color: #fff;
+      margin-bottom: 6px;
+    }
+
+    .team-count {
+      display: inline-block;
+      font-size: 11px;
+      font-weight: 800;
+      background: rgba(16, 185, 129, 0.15);
+      color: var(--green);
+      padding: 2px 10px;
+      border-radius: 100px;
+      margin-bottom: 12px;
+    }
+
+    .team-criteria {
+      font-size: 13px;
+      color: var(--text-dim);
+      line-height: 1.6;
+    }
+
+    .team-warning {
+      margin-top: 12px;
+      padding: 10px 14px;
+      background: rgba(239, 68, 68, 0.08);
+      border-radius: 8px;
+      font-size: 12px;
+      color: #fca5a5;
+      font-weight: 600;
+    }
+
+    /* ISOLATION */
+    .isolation-section {
+      margin-bottom: 80px;
+    }
+
+    .isolation-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 20px;
+    }
+
+    @media (max-width: 640px) {
+      .isolation-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .iso-card {
+      background: var(--bg-surface);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 28px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      transition: all 0.3s;
+    }
+
+    .iso-card:hover {
+      border-color: rgba(16, 185, 129, 0.2);
+    }
+
+    .iso-num {
+      font-size: 11px;
+      font-weight: 900;
+      letter-spacing: 2px;
+      color: var(--green);
+      text-transform: uppercase;
+    }
+
+    .iso-title {
+      font-size: 18px;
+      font-weight: 800;
+      color: #fff;
+    }
+
+    .iso-desc {
+      font-size: 13px;
+      color: var(--text-dim);
+      line-height: 1.7;
+    }
+
+    .iso-tag {
+      display: inline-block;
+      font-size: 11px;
+      font-weight: 700;
+      padding: 3px 10px;
+      border-radius: 6px;
+      background: rgba(16, 185, 129, 0.1);
+      color: var(--green);
+      width: fit-content;
+    }
+
+    /* TIMELINE */
+    .timeline-section {
+      margin-bottom: 80px;
+    }
+
+    .timeline {
+      position: relative;
+      padding-left: 32px;
+    }
+
+    .timeline::before {
+      content: '';
+      position: absolute;
+      left: 12px;
+      top: 0;
+      bottom: 0;
+      width: 2px;
+      background: linear-gradient(180deg, var(--green), rgba(16, 185, 129, 0.1));
+    }
+
+    .tl-item {
+      position: relative;
+      margin-bottom: 32px;
+    }
+
+    .tl-dot {
+      position: absolute;
+      left: -26px;
+      top: 16px;
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      background: var(--green);
+      box-shadow: 0 0 12px var(--green);
+    }
+
+    .tl-dot.locked {
+      background: var(--text-muted);
+      box-shadow: none;
+    }
+
+    .tl-card {
+      background: var(--bg-surface);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 24px;
+      transition: all 0.3s;
+    }
+
+    .tl-card:hover {
+      border-color: rgba(16, 185, 129, 0.25);
+    }
+
+    .tl-phase {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 14px;
+      flex-wrap: wrap;
+    }
+
+    .tl-phase-name {
+      font-size: 18px;
+      font-weight: 800;
+      color: #fff;
+    }
+
+    .tl-time {
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--text-muted);
+      background: rgba(255, 255, 255, 0.06);
+      padding: 3px 10px;
+      border-radius: 6px;
+    }
+
+    .tl-milestones {
+      list-style: none;
+      margin-bottom: 16px;
+    }
+
+    .tl-milestones li {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      font-size: 13px;
+      color: var(--text-dim);
+      padding: 6px 0;
+    }
+
+    .tl-milestones li::before {
+      content: '→';
+      color: var(--green);
+      font-weight: bold;
+      flex-shrink: 0;
+      margin-top: 1px;
+    }
+
+    .gate-box {
+      background: rgba(239, 68, 68, 0.06);
+      border: 1px solid rgba(239, 68, 68, 0.2);
+      border-radius: 10px;
+      padding: 12px 16px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .gate-icon {
+      font-size: 16px;
+    }
+
+    .gate-label {
+      font-size: 11px;
+      font-weight: 800;
+      color: var(--red);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    .gate-text {
+      font-size: 13px;
+      color: #fca5a5;
+      margin-top: 2px;
+    }
+
+    /* PROTECTION */
+    .protection-section {
+      margin-bottom: 80px;
+    }
+
+    .prot-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 16px;
+    }
+
+    .prot-card {
+      background: var(--bg-surface);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 22px;
+      display: flex;
+      gap: 14px;
+      transition: all 0.3s;
+    }
+
+    .prot-card:hover {
+      border-color: rgba(249, 115, 22, 0.2);
+    }
+
+    .prot-icon {
+      font-size: 22px;
+      flex-shrink: 0;
+    }
+
+    .prot-body {
+      flex: 1;
+    }
+
+    .prot-title {
+      font-size: 15px;
+      font-weight: 700;
+      color: #fff;
+      margin-bottom: 6px;
+    }
+
+    .prot-text {
+      font-size: 13px;
+      color: var(--text-dim);
+      line-height: 1.6;
+    }
+
+    /* CEO ROLE */
+    .ceo-section {
+      margin-bottom: 80px;
+    }
+
+    .ceo-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 20px;
+    }
+
+    @media (max-width: 768px) {
+      .ceo-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .ceo-card {
+      background: var(--bg-surface);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 28px;
+      text-align: center;
+    }
+
+    .ceo-track-label {
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      margin-bottom: 12px;
+    }
+
+    .ceo-pct {
+      font-size: 48px;
+      font-weight: 900;
+      line-height: 1;
+      margin-bottom: 12px;
+    }
+
+    .ceo-rhythm {
+      font-size: 14px;
+      font-weight: 700;
+      color: #fff;
+      margin-bottom: 8px;
+    }
+
+    .ceo-desc {
+      font-size: 13px;
+      color: var(--text-dim);
+    }
+
+    .ceo-never {
+      background: rgba(239, 68, 68, 0.06);
+      border: 1px solid rgba(239, 68, 68, 0.2);
+      border-radius: 10px;
+      padding: 16px 20px;
+      margin-top: 4px;
+      text-align: left;
+    }
+
+    .ceo-never-label {
+      font-size: 11px;
+      font-weight: 800;
+      color: var(--red);
+      letter-spacing: 1px;
+      margin-bottom: 8px;
+    }
+
+    .ceo-never p {
+      font-size: 13px;
+      color: #fca5a5;
+    }
+
+    /* RISK TABLE */
+    .risk-section {
+      margin-bottom: 80px;
+    }
+
+    .risk-table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+
+    .risk-table th {
+      text-align: left;
+      padding: 14px 20px;
+      font-size: 12px;
+      font-weight: 800;
+      color: var(--text-muted);
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .risk-table td {
+      padding: 16px 20px;
+      font-size: 13px;
+      color: var(--text-dim);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+      vertical-align: top;
+    }
+
+    .risk-table tr:last-child td {
+      border-bottom: none;
+    }
+
+    .risk-table tr:hover td {
+      background: rgba(255, 255, 255, 0.02);
+    }
+
+    .risk-badge {
+      display: inline-block;
+      font-size: 11px;
+      font-weight: 700;
+      padding: 2px 8px;
+      border-radius: 4px;
+    }
+
+    .risk-h {
+      background: rgba(239, 68, 68, 0.15);
+      color: var(--red);
+    }
+
+    .risk-m {
+      background: rgba(249, 115, 22, 0.15);
+      color: var(--orange);
+    }
+
+    /* CTA */
+    .cta-section {
+      text-align: center;
+      padding: 60px;
+      background: var(--bg-surface);
+      border: 1px solid var(--border);
+      border-radius: 24px;
+      margin-bottom: 40px;
+      background-image: radial-gradient(ellipse at 50% 0%, rgba(16, 185, 129, 0.08) 0%, transparent 60%);
+    }
+
+    .cta-section h2 {
+      font-size: 28px;
+      font-weight: 900;
+      margin-bottom: 16px;
+    }
+
+    .cta-section p {
+      font-size: 16px;
+      color: var(--text-dim);
+      max-width: 600px;
+      margin: 0 auto 28px;
+    }
+
+    .cta-box {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background: rgba(16, 185, 129, 0.1);
+      border: 1px solid rgba(16, 185, 129, 0.3);
+      border-radius: 12px;
+      padding: 16px 28px;
+      font-size: 15px;
+      font-weight: 700;
+      color: var(--green);
+    }
+
+    /* FOOTER */
+    footer {
+      text-align: center;
+      padding: 40px 0;
+      border-top: 1px solid var(--border);
+      color: var(--text-muted);
+      font-size: 13px;
+    }
+
+    /* ANIMATIONS */
+    @keyframes fadeUp {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes slideInX {
+      from {
+        opacity: 0;
+        transform: translateX(-30px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateX(0);
+      }
+    }
+
+    @keyframes pulse {
+      0% {
+        box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.4);
+      }
+
+      70% {
+        box-shadow: 0 0 0 10px rgba(16, 185, 129, 0);
+      }
+
+      100% {
+        box-shadow: 0 0 0 0 rgba(16, 185, 129, 0);
+      }
+    }
+
+    @media (max-width: 768px) {
+      .main-container {
+        padding: 24px 16px;
+      }
+
+      .principle-box {
+        padding: 20px;
+      }
+
+      .cta-section {
+        padding: 32px 20px;
+      }
+    }
+  </style>
+  <link rel="icon" type="image/x-icon" href="/favicon.ico">
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+</head>
+
+<body>
+  <script src="navbar.js?v=20260328"></script>
+
+  <div class="main-container">
+
+    <!-- HERO -->
+    <header class="hero">
+      <div class="badge">
+        <div class="pulse"></div>极简执行框架 · 大白话战术板
+      </div>
+      <h1>双轨制：大部队求稳，小部队测验</h1>
+      <p class="hero-sub">不搞复杂的系统改造，一切回归产品安排：大部队分拆卖闭环，小部队用299元打头阵分流</p>
+    </header>
+
+    <!-- CORE PRINCIPLE -->
+    <div class="principle-box">
+      <h3>战术核心考量（大白话版）</h3>
+      <p>
+        退费率高，就是因为把不想赚钱、只想玩玩的人，骗去买了难搞的职业赚钱课。<br/><br/>
+        所以解法极其简单没那么多弯绕：<br/><strong>大部队不折腾：把产品真正做到独立可学。L1 和 L2 各自闭环，决不混着卖。<br/>小部队去探路：搞个299元的小体验课做入口。七天后，真想赚钱的拿去学 L1，只想玩玩好玩的拿去学新出的“朗诵兴趣班”。</strong>
+      </p>
+    </div>
+
+    <!-- DUAL TRACK OVERVIEW -->
+    <section style="margin-bottom:60px;">
+      <div class="section-label">01 · 两支部队的任务定义</div>
+      <div class="section-title">大部队 vs 小部队</div>
+      <div class="section-desc">认清各自的边界，该求稳的求稳，该试错的只管试。</div>
+      <div class="track-grid">
+        <!-- 大部队 -->
+        <div class="track-card old-track">
+          <div class="track-tag old" style="background: rgba(249, 115, 22, 0.2); color: var(--orange);">第一任务：大部队最小成本</div>
+          <div class="track-name orange">大部队（主力阵地）</div>
+          <div class="track-subtitle">严格分拆 L1 和 L2，坚决杜绝打包买卖</div>
+          <ul class="track-rows">
+            <li><span class="tr-label">L1 要独立闭环</span><span class="tr-val">把 L1 彻底做成一个闭环交付产品，用户哪怕只买 L1 也能完整学下来。</span></li>
+            <li><span class="tr-label">L2 升级做实战</span><span class="tr-val">只针对达到一定水平、真想接单实战的学员开放。水平不够坚决不卖。</span></li>
+            <li><span class="tr-label">绝对死命令</span><span class="tr-val"><span class="highlight-orange">L1和L2绝对不能放一起打包卖！</span>一定要分开卖。</span></li>
+            <li><span class="tr-label">其他一切照旧</span><span class="tr-val">其他所有业务节奏、工作方式等<strong>全部不变</strong>。大部队保证不出乱子。</span></li>
+          </ul>
+        </div>
+        
+        <!-- 小部队 -->
+        <div class="track-card new-track">
+          <div class="track-tag new">第二任务：小部队突击（CEO 亲自挂帅）</div>
+          <div class="track-name green">小部队（专项测试组）</div>
+          <div class="track-subtitle">尝试299元7天分层，验证两岔路是否好走</div>
+          <ul class="track-rows">
+            <li><span class="tr-label">引流新尝试</span><span class="tr-val">测试运行 <span class="highlight-green">299元、为期7天</span> 的入口方案。不再盲目冲高价课。</span></li>
+            <li><span class="tr-label">分流去向 A</span><span class="tr-val">7天结束了，对于想深造有事业心的：往 <b>L1 甚至 L2</b> 引导去。</span></li>
+            <li><span class="tr-label">分流去向 B</span><span class="tr-val">7天结束了，对于就想随便练练读句子的：往新开发的 <b>朗诵兴趣线产品</b> 带过去一起玩。</span></li>
+            <li><span class="tr-label">这部分的意义</span><span class="tr-val">证明如果把闲人挪去兴趣班，是不是真能把该死的高昂退费率彻底摁下来。</span></li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- PM IMPLEMENTATION PLAN -->
+    <section class="pm-section" style="margin-bottom: 80px;">
+      <div class="section-label">02 · PM 行动拆解清单 (大白话落地版)</div>
+      <div class="section-title">分层模型执行清单</div>
+      <div class="section-desc">看不懂的理论全删了。一件事一件事干，下面是按动作逻辑排出的具体干活表格。</div>
+
+      <div class="timeline">
+        <!-- 任务 1 -->
+        <div class="tl-item">
+          <div class="tl-dot"></div>
+          <div class="tl-card">
+            <div class="tl-phase">
+              <span class="tl-phase-name">第一步：大部队立刻断开 L1 和 L2 的捆绑</span>
+              <span class="tl-time">立刻执行</span>
+            </div>
+            <ul class="tl-milestones">
+              <li><strong>到底干啥：</strong>教研火速把 L1 课件梳理通，确保买 L1 的人学完有完整收获即可。下架收回所有 L1+L2 的打包收费码。</li>
+              <li><strong>做完的标志：</strong>在全公司拍板严令：继续打包卖重罚。以后只有达到考核水平的优质学员才允许被推销 L2 实战课。</li>
+              <li><strong style="color:var(--orange);">担责人：</strong> 大部队业务主管</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- 任务 2 -->
+        <div class="tl-item">
+          <div class="tl-dot"></div>
+          <div class="tl-card">
+            <div class="tl-phase">
+              <span class="tl-phase-name">第二步：小部队做好 299 元 7天体验营基建</span>
+              <span class="tl-time">准备阶段</span>
+            </div>
+            <ul class="tl-milestones">
+              <li><strong>到底干啥：</strong>先把 299 元产品的收款链接、群流程弄出来。这7天的核心任务不是讲得多精彩，而是死盯着这批人：哪些人是来赚外快的，哪些人是凑热闹的。</li>
+              <li><strong>做完的标志：</strong>弄出一条可以接纳广告进线的 299 元微信收水群以及转化剧本。</li>
+              <li><strong style="color:var(--orange);">担责人：</strong> CEO亲自带队小部队</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- 任务 3 -->
+        <div class="tl-item">
+          <div class="tl-dot"></div>
+          <div class="tl-card">
+            <div class="tl-phase">
+              <span class="tl-phase-name">第三步：教研赶工拼凑“朗诵兴趣班”卖品</span>
+              <span class="tl-time">同步推进</span>
+            </div>
+            <ul class="tl-milestones">
+              <li><strong>到底干啥：</strong>不用搞得多高深专业。针对爱好人群弄个不需要承诺能赚钱、就带大家一起大声朗诵带大家玩的兴趣活动项目。核心主打情绪价值。</li>
+              <li><strong>做完的标志：</strong>产出一套价格表和入门课程表供前线拿去兜售。绝不在里面加任何“教你接兼职单”的骗人饼。</li>
+              <li><strong style="color:var(--orange);">担责人：</strong> 喜播教研产研团队</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- 任务 4 -->
+        <div class="tl-item">
+          <div class="tl-dot" style="background:var(--text-muted); box-shadow:none;"></div>
+          <div class="tl-card">
+            <div class="tl-phase">
+              <span class="tl-phase-name">第四步：放一小批真流量进来玩一局（实战试水）</span>
+              <span class="tl-time">下月开启</span>
+            </div>
+            <ul class="tl-milestones">
+              <li><strong>到底干啥：</strong>引几十一百个真客户买那 299 元的服务。等 7 天结束，给要靠这赚钱的极客推销 L1；对着发音普通不想熬夜干活的人推销朗诵兴趣大本营。</li>
+              <li><strong>做完的标志：</strong>跑通 100 个人，清楚看到这 100 个客户分别有多少流进了 L1 ，多少流进了兴趣班。</li>
+              <li><strong style="color:var(--orange);">担责人：</strong> CEO带领的小部分精锐销售</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- 任务 5 -->
+        <div class="tl-item">
+          <div class="tl-dot" style="background:var(--text-muted); box-shadow:none;"></div>
+          <div class="tl-card">
+            <div class="tl-phase">
+              <span class="tl-phase-name">第五步：算算到底亏没亏（决断时刻）</span>
+              <span class="tl-time">小范围收网</span>
+            </div>
+            <ul class="tl-milestones">
+              <li><strong>到底干啥：</strong>查验被划去兴趣班的那群人，因为咱们没给他乱画赚钱的大饼，他的退费意愿是不是真的降到贴地滑行了。</li>
+              <li><strong>做完的标志：</strong>给老板提交一页数字总结板。看大部队的流水有没有因为分开卖而断崖下跌？新突击路子测算出利润能不能反手盖住引流的开销？成败在此一举。</li>
+              <li><strong style="color:var(--orange);">担责人：</strong> 财务测算 / CEO</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- CTA -->
+    <div class="cta-section">
+      <h2>现在，唯一要干的事</h2>
+      <p>战略已出，统帅已定，剩下来全看执行。与其纸上谈兵，不如拿实弹测试要结果。</p>
+      <div class="cta-box">
+        🎯 &nbsp; CEO 挂帅出征 — 立刻跑出 100 个 299 元测试订单，用真实分流数据定江山！
+      </div>
+    </div>
+
+  </div>
+
+  <footer>
+    <p>喜播集团 XIBO Executive Dashboard © 2026<br />双轨制组织设计框架 · 生成于 2026-03-26</p>
+  </footer>
+</body>
+
+</html>

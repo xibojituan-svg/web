@@ -1,0 +1,644 @@
+<!doctype html>
+<html lang="zh-CN">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <title>用户深度解码案例库 · XIBO CEO Portal</title>
+  <meta name="description" content="喜播全量用户深度解码报告索引。基于三轴模型（动机纯度×资源底座×心理弹性）对用户行为进行系统性诊断，为分层运营提供战略级洞察。" />
+
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap');
+
+    :root {
+      --bg: #09090b;
+      --bg-surface: #18181b;
+      --bg-surface-hover: #27272a;
+      --border: #3f3f46;
+      --text: #f4f4f5;
+      --text-dim: #a1a1aa;
+      --text-muted: #71717a;
+
+      --brand-primary: #ef4444;
+      --brand-secondary: #f97316;
+      --brand-accent: #10b981;
+      --brand-glow: rgba(239, 68, 68, 0.2);
+
+      --grade-a: #10b981;
+      --grade-b: #3b82f6;
+      --grade-c: #f59e0b;
+      --grade-d: #ef4444;
+      --grade-na: #71717a;
+
+      --tag-red: #fca5a5;
+      --tag-blue: #93c5fd;
+      --tag-green: #86efac;
+      --tag-orange: #fdba74;
+      --tag-purple: #c4b5fd;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: 'Inter', -apple-system, 'PingFang SC', sans-serif;
+      background-color: var(--bg); color: var(--text); line-height: 1.6;
+      overflow-x: hidden; -webkit-font-smoothing: antialiased;
+    }
+
+    .bg-glow {
+      position: fixed; top: -20vh; left: 50%; transform: translateX(-50%);
+      width: 100vw; height: 60vh;
+      background: radial-gradient(ellipse at bottom, rgba(59, 130, 246, 0.1) 0%, rgba(9, 9, 11, 0) 70%);
+      z-index: -1; pointer-events: none;
+    }
+
+    .main-container { max-width: 1400px; margin: 0 auto; padding: 40px 24px; }
+
+    /* ───── Hero ───── */
+    .hero { margin-bottom: 48px; text-align: center; animation: fadeUp 0.8s ease-out; }
+    .badge {
+      display: inline-flex; align-items: center; gap: 6px; padding: 6px 16px;
+      border-radius: 100px; background: rgba(59, 130, 246, 0.1); border: 1px solid rgba(59, 130, 246, 0.3);
+      color: #60a5fa; font-size: 12px; font-weight: 800; letter-spacing: 1px;
+      margin-bottom: 24px; text-transform: uppercase;
+    }
+    .origin-pulse {
+      width: 6px; height: 6px; border-radius: 50%; background: #3b82f6;
+      box-shadow: 0 0 10px #3b82f6; animation: pulse 2s infinite;
+    }
+    h1 {
+      font-size: clamp(32px, 5vw, 56px); font-weight: 900; line-height: 1.1; letter-spacing: -2px; margin-bottom: 20px;
+      background: linear-gradient(180deg, #fff 0%, #a1a1aa 100%);
+      -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent;
+    }
+    .hero-subtitle { font-size: clamp(14px, 2vw, 18px); color: var(--text-dim); max-width: 800px; margin: 0 auto; font-weight: 500; }
+
+    /* ───── Stats Bar ───── */
+    .stats-bar {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 16px;
+      margin-bottom: 40px; animation: fadeUp 0.8s ease-out 0.15s backwards;
+    }
+    .stat-card {
+      background: var(--bg-surface); border: 1px solid var(--border); border-radius: 16px;
+      padding: 20px; text-align: center; transition: all 0.3s;
+    }
+    .stat-card:hover { border-color: rgba(255,255,255,0.2); transform: translateY(-3px); }
+    .stat-number { font-size: 32px; font-weight: 900; line-height: 1; margin-bottom: 6px; }
+    .stat-label { font-size: 12px; color: var(--text-muted); font-weight: 600; letter-spacing: 0.5px; }
+    .stat-card.grade-a .stat-number { color: var(--grade-a); }
+    .stat-card.grade-b .stat-number { color: var(--grade-b); }
+    .stat-card.grade-c .stat-number { color: var(--grade-c); }
+    .stat-card.grade-d .stat-number { color: var(--grade-d); }
+    .stat-card.total .stat-number {
+      background: linear-gradient(135deg, #fff, #a1a1aa);
+      -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent;
+    }
+
+    /* ───── Controls ───── */
+    .controls-bar {
+      display: flex; flex-wrap: wrap; gap: 12px; margin-bottom: 32px;
+      animation: fadeUp 0.8s ease-out 0.25s backwards; align-items: center;
+    }
+    .search-box {
+      flex: 1; min-width: 260px; position: relative;
+    }
+    .search-box input {
+      width: 100%; padding: 12px 16px 12px 44px; background: var(--bg-surface);
+      border: 1px solid var(--border); border-radius: 12px; color: var(--text);
+      font-size: 14px; font-family: inherit; outline: none; transition: border-color 0.2s;
+    }
+    .search-box input:focus { border-color: #3b82f6; }
+    .search-box input::placeholder { color: var(--text-muted); }
+    .search-icon {
+      position: absolute; left: 14px; top: 50%; transform: translateY(-50%);
+      font-size: 16px; color: var(--text-muted); pointer-events: none;
+    }
+    .filter-group { display: flex; gap: 6px; flex-wrap: wrap; }
+    .filter-btn {
+      padding: 8px 16px; border-radius: 100px; border: 1px solid var(--border);
+      background: transparent; color: var(--text-dim); font-size: 13px; font-weight: 600;
+      cursor: pointer; transition: all 0.2s; font-family: inherit;
+    }
+    .filter-btn:hover { border-color: rgba(255,255,255,0.3); color: #fff; }
+    .filter-btn.active { background: #3b82f6; border-color: #3b82f6; color: #fff; }
+    .filter-btn.active-a { background: var(--grade-a); border-color: var(--grade-a); color: #fff; }
+    .filter-btn.active-b { background: var(--grade-b); border-color: var(--grade-b); color: #fff; }
+    .filter-btn.active-c { background: var(--grade-c); border-color: var(--grade-c); color: #fff; }
+    .filter-btn.active-d { background: var(--grade-d); border-color: var(--grade-d); color: #fff; }
+
+    .view-toggle { display: flex; gap: 4px; margin-left: auto; }
+    .view-btn {
+      width: 36px; height: 36px; display: flex; align-items: center; justify-content: center;
+      border-radius: 8px; border: 1px solid var(--border); background: transparent;
+      color: var(--text-muted); cursor: pointer; transition: all 0.2s; font-size: 16px;
+    }
+    .view-btn.active { background: rgba(255,255,255,0.08); color: #fff; border-color: rgba(255,255,255,0.2); }
+
+    /* ───── Report Cards Grid ───── */
+    .reports-grid {
+      display: grid; grid-template-columns: repeat(auto-fill, minmax(340px, 1fr)); gap: 20px;
+      animation: fadeUp 0.8s ease-out 0.35s backwards;
+    }
+    .reports-grid.list-view { grid-template-columns: 1fr; }
+
+    .report-card {
+      display: flex; flex-direction: column; padding: 24px; background: var(--bg-surface);
+      border: 1px solid var(--border); border-radius: 16px; text-decoration: none; color: var(--text);
+      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1); position: relative; overflow: hidden;
+      cursor: pointer;
+    }
+    .report-card:hover {
+      background: var(--bg-surface-hover); border-color: rgba(255,255,255,0.2);
+      transform: translateY(-4px); box-shadow: 0 12px 32px rgba(0,0,0,0.5);
+    }
+    .report-card::before {
+      content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 3px;
+      opacity: 0; transition: opacity 0.3s;
+    }
+    .report-card:hover::before { opacity: 1; }
+    .report-card[data-grade="A"]::before { background: var(--grade-a); }
+    .report-card[data-grade="B"]::before { background: var(--grade-b); }
+    .report-card[data-grade="C"]::before { background: var(--grade-c); }
+    .report-card[data-grade="D"]::before { background: var(--grade-d); }
+    .report-card[data-grade="N/A"]::before { background: var(--grade-na); }
+
+    /* List view card */
+    .reports-grid.list-view .report-card {
+      flex-direction: row; align-items: center; gap: 20px; padding: 16px 24px;
+    }
+    .reports-grid.list-view .card-header { flex: 0 0 auto; margin-bottom: 0; }
+    .reports-grid.list-view .card-body { flex: 1; }
+    .reports-grid.list-view .card-tags { margin-top: 8px; }
+    .reports-grid.list-view .card-footer { flex: 0 0 auto; margin-top: 0; }
+
+    .card-header { display: flex; align-items: center; gap: 12px; margin-bottom: 16px; }
+    .grade-badge {
+      width: 40px; height: 40px; border-radius: 10px; display: flex; align-items: center;
+      justify-content: center; font-size: 18px; font-weight: 900; flex-shrink: 0;
+    }
+    .grade-badge.grade-a { background: rgba(16,185,129,0.15); color: var(--grade-a); }
+    .grade-badge.grade-b { background: rgba(59,130,246,0.15); color: var(--grade-b); }
+    .grade-badge.grade-c { background: rgba(245,158,11,0.15); color: var(--grade-c); }
+    .grade-badge.grade-d { background: rgba(239,68,68,0.15); color: var(--grade-d); }
+    .grade-badge.grade-na { background: rgba(113,113,122,0.15); color: var(--grade-na); }
+
+    .card-uid { font-size: 11px; color: var(--text-muted); font-weight: 600; letter-spacing: 0.5px; font-family: 'SF Mono', monospace; }
+    .card-name { font-size: 16px; font-weight: 700; color: #fff; margin-bottom: 8px; line-height: 1.3; }
+    .card-title-sub { font-size: 13px; color: var(--text-dim); line-height: 1.5; display: -webkit-box; -webkit-line-clamp: 2; line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+    .card-quote { font-size: 13px; color: var(--text-dim); font-style: italic; background: rgba(255,255,255,0.03); padding: 10px 12px; margin-top: 12px; border-left: 3px solid rgba(255,255,255,0.2); border-radius: 0 6px 6px 0; line-height: 1.4; display: -webkit-box; -webkit-line-clamp: 2; line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+
+    .card-tags { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 14px; }
+    .tag {
+      font-size: 11px; font-weight: 600; padding: 3px 10px; border-radius: 100px;
+      white-space: nowrap; max-width: 200px; overflow: hidden; text-overflow: ellipsis;
+    }
+    .tag-red { background: rgba(239,68,68,0.12); color: var(--tag-red); }
+    .tag-blue { background: rgba(59,130,246,0.12); color: var(--tag-blue); }
+    .tag-green { background: rgba(16,185,129,0.12); color: var(--tag-green); }
+    .tag-orange { background: rgba(249,115,22,0.12); color: var(--tag-orange); }
+    .tag-purple { background: rgba(139,92,246,0.12); color: var(--tag-purple); }
+
+    .card-footer {
+      display: flex; justify-content: space-between; align-items: center;
+      margin-top: 16px; padding-top: 14px; border-top: 1px solid rgba(255,255,255,0.06);
+    }
+    .card-meta { font-size: 11px; color: var(--text-muted); }
+    .card-arrow {
+      width: 28px; height: 28px; border-radius: 8px; display: flex; align-items: center;
+      justify-content: center; background: rgba(255,255,255,0.05); color: var(--text-muted);
+      transition: all 0.2s; font-size: 14px;
+    }
+    .report-card:hover .card-arrow { background: rgba(59,130,246,0.2); color: #60a5fa; transform: translateX(2px); }
+
+    /* ───── Category types ───── */
+    .type-badge {
+      font-size: 10px; font-weight: 800; padding: 2px 8px; border-radius: 4px;
+      letter-spacing: 0.5px; text-transform: uppercase;
+    }
+    .type-refund { background: rgba(239,68,68,0.15); color: #fca5a5; }
+    .type-converted { background: rgba(16,185,129,0.15); color: #86efac; }
+    .type-diagnostic { background: rgba(59,130,246,0.15); color: #93c5fd; }
+    .type-decoder { background: rgba(139,92,246,0.15); color: #c4b5fd; }
+
+    /* ───── Empty State ───── */
+    .empty-state {
+      text-align: center; padding: 80px 20px; color: var(--text-muted);
+      display: none;
+    }
+    .empty-state.visible { display: block; }
+    .empty-icon { font-size: 48px; margin-bottom: 16px; opacity: 0.5; }
+    .empty-title { font-size: 18px; font-weight: 700; color: var(--text-dim); margin-bottom: 8px; }
+
+    /* ───── Footer ───── */
+    footer { text-align: center; padding: 60px 0; border-top: 1px solid var(--border); color: var(--text-muted); font-size: 13px; margin-top: 40px; }
+
+    /* ───── Animations ───── */
+    @keyframes fadeUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+    @keyframes pulse { 0% { box-shadow: 0 0 0 0 rgba(59, 130, 246, 0.4); } 70% { box-shadow: 0 0 0 10px rgba(59, 130, 246, 0); } 100% { box-shadow: 0 0 0 0 rgba(59, 130, 246, 0); } }
+    @keyframes cardIn { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: translateY(0); } }
+
+    .report-card { animation: cardIn 0.4s ease-out backwards; }
+
+    /* ───── Result Count ───── */
+    .result-count {
+      font-size: 13px; color: var(--text-muted); margin-bottom: 16px;
+      font-weight: 500;
+    }
+    .result-count strong { color: var(--text-dim); }
+
+    /* ───── Responsive ───── */
+    @media (max-width: 768px) {
+      .main-container { padding: 24px 16px; }
+      .reports-grid { grid-template-columns: 1fr; }
+      .stats-bar { grid-template-columns: repeat(3, 1fr); }
+      .controls-bar { flex-direction: column; }
+      .search-box { min-width: 100%; }
+      .view-toggle { display: none; }
+    }
+  </style>
+  <link rel="icon" type="image/x-icon" href="/favicon.ico">
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+</head>
+
+<body>
+  <script src="navbar.js?v=20260405"></script>
+  <div class="bg-glow"></div>
+
+  <div class="main-container">
+
+    <header class="hero">
+      <div class="badge">
+        <div class="origin-pulse"></div>案例知识库 · 实战复盘
+      </div>
+      <h1>用户深度解码案例库</h1>
+      <p class="hero-subtitle">基于「动机纯度 × 资源底座 × 心理弹性」三轴模型，对每一位用户的行为轨迹进行系统性诊断。<br>每一份报告都是一次实战活检——用数据说话，用案例校准策略。</p>
+    </header>
+
+    <!-- Stats Overview -->
+    <div class="stats-bar" id="statsBar">
+      <!-- JS renders -->
+    </div>
+
+    <!-- Search & Filter Controls -->
+    <div class="controls-bar">
+      <div class="search-box">
+        <span class="search-icon">🔍</span>
+        <input type="text" id="searchInput" placeholder="搜索用户昵称、UID、标签…" autocomplete="off" />
+      </div>
+      <div class="filter-group" id="filterGroup">
+        <button class="filter-btn active" data-filter="all" id="filterAll">全部</button>
+        <button class="filter-btn" data-filter="A" id="filterA">A类 · 高价值</button>
+        <button class="filter-btn" data-filter="B" id="filterB">B类 · 稳定</button>
+        <button class="filter-btn" data-filter="D" id="filterD">D类 · 高危</button>
+        <button class="filter-btn" data-filter="refund" id="filterRefund">退费案例</button>
+        <button class="filter-btn" data-filter="converted" id="filterConverted">已转化</button>
+      </div>
+      <div class="view-toggle">
+        <button class="view-btn active" id="gridViewBtn" title="网格视图">⊞</button>
+        <button class="view-btn" id="listViewBtn" title="列表视图">☰</button>
+      </div>
+    </div>
+
+    <div class="result-count" id="resultCount"></div>
+
+    <!-- Reports Grid -->
+    <div class="reports-grid" id="reportsGrid">
+      <!-- JS renders -->
+    </div>
+
+    <div class="empty-state" id="emptyState">
+      <div class="empty-icon">🔍</div>
+      <div class="empty-title">没有找到匹配的案例</div>
+      <p>尝试调整搜索关键词或筛选条件</p>
+    </div>
+
+    <footer>
+      <p>XIBO CEO Portal · 用户深度解码案例库</p>
+      <p style="margin-top: 8px; font-size: 12px;">三轴模型：动机纯度 × 资源底座（资金·时间·精力） × 心理弹性 · ABCD 用户分层</p>
+    </footer>
+  </div>
+
+  <script>
+    // =======================================
+    // DATA: All user reports metadata
+    // =======================================
+    const REPORTS = [
+            { uid: "166619264", name: "十米(50岁高知退休教师)", title: "亲人进ICU病危下的退单：被制度逼出的KPI乞讨与道德绑架", tags: ["不可抗力退单", "高知银发用户", "前端典范级辅导", "后端以内部考核卖惨", "道德绑架式阻断"], grade: "C", type: "refund", quote: "我会被考核扣钱，你能不退费先办个延期吗？——重病抢救前人性的丧失", sizeKB: 68, url: "/user/uid_166619264_report.html" },
+{ uid: "107345746", name: "客户诊断深度报告", title: "UID 107345746 客户诊断报告", tags: [], grade: "N/A", type: "diagnostic", quote: "核心痛点：UID 107345746 客户诊断报告", sizeKB: 9 },
+      { uid: "118444555", name: "客户诊断深度报告", title: "UID 118444555 客户诊断报告", tags: [], grade: "N/A", type: "diagnostic", quote: "核心痛点：UID 118444555 客户诊断报告", sizeKB: 9 },
+      { uid: "134255216", name: "用户退费行为与节点诊断报告", title: "退费行为诊断 - UID 134255216", tags: ["退费诊断"], grade: "N/A", type: "refund", quote: "核心痛点：退费行为诊断 - UID 134255216", sizeKB: 12 },
+      { uid: "172550219", name: "客户诊断深度报告", title: "UID 172550219 客户诊断报告", tags: [], grade: "N/A", type: "diagnostic", quote: "核心痛点：UID 172550219 客户诊断报告", sizeKB: 9 },
+      { uid: "222000726", name: "客户诊断深度报告", title: "UID 222000726 客户诊断报告", tags: [], grade: "N/A", type: "diagnostic", quote: "核心痛点：UID 222000726 客户诊断报告", sizeKB: 9 },
+      { uid: "256374882", name: "客户诊断深度报告", title: "UID 256374882 客户诊断报告", tags: [], grade: "N/A", type: "diagnostic", quote: "核心痛点：UID 256374882 客户诊断报告", sizeKB: 9 },
+      { uid: "259029879", name: "忘記了微笑 · 曹聪", title: "用户解码报告 · 忘記了微笑 UID 259029879", tags: ["深度解码", "LTV评估", "昵称情绪读取"], grade: "N/A", type: "decoder", quote: "核心痛点：忘記了微笑 UID 259029879", sizeKB: 39 },
+      { uid: "300210894", name: "客户诊断深度报告", title: "UID 300210894 客户诊断报告", tags: [], grade: "N/A", type: "diagnostic", quote: "核心痛点：UID 300210894 客户诊断报告", sizeKB: 9 },
+      { uid: "303843481", name: "客户诊断深度报告", title: "UID 303843481 客户诊断报告", tags: [], grade: "N/A", type: "diagnostic", quote: "核心痛点：UID 303843481 客户诊断报告", sizeKB: 10 },
+      { uid: "330367420", name: "客户诊断深度报告", title: "UID 330367420 客户诊断报告", tags: [], grade: "N/A", type: "diagnostic", quote: "核心痛点：UID 330367420 客户诊断报告", sizeKB: 10 },
+      { uid: "381916063", name: "用户退费行为诊断报告", title: "退费行为诊断 - UID 381916063", tags: ["退费诊断"], grade: "N/A", type: "refund", quote: "核心痛点：退费行为诊断 - UID 381916063", sizeKB: 10 },
+      { uid: "523429123", name: "金铭 · 用户深度解码", title: "用户解码报告 · 金铭 UID 523429123", tags: ["深度解码", "高信任", "正课转化"], grade: "N/A", type: "decoder", quote: "核心痛点：金铭 UID 523429123", sizeKB: 19 },
+      { uid: "58905989", name: "客户诊断深度报告", title: "UID 58905989 客户诊断报告", tags: [], grade: "N/A", type: "diagnostic", quote: "核心痛点：UID 58905989 客户诊断报告", sizeKB: 9 },
+      { uid: "676270878", name: "用户退费行为与节点诊断报告", title: "退费行为诊断 - UID 676270878", tags: ["退费诊断", "系统性漏洞"], grade: "N/A", type: "refund", quote: "核心痛点：退费行为诊断 - UID 676270878", sizeKB: 17 },
+      { uid: "676332510", name: "客户诊断深度报告", title: "UID 676332510 客户诊断报告", tags: [], grade: "N/A", type: "diagnostic", quote: "核心痛点：UID 676332510 客户诊断报告", sizeKB: 9 },
+      { uid: "676396026", name: "客户诊断深度报告", title: "UID 676396026 客户诊断报告", tags: [], grade: "N/A", type: "diagnostic", quote: "核心痛点：UID 676396026 客户诊断报告", sizeKB: 9 },
+      { uid: "676584811", name: "用户退费行为诊断报告", title: "退费行为诊断 - UID 676584811", tags: ["退费诊断", "关键节点"], grade: "N/A", type: "refund", quote: "核心痛点：退费行为诊断 - UID 676584811", sizeKB: 21 },
+      { uid: "676877490", name: "客户诊断深度报告", title: "UID 676877490 客户诊断报告", tags: [], grade: "N/A", type: "diagnostic", quote: "核心痛点：UID 676877490 客户诊断报告", sizeKB: 9 },
+      { uid: "676920140", name: "晓慧", title: "不可抗力退单后的无脑洗库悲剧", tags: ["60+高知退休", "极高净值与付费意愿", "退费后遭二次无脑洗单"], grade: "N/A", type: "refund", quote: "核心痛点：不可抗力退单后的无脑洗库悲剧", sizeKB: 8 },
+      { uid: "676987289", name: "阚茜（使者）🌈", title: "用户解码报告 · 阚茜 · 已转化", tags: ["B类 · 已转化", "DISC: S/I 混合", "依恋: 焦虑-安全混合", "临界未转化→最终成交"], grade: "B", type: "decoder", quote: "用户解码报告 · 阚茜 · 已转化", sizeKB: 29 },
+      { uid: "676987290", name: "Gilgamesh", title: "用户解码报告 · Gilgamesh · A类潜力", tags: ["A类潜力 · 已转化", "DISC: D/I 混合型", "AI写作课", "S13 极高危 · 信任损耗"], grade: "A", type: "decoder", quote: "用户解码报告 · Gilgamesh · A类潜力", sizeKB: 36 },
+      { uid: "676987293", name: "听友676987293", title: "零互动成交 · 本库首例", tags: ["D类 · 已转化（零互动）", "DISC: C型 高度沉默", "昵称：系统默认", "S16 零互动成交"], grade: "D", type: "decoder", quote: "零互动成交 · 本库首例", sizeKB: 38 },
+      { uid: "676999182", name: "听友 676999182", title: "B型时间稀缺用户 · 正面情绪承接范例", tags: ["B型 时间稀缺用户", "S14 正面情绪承接范例", "执行力极强", "抵触冗长说教"], grade: "B", type: "decoder", quote: "核心痛点：正面情绪承接范例", sizeKB: 17 },
+      { uid: "676999186", name: "诊疗报告", title: "诊疗报告分析", tags: ["B类分析"], grade: "B", type: "diagnostic", quote: "核心痛点：诊疗报告分析", sizeKB: 6 },
+      { uid: "676999189", name: "雅正美发.美感烫发.欧豪", title: "跨线绞杀与假公济私的底线崩塌案", tags: ["跨线抢单轰炸", "80%收益欺诈", "私域工作室截流", "底线崩塌"], grade: "D", type: "diagnostic", quote: "核心痛点：跨线绞杀与假公济私的底线崩塌案", sizeKB: 132, url: "/user/uid_676999189_report.html" },
+      { uid: "677000463", name: "客户诊断深度报告", title: "UID 677000463 客户诊断报告", tags: [], grade: "N/A", type: "diagnostic", quote: "核心痛点：UID 677000463 客户诊断报告", sizeKB: 9 },
+      { uid: "677003702", name: "客户诊断深度报告", title: "UID 677003702 客户诊断报告", tags: [], grade: "N/A", type: "diagnostic", quote: "核心痛点：UID 677003702 客户诊断报告", sizeKB: 9 },
+      { uid: "677003914", name: "用户诊断报告 · 677003914", title: "用户诊断报告 - Xibo Strategic Portal", tags: ["D类分析"], grade: "D", type: "diagnostic", quote: "核心痛点：用户诊断报告 - Xibo Strategic Portal", sizeKB: 17 },
+      { uid: "677004152", name: "用户诊断报告 · 677004152", title: "用户诊断报告 - UID 677004152", tags: [], grade: "N/A", type: "diagnostic", quote: "核心痛点：用户诊断报告 - UID 677004152", sizeKB: 10 },
+      { uid: "677004173", name: "用户诊断报告 · 677004173", title: "用户诊断报告 - Xibo Strategic Portal", tags: [], grade: "N/A", type: "diagnostic", quote: "核心痛点：用户诊断报告 - Xibo Strategic Portal", sizeKB: 16 },
+      { uid: "677004503", name: "用户诊断报告 · 677004503", title: "用户诊断报告 - Xibo Strategic Portal", tags: [], grade: "N/A", type: "diagnostic", quote: "核心痛点：用户诊断报告 - Xibo Strategic Portal", sizeKB: 16 },
+      { uid: "677004710", name: "用户诊断报告 · 677004710", title: "用户诊断报告 - Xibo Strategic Portal", tags: [], grade: "N/A", type: "diagnostic", quote: "核心痛点：用户诊断报告 - Xibo Strategic Portal", sizeKB: 16 },
+      { uid: "677004903", name: "退费诊断 · 677004903", title: "体验课冗长拖沓 · 贩卖式营销过载", tags: ["体验课冗长拖沓", "贩卖式营销过载", "班主任甩锅推诿", "缺乏时间精力"], grade: "N/A", type: "refund", quote: "核心痛点：贩卖式营销过载", sizeKB: 8 },
+      { uid: "677005254", name: "千惠", title: "公职人员合规风险与小红书舆情劝退案", tags: ["红线违规：诱导公职人员违规兼职", "舆情反噬：小红书避坑贴", "后端推销设备反噬"], grade: "N/A", type: "refund", quote: "核心痛点：公职人员合规风险与小红书舆情劝退案", sizeKB: 7 },
+      { uid: "677006005", name: "退费诊断 · 677006005", title: "银发族(71岁)精力透支退费", tags: ["丧失共情力/恶劣嘲讽", "突发家庭重度变故", "银发族(71岁)精力透支"], grade: "N/A", type: "refund", quote: "核心痛点：银发族(71岁)精力透支退费", sizeKB: 8 },
+      { uid: "677006033", name: "退费诊断 · 677006033", title: "宝妈家庭财务断裂退费", tags: ["丧失共情力/恶意PUA", "退课后无效营销轰炸", "宝妈家庭财务断裂", "虚假独立女性话术"], grade: "N/A", type: "refund", quote: "这是我借花呗给孩子交的补习费，求你们退给我吧！", sizeKB: 8 },
+      { uid: "677007979", name: "暴躁的兔子", title: "一线护士物理时间枯竭与后端设备恐慌", tags: ["职业卡点：医护高压人群", "后端设备负面舆情", "强制冲单导致延缓型流失"], grade: "N/A", type: "refund", quote: "核心痛点：一线护士物理时间枯竭与后端设备恐慌", sizeKB: 7 },
+      { uid: "677008811", name: "退费诊断 · 677008811", title: "突发疾病/家庭变故退费", tags: ["突发疾病/家庭变故", "顶级共情安抚", "SOP 僵化推送"], grade: "N/A", type: "refund", quote: "核心痛点：突发疾病/家庭变故退费", sizeKB: 12 },
+      { uid: "677008902", name: "退费诊断 · 677008902", title: "突发性资金枯竭退费", tags: ["突发性资金枯竭", "错位画大饼挽单", "缺乏共情的流程化响应"], grade: "N/A", type: "refund", quote: "核心痛点：突发性资金枯竭退费", sizeKB: 12 },
+      { uid: "677009221", name: "退费诊断 · 677009221", title: "交付预期管理失败退费", tags: ["交付预期管理失败", "CRM隔离漏洞(阿离)"], grade: "N/A", type: "refund", quote: "核心痛点：交付预期管理失败退费", sizeKB: 12 },
+      { uid: "677009480", name: "退费诊断 · 677009480", title: "压迫式连环催缴退费", tags: ["压迫式连环催缴", "多头越级审问", "CRM隔离漏洞(金金)"], grade: "N/A", type: "refund", quote: "核心痛点：压迫式连环催缴退费", sizeKB: 12 },
+      { uid: "677010554", name: "退费诊断 · 677010554", title: "冲动买单后现实冲突退费", tags: ["冲动买单与现实冲突", "无脑倾倒式语音轰炸挽单", "缺乏职业共情"], grade: "N/A", type: "refund", quote: "核心痛点：冲动买单后现实冲突退费", sizeKB: 12 },
+      { uid: "677010927", name: "陌云九 / 安馨", title: "S级血钻警告：负债60万轻生预警与伪七天退费敲诈", tags: ["负债60万被逼单", "轻生预警(高危极案)", "伪七天无理由退费", "虚假接单口头承诺"], grade: "S", type: "diagnostic", quote: "我都想跳楼了，你们为什么还想从我负债60万的账上扣钱？", sizeKB: 14 },
+      { uid: "677010996", name: "退费诊断 · 677010996", title: "口音受挫表象下的财务破产真相", tags: ["口音受挫（表象）", "财务破产信誉黑户（真相）", "深度探寻真实退因", "果断熔断止血退费"], grade: "N/A", type: "refund", quote: "核心痛点：口音受挫表象下的财务破产真相", sizeKB: 13 },
+      { uid: "677011515", name: "青青草原 / 周婵", title: "先退后买的拉锯战", tags: ["体验营转正课当晚退费", "家庭压力下的挣扎型用户", "助教反向利用退费做裂变拉人"], grade: "N/A", type: "refund", quote: "核心痛点：先退后买的拉锯战", sizeKB: 9 },
+      { uid: "677011904", name: "胧月儿", title: "理智务实型 · 已转化", tags: ["理智务实", "有声小白", "最终已转化"], grade: "B", type: "converted", quote: "理智务实型 · 已转化", sizeKB: 7 },
+      { uid: "677011906", name: "。（网名）", title: "Z世代大学生 · 沟通阻断后转化", tags: ["Z世代大学生", "沟通阻断/闪退", "最终已转化"], grade: "N/A", type: "converted", quote: "核心痛点：沟通阻断后转化", sizeKB: 7 },
+      { uid: "677011907", name: "sunshine、Z", title: "逃避型起手 · 极限拉扯挽回", tags: ["逃避型起手", "极限拉扯挽回", "最终已转化"], grade: "N/A", type: "converted", quote: "核心痛点：极限拉扯挽回", sizeKB: 6 },
+      { uid: "677018908", name: "元气先锋(已转化)", title: "S级/赤贫熔断与暗黑共情/102K转化标本", tags: ["S级", "赤贫熔断机制", "负债暗黑共情钩子"], grade: "S", type: "converted", quote: "核心痛点：S级/赤贫熔断与暗黑共情/102K转化标本", sizeKB: 102, url: "/user/uid_677018908_report.html" },
+      { uid: "227950458", name: "雨霖铃", title: "承诺说了没人兑现，工具用不上，好好一个人被耗走了", tags: ["承诺穿透失败", "版权书无配套指引", "工具链断供13天", "操作环境不适配", "无声退场"], grade: "B", type: "refund", quote: "核心痛点：承诺说了没人兑现，工具用不上，好好一个人被耗走了", sizeKB: 99, url: "/user/uid_227950458_report.html" },
+      { uid: "677011908", name: "沐笑晴风", title: "绝对零点幽灵党 · 已转化", tags: ["绝对零点幽灵党", "资源极度浪费", "最终已转化"], grade: "N/A", type: "converted", quote: "绝对零点幽灵党 · 已转化", sizeKB: 6 },
+      { uid: "677011911", name: "印淼", title: "需求被忽视的周期性学习者", tags: ["需求被客服无视", "周期性学习者", "最终已转化"], grade: "N/A", type: "converted", quote: "核心痛点：需求被忽视的周期性学习者", sizeKB: 7 },
+      { uid: "677011912", name: "易小易", title: "AI短视频赛道 · Aha时刻打法", tags: ["AI短视频赛道", "Aha时刻打法", "最终已转化"], grade: "N/A", type: "converted", quote: "核心痛点：Aha时刻打法", sizeKB: 7 },
+      { uid: "677013093", name: "磐石音乐 / 得水", title: "体验营全勤模范生付7380后5小时冷静退费", tags: ["钢琴老师 / 27岁 / 开音乐学校", "体验营全勤：3次作业全过", "付7380后5小时冷静退费"], grade: "N/A", type: "refund", quote: "核心痛点：体验营全勤模范生付7380后5小时冷静退费", sizeKB: 13 },
+      { uid: "677013934", name: "秧歌star", title: "20岁社恐人群的情绪狩猎与极速退费断层", tags: ["弱势群体猎杀", "无业/社恐/负债", "全额花呗透支风险", "后端日志蒸发型退单", "高压PIA戏沉浸"], grade: "B", type: "diagnostic", quote: "你们退钱干脆利落，反倒让我觉得喜播不是骗子公司。", sizeKB: 66 },
+      { uid: "677014233", name: "种子 / 陈敏", title: "71岁赤贫弱势群体的收割与后端傲慢抛弃", tags: ["A级舆情预警", "残疾/重病人家庭", "放任全额借款交费", "银发数字鸿沟", "后端冷血服务"], grade: "A", type: "diagnostic", quote: "核心痛点：71岁赤贫弱势群体的收割与后端傲慢抛弃", sizeKB: 91 },
+      { uid: "677014957", name: "凌霄", title: "高潜力待业青年的代际认知阻绝退单", tags: ["B级痛点预警", "优质高潜用户流失", "传统家庭强行干预", "待业焦虑冲动消费"], grade: "B", type: "diagnostic", quote: "核心痛点：高潜力待业青年的代际认知阻绝退单", sizeKB: 72 },
+      { uid: "677016019", name: "退费诊断 · 677016019", title: "挑拨家庭关系逼单 · 宝妈资金挤压", tags: ["挑拨家庭关系逼单", "独立女性毒鸡汤洗脑", "过度挤压宝妈资金", "退费后跟进轰炸"], grade: "A级", type: "refund", quote: "这是我借花呗给孩子交的补习费，求你们退给我吧！", sizeKB: 8, url: "/user/uid_677016019_report.html" },
+      { uid: "677017750", name: "🌸榕", title: "上班族时间不够 · 被催着交了3980", tags: ["销售行业上班族（早晚轮班）", "体验营干挂机无效转化", "CRM私域隔离失效", "退费后二次诈尸推销"], grade: "C级", type: "refund", quote: "核心痛点：被催着交了3980", sizeKB: 12, url: "/user/uid_677017750_report.html" },
+      { uid: "677020051", name: "YIN / 祛難", title: "物理硕士入职大学教师后理性退费", tags: ["极致理性的高知用户", "无效跨服情感PUA", "假冒行业趋势碰壁", "入职后时间完全被占满"], grade: "B级", type: "refund", quote: "核心痛点：物理硕士入职大学教师后理性退费", sizeKB: 13, url: "/user/uid_677020051_report.html" },
+      { uid: "677023933", name: "可 (260306可)", title: "女大学生1小时极速退费与SOP盲发炸弹", tags: ["23岁在校生高压冲动充值", "1小时极速退费", "退费处理极度丝滑 (正面典型)", "退费后二次SOP轰炸漏洞"], grade: "B级", type: "refund", quote: "你们退钱干脆利落，反倒让我觉得喜播不是骗子公司。", sizeKB: 12, url: "/user/uid_677023933_report.html" },
+      { uid: "677024135", name: "氾埈 (㏎)", title: "待业零收入被教唆透支信用大退费", tags: ["待业无收入人群", "诱导使用信用额度", "不计后果切黑维稳", "付款5天退费断崖"], grade: "A级", type: "refund", quote: "核心痛点：待业零收入被教唆透支信用大退费", sizeKB: 10, url: "/user/uid_677024135_report.html" },
+      { uid: "677030696", name: "可爱的它", title: "多线并推撞车与底线泯灭PUA惨案", tags: ["双阵营抢单内卷", "无视用户父亲重病", "教唆弱势群体负债", "退单极高管违规PUA"], grade: "A级", type: "refund", quote: "我都这么惨了，你们的班主任为什么还要高高在上地讽刺我？", sizeKB: 10, url: "/user/uid_677030696_report.html" },
+      { uid: "677024130", name: "好好女s", title: "家庭欺瞒负债与重病退费阻断案", tags: ["丈夫不知情负债", "父亲重病恶意转延期", "数字鸿沟极不适配", "教唆负债严重违纪"], grade: "D级", type: "refund", quote: "这是我借花呗给孩子交的补习费，求你们退给我吧！", sizeKB: 53, url: "/user/uid_677024130_report.html" },
+      { uid: "677030777", name: "William", title: "癌症手术重疾恶性挽单 · 伦理底线崩溃", tags: ["癌症重症手术患者", "利用重金罚款施压用户", "无视物理与资金彻底崩溃", "重大伦理与合规违纪"], grade: "D", type: "refund", quote: "核心痛点：伦理底线崩溃", sizeKB: 78, url: "/user/uid_677030777_report.html" },
+      { uid: "183220041", name: "冒冒", title: "家庭破裂危机与恶性挽单", tags: ["家庭冲突", "恶意挽单", "系统性退款阻碍", "D类严重违规"], grade: "D", type: "refund", quote: "核心痛点：家庭破裂危机与恶性挽单", sizeKB: 11, url: "/user/uid_183220041_report.html" },
+      { uid: "677038996", name: "260313LRR", title: "信任崩盘叠加外部负面舆情", tags: ["信任崩盘", "外部负面舆情", "C类警戒用户"], grade: "C", type: "refund", quote: "核心痛点：信任崩盘叠加外部负面舆情", sizeKB: 9 },
+      { uid: "240629641", name: "曾碧慧", title: "竞品机构欺诈PTSD受害者", tags: ["竞品受害者PTSD", "过度推销反噬", "信任度极度脆弱", "C类警戒"], grade: "C", type: "refund", quote: "承诺包接单却变成无底洞，这跟传销和杀猪盘有什么区别？", sizeKB: 12 },
+      { uid: "308751415", name: "260314光辉", title: "无视明确拒单意愿与死缠硬磨", tags: ["无视退费诉求", "过度推销系统课", "预期落差", "B类强压挽单"], grade: "B", type: "refund", quote: "核心痛点：无视明确拒单意愿与死缠硬磨", sizeKB: 11 },
+      { uid: "677043413", name: "260314室内设计2岁半", title: "未沟通即报名导致家属抵制", tags: ["冲动型消费", "未获家属同意", "无理性挽回", "C类防爆流失"], grade: "C", type: "refund", quote: "核心痛点：未沟通即报名导致家属抵制", sizeKB: 10 },
+      { uid: "541992405", name: "青衣", title: "掠夺性兜售高龄弱势病患致客诉", tags: ["高龄病患（70岁）", "女儿强烈抵制", "无数字自理能力", "D类极危违规"], grade: "D", type: "refund", quote: "核心痛点：掠夺性兜售高龄弱势病患致客诉", sizeKB: 15 },
+      { uid: "677043203", name: "彩虹", title: "强行延期替代退费引发资金风险", tags: ["待考宝妈", "时间精力匮乏", "房贷资金刚需", "强效延期违留"], grade: "B", type: "refund", quote: "核心痛点：强行延期替代退费引发资金风险", sizeKB: 11 },
+      { uid: "676306771", name: "神秘失踪客 676306771", title: "A类极案：虚伪接单大厅截图骗局与证据毁灭", tags: ["录音证据毁灭区", "PPT截图造假", "虚幻派单需求", "前端高压收割"], grade: "A", type: "diagnostic", quote: "核心痛点：虚伪接单大厅截图骗局与证据毁灭", sizeKB: 10 },
+      { uid: "677035170", name: "冯满满", title: "S级大字报：设备诱捕、电话黑箱与长达20天的僵尸骚扰", tags: ["前端隐瞒设备费", "威逼拒退电话黑匣", "局部退费嘲讽", "CRM外诉期20天无脑播报"], grade: "S", type: "diagnostic", quote: "核心痛点：设备诱捕、电话黑箱与长达20天的僵尸骚扰", sizeKB: 12 },
+      { uid: "677039046", name: "小宝", title: "D级违规：脱产备考生被强灌“30岁底气”毒鸡汤与家庭挑拨", tags: ["无收入强推花呗", "挑唆家庭对立", "虚假底气PUA", "僵尸式客服逼单"], grade: "D", type: "diagnostic", quote: "核心痛点：脱产备考生被强灌“30岁底气”毒鸡汤与家庭挑拨", sizeKB: 74, url: "/user/uid_677039046_report.html" },
+      { uid: "677026237", name: "国际歌永存", title: "外诉极危：AIGC欺诈交付与投诉期僵尸营销轰炸", tags: ["AIGC空壳交付", "承诺包接单造假", "阻断期间二次营销", "D类CRM系统熔断失效"], grade: "D", type: "diagnostic", quote: "承诺包接单却变成无底洞，这跟传销和杀猪盘有什么区别？", sizeKB: 11 },
+      { uid: "677020362", name: "羁鸟恋旧林", title: "外诉极度危情：虚假宣传反噬与说教式PUA", tags: ["引发市场局外诉", "宝妈时间被挤压", "前端虚假低门槛宣传", "班主任大段爹味施压"], grade: "D", type: "diagnostic", quote: "我都这么惨了，你们的班主任为什么还要高高在上地讽刺我？", sizeKB: 11 },
+      { uid: "534543349", name: "雪(无经验宝妈)", title: "底线沦丧：逾越边界的爹味说教与育儿道德绑架", tags: ["病患家属逼单", "育儿道德绑架", "爹味连环PUA", "退费极危触礁"], grade: "D", type: "diagnostic", quote: "我都这么惨了，你们的班主任为什么还要高高在上地讽刺我？", sizeKB: 119, url: "/user/uid_534543349_report.html" },
+      { uid: "676606211", name: "听友676606211(76岁病患)", title: "冰冷绞杀：190血压急救下的二次收割与起诉恐吓", tags: ["高龄病患榨取", "诱导补差价", "救命钱拖延", "诉讼威胁恐吓"], grade: "D", type: "diagnostic", quote: "我血压190在挂急诊，你们还要跟我走法律程序起诉我？", sizeKB: 118, url: "/user/uid_676606211_report.html" },
+      { uid: "677019519", name: "张焕丽(40岁宝妈)", title: "内部竞杀与家庭干预：无防撞单并发清洗致外诉引爆", tags: ["跨线并发撞单", "销售竞品互踩", "S2B2C灰箱作业", "高单价配偶干预"], grade: "D", type: "diagnostic", quote: "核心痛点：无防撞单并发清洗致外诉引爆", sizeKB: 125, url: "/user/uid_677019519_report.html" },
+      { uid: "676494717", name: "外诉用户676494717", title: "诱骗硬件搭售：黑产手法引发市场消保投诉", tags: ["诱捕式强迫搭售", "双面诈欺(买前买后)", "拒绝双层退款(课+物)", "D类极危外诉"], grade: "D", type: "diagnostic", quote: "核心痛点：黑产手法引发市场消保投诉", sizeKB: 10 },
+      { uid: "677047172", name: "周姐", title: "突发车祸骨折拒不退费，重度冷漠危机", tags: ["突发重大车祸", "重疾住院必须手术", "丧失同理心", "D类极危违规"], grade: "D", type: "diagnostic", quote: "核心痛点：突发车祸骨折拒不退费，重度冷漠危机", sizeKB: 10 },
+      { uid: "677047216", name: "宁宁(38岁宝妈)", title: "医学撒谎与傲慢：对喉咙痛宝妈推销高价配音课", tags: ["医学常识欺诈", "浮夸收益诱导", "无视生理病症", "退费高危"], grade: "D", type: "diagnostic", quote: "这是我借花呗给孩子交的补习费，求你们退给我吧！", sizeKB: 124, url: "/user/uid_677047216_report.html" },
+      { uid: "166619264", name: "十米", title: "亲人ICU病危强行道德绑架，严重伦理失当", tags: ["高素质退休老师", "母亲进ICU病危", "销售考核卖惨", "D类极危违规"], grade: "D", type: "diagnostic", quote: "核心痛点：亲人ICU病危强行道德绑架，严重伦理失当", sizeKB: 10 },
+      { uid: "677029156", name: "芋泥脑袋 / kyrene", title: "D类外诉：隐瞒付费门槛 · 花呗零收入诱导逼单7380元", tags: ["明确虚假承诺(接单免费)", "失业宝妈花呗分期", "入群首问被骗又被诱导", "仅上课36小时退款"], grade: "D", type: "diagnostic", quote: "核心痛点：花呗零收入诱导逼单7380元", sizeKB: 18 },
+      { uid: "677021710", name: "晴 / 陈玉花", title: "D类外诉：付款后被完全晾置72小时 · 起诉威胁 · 拼凑付款诱导", tags: ["付款后零跟进72小时", "连发14条消息无回复", "明确发出起诉警告", "有被骗史二次收割初中文凭上班族"], grade: "D", type: "diagnostic", quote: "核心痛点：拼凑付款诱导", sizeKB: 20 },
+      { uid: "677020910", name: "小邱", title: "D类外诉·突发型：被骗20万债务爆发·说9次退款被阻22小时·偷录音+律师介入", tags: ["合伙人卷款跑路20万", "偷录音取证已找律师", "9次退款被班主任阻拦", "22小时道德施压拒退", "五点起床+双份工作睡眠极度匮乏", "班主任吹漫剧一千一分钟饼"], grade: "D", type: "diagnostic", quote: "核心痛点：偷录音+律师介入", sizeKB: 22 },
+      { uid: "677010927", name: "陌云九（安馨）", title: "🚨危机级·明确轻生表达·负债60万·口头承诺合同断层·退款后7天被二次骚扰", tags: ["明确表达轻生(跳楼)", "负债60万疫情致贫", "前端口头承诺无合同约束", "前端退款7天后换号二次骚扰", "用户发出系统性平台解剖长文", "后端班主任处理良好·首位B级评分"], grade: "D", type: "diagnostic", quote: "我都想跳楼了，你们为什么还想从我负债60万的账上扣钱？", sizeKB: 24 },
+      { uid: "677010996", name: "一掷（李执云）", title: "C/D类边界：黑名单负债男·普测挂科·后端班主任【猫萧萧】神级拆弹", tags: ["黑名单老赖无力支付", "借朋友车开滴滴亏本", "同学垫付学费逼债", "前期展示极强写剧本天赋", "前端罔顾方言障碍强行收割推坑后端", "猫萧萧教科书式共情优雅踢出群聊"], grade: "C", type: "diagnostic", quote: "这是我借花呗给孩子交的补习费，求你们退给我吧！", sizeKB: 18 },
+      { uid: "677011515", name: "青青草原（周婵）", title: "⭐A级标杆：借极速退款化解家庭危机，反向收割私域转介绍", tags: ["家庭激烈反对怕被骗", "家人痛斥吵到半夜", "用户极看重面子自证", "班主任顺水推舟秒退款", "打消骗局疑虑反向拉新"], grade: "A", type: "diagnostic", quote: "你们退钱干脆利落，反倒让我觉得喜播不是骗子公司。", sizeKB: 16 },
+      { uid: "677013093", name: "磐石音乐Darren（得水）", title: "产品断崖反思：钢琴老师的“高变现恐惧”如何用轻交付月卡产品承接？", tags: ["教培人员/钢琴老师", "价格敏感惧怕打水漂", "前端班主任服务体验极好", "缺乏小单试水阶梯产品", "提议用短周期破冰产品方案承接"], grade: "B", type: "diagnostic", quote: "核心痛点：钢琴老师的“高变现恐惧”如何用轻交付月卡产品承接？", sizeKB: 26 },
+      { uid: "677020578", name: "李小芳（肖雯馨/杨依琳）", title: "💣信任链断裂：朋友甩出反套路长文揭露连环收费1.6万，班主任“幸存者偏差”话术反转失败？", tags: ["远嫁宝妈花呗报名", "防骗长文曝光连环收费", "前端缺乏底线契约保障", "前端班主任情感牌失效", "后端班主任顺水推舟极速退群", "急需反欺诈白皮书与保底方案"], grade: "D", type: "diagnostic", quote: "核心痛点：朋友甩出反套路长文揭露连环收费1.6万，班主任“幸存者偏差”话术反转失败？", sizeKB: 24 },
+      { uid: "341425027", name: "叶新（Xu.）", title: "🚨黑天鹅系统作弊：班主任挂载Dify营养师AI导致虚假履约诈骗被图灵测试揭穿", tags: ["私挂Dify营养师机器人", "自动测热量虚假履约", "被用户黑盒反向渗透", "后台质检完全真空", "S级运营底线崩盘事故"], grade: "S", type: "diagnostic", quote: "你的机器人连我是谁都不知道！虚假AI履约被用户图灵测试戳穿", sizeKB: 55, url: "/user/uid_341425027_report.html" },
+      { uid: "677000463", name: "图南鹏翼", title: "产品断崖：重度交付引发的时间恐慌与『微商单』的确实", tags: ["职场兼职人群", "时间恐慌与沉没成本", "渴望短平快轻量交付", "班主任否定简单任务", "急需微门槛降落伞产品"], grade: "C", type: "diagnostic", quote: "核心痛点：重度交付引发的时间恐慌与『微商单』的确实", sizeKB: 34 },
+      { uid: "677003702", name: "xyt", title: "D类极危：职场焦虑恶性PUA与人身贬低", tags: ["跨境电商大小周", "公司自有Sora", "班主任职场恐吓", "恶劣人身贬低施压", "必须触发挽单终结SOP"], grade: "D", type: "diagnostic", quote: "我都这么惨了，你们的班主任为什么还要高高在上地讽刺我？", sizeKB: 45 },
+      { uid: "677003914", name: "绝对快乐", title: "B级表现：【猫萧萧】展示教科书级高情商退费承接", tags: ["下沉市场收银员", "家人强烈反对退款", "前端滞后且强行电话", "后端神级共情化解", "资金安全承诺定心丸"], grade: "B", type: "diagnostic", quote: "你先稳住生活，学费原路退回！神级共情化解极端危机。", sizeKB: 48 },
+      { uid: "677004152", name: "宸溪", title: "C类预警：设备成本恐慌与隐性负债退单", tags: ["私自报大课", "盲目换新电脑", "3999旗舰麦克风刺客", "ROI严重倒挂恐慌", "急需三轨制设备推荐清单"], grade: "C", type: "diagnostic", quote: "这是我借花呗给孩子交的补习费，求你们退给我吧！", sizeKB: 110 },
+      { uid: "677004173", name: "小蕃茄", title: "A级流失：不可抗力病患退费的绝佳承接", tags: ["突发重病住院", "家属代为操作", "彻底放弃套路挽单", "情绪价值与同理心", "明确解释停止扣费机制"], grade: "A", type: "diagnostic", quote: "核心痛点：不可抗力病患退费的绝佳承接", sizeKB: 44 },
+      { uid: "677004503", name: "枫叶", title: "A级表现：银发族重压流失与神级共情", tags: ["57岁退休老人", "前端不当兜售大课", "老带新突发变故流失", "班主任深层心理按摩", "建议银发族月卡订阅制"], grade: "A", type: "diagnostic", quote: "核心痛点：银发族重压流失与神级共情", sizeKB: 93 },
+      { uid: "677004710", name: "黑猫（不是警长）", title: "C级预警：大神级别用户遭遇“新手村”套路流失", tags: ["中戏表演班出身", "只为商单资源买单", "机械履约惹怒高手", "缺乏免检绿色通道", "资源暴殄天物"], grade: "C", type: "diagnostic", quote: "核心痛点：大神级别用户遭遇“新手村”套路流失", sizeKB: 60 },
+      { uid: "677004903", name: "陈思念", title: "C级预警：后端刺刀甩锅与大课模式水土不服", tags: ["28岁出差族", "嫌弃2.5小时直播过长", "迎新班会水份过大", "班主任甩锅前端割韭菜", "微课程切割需求"], grade: "C", type: "diagnostic", quote: "核心痛点：后端刺刀甩锅与大课模式水土不服", sizeKB: 51 },
+      { uid: "677005254", name: "千惠", title: "C级预警：情绪对抗与爹味说教导致信任崩塌", tags: ["39岁体面公务员极度自律", "被外部营销黑评引发恐慌", "群内抢人社交抓马厌倦", "班主任盲目护犊子说教", "不当的办健身卡比喻"], grade: "C", type: "diagnostic", quote: "我都这么惨了，你们的班主任为什么还要高高在上地讽刺我？", sizeKB: 91 },
+      { uid: "677006005", name: "云雾", title: "C级预警：面对家庭变故的冷血揣测与阴阳怪气", tags: ["71岁高龄老人", "80岁亲姐重病ICU全职陪护", "前端班主任发暗讽表情包", "恶意揣测退费原因", "丧失基本共情与关怀"], grade: "C", type: "diagnostic", quote: "核心痛点：面对家庭变故的冷血揣测与阴阳怪气", sizeKB: 42 },
+      { uid: "677006033", name: "娟娟", title: "D类极危：对抽干饭钱退学宝妈的伪女权PUA", tags: ["全职宝妈无收入", "冲动付费致孩子补习费断供", "前端耻笑“就这点事呀”", "毒鸡汤营销施压", "道德与底线大面积沦丧"], grade: "D", type: "diagnostic", quote: "我都这么惨了，你们的班主任为什么还要高高在上地讽刺我？", sizeKB: 19 },
+      { uid: "677007979", name: "暴躁的兔子", title: "C类预警：何不食肉糜的投资PUA与护士的时间枯竭", tags: ["35岁云南女护士", "三班倒夜班时间严重透支", "设备恐慌遭老师嘲讽", "“买个设备算得了什么呀”", "阴谋论式防御回应"], grade: "C", type: "diagnostic", quote: "我都这么惨了，你们的班主任为什么还要高高在上地讽刺我？", sizeKB: 81 },
+      { uid: "677008811", name: "王燕", title: "C级预警：流程踢皮球与恐怖谷式机器话术", tags: ["40+岁杭州宝妈", "家人突发大病急需付医药费", "前后端踢皮球拖延退费", "定时播发的罐头鸡汤", "极度缺乏人道熔断机制"], grade: "C", type: "diagnostic", quote: "核心痛点：流程踢皮球与恐怖谷式机器话术", sizeKB: 63 },
+      { uid: "677010927", name: "陌云九（安馨）", title: "D类极危：负债60万跳楼预警与系统性欺诈解剖", tags: ["44岁高中学历男", "负债60万且多次提轻生", "极强逻辑拆穿前端大饼", "前后端服务冰火两重天", "退费后7天仍遭营销骚扰"], grade: "D", type: "diagnostic", quote: "我都想跳楼了，你们为什么还想从我负债60万的账上扣钱？", sizeKB: 60 },
+      { uid: "677010996", name: "一掷", title: "B类预警：收割失信滴滴司机与拯救性的人文关怀", tags: ["41岁失业男", "负债几十万成黑名单", "前端造梦变现洗脑", "重度口音考证崩溃", "后端班主任人道主义放行"], grade: "B", type: "diagnostic", quote: "核心痛点：收割失信滴滴司机与拯救性的人文关怀", sizeKB: 35 },
+      { uid: "677011515", name: "青青草原", title: "S级高光：极速秒退化解危机并引发裂变的新模型", tags: ["家人强力干预退费", "坚决不扯皮秒退到账", "击碎机构诈骗质疑", "退费重建高频信任", "危机转介绍成功拉新"], grade: "A", type: "diagnostic", quote: "你们退钱干脆利落，反倒让我觉得喜播不是骗子公司。", sizeKB: 55 },
+      { uid: "404000124", name: "昕秀(18岁高考生)", title: "涉高中未成年人恶劣收割与教唆负债", tags: ["临考高中生榨取", "教唆未成年负债", "无视高考作息轰炸", "违规试探教唆花呗"], grade: "D", type: "converted", quote: "这是我借花呗给孩子交的补习费，求你们退给我吧！", sizeKB: 115, url: "/user/uid_404000124_report.html" },
+      { uid: "677025571", name: "QH 🍋(负债30万)", title: "极端负债榨取与病态情感围猎", tags: ["明知30万负债剥削", "迎合畸形情感寄生", "传销拉人头暗示", "极高危D级客群违规"], grade: "D", type: "refund", quote: "这是我借花呗给孩子交的补习费，求你们退给我吧！", sizeKB: 112, url: "/user/uid_677025571_report.html" },
+      { uid: "676666712", name: "友漓(84岁病患)", title: "冰冷杀猪盘：84岁住院老人的无底线逼单", tags: ["高龄盲态诱导", "无视住院病痛", "机器人式私域霸凌", "吃人血馒头"], grade: "D", type: "refund", quote: "核心痛点：84岁住院老人的无底线逼单", sizeKB: 112, url: "/user/uid_676666712_report.html" },
+      { uid: "677033207", name: "Agoin(酒店前台)", title: "手术缺钱下的“血馒头”：极高危画饼式截留", tags: ["急症手术缺钱", "画饼暴利诱导挽单", "私域黑箱施压", "野路子人情债装软件", "D类致命违规"], grade: "D", type: "refund", quote: "核心痛点：极高危画饼式截留", sizeKB: 97, url: "/user/uid_677033207_report.html" },
+      { uid: "677033292", name: "莫失莫忘(赤贫底层宝妈)", title: "生存红线以下用户的榨取与家庭挑拨", tags: ["无视贫困强行榨取", "挑拨家庭反对声音", "父母孩子焦虑PUA", "假借配音赚快钱欺诈"], grade: "D", type: "refund", quote: "核心痛点：生存红线以下用户的榨取与家庭挑拨", sizeKB: 111, url: "/user/uid_677033292_report.html" },
+      { uid: "677029634", name: "Cielo(在职备考)", title: "无视客观阻力的深夜鸡汤轰炸与硬拦截", tags: ["冻结福利拖延退费", "无视退单正面诉求", "深夜鸡汤PUA轰炸", "狗皮膏药式纠缠"], grade: "C", type: "refund", quote: "核心痛点：无视客观阻力的深夜鸡汤轰炸与硬拦截", sizeKB: 110, url: "/user/uid_677029634_report.html" },
+      { uid: "677038387", name: "小～晚叙(弱势宝妈)", title: "拦截退费欺诈与高单价“偷梁换柱”", tags: ["私自越权拦截退费", "诱求保大单", "空头承诺退差价", "宝妈弱势收割"], grade: "C", type: "refund", quote: "承诺包接单却变成无底洞，这跟传销和杀猪盘有什么区别？", sizeKB: 111, url: "/user/uid_677038387_report.html" },
+      { uid: "677009908", name: "260314(无效循环线索)", title: "居高临下的退单说教与系统线索空转", tags: ["退费阻断", "居高临下讽刺客户", "无效线索重复轰炸", "缺乏退单冷却期"], grade: "C", type: "refund", quote: "核心痛点：居高临下的退单说教与系统线索空转", sizeKB: 102, url: "/user/uid_677009908_report.html" },
+      { uid: "677028914", name: "何江(交错赛道用户)", title: "退费鉴权漏洞断课与病态的内耗抢单", tags: ["重复订单退费Bug", "系统误判全解除", "无视互斥持续发鸡汤", "不同业务线同户对抢"], grade: "B", type: "refund", quote: "系统里已经把我清退了，为什么别的老师还在给我群发鸡汤？", sizeKB: 107, url: "/user/uid_677028914_report.html" },
+      { uid: "677022211", name: "原^_^点(重债流水线单亲)", title: "高压债务群体收割与冰窖式极寒交付", tags: ["知情负债剥削", "强力情绪杠杆透支", "班主任极寒无情响应", "交接断层与极度反差"], grade: "A", type: "refund", quote: "核心痛点：高压债务群体收割与冰窖式极寒交付", sizeKB: 80, url: "/user/uid_677022211_report.html" },
+      { uid: "677019399", name: "汤(43岁全职宝妈)", title: "家庭话语权压制：无合同恐惧引发的秒退与道德绑架挽单失败", tags: ["丈夫防御性拦截", "无纸质合同恐惧", "无独立收入买单权", "重度道德绑架无效"], grade: "C", type: "refund", quote: "为了一个课程搞得家庭不和谐没有必要，我目前没有资格为自己的兴趣爱好买单。家里人说包赚钱都是夸大营销，这不是套进去是啥？", sizeKB: 97, url: "/UID_677019399_双轨诊断报告.html" },
+      { uid: "677133912", name: "箩阿北(28岁男销售)", title: "盲目重复投递与交付草台班子：信任崩塌与挽回疲劳", tags: ["前端饥饿营销FOMO", "重复下单变配", "后端班主任甩锅前端", "组织内耗与无专业度质问"], grade: "D", type: "refund", quote: "我就想知道，同样的东西为什么一天内让我花两次钱？你们到底懂不懂？", sizeKB: 79, url: "/UID_677133912_report.html" },
+      { uid: "677024497", name: "260310时风", title: "情感隔离与机器人式退费：机器客服伪装与强行降配", tags: ["家庭阻力", "僵尸号假客服", "嘲讽式回复", "机器人托管"], grade: "B", type: "diagnostic", quote: "宝子，我在。哈哈，骗你的啦～红班班正在‘充电’", sizeKB: 28 },
+      { uid: "676885996", name: "初滢(C类极速退单)", title: "SOP长篇轰炸激怒目的型用户：极速崩溃流失", tags: ["强结果导向极度缺乏耐心", "预期错配要求秒接单", "SOP机械念经长文轰炸", "首触即燃熔断失效"], grade: "C", type: "diagnostic", quote: "退钱，我不要了！——极速结果导向下对SOP念经的零容忍", sizeKB: 12 },
+      { uid: "677127711", name: "260402浩然", title: "交错赛道榨取与“第五周接单”真相暴露退费", tags: ["跨双线(配音+写文)交叉洗脑", "过度承诺门槛虚化", "开课见光死底牌暴露", "退单后暴力踢群没收资产"], grade: "B", type: "diagnostic", quote: "第五周才学接单？那我怎么尽快赚钱！——期望管理失控引发的信任崩塌", sizeKB: 83 },
+      { uid: "185068411", name: "元素指令员(45岁无业女性)", title: "低数字素养拔苗助长：花呗高压下的崩溃与家庭强制熔断", tags: ["无视用户低技术素养", "花呗推销透支信用", "盲人录书道德绑架", "脱离实际的鸡汤挽留"], grade: "D", type: "refund", quote: "出于钱的支出这项，暂时我还没能力说服家人的认同，麻烦还是退款吧。我的人生这一路都很可惜，为了家人嘛，认了。", sizeKB: 91, url: "/UID_185068411_双轨诊断报告.html" },
+      { uid: "677033207", name: "Agoin(21岁因病致贫)", title: "冰血KPI剥削：无视救命钱诉求的恶性道德绑架", tags: ["剥削重大疾病弱势", "强制洗脑画饼充饥", "极其冷血无同理心", "涉嫌虚假接单承诺"], grade: "D", type: "refund", quote: "我穷，动手术的钱还差点，不动手术一直折磨很难受。CM回答：如果你差钱，就更该跟着我，我这接单挣钱容易得多。", sizeKB: 95, url: "/UID_677033207_双轨诊断报告.html" },
+      { uid: "676994686", name: "一刻的停留(杀鸡摊贩)", title: "破茧成蝶的极致降维服务：从恐慌崩溃到顶层留存", tags: ["极高情绪价值承接", "小白耐心指导", "消除系统性防备", "真诚建立信任"], grade: "A", type: "diagnostic", quote: "我才初中毕业，白天杀鸡杀鸭... CM回答：你有这个想法来学习本身就是非常有上进心的事！你给家里盖房子，是顶天立地的好男儿！我单开个会议室陪你实操！", sizeKB: 90, url: "/UID_676994686_转化诊断报告.html" },
+      { uid: "677034292", name: "有！(23岁待业男)", title: "家庭强熔断与废料乱喷：全链路失效的极速退费", tags: ["极客退费家庭干预", "错误男权挽留话术", "无视客观财务缺失", "废料扔入AI漏斗"], grade: "C", type: "refund", quote: "家里下通牒了，都来家里了，趁着还没开课退了吧。 —— 仅 1.5 小时后的冲动型被动退单", sizeKB: 87, url: "/UID_677034292_双轨诊断报告.html" },
+      { uid: "677032315", name: "蔡蔡(51岁天津陪读妈妈)", title: "前端盲盒销售与后端贬损式挽单的严重冲突", tags: ["盲盒销售隐瞒课表", "后端贬低课程价值", "时间精力挤压流失", "认知失调与价值消解"], grade: "A", type: "refund", quote: "你说录播就一个老师坐在那里有啥需要盯着的呀 —— 班主任以严重贬损产品专业性来挽留", sizeKB: 84, url: "/user/uid_677032315_report.html" },
+      { uid: "677027766", name: "天使宝贝(39岁个体宝妈)", title: "D类极危：网贷拒批/资金瘫痪下的跨月连环逼单与家庭挤压", tags: ["网贷拒批依旧逼单", "储蓄卡余额瘫痪", "脱离实际收割", "引发家庭干预防线"], grade: "D", type: "diagnostic", quote: "我去网贷都没有批下来...早知道储蓄卡没余钱我就不退(信用卡)了", sizeKB: 84, url: "/UID_677027766_资金破产_高压逼单流失战略复盘.md" },
+      { uid: "677026629", name: "姚姚(文学疗愈高知群)", title: "B类高理智：致命支付错链引发强制冷静与僵尸话术空转", tags: ["支付链接错发截断", "长时强制冷静期退单", "价值观断崖式错配", "月度洗脑长文骚扰"], grade: "B", type: "diagnostic", quote: "我还是想从写作上获得一种疗愈...如果是用老师教的那种爆款套路，我自己心里这关都过不了。", sizeKB: 84, url: "/UID_677026629_错链熔断_高理智退单战略复盘.md" }
+    ];
+
+    // =======================================
+    // RENDER ENGINE
+    // =======================================
+    function getGradeClass(grade) {
+      const map = { 'A': 'grade-a', 'B': 'grade-b', 'C': 'grade-c', 'D': 'grade-d' };
+      return map[grade] || 'grade-na';
+    }
+
+    function getGradeLabel(grade) {
+      const map = { 'A': 'A', 'B': 'B', 'C': 'C', 'D': 'D' };
+      return map[grade] || '—';
+    }
+
+    function getTypeBadge(type) {
+      const map = {
+        'refund': '<span class="type-badge type-refund">退费</span>',
+        'converted': '<span class="type-badge type-converted">已转化</span>',
+        'diagnostic': '<span class="type-badge type-diagnostic">诊断</span>',
+        'decoder': '<span class="type-badge type-decoder">深度解码</span>',
+      };
+      return map[type] || '';
+    }
+
+    function getTagColorClass(tag, index) {
+      // Assign colors based on content hints
+      if (tag.includes('退费') || tag.includes('退') || tag.includes('负债') || tag.includes('危') || tag.includes('轻生') || tag.includes('PUA') || tag.includes('恶') || tag.includes('违规') || tag.includes('红线')) return 'tag-red';
+      if (tag.includes('已转化') || tag.includes('成交') || tag.includes('天赋') || tag.includes('范例') || tag.includes('极强')) return 'tag-green';
+      if (tag.includes('解码') || tag.includes('DISC') || tag.includes('潜力') || tag.includes('S1')) return 'tag-purple';
+      if (tag.includes('冲动') || tag.includes('营销') || tag.includes('花呗') || tag.includes('缺乏') || tag.includes('漏洞')) return 'tag-orange';
+      const fallback = ['tag-blue', 'tag-purple', 'tag-green', 'tag-orange'];
+      return fallback[index % fallback.length];
+    }
+
+    function renderCard(report) {
+      const gradeClass = getGradeClass(report.grade);
+      const gradeLabel = getGradeLabel(report.grade);
+      const typeBadge = getTypeBadge(report.type);
+      const tagsHtml = report.tags.slice(0, 3).map((t, i) =>
+        `<span class="tag ${getTagColorClass(t, i)}">${t}</span>`
+      ).join('');
+
+      const reportUrl = report.url ? (report.url.startsWith('/') ? report.url.substring(1) : report.url) : `user/uid_${report.uid}_report.html`;
+
+      return `
+        <a href="${reportUrl}" class="report-card"
+           data-grade="${report.grade}" data-type="${report.type}"
+           data-search="${report.name} ${report.uid} ${report.title} ${report.tags.join(' ')}">
+          <div class="card-header">
+            <div class="grade-badge ${gradeClass}">${gradeLabel}</div>
+            <div>
+              <div class="card-uid">UID ${report.uid}</div>
+              ${typeBadge}
+            </div>
+          </div>
+          <div class="card-body">
+            <div class="card-name">${report.name}</div>
+            <div class="card-title-sub">${report.title}</div>
+            ${report.quote ? `<div class="card-quote">“${report.quote}”</div>` : ''}
+            <div class="card-tags">${tagsHtml}</div>
+          </div>
+          <div class="card-footer">
+            <span class="card-meta">${report.sizeKB} KB · 深度分析</span>
+            <div class="card-arrow">→</div>
+          </div>
+        </a>
+      `;
+    }
+
+    function renderStats() {
+      const total = REPORTS.length;
+      const gradeA = REPORTS.filter(r => r.grade === 'A').length;
+      const gradeB = REPORTS.filter(r => r.grade === 'B').length;
+      const gradeD = REPORTS.filter(r => r.grade === 'D').length;
+      const refund = REPORTS.filter(r => r.type === 'refund').length;
+      const converted = REPORTS.filter(r => r.type === 'converted').length;
+      const decoder = REPORTS.filter(r => r.type === 'decoder').length;
+
+      document.getElementById('statsBar').innerHTML = `
+        <div class="stat-card total"><div class="stat-number">${total}</div><div class="stat-label">全量案例</div></div>
+        <div class="stat-card grade-a"><div class="stat-number">${gradeA}</div><div class="stat-label">A类 · 高价值</div></div>
+        <div class="stat-card grade-b"><div class="stat-number">${gradeB}</div><div class="stat-label">B类 · 稳定型</div></div>
+        <div class="stat-card grade-d"><div class="stat-number">${gradeD}</div><div class="stat-label">D类 · 高危</div></div>
+        <div class="stat-card"><div class="stat-number" style="color:#f97316;">${refund}</div><div class="stat-label">退费案例</div></div>
+        <div class="stat-card"><div class="stat-number" style="color:#10b981;">${converted}</div><div class="stat-label">已转化</div></div>
+        <div class="stat-card"><div class="stat-number" style="color:#a78bfa;">${decoder}</div><div class="stat-label">深度解码</div></div>
+      `;
+    }
+
+    function renderReports(filteredReports) {
+      const grid = document.getElementById('reportsGrid');
+      const empty = document.getElementById('emptyState');
+      const countEl = document.getElementById('resultCount');
+
+      if (filteredReports.length === 0) {
+        grid.innerHTML = '';
+        empty.classList.add('visible');
+        countEl.textContent = '';
+        return;
+      }
+
+      empty.classList.remove('visible');
+      countEl.innerHTML = `显示 <strong>${filteredReports.length}</strong> 个案例`;
+
+      // Stagger animations
+      grid.innerHTML = filteredReports.map((r, i) => {
+        const card = renderCard(r);
+        return card.replace('class="report-card"', `class="report-card" style="animation-delay: ${Math.min(i * 0.03, 0.6)}s"`);
+      }).join('');
+    }
+
+    // =======================================
+    // FILTER & SEARCH
+    // =======================================
+    let currentFilter = 'all';
+    let currentSearch = '';
+
+    function applyFilters() {
+      let filtered = [...REPORTS];
+
+      // Apply category filter
+      if (currentFilter === 'A') filtered = filtered.filter(r => r.grade === 'A');
+      else if (currentFilter === 'B') filtered = filtered.filter(r => r.grade === 'B');
+      else if (currentFilter === 'D') filtered = filtered.filter(r => r.grade === 'D');
+      else if (currentFilter === 'refund') filtered = filtered.filter(r => r.type === 'refund');
+      else if (currentFilter === 'converted') filtered = filtered.filter(r => r.type === 'converted');
+
+      // Apply search
+      if (currentSearch) {
+        const query = currentSearch.toLowerCase();
+        filtered = filtered.filter(r => {
+          const searchPool = `${r.name} ${r.uid} ${r.title} ${r.tags.join(' ')}`.toLowerCase();
+          return searchPool.includes(query);
+        });
+      }
+
+      renderReports(filtered);
+    }
+
+    // Filter buttons
+    document.getElementById('filterGroup').addEventListener('click', (e) => {
+      const btn = e.target.closest('.filter-btn');
+      if (!btn) return;
+
+      currentFilter = btn.dataset.filter;
+
+      // Update active states
+      document.querySelectorAll('.filter-btn').forEach(b => {
+        b.className = 'filter-btn';
+      });
+
+      if (currentFilter === 'A') btn.className = 'filter-btn active-a';
+      else if (currentFilter === 'B') btn.className = 'filter-btn active-b';
+      else if (currentFilter === 'D') btn.className = 'filter-btn active-d';
+      else btn.className = 'filter-btn active';
+
+      applyFilters();
+    });
+
+    // Search
+    document.getElementById('searchInput').addEventListener('input', (e) => {
+      currentSearch = e.target.value.trim();
+      applyFilters();
+    });
+
+    // View toggle
+    document.getElementById('gridViewBtn').addEventListener('click', () => {
+      document.getElementById('reportsGrid').classList.remove('list-view');
+      document.getElementById('gridViewBtn').classList.add('active');
+      document.getElementById('listViewBtn').classList.remove('active');
+    });
+    document.getElementById('listViewBtn').addEventListener('click', () => {
+      document.getElementById('reportsGrid').classList.add('list-view');
+      document.getElementById('listViewBtn').classList.add('active');
+      document.getElementById('gridViewBtn').classList.remove('active');
+    });
+
+    // =======================================
+    // INIT
+    // =======================================
+    renderStats();
+    renderReports(REPORTS);
+  </script>
+</body>
+
+</html>

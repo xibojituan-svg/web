@@ -1,0 +1,582 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>用户分层全息图谱 · 喜播成人教育分层决策引擎 v4.1</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Noto+Serif+SC:wght@700;900&display=swap" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+  <style>
+    :root {
+      --bg: #09090b; --s1: #18181b; --s2: #27272a; --s3: #3f3f46;
+      --text: #f4f4f5; --dim: #a1a1aa; --muted: #71717a;
+      --green: #10b981; --blue: #3b82f6; --amber: #f59e0b;
+      --red: #ef4444; --purple: #8b5cf6; --orange: #f97316; --teal: #14b8a6;
+    }
+    *{margin:0;padding:0;box-sizing:border-box;}
+    html{scroll-behavior:smooth;}
+    body{font-family:'Inter','PingFang SC',sans-serif;background:var(--bg);color:var(--text);line-height:1.7;-webkit-font-smoothing:antialiased;}
+    .glow{position:fixed;top:-15vh;left:50%;transform:translateX(-50%);width:100vw;height:55vh;background:radial-gradient(ellipse at bottom,rgba(59,130,246,0.1),transparent 70%);z-index:-1;pointer-events:none;}
+
+    /* ── HERO ── */
+    .hero{padding:72px 24px 60px;text-align:center;border-bottom:1px solid var(--s3);position:relative;overflow:hidden;}
+    .hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at top,rgba(59,130,246,0.08),transparent 60%);}
+    .badge{display:inline-flex;align-items:center;gap:8px;padding:6px 18px;border-radius:100px;background:rgba(59,130,246,0.1);border:1px solid rgba(59,130,246,0.3);color:var(--blue);font-size:12px;font-weight:800;letter-spacing:1.5px;margin-bottom:28px;}
+    .dot{width:7px;height:7px;border-radius:50%;background:var(--blue);animation:pulse 2s infinite;}
+    h1{font-family:'Noto Serif SC',serif;font-size:clamp(26px,4.5vw,48px);font-weight:900;line-height:1.2;background:linear-gradient(160deg,#fff 30%,#93c5fd 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;margin-bottom:20px;}
+    .hero-sub{font-size:15px;color:var(--dim);max-width:700px;margin:0 auto 20px;}
+    .hero-meta{font-size:11px;color:var(--muted);letter-spacing:1px;}
+
+    /* ── PAGE SECTION ── */
+    .page{max-width:1200px;margin:0 auto;padding:0 24px;}
+    section{padding:64px 0;border-bottom:1px solid rgba(255,255,255,0.04);}
+    .sec-label{font-size:11px;font-weight:800;letter-spacing:2.5px;text-transform:uppercase;color:var(--muted);margin-bottom:14px;display:flex;align-items:center;gap:10px;}
+    .sec-label::after{content:'';flex:1;height:1px;background:var(--s3);}
+    h2{font-family:'Noto Serif SC',serif;font-size:clamp(20px,3vw,28px);font-weight:900;color:#fff;margin-bottom:8px;}
+    .sec-desc{font-size:14px;color:var(--dim);margin-bottom:32px;}
+
+    /* ── 三轴模型 ── */
+    .tri-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-bottom:40px;}
+    .tri-card{background:var(--s1);border:1px solid var(--s3);border-radius:16px;padding:24px;transition:border-color 0.3s,transform 0.3s;}
+    .tri-card:hover{transform:translateY(-4px);}
+    .tri-icon{font-size:32px;margin-bottom:12px;}
+    .tri-name{font-size:16px;font-weight:800;color:#fff;margin-bottom:6px;}
+    .tri-desc{font-size:13px;color:var(--dim);line-height:1.8;}
+    .score-bar{margin-top:14px;}
+    .score-row{display:flex;align-items:center;gap:8px;margin-bottom:6px;font-size:12px;}
+    .score-label{width:28px;font-weight:700;}
+    .score-track{flex:1;height:6px;border-radius:3px;background:var(--s2);}
+    .score-fill{height:100%;border-radius:3px;}
+    .score-val{width:48px;text-align:right;color:var(--dim);}
+
+    /* ── 分层矩阵 ── */
+    .tier-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:16px;}
+    .tier-card{background:var(--s1);border:1px solid var(--s3);border-radius:14px;padding:22px;transition:all 0.3s;cursor:default;}
+    .tier-card:hover{border-color:rgba(255,255,255,0.15);transform:scale(1.01);}
+    .tier-header{display:flex;align-items:center;gap:12px;margin-bottom:14px;}
+    .tier-badge{font-size:11px;font-weight:800;padding:3px 10px;border-radius:100px;letter-spacing:0.5px;}
+    .tier-code{font-size:20px;font-weight:900;color:#fff;}
+    .tier-name{font-size:14px;color:var(--dim);}
+    .tier-quote{font-size:13px;font-style:italic;color:var(--dim);border-left:3px solid;padding-left:10px;margin:10px 0;}
+    .tier-pills{display:flex;flex-wrap:wrap;gap:6px;margin-top:12px;}
+    .pill{font-size:11px;padding:3px 9px;border-radius:100px;background:var(--s2);border:1px solid var(--s3);color:var(--dim);}
+    .tier-stats{display:flex;gap:16px;margin-top:14px;padding-top:14px;border-top:1px solid var(--s3);}
+    .tstat{text-align:center;flex:1;}
+    .tstat-val{font-size:18px;font-weight:900;display:block;}
+    .tstat-key{font-size:10px;color:var(--muted);}
+
+    /* ── 流量漏斗 ── */
+    .funnel{display:flex;flex-direction:column;align-items:center;gap:0;margin:0 auto;max-width:640px;}
+    .funnel-row{display:flex;align-items:center;margin-bottom:2px;width:100%;}
+    .funnel-bar{height:52px;border-radius:8px;display:flex;align-items:center;justify-content:space-between;padding:0 20px;font-size:13px;font-weight:700;letter-spacing:0.3px;transition:transform 0.2s;}
+    .funnel-bar:hover{transform:scaleX(1.01);}
+    .funnel-pct{font-size:11px;font-weight:400;opacity:0.75;margin-left:8px;}
+
+    /* ── 判定树 ── */
+    .tree-wrap{background:var(--s1);border:1px solid var(--s3);border-radius:16px;padding:32px;margin-top:24px;overflow-x:auto;}
+    .tree-node{display:inline-flex;align-items:center;gap:8px;padding:10px 18px;border-radius:10px;font-size:13px;font-weight:600;white-space:nowrap;margin:4px;}
+    .tree-arrow{font-size:18px;color:var(--muted);margin:0 4px;}
+    .tree-row{display:flex;align-items:center;flex-wrap:wrap;margin-bottom:12px;}
+    .tree-branch{margin:8px 0 8px 40px;border-left:2px solid var(--s3);padding-left:20px;}
+
+    /* ── 风险雷达 ── */
+    .risk-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px;}
+    .risk-card{background:var(--s1);border:1px solid var(--s3);border-radius:14px;padding:20px;}
+    .risk-title{font-size:14px;font-weight:800;color:#fff;margin-bottom:14px;display:flex;align-items:center;gap:8px;}
+    .risk-list{list-style:none;}
+    .risk-list li{display:flex;align-items:flex-start;gap:10px;padding:8px 0;border-bottom:1px solid var(--s3);font-size:13px;color:var(--dim);}
+    .risk-list li:last-child{border:none;}
+    .risk-icon{font-size:16px;flex-shrink:0;margin-top:1px;}
+
+    /* ── CALLOUT ── */
+    .callout{border-radius:12px;padding:18px 22px;margin:20px 0;}
+    .callout.red{background:rgba(239,68,68,0.06);border-left:4px solid var(--red);}
+    .callout.green{background:rgba(16,185,129,0.06);border-left:4px solid var(--green);}
+    .callout.amber{background:rgba(245,158,11,0.06);border-left:4px solid var(--amber);}
+    .callout.blue{background:rgba(59,130,246,0.06);border-left:4px solid var(--blue);}
+    .callout-title{font-weight:800;font-size:14px;margin-bottom:6px;}
+    .callout p{font-size:13px;color:var(--dim);margin:0;}
+
+    /* ── CHART CONTAINER ── */
+    .chart-row{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin:24px 0;}
+    .chart-box{background:var(--s1);border:1px solid var(--s3);border-radius:14px;padding:24px;}
+    .chart-title{font-size:14px;font-weight:700;color:#fff;margin-bottom:20px;text-align:center;}
+    .chart-box canvas{max-height:260px;}
+
+    /* ── COLORS BY TIER ── */
+    .c-green{color:var(--green)!important;border-color:rgba(16,185,129,0.3)!important;}
+    .c-amber{color:var(--amber)!important;border-color:rgba(245,158,11,0.3)!important;}
+    .c-red{color:var(--red)!important;border-color:rgba(239,68,68,0.3)!important;}
+    .bg-green{background:rgba(16,185,129,0.1);}
+    .bg-amber{background:rgba(245,158,11,0.1);}
+    .bg-red{background:rgba(239,68,68,0.1);}
+
+    footer{border-top:1px solid var(--s3);padding:40px 24px;text-align:center;color:var(--muted);font-size:12px;}
+    @keyframes pulse{0%{box-shadow:0 0 0 0 rgba(59,130,246,0.4);}70%{box-shadow:0 0 0 10px transparent;}100%{box-shadow:0 0 0 0 transparent;}}
+    @media(max-width:768px){.tri-grid{grid-template-columns:1fr;}.chart-row{grid-template-columns:1fr;}.risk-grid{grid-template-columns:1fr;}.tier-grid{grid-template-columns:1fr;}}
+  </style>
+  <link rel="icon" href="/favicon.ico">
+</head>
+<body>
+  <script src="navbar.js?v=20260328"></script>
+  <div class="glow"></div>
+
+  <!-- ── HERO ── -->
+  <div class="hero">
+    <div class="badge"><div class="dot"></div>分层决策引擎 v4.1</div>
+    <h1>用户分层全息图谱</h1>
+    <p class="hero-sub">基于 224 份真实企微聊天记录校准的**三轴判断模型**：动机纯度 × 资源底座 × 心理弹性，精准把每一个进来的用户分进她应该去的那个格子里。</p>
+    <div class="hero-meta">适用业务：成人在线教育·有声书/AI写作/AI短视频副业培训 &nbsp;·&nbsp; 数据基准：224份实证 + NPS满分案例</div>
+  </div>
+
+  <!-- ── 三轴模型 ── -->
+  <section>
+    <div class="page">
+      <div class="sec-label">01 &nbsp; 判断底座</div>
+      <h2>三轴判断模型</h2>
+      <p class="sec-desc">所有的分层判断都建立在这三条轴上。缺了任何一条，判断就是瞎猜。</p>
+
+      <div class="tri-grid">
+        <div class="tri-card" style="border-color:rgba(59,130,246,0.3)">
+          <div class="tri-icon">🎯</div>
+          <div class="tri-name">轴 1 · 动机纯度</div>
+          <div class="tri-desc">她为什么来？是真的想学一门手艺，还是只是想快速捞一笔然后跑路？动机不同，推销方式、服务配置、退费风险完全不同。</div>
+          <div class="score-bar">
+            <div class="score-row"><span class="score-label" style="color:var(--green)">高</span><div class="score-track"><div class="score-fill" style="width:90%;background:var(--green)"></div></div><span class="score-val">7-10分</span></div>
+            <div class="score-row"><span class="score-label" style="color:var(--amber)">中</span><div class="score-track"><div class="score-fill" style="width:55%;background:var(--amber)"></div></div><span class="score-val">5-6分</span></div>
+            <div class="score-row"><span class="score-label" style="color:var(--red)">低</span><div class="score-track"><div class="score-fill" style="width:25%;background:var(--red)"></div></div><span class="score-val">1-4分</span></div>
+          </div>
+        </div>
+        <div class="tri-card" style="border-color:rgba(245,158,11,0.3)">
+          <div class="tri-icon">💰</div>
+          <div class="tri-name">轴 2 · 资源底座</div>
+          <div class="tri-desc">钱、时间、设备、数字能力——四条腿缺一条都会让人学不下去。尤其是"用花呗分期报名"这个信号，直接触发风控拦截，不管其他条件多好。</div>
+          <div class="score-bar">
+            <div class="score-row"><span class="score-label" style="color:var(--green)">高</span><div class="score-track"><div class="score-fill" style="width:90%;background:var(--green)"></div></div><span class="score-val">7-10分</span></div>
+            <div class="score-row"><span class="score-label" style="color:var(--amber)">中</span><div class="score-track"><div class="score-fill" style="width:55%;background:var(--amber)"></div></div><span class="score-val">5-6分</span></div>
+            <div class="score-row"><span class="score-label" style="color:var(--red)">危险</span><div class="score-track"><div class="score-fill" style="width:10%;background:var(--red)"></div></div><span class="score-val">0或负值</span></div>
+          </div>
+        </div>
+        <div class="tri-card" style="border-color:rgba(139,92,246,0.3)">
+          <div class="tri-icon">🧠</div>
+          <div class="tri-name">轴 3 · 心理弹性</div>
+          <div class="tri-desc">被打回作业、找不到文件、发音被批评——这时候她是重新来过，还是立刻崩溃想退费？弹性决定了能给她配多高强度的服务，以及要不要提前准备防退费预案。</div>
+          <div class="score-bar">
+            <div class="score-row"><span class="score-label" style="color:var(--green)">高</span><div class="score-track"><div class="score-fill" style="width:90%;background:var(--green)"></div></div><span class="score-val">7-10分</span></div>
+            <div class="score-row"><span class="score-label" style="color:var(--amber)">中</span><div class="score-track"><div class="score-fill" style="width:55%;background:var(--amber)"></div></div><span class="score-val">5-6分</span></div>
+            <div class="score-row"><span class="score-label" style="color:var(--red)">低</span><div class="score-track"><div class="score-fill" style="width:20%;background:var(--red)"></div></div><span class="score-val">0-4分</span></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="chart-row">
+        <div class="chart-box">
+          <div class="chart-title">三轴评分分布 · 真实用户抽样（224份）</div>
+          <canvas id="radarChart"></canvas>
+        </div>
+        <div class="chart-box">
+          <div class="chart-title">用户流量按绿/黄/红三区分布</div>
+          <canvas id="pieChart"></canvas>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── 十二大原型 ── -->
+  <section>
+    <div class="page">
+      <div class="sec-label">02 &nbsp; 用户原型全图</div>
+      <h2>12 种典型用户原型</h2>
+      <p class="sec-desc">从"核心利润"到"开局隔爆"，每一类用户都有完全不同的服务配方和风险等级。</p>
+
+      <div class="tier-grid">
+
+        <!-- T1-A -->
+        <div class="tier-card" style="border-color:rgba(16,185,129,0.3);background:rgba(16,185,129,0.03)">
+          <div class="tier-header">
+            <span class="tier-badge bg-green c-green">🟢 核心利润</span>
+            <div><div class="tier-code">T1-A</div><div class="tier-name">导演型领袖</div></div>
+          </div>
+          <div class="tier-quote" style="border-color:var(--green)">"班班你歇着交给我，晚上开会核对剧本"</div>
+          <div class="tier-pills">
+            <span class="pill">主动统筹</span><span class="pill">项目管理</span><span class="pill">高自驱力</span>
+          </div>
+          <div class="tier-stats">
+            <div class="tstat"><span class="tstat-val" style="color:var(--green)">A+D</span><span class="tstat-key">配方</span></div>
+            <div class="tstat"><span class="tstat-val" style="color:var(--green)">极低</span><span class="tstat-key">退费风险</span></div>
+            <div class="tstat"><span class="tstat-val" style="color:var(--green)">极高</span><span class="tstat-key">复购潜力</span></div>
+          </div>
+        </div>
+
+        <!-- T1-B -->
+        <div class="tier-card" style="border-color:rgba(16,185,129,0.3);background:rgba(16,185,129,0.03)">
+          <div class="tier-header">
+            <span class="tier-badge bg-green c-green">🟢 核心利润</span>
+            <div><div class="tier-code">T1-B</div><div class="tier-name">战狼政委型</div></div>
+          </div>
+          <div class="tier-quote" style="border-color:var(--green)">"我们要让别的班见识下碾压级实力"</div>
+          <div class="tier-pills">
+            <span class="pill">竞争意识强</span><span class="pill">群内训话</span><span class="pill">极高黏性</span>
+          </div>
+          <div class="tier-stats">
+            <div class="tstat"><span class="tstat-val" style="color:var(--green)">A+D</span><span class="tstat-key">配方</span></div>
+            <div class="tstat"><span class="tstat-val" style="color:var(--green)">极低</span><span class="tstat-key">退费风险</span></div>
+            <div class="tstat"><span class="tstat-val" style="color:var(--green)">极高</span><span class="tstat-key">复购潜力</span></div>
+          </div>
+        </div>
+
+        <!-- T2 -->
+        <div class="tier-card" style="border-color:rgba(16,185,129,0.25)">
+          <div class="tier-header">
+            <span class="tier-badge bg-green c-green">🟢 核心稳定</span>
+            <div><div class="tier-code">T2</div><div class="tier-name">低调老黄牛</div></div>
+          </div>
+          <div class="tier-quote" style="border-color:var(--green)">"闷声干硬核活，只求被看见"</div>
+          <div class="tier-pills">
+            <span class="pill">按时交作业</span><span class="pill">发言少但认真</span><span class="pill">稳定</span>
+          </div>
+          <div class="tier-stats">
+            <div class="tstat"><span class="tstat-val" style="color:var(--green)">A+B</span><span class="tstat-key">配方</span></div>
+            <div class="tstat"><span class="tstat-val" style="color:var(--green)">低</span><span class="tstat-key">退费风险</span></div>
+            <div class="tstat"><span class="tstat-val" style="color:var(--amber)">高</span><span class="tstat-key">复购潜力</span></div>
+          </div>
+        </div>
+
+        <!-- T3 -->
+        <div class="tier-card" style="border-color:rgba(16,185,129,0.25)">
+          <div class="tier-header">
+            <span class="tier-badge bg-green c-green">🟢 高复购潜</span>
+            <div><div class="tier-code">T3</div><div class="tier-name">死磕极客派</div></div>
+          </div>
+          <div class="tier-quote" style="border-color:var(--green)">"我要搞懂声卡底噪原理和AU压缩比"</div>
+          <div class="tier-pills">
+            <span class="pill">技术追问≥3层</span><span class="pill">自驱深研</span><span class="pill">专业追求</span>
+          </div>
+          <div class="tier-stats">
+            <div class="tstat"><span class="tstat-val" style="color:var(--green)">A+B</span><span class="tstat-key">配方</span></div>
+            <div class="tstat"><span class="tstat-val" style="color:var(--green)">低</span><span class="tstat-key">退费风险</span></div>
+            <div class="tstat"><span class="tstat-val" style="color:var(--green)">极高</span><span class="tstat-key">复购潜力</span></div>
+          </div>
+        </div>
+
+        <!-- T7 -->
+        <div class="tier-card" style="border-color:rgba(16,185,129,0.25)">
+          <div class="tier-header">
+            <span class="tier-badge bg-green c-green">🟢 高复购潜</span>
+            <div><div class="tier-code">T7</div><div class="tier-name">狂热死忠粉</div></div>
+          </div>
+          <div class="tier-quote" style="border-color:var(--green)">"出什么我买什么，就想跟班班唠唠"</div>
+          <div class="tier-pills">
+            <span class="pill">社交黏性强</span><span class="pill">每日10+发言</span><span class="pill">情感依附</span>
+          </div>
+          <div class="tier-stats">
+            <div class="tstat"><span class="tstat-val" style="color:var(--green)">特种C+D</span><span class="tstat-key">配方</span></div>
+            <div class="tstat"><span class="tstat-val" style="color:var(--green)">低</span><span class="tstat-key">退费风险</span></div>
+            <div class="tstat"><span class="tstat-val" style="color:var(--green)">极高</span><span class="tstat-key">复购潜力</span></div>
+          </div>
+        </div>
+
+        <!-- T9 -->
+        <div class="tier-card" style="border-color:rgba(245,158,11,0.3);background:rgba(245,158,11,0.02)">
+          <div class="tier-header">
+            <span class="tier-badge bg-amber c-amber">🟡 极重护航</span>
+            <div><div class="tier-code">T9</div><div class="tier-name">数字盲区难民</div></div>
+          </div>
+          <div class="tier-quote" style="border-color:var(--amber)">"我太笨了，那个符号我不认识"</div>
+          <div class="tier-pills">
+            <span class="pill">数字恐慌</span><span class="pill">找不到群</span><span class="pill">50岁+</span>
+          </div>
+          <div class="tier-stats">
+            <div class="tstat"><span class="tstat-val" style="color:var(--amber)">降维A+特种C</span><span class="tstat-key">配方</span></div>
+            <div class="tstat"><span class="tstat-val" style="color:var(--amber)">中</span><span class="tstat-key">退费风险</span></div>
+            <div class="tstat"><span class="tstat-val" style="color:var(--muted)">低</span><span class="tstat-key">复购潜力</span></div>
+          </div>
+        </div>
+
+        <!-- T4 -->
+        <div class="tier-card" style="border-color:rgba(245,158,11,0.3)">
+          <div class="tier-header">
+            <span class="tier-badge bg-amber c-amber">🟡 严防预期</span>
+            <div><div class="tier-code">T4</div><div class="tier-name">搞钱结果论</div></div>
+          </div>
+          <div class="tier-quote" style="border-color:var(--amber)">"别废话，多久能赚钱？有合同吗？"</div>
+          <div class="tier-pills">
+            <span class="pill">急迫变现</span><span class="pill">问保底</span><span class="pill">高压预期</span>
+          </div>
+          <div class="tier-stats">
+            <div class="tstat"><span class="tstat-val" style="color:var(--amber)">A+B精确</span><span class="tstat-key">配方</span></div>
+            <div class="tstat"><span class="tstat-val" style="color:var(--red)">高</span><span class="tstat-key">退费风险</span></div>
+            <div class="tstat"><span class="tstat-val" style="color:var(--muted)">中低</span><span class="tstat-key">复购潜力</span></div>
+          </div>
+        </div>
+
+        <!-- T6 -->
+        <div class="tier-card" style="border-color:rgba(245,158,11,0.3)">
+          <div class="tier-header">
+            <span class="tier-badge bg-amber c-amber">🟡 严重内耗</span>
+            <div><div class="tier-code">T6</div><div class="tier-name">情绪巨婴</div></div>
+          </div>
+          <div class="tier-quote" style="border-color:var(--amber)">"我好怕我太笨了，越学越不会"</div>
+          <div class="tier-pills">
+            <span class="pill">凌晨崩溃</span><span class="pill">需频繁安抚</span><span class="pill">极度自我怀疑</span>
+          </div>
+          <div class="tier-stats">
+            <div class="tstat"><span class="tstat-val" style="color:var(--amber)">A傻瓜+C满配</span><span class="tstat-key">配方</span></div>
+            <div class="tstat"><span class="tstat-val" style="color:var(--red)">高</span><span class="tstat-key">退费风险</span></div>
+            <div class="tstat"><span class="tstat-val" style="color:var(--muted)">低</span><span class="tstat-key">复购潜力</span></div>
+          </div>
+        </div>
+
+        <!-- T5 -->
+        <div class="tier-card" style="border-color:rgba(245,158,11,0.25)">
+          <div class="tier-header">
+            <span class="tier-badge bg-amber c-amber">🟡 低频转移</span>
+            <div><div class="tier-code">T5</div><div class="tier-name">好玩尝鲜者</div></div>
+          </div>
+          <div class="tier-quote" style="border-color:var(--amber)">"图个新鲜，发个朋友圈"</div>
+          <div class="tier-pills">
+            <span class="pill">以玩为主</span><span class="pill">无变现压力</span><span class="pill">兴趣驱动</span>
+          </div>
+          <div class="tier-stats">
+            <div class="tstat"><span class="tstat-val" style="color:var(--amber)">A+轻量C</span><span class="tstat-key">配方</span></div>
+            <div class="tstat"><span class="tstat-val" style="color:var(--amber)">中</span><span class="tstat-key">退费风险</span></div>
+            <div class="tstat"><span class="tstat-val" style="color:var(--muted)">中</span><span class="tstat-key">复购潜力</span></div>
+          </div>
+        </div>
+
+        <!-- T8 -->
+        <div class="tier-card" style="border-color:rgba(239,68,68,0.3);background:rgba(239,68,68,0.03)">
+          <div class="tier-header">
+            <span class="tier-badge bg-red c-red">🔴 零耗隔离</span>
+            <div><div class="tier-code">T8</div><div class="tier-name">潜水吃瓜客</div></div>
+          </div>
+          <div class="tier-quote" style="border-color:var(--red)">"我就看看，哪天有免费的再说"</div>
+          <div class="tier-pills">
+            <span class="pill">零互动</span><span class="pill">只看不说</span><span class="pill">低质流量</span>
+          </div>
+          <div class="tier-stats">
+            <div class="tstat"><span class="tstat-val" style="color:var(--red)">仅A</span><span class="tstat-key">配方</span></div>
+            <div class="tstat"><span class="tstat-val" style="color:var(--muted)">—</span><span class="tstat-key">退费风险</span></div>
+            <div class="tstat"><span class="tstat-val" style="color:var(--red)">极低</span><span class="tstat-key">复购潜力</span></div>
+          </div>
+        </div>
+
+        <!-- T0 -->
+        <div class="tier-card" style="border-color:rgba(239,68,68,0.4);background:rgba(239,68,68,0.05)">
+          <div class="tier-header">
+            <span class="tier-badge bg-red c-red">🔴 静默火化</span>
+            <div><div class="tier-code">T0</div><div class="tier-name">潜伏猎手</div></div>
+          </div>
+          <div class="tier-quote" style="border-color:var(--red)">零发言+高密度下载+诱导加私微</div>
+          <div class="tier-pills">
+            <span class="pill">同行卧底</span><span class="pill">资源盗取</span><span class="pill">零情绪参与</span>
+          </div>
+          <div class="tier-stats">
+            <div class="tstat"><span class="tstat-val" style="color:var(--red)">封禁B</span><span class="tstat-key">配方</span></div>
+            <div class="tstat"><span class="tstat-val" style="color:var(--red)">极高</span><span class="tstat-key">损害风险</span></div>
+            <div class="tstat"><span class="tstat-val" style="color:var(--red)">负值</span><span class="tstat-key">商业价值</span></div>
+          </div>
+        </div>
+
+        <!-- T8-D -->
+        <div class="tier-card" style="border-color:rgba(239,68,68,0.5);background:rgba(239,68,68,0.08)">
+          <div class="tier-header">
+            <span class="tier-badge bg-red c-red">🔴 开局隔爆</span>
+            <div><div class="tier-code">T8-D</div><div class="tier-name">绝路赌徒</div></div>
+          </div>
+          <div class="tier-quote" style="border-color:var(--red)">"借钱报的名，几天能赚钱，不退就去投诉"</div>
+          <div class="tier-pills">
+            <span class="pill">网贷报名</span><span class="pill">极端威胁</span><span class="pill">保底幻想</span>
+          </div>
+          <div class="tier-stats">
+            <div class="tstat"><span class="tstat-val" style="color:var(--red)">拒售/退款</span><span class="tstat-key">配方</span></div>
+            <div class="tstat"><span class="tstat-val" style="color:var(--red)">必然爆雷</span><span class="tstat-key">退费风险</span></div>
+            <div class="tstat"><span class="tstat-val" style="color:var(--red)">负值</span><span class="tstat-key">商业价值</span></div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ── 流量漏斗 + 图表 ── -->
+  <section>
+    <div class="page">
+      <div class="sec-label">03 &nbsp; 流量结构</div>
+      <h2>100 个进来的用户，最后长什么样？</h2>
+      <p class="sec-desc">根据 224 份历史数据校准的典型流量分布。真正值得花精力的绿色用户，占比不超过 40%。</p>
+
+      <div class="chart-row">
+        <div class="chart-box">
+          <div class="chart-title">流量漏斗 · 从进来到转化</div>
+          <canvas id="funnelChart"></canvas>
+        </div>
+        <div class="chart-box">
+          <div class="chart-title">各层退费风险系数对比</div>
+          <canvas id="riskBar"></canvas>
+        </div>
+      </div>
+
+      <div class="funnel" style="margin-top:32px">
+        <div class="funnel-row"><div class="funnel-bar" style="background:rgba(16,185,129,0.15);border:1px solid rgba(16,185,129,0.3);width:100%;color:var(--green)">🟢 100人进来（体验营）<span class="funnel-pct">100%</span></div></div>
+        <div style="text-align:center;color:var(--muted);font-size:13px;padding:6px 0">↓ 付费前隔爆筛查</div>
+        <div class="funnel-row"><div class="funnel-bar" style="background:rgba(239,68,68,0.1);border:1px solid rgba(239,68,68,0.25);width:100%;color:var(--red)">🔴 提前剔除 T0+T8-D（网贷/同行/极端）<span class="funnel-pct">约 8-12 人</span></div></div>
+        <div style="text-align:center;color:var(--muted);font-size:13px;padding:6px 0">↓ 支付行为硬拦截（花呗≥6期）</div>
+        <div class="funnel-row"><div class="funnel-bar" style="background:rgba(245,158,11,0.1);border:1px solid rgba(245,158,11,0.25);width:95%;color:var(--amber)">⚠️ C2降级+48h摸底（分期报名高风险）<span class="funnel-pct">约 12-18 人</span></div></div>
+        <div style="text-align:center;color:var(--muted);font-size:13px;padding:6px 0">↓ 三轴行为判定</div>
+        <div class="funnel-row"><div class="funnel-bar" style="background:rgba(16,185,129,0.12);border:1px solid rgba(16,185,129,0.25);width:80%;color:var(--green)">🟢 绿线用户（T1/T2/T3/T7）进入转化<span class="funnel-pct">约 35-45 人</span></div></div>
+        <div style="text-align:center;color:var(--muted);font-size:13px;padding:6px 0">↓ 精准配方服务</div>
+        <div class="funnel-row"><div class="funnel-bar" style="background:rgba(59,130,246,0.15);border:1px solid rgba(59,130,246,0.3);width:60%;color:var(--blue)">💰 最终付费+留存（A/B类优质用户）<span class="funnel-pct">约 25-35 人</span></div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── 风险信号 ── -->
+  <section>
+    <div class="page">
+      <div class="sec-label">04 &nbsp; 风险地图</div>
+      <h2>这些信号一出现，必须立刻拦截</h2>
+      <p class="sec-desc">基于真实 Badcase 尸检复盘归纳，每一条都曾经导致过真实退费或客诉。</p>
+
+      <div class="risk-grid">
+        <div class="risk-card" style="border-color:rgba(239,68,68,0.3)">
+          <div class="risk-title" style="color:var(--red)">🔴 D 类熔断红线（立即拦截）</div>
+          <ul class="risk-list">
+            <li><span class="risk-icon">💸</span>借呗/花呗≥12期/网贷报名 → T8-D 协议</li>
+            <li><span class="risk-icon">👨‍👩‍👦</span>家人不知情+家庭负债+0积蓄 → T8-D 协议</li>
+            <li><span class="risk-icon">💻</span>年龄≥70+不会基础操作+资金困难 → T8-D</li>
+            <li><span class="risk-icon">🗣️</span>出现"不退款就跳/投诉/找媒体" → T8-D</li>
+            <li><span class="risk-icon">🕵️</span>零发言+高密度下载+诱导加私微 → T0 卧底</li>
+            <li><span class="risk-icon">⏱️</span>付款&lt;12小时+花呗≥6期 → C2强制降级</li>
+          </ul>
+        </div>
+        <div class="risk-card" style="border-color:rgba(245,158,11,0.3)">
+          <div class="risk-title" style="color:var(--amber)">🟡 黄色预警（48h摸底观察）</div>
+          <ul class="risk-list">
+            <li><span class="risk-icon">🔁</span>花呗6-9期报名 → 标记C2，延迟转化48h</li>
+            <li><span class="risk-icon">❓</span>体验营3次以上问"几天能赚钱" → 严控预期</li>
+            <li><span class="risk-icon">📱</span>只有手机没有电脑 → 降维A，不配B模块</li>
+            <li><span class="risk-icon">😭</span>凌晨发长文自我否定 → T6信号，满配C</li>
+            <li><span class="risk-icon">🤝</span>"等我资金周转了一定回来报名" → 巴纳姆警报</li>
+            <li><span class="risk-icon">📥</span>3次推送均无回应 → 强制停止该赛道营销</li>
+          </ul>
+        </div>
+        <div class="risk-card" style="border-color:rgba(16,185,129,0.3)">
+          <div class="risk-title" style="color:var(--green)">🟢 绿色信号（加速推进）</div>
+          <ul class="risk-list">
+            <li><span class="risk-icon">📚</span>按时交作业+质量稳步提升 → T2确认</li>
+            <li><span class="risk-icon">🎯</span>主动在群内统筹排班+开会 → T1-A确认</li>
+            <li><span class="risk-icon">🔬</span>连续追问底层技术原理≥3层 → T3确认</li>
+            <li><span class="risk-icon">💬</span>每天≥10条社交发言且配合学习 → T7确认</li>
+            <li><span class="risk-icon">💳</span>全款付清+无借贷信号 → 可直接推进转化</li>
+            <li><span class="risk-icon">🏆</span>被批评后主动分析原因不需安慰 → 高弹性确认</li>
+          </ul>
+        </div>
+        <div class="risk-card">
+          <div class="risk-title" style="color:var(--blue)">💡 三大防误判铁律</div>
+          <ul class="risk-list">
+            <li><span class="risk-icon">🚫</span><strong style="color:var(--text)">沉没成本铁律</strong>：印象再好，兜里没钱，大额逼单必出退费</li>
+            <li><span class="risk-icon">🎭</span><strong style="color:var(--text)">巴纳姆铁律</strong>："我一定会回来报名"等于什么都没说</li>
+            <li><span class="risk-icon">💀</span><strong style="color:var(--text)">幸存者偏差铁律</strong>：研究活人会让你自我感觉良好，解剖退费才是进步</li>
+            <li><span class="risk-icon">🤐</span><strong style="color:var(--text)">沉默≠摆烂</strong>：话少但每个任务都完成了，是T2不是T8</li>
+            <li><span class="risk-icon">🎮</span><strong style="color:var(--text)">社交≠低动机</strong>：聊家常的人里，可能有主动统筹的T1-A</li>
+            <li><span class="risk-icon">⏰</span><strong style="color:var(--text)">7天复查机制</strong>：所有临时标签7天内必须复核完整判定树</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── 配方矩阵 ── -->
+  <section>
+    <div class="page">
+      <div class="sec-label">05 &nbsp; 配方矩阵</div>
+      <h2>四大服务积木仓库 · 按用户定制拼装</h2>
+      <p class="sec-desc">不是所有人都要同样的服务。配错了模块，不仅浪费，还会把人弄烦或者造成退费。</p>
+
+      <div class="tier-grid" style="grid-template-columns:repeat(auto-fill,minmax(260px,1fr))">
+        <div class="tier-card" style="border-color:rgba(59,130,246,0.3)">
+          <div class="tier-header"><span style="font-size:28px">🧱</span><div><div class="tier-code" style="color:var(--blue)">模块 A</div><div class="tier-name">基础保障池</div></div></div>
+          <div class="tier-desc" style="font-size:13px;color:var(--dim)">标准录播课、图文、进化版降维A（给T9的物理代办指令包）、减压版A（给高知内耗者的战略拒卖熔断）</div>
+          <div class="tier-pills" style="margin-top:12px"><span class="pill">所有人默认配</span><span class="pill">T9特种降维</span></div>
+        </div>
+        <div class="tier-card" style="border-color:rgba(16,185,129,0.3)">
+          <div class="tier-header"><span style="font-size:28px">🧱</span><div><div class="tier-code" style="color:var(--green)">模块 B</div><div class="tier-name">硬核手艺池</div></div></div>
+          <div class="tier-desc" style="font-size:13px;color:var(--dim)">专家1v1答疑、刁钻发声点评（音域极限/方言矫正/情感递进/气息控制/角色区分）、真实派单实战。T6/T9原则上不配</div>
+          <div class="tier-pills" style="margin-top:12px"><span class="pill">T2/T3专供</span><span class="pill">每周1-2次</span><span class="pill">有毕业线</span></div>
+        </div>
+        <div class="tier-card" style="border-color:rgba(245,158,11,0.3)">
+          <div class="tier-header"><span style="font-size:28px">🧱</span><div><div class="tier-code" style="color:var(--amber)">模块 C</div><div class="tier-name">情绪保姆池</div></div></div>
+          <div class="tier-desc" style="font-size:13px;color:var(--dim)">初级C（夸夸贴纸、段子）、高级特种C（轮椅级托底服务、线上情绪理疗）、二次元变种C（Pia戏/中二互怼，针对25-30岁混合体4号）</div>
+          <div class="tier-pills" style="margin-top:12px"><span class="pill">T6满配</span><span class="pill">T9全托底</span><span class="pill">T7死党模式</span></div>
+        </div>
+        <div class="tier-card" style="border-color:rgba(139,92,246,0.3)">
+          <div class="tier-header"><span style="font-size:28px">🧱</span><div><div class="tier-code" style="color:var(--purple)">模块 D</div><div class="tier-name">身份权力池</div></div></div>
+          <div class="tier-desc" style="font-size:13px;color:var(--dim)">行政指挥权（T1-A统筹下放）、政委演说台（T1-B专属舞台）、黄袍加身变种D（T2提拔为组长/群管，锁定免费守护者）</div>
+          <div class="tier-pills" style="margin-top:12px"><span class="pill">T1专供</span><span class="pill">T1-A统筹</span><span class="pill">混合体3号提干</span></div>
+        </div>
+      </div>
+
+      <div class="callout green" style="margin-top:24px">
+        <div class="callout-title" style="color:var(--green)">✅ 核心原则：短板决定总分</div>
+        <p>资源底座的四个维度（钱/时间/设备/数字能力）中，最短的那条腿决定总分。哪怕她有很多钱，但是完全不会操作电脑，那她的资源底座就是"低"。在此基础上配 B 模块只会把她搞崩溃。</p>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <a href="index.html" style="color:var(--blue);text-decoration:none;font-size:14px;font-weight:600">← 返回首页</a>
+    <div style="margin-top:12px">喜播集团 · 分层决策引擎 v4.1.3 &nbsp;|&nbsp; 基于 224 份真实企微聊天记录校准 © 2026</div>
+  </footer>
+
+  <script>
+    // ── 雷达图 ──
+    new Chart(document.getElementById('radarChart'), {
+      type: 'radar',
+      data: {
+        labels: ['动机纯度', '资源底座', '心理弹性', '作业完成率', '社交活跃度', '技术追问深度'],
+        datasets: [
+          { label: 'T1-A 导演型', data: [9.5, 8, 9, 9.5, 7, 7], borderColor: '#10b981', backgroundColor: 'rgba(16,185,129,0.1)', pointBackgroundColor: '#10b981', borderWidth: 2 },
+          { label: 'T4 搞钱型', data: [2, 4, 5, 5, 4, 2], borderColor: '#f59e0b', backgroundColor: 'rgba(245,158,11,0.1)', pointBackgroundColor: '#f59e0b', borderWidth: 2 },
+          { label: 'T8-D 绝路赌徒', data: [1, 0, 1, 2, 3, 1], borderColor: '#ef4444', backgroundColor: 'rgba(239,68,68,0.1)', pointBackgroundColor: '#ef4444', borderWidth: 2 }
+        ]
+      },
+      options: { scales: { r: { grid: { color: '#3f3f46' }, pointLabels: { color: '#a1a1aa', font: { size: 11 } }, ticks: { display: false }, min: 0, max: 10 } }, plugins: { legend: { labels: { color: '#a1a1aa', font: { size: 11 } } } } }
+    });
+
+    // ── 饼图 ──
+    new Chart(document.getElementById('pieChart'), {
+      type: 'doughnut',
+      data: {
+        labels: ['🟢 绿线优质 (T1/T2/T3/T7)', '🟡 黄线护航 (T4/T5/T6/T9)', '🔴 红线隔离 (T0/T8/T8-D)', '⚠️ C2风险待定'],
+        datasets: [{ data: [40, 35, 12, 13], backgroundColor: ['rgba(16,185,129,0.8)', 'rgba(245,158,11,0.7)', 'rgba(239,68,68,0.7)', 'rgba(59,130,246,0.6)'], borderColor: '#09090b', borderWidth: 3 }]
+      },
+      options: { cutout: '60%', plugins: { legend: { position: 'bottom', labels: { color: '#a1a1aa', font: { size: 11 }, padding: 16 } } } }
+    });
+
+    // ── 漏斗图 ──
+    new Chart(document.getElementById('funnelChart'), {
+      type: 'bar',
+      data: {
+        labels: ['进来流量', '通过隔爆筛', '通过支付拦截', '绿线用户', '最终付费'],
+        datasets: [{ data: [100, 88, 72, 42, 30], backgroundColor: ['rgba(59,130,246,0.6)', 'rgba(16,185,129,0.5)', 'rgba(16,185,129,0.6)', 'rgba(16,185,129,0.75)', 'rgba(16,185,129,0.9)'], borderRadius: 8, borderSkipped: false }]
+      },
+      options: { indexAxis: 'y', plugins: { legend: { display: false } }, scales: { x: { grid: { color: '#27272a' }, ticks: { color: '#71717a' } }, y: { grid: { display: false }, ticks: { color: '#a1a1aa' } } } }
+    });
+
+    // ── 风险柱图 ──
+    new Chart(document.getElementById('riskBar'), {
+      type: 'bar',
+      data: {
+        labels: ['T1-A', 'T1-B', 'T2', 'T3', 'T7', 'T5', 'T9', 'T4', 'T6', 'T8', 'T8-D'],
+        datasets: [{ label: '退费/爆雷风险系数', data: [5, 5, 8, 9, 10, 40, 45, 65, 70, 15, 100], backgroundColor: [
+          'rgba(16,185,129,0.7)','rgba(16,185,129,0.7)','rgba(16,185,129,0.7)','rgba(16,185,129,0.7)','rgba(16,185,129,0.7)',
+          'rgba(245,158,11,0.6)','rgba(245,158,11,0.6)','rgba(245,158,11,0.6)','rgba(245,158,11,0.6)',
+          'rgba(239,68,68,0.5)','rgba(239,68,68,0.9)'
+        ], borderRadius: 6, borderSkipped: false }]
+      },
+      options: { plugins: { legend: { display: false } }, scales: { x: { grid: { display: false }, ticks: { color: '#a1a1aa', font: { size: 11 } } }, y: { grid: { color: '#27272a' }, ticks: { color: '#71717a' } } } }
+    });
+  </script>
+</body>
+</html>

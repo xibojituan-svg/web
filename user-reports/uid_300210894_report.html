@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>用户诊断报告：UID 300210894 - 喜播CEO战略看板</title>
+    <!-- 引入标准字体与基础样式 -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Noto+Sans+SC:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-base: #0f1115;
+            --bg-panel: rgba(255, 255, 255, 0.03);
+            --bg-panel-hover: rgba(255, 255, 255, 0.06);
+            --border-color: rgba(255, 255, 255, 0.08);
+            --text-main: #f3f4f6;
+            --text-dim: #9ca3af;
+            --accent: #3b82f6; /* Blueish tone for diagnostic */
+            --danger: #ef4444; /* Red for warning */
+            --danger-bg: rgba(239, 68, 68, 0.1);
+        }
+        body {
+            background-color: var(--bg-base);
+            color: var(--text-main);
+            font-family: 'Inter', 'Noto Sans SC', sans-serif;
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+        }
+        .container {
+            max-width: 80rem;
+            margin: 0 auto;
+            padding: 3rem;
+            max-width: 1000px;
+        }
+        .header {
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 2rem;
+            margin-bottom: 2rem;
+        }
+        .uid-badge {
+            display: inline-block;
+            background: linear-gradient(135deg, rgba(59, 130, 246, 0.2), rgba(168, 85, 247, 0.2));
+            color: #fff;
+            padding: 0.5rem 1.25rem;
+            border-radius: 999px;
+            font-size: 0.875rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        h1 {
+            font-size: 2.25rem;
+            font-weight: 800;
+            margin: 0;
+            letter-spacing: -0.02em;
+        }
+        h1 span {
+            color: var(--text-dim);
+            font-weight: 500;
+            font-size: 1.5rem;
+        }
+        .tag-row {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+        .tag {
+            padding: 0.4rem 1rem;
+            border-radius: 6px;
+            font-size: 0.875rem;
+            font-weight: 600;
+        }
+        .tag-danger {
+            background-color: var(--danger-bg);
+            color: var(--danger);
+            border: 1px solid rgba(239, 68, 68, 0.2);
+        }
+        
+        .grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+        .panel {
+            background-color: var(--bg-panel);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 2rem;
+            transition: all 0.3s ease;
+        }
+        .panel:hover {
+            background-color: var(--bg-panel-hover);
+        }
+        .panel-full {
+            grid-column: 1 / -1;
+        }
+        .panel h2 {
+            font-size: 1.25rem;
+            margin-top: 0;
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        ul {
+            padding-left: 1.5rem;
+            margin: 0;
+            color: var(--text-dim);
+        }
+        li {
+            margin-bottom: 0.75rem;
+        }
+        strong {
+            color: var(--text-main);
+        }
+        
+        .chat-bubble {
+            background: rgba(255,255,255,0.05);
+            padding: 1.25rem;
+            border-radius: 0 12px 12px 12px;
+            margin-bottom: 1rem;
+            border-left: 3px solid var(--danger);
+        }
+        .chat-label {
+            font-size: 0.75rem;
+            color: var(--danger);
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+        .chat-text {
+            color: var(--text-main);
+            font-size: 0.95rem;
+        }
+        
+        .action-box {
+            background: linear-gradient(135deg, rgba(239, 68, 68, 0.1), rgba(17, 24, 39, 0.8));
+            border-left: 4px solid var(--danger);
+            padding: 2rem;
+            border-radius: 8px;
+            margin-top: 1rem;
+        }
+        
+        .highlight-text {
+            background: rgba(239, 68, 68, 0.2);
+            padding: 0 0.3rem;
+            border-radius: 4px;
+            color: #fca5a5;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <div class="uid-badge">Data Record #12</div>
+            <h1>UID 300210894 <span>— juliet</span></h1>
+            <div class="tag-row">
+                <div class="tag tag-danger">🚨 内部多重SOP轰炸党</div>
+                <div class="tag tag-danger">💥 跨业务线撞单灾难</div>
+            </div>
+        </div>
+
+        <div class="grid">
+            <div class="panel">
+                <h2>📊 用户基础画像</h2>
+                <ul>
+                    <li><strong>用户群组:</strong> 职场忙碌人士</li>
+                    <li><strong>接触线索:</strong> AI写作、AI短视频、个人IP、配音 (同时)</li>
+                    <li><strong>行为特征:</strong> 对频繁的群发信息长期冷处理，陷入被动接受噪音的状态。</li>
+                </ul>
+            </div>
+            
+            <div class="panel">
+                <h2>🕵️‍♂️ 班主任/干预者</h2>
+                <ul>
+                    <li><strong>干预者A:</strong> 卫华(AI写作线) - 密集发送喜报、催作业包。</li>
+                    <li><strong>干预者B:</strong> 喜播文文(泛学科线) - 发送配音、写作、一人公司直播课邀请。</li>
+                    <li><strong>干预者C:</strong> 喜播瑶瑶(泛学科线) - 与文文话术几乎雷同，完全覆盖同一时间段。</li>
+                </ul>
+            </div>
+
+            <div class="panel panel-full">
+                <h2>💥 核心诊断还原：CRM系统失控与多重SOP“内卷”陷阱</h2>
+                <p style="color: var(--text-dim); margin-bottom: 1.5rem;">
+                    这是非常典型的企业内部因为<strong>底层标签打通缺失</strong>导致的用户负面体验案例。同一时期，同一名用户遭到了同一企业内三个不同员工的“连环炮”式营销轰炸，内容相互重叠。
+                </p>
+                
+                <div class="chat-bubble">
+                    <div class="chat-label">诊断视角的荒诞重现（2026-03-08 至 04-03）</div>
+                    <div class="chat-text">
+                        <strong>卫华：</strong>“坦白说，这是一笔不小投资... 如果错过了真的错过了...” (狂推AI写作转化)<br><br>
+                        <strong>喜播文文：</strong>“其实做短视频真没想那么复杂... 有个生活故事稿商单...” (狂推AI视频与配音)<br><br>
+                        <strong>喜播瑶瑶：</strong>“你猜我在看什么... 免费体验名额少了两个...” (用一模一样的模版话术狂推工具)
+                    </div>
+                </div>
+
+                <div style="margin-top:2rem">
+                    <h3 style="color:white; font-size:1.1rem">🔥 诊断发现：</h3>
+                    <ul>
+                        <li><span class="highlight-text">销售线索未互斥：</span>用户在公司总数据库中没有被“Lock（锁定）”。造成用户身上挂了多条归属线，谁都在往上扔群发SOP。</li>
+                        <li><span class="highlight-text">品牌信任度削弱：</span>用户收到两个班主任完全相同的“诱导话术”，只会觉得公司是毫无温度的机器人批量割韭菜机构。</li>
+                        <li><span class="highlight-text">资源极度浪费：</span>三条管线花费精力追踪同一个无反馈的交叉学员，不仅是运营成本上的损失，更带来了无效数据干扰。</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="panel panel-full action-box">
+                <h2 style="color: #fca5a5; margin-bottom: 1rem;">⚡ CEO 级别断点行动 (Action Plan)</h2>
+                <ul>
+                    <li><strong>业务逻辑熔断：</strong> 实施强制性的全局业务线排他机制。一旦用户被某一高优赛道（如售价最高的闭环）激活追踪，其他横向弱归属赛道必须自动设置【Do Not Disturb (DND)】静默状态。</li>
+                    <li><strong>触达权限锁定：</strong> 修改CRM的中台分发逻辑。如果是已付费或者在跟进期的高价值用户，由且仅由【一人主跟】，跨界产品必须通过内部工单“申请转发”而不是直接并发短信或消息。</li>
+                    <li><strong>废弃机械模版：</strong> 立刻清查“文案重合率”。不同工号的客服不应在同一周期发送相同的文案“装作私聊”去试探用户。</li>
+                </ol>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

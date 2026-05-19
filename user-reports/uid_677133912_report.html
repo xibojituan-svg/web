@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UID 677133912 案卷深度活检报告</title>
+    <style>
+        :root {
+            --primary: #2563eb;
+            --primary-light: #eff6ff;
+            --danger: #ef4444;
+            --danger-light: #fef2f2;
+            --success: #10b981;
+            --success-light: #ecfdf5;
+            --warning: #f59e0b;
+            --warning-light: #fffbeb;
+            --dark: #1e293b;
+            --gray: #64748b;
+            --border: #e2e8f0;
+            --bg: #f8fafc;
+            --card: #ffffff;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", "Microsoft YaHei", sans-serif;
+            line-height: 1.6;
+            color: var(--dark);
+            background-color: var(--bg);
+            margin: 0;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 40px;
+            padding: 40px;
+            background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
+            color: white;
+            border-radius: 16px;
+            box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1);
+        }
+
+        .header h1 {
+            margin: 0 0 10px 0;
+            font-size: 28px;
+            font-weight: 600;
+        }
+
+        .header p {
+            margin: 0;
+            color: #94a3b8;
+            font-size: 16px;
+        }
+
+        .section {
+            background: var(--card);
+            border-radius: 12px;
+            padding: 30px;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05);
+        }
+
+        .section-title {
+            font-size: 20px;
+            font-weight: 600;
+            color: var(--dark);
+            margin-top: 0;
+            margin-bottom: 24px;
+            padding-bottom: 12px;
+            border-bottom: 2px solid var(--primary-light);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        /* 案卷概览卡片 */
+        .overview-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+        }
+
+        .stat-card {
+            background: var(--bg);
+            padding: 20px;
+            border-radius: 8px;
+            border: 1px solid var(--border);
+        }
+
+        .stat-card .label {
+            color: var(--gray);
+            font-size: 14px;
+            margin-bottom: 8px;
+        }
+
+        .stat-card .value {
+            font-size: 20px;
+            font-weight: 600;
+            color: var(--dark);
+        }
+
+        /* 诊断模型 */
+        .diagnostic-box {
+            background: var(--danger-light);
+            border-left: 4px solid var(--danger);
+            padding: 20px;
+            border-radius: 0 8px 8px 0;
+            margin-bottom: 24px;
+        }
+
+        .diagnostic-box h3 {
+            color: var(--danger);
+            margin: 0 0 12px 0;
+            font-size: 18px;
+        }
+
+        .diagnostic-box p {
+            margin: 0 0 10px 0;
+            color: #7f1d1d;
+        }
+
+        /* 对话重现 */
+        .chat-reproduction {
+            background: var(--bg);
+            border-radius: 8px;
+            padding: 20px;
+            margin: 20px 0;
+            border: 1px solid var(--border);
+        }
+
+        .chat-bubble {
+            margin-bottom: 16px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .chat-bubble.teacher {
+            align-items: flex-start;
+        }
+
+        .chat-bubble.user {
+            align-items: flex-end;
+        }
+
+        .chat-bubble .name {
+            font-size: 12px;
+            color: var(--gray);
+            margin-bottom: 4px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .chat-bubble .message {
+            max-width: 80%;
+            padding: 12px 16px;
+            border-radius: 12px;
+            font-size: 14px;
+        }
+
+        .chat-bubble.teacher .message {
+            background: white;
+            border: 1px solid var(--border);
+            border-bottom-left-radius: 4px;
+        }
+
+        .chat-bubble.user .message {
+            background: var(--primary);
+            color: white;
+            border-bottom-right-radius: 4px;
+        }
+
+        /* 策略推演 */
+        .strategy-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .strategy-item {
+            display: flex;
+            gap: 16px;
+            margin-bottom: 20px;
+            padding: 20px;
+            background: var(--bg);
+            border-radius: 8px;
+            border: 1px solid var(--border);
+        }
+
+        .strategy-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 20px;
+            background: var(--primary-light);
+            color: var(--primary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            flex-shrink: 0;
+        }
+
+        .strategy-content h4 {
+            margin: 0 0 8px 0;
+            font-size: 16px;
+            color: var(--dark);
+        }
+
+        .strategy-content p {
+            margin: 0;
+            color: var(--gray);
+            font-size: 14px;
+        }
+
+        .highlight {
+            background: #fef08a;
+            padding: 0 4px;
+            border-radius: 2px;
+            color: #854d0e;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>UID 677133912 案卷深度活检报告</h1>
+            <p>诊断结果：FOMO饥饿营销并发内部交接断层，引发“草台班子”信任危机</p>
+        </div>
+
+        <!-- 案卷概览 -->
+        <div class="section">
+            <h2 class="section-title">📊 案卷概览</h2>
+            <div class="overview-grid">
+                <div class="stat-card">
+                    <div class="label">用户画像</div>
+                    <div class="value">28岁男性 / 基层销售</div>
+                </div>
+                <div class="stat-card">
+                    <div class="label">意愿评级</div>
+                    <div class="value" style="color: var(--success)">极高（S级）</div>
+                </div>
+                <div class="stat-card">
+                    <div class="label">转化路径</div>
+                    <div class="value">重复下单（2月+4月班）</div>
+                </div>
+                <div class="stat-card">
+                    <div class="label">流失节点</div>
+                    <div class="value" style="color: var(--danger)">交付交接期（退费时）</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 深度诊断 -->
+        <div class="section">
+            <h2 class="section-title">🔍 案件深度复盘与“真问题”挖掘</h2>
+            
+            <div class="diagnostic-box">
+                <h3>表象问题：由于“抢名额”导致重复购课，进而发起部分退费</h3>
+                <p>用户在招募课的饥饿营销氛围下（“高阶班名额少，抓紧冲”），因担心错过名额，慌乱中先购买了2个月精英版，随后又成功抢购了4个月进阶版，产生了同一体系的重复订单。随后，用户向系统发起2个月课程的退费申请。</p>
+            </div>
+
+            <div class="diagnostic-box" style="background: var(--warning-light); border-left-color: var(--warning)">
+                <h3 style="color: #b45309">真问题 1：前端与后端的“数据壁垒”与交接盲区</h3>
+                <p>前端销售凭借其专业的话术与人设，成功构建了高信任度；但用户流转至后端后，班主任（苍宝儿）却面临<strong>“订单数据与用户背景双盲”</strong>的境地。班主任在并不了解用户重复购买背景的前提下，直接发出充满对立情绪的语音包。</p>
+            </div>
+
+            <div class="diagnostic-box" style="background: var(--primary-light); border-left-color: var(--primary)">
+                <h3 style="color: var(--primary)">真问题 2：班主任承接的“草台班子”感与专业人设崩塌</h3>
+                <p>班主任不仅在沟通中随意甩锅给前端助教（“不是你这个助教怎么回事儿？”），还在未弄清原委时质疑高意向学员（“我感觉你有点那啥...”）。在发现自身失误后，班主任的挽尊方式（“这会儿同学们都刷刷进班...有点懵”）极大地暴露了组织的混乱与不专业。这对于把有声视作“出路”的高配合度学员而言，构成了致命的隐性伤害。</p>
+            </div>
+        </div>
+
+        <!-- 关键触点还原 -->
+        <div class="section">
+            <h2 class="section-title">🎙️ 关键触点（Moment of Truth）还原</h2>
+            <div class="chat-reproduction">
+                <div class="chat-bubble user">
+                    <div class="name">箩阿北 (学员)</div>
+                    <div class="message">老师，我是买了两种，要退2个月的。我是怕买不到4个月的课，就先买到了2个月的...</div>
+                </div>
+                
+                <div class="chat-bubble teacher">
+                    <div class="name">苍宝儿 (班主任) <span>⚠️ 【情绪失控 / 甩锅前端】</span></div>
+                    <div class="message">不是你这个助教怎么回事儿？不是不是这么弄的。怎么怎么要把那两个月都退掉？</div>
+                </div>
+
+                <div class="chat-bubble teacher">
+                    <div class="name">苍宝儿 (班主任) <span>🚫 【缺乏共情 / 随意揣测】</span></div>
+                    <div class="message">买不到，我我感觉你有点<span class="highlight">那啥</span>，你要是不着急的话，这样今天晚上咱班班会，我给你们都会讲清楚，然后你再看，行吗？而且不对，你不能直接退精英部分...</div>
+                </div>
+
+                <div class="chat-bubble teacher">
+                    <div class="name">苍宝儿 (班主任) <span>📉 【专业形象崩塌】</span></div>
+                    <div class="message">不好意思，我理解错了，我都听懵了。哎呀，这会儿同学们都刷刷加我刷刷进班，然后我这边工作室还有点事儿，有点懵，不好意思。你习惯了就好。</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 治理策略建议 -->
+        <div class="section">
+            <h2 class="section-title">🎯 组织与系统治理策略建议（V1.0）</h2>
+            <ul class="strategy-list">
+                <li class="strategy-item">
+                    <div class="strategy-icon">1</div>
+                    <div class="strategy-content">
+                        <h4>CRM 订单重复购买熔断与工单流转机制</h4>
+                        <p><strong>动作：</strong>技术侧升级CRM系统，当识别到同一UID在短时间内对互斥课程（如2月班与4月班）重复下单时，不再直接以普通退费工单分发。而是标记为<strong>【升级类变配工单】</strong>，附带前端的购买记录说明，自动推送给后端班主任，避免信息差导致的误判与质问。</p>
+                    </div>
+                </li>
+                <li class="strategy-item">
+                    <div class="strategy-icon">2</div>
+                    <div class="strategy-content">
+                        <h4>班主任“开场必检”SOP 与沟通红线设置</h4>
+                        <p><strong>动作：</strong>在班主任绩效考核中设立<strong>服务红线底线</strong>。严禁在尚未查阅订单状态与用户沟通历史的情况下，使用主观臆断的负面词汇（如“你怎么回事”“你有点那啥”）；严禁在用户面前表露内部组织矛盾（甩锅前序对接人员）。</p>
+                    </div>
+                </li>
+                <li class="strategy-item">
+                    <div class="strategy-icon">3</div>
+                    <div class="strategy-content">
+                        <h4>“FOMO营销”后的安抚与用户资产保护</h4>
+                        <p><strong>动作：</strong>前端在使用饥饿营销后极易引起恐慌性多重购买。针对这些“易受惊吓高服从型”用户，系统应在付款后配置专门的【资产保护引导】，例如：“您已拥有更高阶权益，如发生重复下单，系统将在24小时内为您自动原路退回低阶订单资金，请无需焦虑”。</p>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+</body>
+</html>

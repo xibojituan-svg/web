@@ -1,0 +1,244 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AI 副驾驶系统 · 一个月建设小结 | 喜播</title>
+  <style>
+    :root {
+      --bg: #09090b; --bg-surface: #18181b; --bg-surface-2: #27272a;
+      --border: #3f3f46; --text: #f4f4f5; --text-dim: #a1a1aa; --text-muted: #71717a;
+      --green: #10b981; --blue: #3b82f6; --amber: #f59e0b; --red: #ef4444; --purple: #8b5cf6;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: 'Inter', -apple-system, 'PingFang SC', sans-serif; background: var(--bg); color: var(--text); line-height: 1.7; -webkit-font-smoothing: antialiased; }
+
+    .bg-glow { position: fixed; top: -20vh; left: 50%; transform: translateX(-50%); width: 100vw; height: 60vh; background: radial-gradient(ellipse at bottom, rgba(16,185,129,0.1) 0%, transparent 70%); z-index: -1; pointer-events: none; }
+
+    .container { max-width: 1100px; margin: 0 auto; padding: 60px 24px; }
+
+    /* Hero */
+    .hero { text-align: center; margin-bottom: 72px; animation: fadeUp 0.8s ease; }
+    .badge { display: inline-flex; align-items: center; gap: 8px; padding: 6px 18px; border-radius: 100px; background: rgba(16,185,129,0.1); border: 1px solid rgba(16,185,129,0.3); color: var(--green); font-size: 12px; font-weight: 800; letter-spacing: 1px; margin-bottom: 28px; }
+    .dot { width: 7px; height: 7px; border-radius: 50%; background: var(--green); animation: pulse 2s infinite; }
+    h1 { font-size: clamp(32px, 5vw, 56px); font-weight: 900; letter-spacing: -2px; line-height: 1.1; background: linear-gradient(180deg, #fff 0%, #6b7280 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; margin-bottom: 20px; }
+    .subtitle { font-size: 17px; color: var(--text-dim); max-width: 680px; margin: 0 auto; }
+    .period { display: inline-block; margin-top: 16px; font-size: 13px; color: var(--text-muted); background: var(--bg-surface); border: 1px solid var(--border); padding: 4px 14px; border-radius: 100px; }
+
+    /* One-liner */
+    .one-liner { background: linear-gradient(135deg, rgba(16,185,129,0.08), rgba(59,130,246,0.08)); border: 1px solid rgba(16,185,129,0.2); border-radius: 16px; padding: 28px 36px; margin-bottom: 72px; text-align: center; }
+    .one-liner p { font-size: 20px; font-weight: 700; color: #fff; line-height: 1.6; }
+    .one-liner span { color: var(--green); }
+
+    /* Phase timeline */
+    .section-label { font-size: 12px; font-weight: 800; letter-spacing: 2px; color: var(--text-muted); text-transform: uppercase; margin-bottom: 28px; display: flex; align-items: center; gap: 12px; }
+    .section-label::after { content: ''; flex: 1; height: 1px; background: var(--border); }
+
+    .phases { display: flex; flex-direction: column; gap: 20px; margin-bottom: 72px; }
+    .phase-card { display: grid; grid-template-columns: 56px 1fr; gap: 24px; background: var(--bg-surface); border: 1px solid var(--border); border-radius: 16px; padding: 28px; transition: border-color 0.3s, transform 0.3s; }
+    .phase-card:hover { border-color: rgba(255,255,255,0.15); transform: translateX(4px); }
+    .phase-num { width: 48px; height: 48px; border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 22px; flex-shrink: 0; }
+    .phase-body {}
+    .phase-tag { font-size: 11px; font-weight: 700; letter-spacing: 1px; margin-bottom: 8px; }
+    .phase-title { font-size: 20px; font-weight: 800; color: #fff; margin-bottom: 10px; }
+    .phase-desc { font-size: 14px; color: var(--text-dim); }
+    .phase-pills { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 14px; }
+    .pill { font-size: 12px; padding: 3px 10px; border-radius: 100px; background: var(--bg-surface-2); color: var(--text-dim); border: 1px solid var(--border); }
+
+    /* Current state */
+    .state-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 20px; margin-bottom: 72px; }
+    .state-card { background: var(--bg-surface); border: 1px solid var(--border); border-radius: 16px; padding: 24px; }
+    .state-icon { font-size: 28px; margin-bottom: 14px; }
+    .state-title { font-size: 16px; font-weight: 700; color: #fff; margin-bottom: 8px; }
+    .state-desc { font-size: 13px; color: var(--text-dim); }
+    .state-badge { display: inline-block; margin-top: 12px; font-size: 11px; font-weight: 700; padding: 3px 10px; border-radius: 6px; }
+
+    /* Backlog */
+    .backlog { background: var(--bg-surface); border: 1px solid var(--border); border-radius: 16px; padding: 32px; margin-bottom: 72px; }
+    .backlog h3 { font-size: 18px; font-weight: 800; color: #fff; margin-bottom: 20px; }
+    .todo-item { display: flex; align-items: flex-start; gap: 12px; padding: 12px 0; border-bottom: 1px solid var(--border); }
+    .todo-item:last-child { border-bottom: none; }
+    .todo-box { width: 20px; height: 20px; border: 2px solid var(--border); border-radius: 5px; flex-shrink: 0; margin-top: 2px; }
+    .todo-text { font-size: 14px; color: var(--text-dim); }
+    .todo-text strong { color: var(--text); }
+
+    /* Quote */
+    .summary-quote { border-left: 4px solid var(--green); padding: 24px 32px; background: rgba(16,185,129,0.04); border-radius: 0 16px 16px 0; margin-bottom: 60px; font-size: 18px; font-weight: 700; color: #fff; line-height: 1.7; }
+    .summary-quote span { color: var(--green); }
+
+    footer { border-top: 1px solid var(--border); padding: 40px 0; text-align: center; color: var(--text-muted); font-size: 13px; }
+
+    @keyframes fadeUp { from { opacity: 0; transform: translateY(24px); } to { opacity: 1; transform: translateY(0); } }
+    @keyframes pulse { 0% { box-shadow: 0 0 0 0 rgba(16,185,129,0.4); } 70% { box-shadow: 0 0 0 10px transparent; } 100% { box-shadow: 0 0 0 0 transparent; } }
+    @media (max-width: 640px) { .phase-card { grid-template-columns: 1fr; } .phase-num { width: 40px; height: 40px; } .container { padding: 40px 16px; } }
+  </style>
+  <link rel="icon" type="image/x-icon" href="/favicon.ico">
+</head>
+<body>
+  <script src="navbar.js?v=20260328"></script>
+  <div class="bg-glow"></div>
+
+  <div class="container">
+
+    <header class="hero">
+      <div class="badge"><div class="dot"></div>AI 工程进度报告</div>
+      <h1>AI 金牌助教副驾驶<br>一个月全景小结</h1>
+      <p class="subtitle">从 0 到跑通：把喜播最强班主任的打法大脑装进服务器的全过程</p>
+      <span class="period">📅 统计周期：2026 年 3 月中旬 — 2026 年 4 月 19 日</span>
+    </header>
+
+    <div class="one-liner">
+      <p>用最直白的一句话说：<br><span>把喜播销冠助教（言若、六月晨兮）的"打法大脑"从人头上拔下来，装进了服务器里。</span><br><span style="color:var(--text-dim); font-size:16px; font-weight:400">人工服务一个班 200 人已经到体力天花板，AI 可以同时服务 20,000 个班。</span></p>
+    </div>
+
+    <!-- 六阶段 -->
+    <div class="section-label">六个建设阶段</div>
+    <div class="phases">
+
+      <div class="phase-card">
+        <div class="phase-num" style="background:rgba(16,185,129,0.1)">🎯</div>
+        <div class="phase-body">
+          <div class="phase-tag" style="color:var(--green)">阶段一 · 认知底座</div>
+          <div class="phase-title">弄清楚用户是谁</div>
+          <div class="phase-desc">建立"冷启动雷达"。用户加微信第一秒，系统就从生产数据库（花呗使用情况、问卷结果）里捞数据，给人打上 T1~T11 等级标签。三轴评分（意愿动机 / 资金能力 / 心态弹性）当天初始化，不随每句话飘移。</div>
+          <div class="phase-pills">
+            <span class="pill">分层参数权重矩阵.json</span>
+            <span class="pill">T1-T11 用户等级</span>
+            <span class="pill">三轴冷启动雷达</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="phase-card">
+        <div class="phase-num" style="background:rgba(59,130,246,0.1)">🤖</div>
+        <div class="phase-body">
+          <div class="phase-tag" style="color:var(--blue)">阶段二 · Agent 体系</div>
+          <div class="phase-title">建立五节点智能体大网</div>
+          <div class="phase-desc">A00 判人分级→ A01 专属话术 → A02 班主任总控节奏 → A03 合规审查（拦截高风险话术）→ A04 结营后职业导流，五个功能节点通过 LangGraph 编排成一条完整的推演闭环。</div>
+          <div class="phase-pills">
+            <span class="pill">node_a00.py</span><span class="pill">node_a01.py</span><span class="pill">node_a03.py</span><span class="pill">graph.py</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="phase-card">
+        <div class="phase-num" style="background:rgba(139,92,246,0.1)">📚</div>
+        <div class="phase-body">
+          <div class="phase-tag" style="color:var(--purple)">阶段三 · 知识底座</div>
+          <div class="phase-title">把销冠剧本装进内存</div>
+          <div class="phase-desc">解析言若 8,000+ 行、4 套 SOP 计划、468 个执行节点。从"大锅饭"升级为隔离式多战役字典池（plan_index 结构），独立区分：常规转化营 / PIA戏促活营 / 等 4 套互不干扰的打法。同时分析发现私聊节点从 Day -1 到 Day 5 密集分布，共 60+ 个独立私聊推送动作。</div>
+          <div class="phase-pills">
+            <span class="pill">sop_engine.py</span><span class="pill">468 个执行节点</span><span class="pill">4 套战役隔离包</span><span class="pill">60+ 私聊节点</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="phase-card">
+        <div class="phase-num" style="background:rgba(245,158,11,0.1)">⚡</div>
+        <div class="phase-body">
+          <div class="phase-tag" style="color:var(--amber)">阶段四 · 双轨流引擎</div>
+          <div class="phase-title">让 AI 跑起来不依赖大模型</div>
+          <div class="phase-desc">系统第一句"我已经添加了你" → 10ms 直推欢迎语 SOP，完全绕开大模型。用户回"好/收到/1"等顺从词 → 50ms 内按回合数匹配当日 SOP 节点。只有复杂情绪、质疑、反对才唤醒大模型（约 1~5s）。80% 日常沟通全部走确定性剧本直推。</div>
+          <div class="phase-pills">
+            <span class="pill">dynamic_sop_router</span><span class="pill">系统第一句零延迟拦截</span><span class="pill">大模型仅兜底</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="phase-card">
+        <div class="phase-num" style="background:rgba(239,68,68,0.1)">🖥️</div>
+        <div class="phase-body">
+          <div class="phase-tag" style="color:var(--red)">阶段五 · 指挥驾驶舱</div>
+          <div class="phase-title">让班主任看得懂 AI 在干什么</div>
+          <div class="phase-desc">左侧：微信气泡实时回放（支持全自动推演模式）。中间：SOP 运营主线进度条 + 言若绝密 4 套计划选项卡弹药库。右侧：三轴雷达 + 转化概率计算器 + 认知决策侦测舱日志。班主任扫一眼大盘，就知道对话走到哪一步、下一步该推什么。</div>
+          <div class="phase-pills">
+            <span class="pill">visual_dashboard.py</span><span class="pill">Streamlit 8502</span><span class="pill">三列作战布局</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="phase-card">
+        <div class="phase-num" style="background:rgba(16,185,129,0.1)">🔄</div>
+        <div class="phase-body">
+          <div class="phase-tag" style="color:var(--green)">阶段六 · 数据管道</div>
+          <div class="phase-title">拉通真实业务数据的闭环</div>
+          <div class="phase-desc">批量从系统导出全组 SOP 原始数据，把聊天记录中的高质量话术提炼成知识原子，喂给大模型作为 RAG 背景库。形成完整闭环：真实数据 → 解析提炼 → 装进 AI 大脑 → 实战产出 → 再产生数据。</div>
+          <div class="phase-pills">
+            <span class="pill">batch_export_sops.py</span><span class="pill">parse_knowledge_atoms.py</span><span class="pill">知识点原子库.json</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- 当前状态 -->
+    <div class="section-label">现在系统能干什么</div>
+    <div class="state-grid">
+      <div class="state-card" style="border-color: rgba(16,185,129,0.3)">
+        <div class="state-icon">⚡</div>
+        <div class="state-title">零延迟欢迎语</div>
+        <div class="state-desc">用户加微信后系统自动发的第一句话，直接命中 SOP 拦截层，10ms 内返回原版话术，大模型完全不被唤醒。</div>
+        <span class="state-badge" style="background:rgba(16,185,129,0.1); color:var(--green)">✅ 已验证</span>
+      </div>
+      <div class="state-card" style="border-color: rgba(59,130,246,0.3)">
+        <div class="state-icon">🧠</div>
+        <div class="state-title">双轨流智能路由</div>
+        <div class="state-desc">毫秒级判断当前输入走 SOP 刚性直推还是唤醒大模型推演，80% 日常交互不耗一个 Token。</div>
+        <span class="state-badge" style="background:rgba(59,130,246,0.1); color:var(--blue)">✅ 已验证</span>
+      </div>
+      <div class="state-card" style="border-color: rgba(139,92,246,0.3)">
+        <div class="state-icon">📖</div>
+        <div class="state-title">4 套隔离弹药库</div>
+        <div class="state-desc">言若4套战役 SOP 相互独立，绝不串台。大盘中间列提供 Tabs 切换，随时翻查任意战役剧本。</div>
+        <span class="state-badge" style="background:rgba(139,92,246,0.1); color:var(--purple)">✅ 已验证</span>
+      </div>
+      <div class="state-card" style="border-color: rgba(245,158,11,0.3)">
+        <div class="state-icon">🎯</div>
+        <div class="state-title">三轴稳定评分</div>
+        <div class="state-desc">基于生产数据库冷启动打分，不随对话实时浮动。分层等级T1-T11 在首次初始化后锁定，保持战术一致性。</div>
+        <span class="state-badge" style="background:rgba(245,158,11,0.1); color:var(--amber)">✅ 已验证</span>
+      </div>
+      <div class="state-card" style="border-color: rgba(239,68,68,0.3)">
+        <div class="state-icon">🛡️</div>
+        <div class="state-title">A03 合规检察官</div>
+        <div class="state-desc">对所有大模型输出进行上市前合规扫描，自动拦截"保证月入过万"等高危表述，生成审查日志。</div>
+        <span class="state-badge" style="background:rgba(239,68,68,0.1); color:var(--red)">✅ 已部署</span>
+      </div>
+      <div class="state-card">
+        <div class="state-icon">📺</div>
+        <div class="state-title">全自动演推模式</div>
+        <div class="state-desc">加载真实聊天记录，一键启动，AI 按照真实节奏自动走完全程，供复盘分析和新员工培训使用。</div>
+        <span class="state-badge" style="background:rgba(255,255,255,0.05); color:var(--text-muted)">✅ 已部署</span>
+      </div>
+    </div>
+
+    <!-- Backlog -->
+    <div class="backlog">
+      <h3>📋 下一步还没做的清单</h3>
+      <div class="todo-item">
+        <div class="todo-box"></div>
+        <div class="todo-text"><strong>人工接管开关</strong>：班主任随时能一键接管某个学员的对话，Human-in-the-Loop 机制。</div>
+      </div>
+      <div class="todo-item">
+        <div class="todo-box"></div>
+        <div class="todo-text"><strong>三轴手动微调</strong>：班主任对 AI 初始打分进行修正（比如用户主动透露自己有借款）。</div>
+      </div>
+      <div class="todo-item">
+        <div class="todo-box"></div>
+        <div class="todo-text"><strong>A04 结营导流细化</strong>：结营后针对有兴趣继续深造的用户，精准投递 MCN 签约路径。</div>
+      </div>
+      <div class="todo-item">
+        <div class="todo-box"></div>
+        <div class="todo-text"><strong>多组别 SOP 接入</strong>：目前只装了言若一人档案。下一步把全组其他销冠的打法也批量接入。</div>
+      </div>
+    </div>
+
+    <blockquote class="summary-quote">
+      一句话总结：我们把<span>"一个最厉害的班主任的大脑"完整复制进了服务器</span>，并且搭了一个「让普通班主任能指挥这个 AI 大脑作战」的驾驶舱。
+    </blockquote>
+
+  </div>
+
+  <footer><p>喜播集团 AI 工程日志 © 2026 · 数据驱动，打法可复制</p></footer>
+</body>
+</html>

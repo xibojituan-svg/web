@@ -1,0 +1,565 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+  <title>长期主义人才图谱 · 喜播班主任团队实力排名</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Noto+Serif+SC:wght@700;900&display=swap" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+  <style>
+    :root{
+      --bg:#09090b;--s1:#18181b;--s2:#27272a;--s3:#3f3f46;
+      --text:#f4f4f5;--dim:#a1a1aa;--muted:#71717a;
+      --green:#10b981;--blue:#3b82f6;--amber:#f59e0b;
+      --red:#ef4444;--purple:#8b5cf6;--orange:#f97316;--teal:#14b8a6;
+    }
+    *{margin:0;padding:0;box-sizing:border-box;}
+    html{scroll-behavior:smooth;}
+    body{font-family:'Inter','PingFang SC',sans-serif;background:var(--bg);color:var(--text);line-height:1.7;-webkit-font-smoothing:antialiased;}
+    .glow{position:fixed;top:-15vh;left:50%;transform:translateX(-50%);width:100vw;height:55vh;background:radial-gradient(ellipse at bottom,rgba(245,158,11,0.08),transparent 70%);z-index:-1;pointer-events:none;}
+
+    /* ── HERO ── */
+    .hero{padding:72px 24px 56px;text-align:center;border-bottom:1px solid var(--s3);position:relative;overflow:hidden;}
+    .hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at top,rgba(245,158,11,0.07),transparent 60%);}
+    .badge{display:inline-flex;align-items:center;gap:8px;padding:6px 18px;border-radius:100px;background:rgba(245,158,11,0.1);border:1px solid rgba(245,158,11,0.3);color:var(--amber);font-size:12px;font-weight:800;letter-spacing:1.5px;margin-bottom:28px;}
+    .dot{width:7px;height:7px;border-radius:50%;background:var(--amber);animation:pulse 2s infinite;}
+    h1{font-family:'Noto Serif SC',serif;font-size:clamp(26px,4.5vw,46px);font-weight:900;line-height:1.2;background:linear-gradient(160deg,#fff 30%,#fcd34d 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;margin-bottom:18px;}
+    .hero-sub{font-size:15px;color:var(--dim);max-width:700px;margin:0 auto 20px;}
+    .hero-stats{display:flex;justify-content:center;gap:32px;flex-wrap:wrap;margin-top:32px;}
+    .hstat{text-align:center;}
+    .hstat-num{font-size:32px;font-weight:900;display:block;}
+    .hstat-key{font-size:12px;color:var(--muted);margin-top:2px;}
+
+    /* ── CONTAINER ── */
+    .page{max-width:1200px;margin:0 auto;padding:0 24px;}
+    section{padding:64px 0;border-bottom:1px solid rgba(255,255,255,0.04);}
+    .sec-label{font-size:11px;font-weight:800;letter-spacing:2.5px;text-transform:uppercase;color:var(--muted);margin-bottom:14px;display:flex;align-items:center;gap:10px;}
+    .sec-label::after{content:'';flex:1;height:1px;background:var(--s3);}
+    h2{font-family:'Noto Serif SC',serif;font-size:clamp(20px,3vw,28px);font-weight:900;color:#fff;margin-bottom:8px;}
+    .sec-desc{font-size:14px;color:var(--dim);margin-bottom:32px;}
+
+    /* ── 评分标准说明 ── */
+    .criteria-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-bottom:40px;}
+    .criteria-card{background:var(--s1);border:1px solid var(--s3);border-radius:12px;padding:16px 18px;}
+    .crit-icon{font-size:22px;margin-bottom:8px;}
+    .crit-name{font-size:13px;font-weight:700;color:#fff;margin-bottom:4px;}
+    .crit-desc{font-size:12px;color:var(--dim);}
+
+    /* ── 团队排行榜 ── */
+    .rank-header{display:grid;grid-template-columns:44px 1fr 80px 80px 80px 80px;gap:12px;padding:10px 20px;font-size:11px;font-weight:700;color:var(--muted);letter-spacing:0.5px;text-transform:uppercase;border-bottom:1px solid var(--s3);margin-bottom:8px;}
+    .rank-row{display:grid;grid-template-columns:44px 1fr 80px 80px 80px 80px;gap:12px;align-items:center;padding:14px 20px;background:var(--s1);border:1px solid var(--s3);border-radius:12px;margin-bottom:8px;transition:all 0.25s;}
+    .rank-row:hover{border-color:rgba(255,255,255,0.15);transform:translateX(3px);}
+    .rank-row.gold{border-color:rgba(245,158,11,0.4);background:rgba(245,158,11,0.04);}
+    .rank-row.silver{border-color:rgba(156,163,175,0.3);}
+    .rank-row.bronze{border-color:rgba(180,83,9,0.25);}
+    .rnum{font-size:20px;font-weight:900;text-align:center;}
+    .rnum.g{color:var(--amber);}
+    .rnum.s{color:#9ca3af;}
+    .rnum.b{color:#b45309;}
+    .rnum.n{color:var(--muted);font-size:16px;}
+    .rname{font-size:15px;font-weight:700;color:#fff;}
+    .rsub{font-size:12px;color:var(--dim);margin-top:3px;}
+    .rtags{display:flex;flex-wrap:wrap;gap:4px;margin-top:6px;}
+    .rtag{font-size:10px;padding:2px 7px;border-radius:4px;font-weight:600;}
+    .rval{text-align:center;}
+    .rval-num{font-size:16px;font-weight:800;display:block;}
+    .rval-unit{font-size:10px;color:var(--muted);}
+    .bar-cell{display:flex;align-items:center;gap:8px;}
+    .bar-track{flex:1;height:6px;border-radius:3px;background:var(--s2);}
+    .bar-fill{height:100%;border-radius:3px;transition:width 0.8s ease;}
+
+    /* ── 个人明星卡片 ── */
+    .star-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:16px;}
+    .star-card{background:var(--s1);border:1px solid var(--s3);border-radius:14px;padding:22px;transition:all 0.3s;}
+    .star-card:hover{border-color:rgba(255,255,255,0.15);transform:translateY(-3px);box-shadow:0 12px 32px rgba(0,0,0,0.4);}
+    .star-header{display:flex;align-items:center;gap:14px;margin-bottom:14px;}
+    .star-avatar{width:48px;height:48px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:22px;font-weight:900;flex-shrink:0;}
+    .star-name{font-size:16px;font-weight:800;color:#fff;}
+    .star-team{font-size:12px;color:var(--dim);margin-top:3px;}
+    .star-quote{font-size:12px;font-style:italic;color:var(--dim);border-left:3px solid;padding-left:10px;margin:10px 0 14px;line-height:1.7;}
+    .star-metrics{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;}
+    .smet{background:var(--s2);border-radius:8px;padding:10px;text-align:center;}
+    .smet-val{font-size:17px;font-weight:900;display:block;}
+    .smet-key{font-size:10px;color:var(--muted);margin-top:2px;}
+
+    /* ── 图表 ── */
+    .chart-row{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin:28px 0;}
+    .chart-box{background:var(--s1);border:1px solid var(--s3);border-radius:14px;padding:24px;}
+    .chart-title{font-size:14px;font-weight:700;color:#fff;margin-bottom:20px;text-align:center;}
+    .chart-box canvas{max-height:280px;}
+
+    /* ── INSIGHT 结论卡 ── */
+    .insight-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:16px;margin:24px 0;}
+    .insight-card{background:var(--s1);border:1px solid var(--s3);border-radius:14px;padding:22px;}
+    .insight-icon{font-size:28px;margin-bottom:12px;}
+    .insight-title{font-size:16px;font-weight:800;color:#fff;margin-bottom:8px;}
+    .insight-body{font-size:13px;color:var(--dim);line-height:1.9;}
+
+    footer{border-top:1px solid var(--s3);padding:40px 24px;text-align:center;color:var(--muted);font-size:12px;}
+    @keyframes pulse{0%{box-shadow:0 0 0 0 rgba(245,158,11,0.4);}70%{box-shadow:0 0 0 10px transparent;}100%{box-shadow:0 0 0 0 transparent;}}
+    @media(max-width:768px){.rank-header,.rank-row{grid-template-columns:36px 1fr 60px 60px;}.rank-row>div:nth-child(5),.rank-row>div:nth-child(6),.rank-header>div:nth-child(5),.rank-header>div:nth-child(6){display:none;}.criteria-grid{grid-template-columns:1fr 1fr;}.chart-row{grid-template-columns:1fr;}}
+  </style>
+  <link rel="icon" href="/favicon.ico">
+</head>
+<body>
+  <script src="navbar.js?v=20260328"></script>
+  <div class="glow"></div>
+
+  <!-- HERO -->
+  <div class="hero">
+    <div class="badge"><div class="dot"></div>长期主义人才图谱</div>
+    <h1>哪些团队和个人<br>真的在做长期正确的事？</h1>
+    <p class="hero-sub">基于 soplist 目录全量分析：48个团队 · 数百名班主任兼职助教。用"运营数据量"作为长期主义的客观尺子——持续产出高质量 SOP 内容的人，才是真正在做这门业务，而不是在凑数。</p>
+    <div class="hero-stats">
+      <div class="hstat"><span class="hstat-num" style="color:var(--amber)">48</span><div class="hstat-key">活跃团队</div></div>
+      <div class="hstat"><span class="hstat-num" style="color:var(--green)">15</span><div class="hstat-key">核心团队</div></div>
+      <div class="hstat"><span class="hstat-num" style="color:var(--blue)">500+</span><div class="hstat-key">个人 SOP 档案</div></div>
+      <div class="hstat"><span class="hstat-num" style="color:var(--purple)">600+</span><div class="hstat-key">MB 运营数据</div></div>
+    </div>
+  </div>
+
+  <!-- 评分逻辑说明 -->
+  <section>
+    <div class="page">
+      <div class="sec-label">01 · 怎么衡量"长期主义"</div>
+      <h2>我们用什么标准来判断谁是真正靠谱的人？</h2>
+      <p class="sec-desc">不看嘴上说的，只看数据。SOP 数据量 = 这个人真实跑过多少期、服务过多少学员、沉淀了多少方法。</p>
+      <div class="criteria-grid">
+        <div class="criteria-card" style="border-color:rgba(245,158,11,0.3)">
+          <div class="crit-icon">📦</div>
+          <div class="crit-name">团队总数据量</div>
+          <div class="crit-desc">整个团队所有成员的 SOP 文件总大小。体现团队规模和整体运营深度。</div>
+        </div>
+        <div class="criteria-card" style="border-color:rgba(16,185,129,0.3)">
+          <div class="crit-icon">👥</div>
+          <div class="crit-name">团队有效人数</div>
+          <div class="crit-desc">有实际 SOP 内容记录的人数。过滤掉挂名不干活的空壳账号。</div>
+        </div>
+        <div class="criteria-card" style="border-color:rgba(59,130,246,0.3)">
+          <div class="crit-icon">📈</div>
+          <div class="crit-name">个人运营深度</div>
+          <div class="crit-desc">单个人的 SOP 文件大小。越大说明跑的营期越多、服务越持续、方法越完整。</div>
+        </div>
+        <div class="criteria-card" style="border-color:rgba(139,92,246,0.3)">
+          <div class="crit-icon">🔄</div>
+          <div class="crit-name">连续多期记录</div>
+          <div class="crit-desc">同一个人有 1、2、3…编号的多个文件，代表多期连续运营，不是一锤子买卖。</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 团队排行 -->
+  <section>
+    <div class="page">
+      <div class="sec-label">02 · 团队战力排行</div>
+      <h2>Top 15 核心团队 · 按运营体量综合排名</h2>
+      <p class="sec-desc">数据量最大的团队，就是在这门业务上吃得最深、打得最久的团队。</p>
+
+      <div class="rank-header">
+        <div>排名</div>
+        <div>团队名称</div>
+        <div style="text-align:center">数据量</div>
+        <div style="text-align:center">成员数</div>
+        <div style="text-align:center">运营深度</div>
+        <div style="text-align:center">综合评级</div>
+      </div>
+
+      <!-- 1st -->
+      <div class="rank-row gold">
+        <div class="rnum g">🥇</div>
+        <div>
+          <div class="rname">刘鹏瑞组</div>
+          <div class="rsub">Top3明星：新奇奇(3.7M) · 清音(3.0M) · 王小仙(2.9M)</div>
+          <div class="rtags">
+            <span class="rtag" style="background:rgba(245,158,11,0.15);color:var(--amber)">规模最大</span>
+            <span class="rtag" style="background:rgba(16,185,129,0.15);color:var(--green)">方法论最成熟</span>
+            <span class="rtag" style="background:rgba(59,130,246,0.15);color:var(--blue)">言若SOP已AI化</span>
+          </div>
+        </div>
+        <div class="rval"><span class="rval-num" style="color:var(--amber)">72.9</span><span class="rval-unit">MB</span></div>
+        <div class="rval"><span class="rval-num" style="color:var(--green)">93</span><span class="rval-unit">人</span></div>
+        <div class="bar-cell"><div class="bar-track"><div class="bar-fill" style="width:100%;background:var(--amber)"></div></div></div>
+        <div class="rval"><span class="rval-num" style="color:var(--amber)">S</span><span class="rval-unit">级</span></div>
+      </div>
+
+      <!-- 2nd -->
+      <div class="rank-row silver">
+        <div class="rnum s">🥈</div>
+        <div>
+          <div class="rname">曹宇翾组</div>
+          <div class="rsub">Top3明星：美人志(4.5M) · 97团团(2.8M) · 熹微(2.7M)</div>
+          <div class="rtags">
+            <span class="rtag" style="background:rgba(139,92,246,0.15);color:var(--purple)">个人产出最强</span>
+            <span class="rtag" style="background:rgba(245,158,11,0.15);color:var(--amber)">美人志全库第一</span>
+          </div>
+        </div>
+        <div class="rval"><span class="rval-num" style="color:#9ca3af">56.0</span><span class="rval-unit">MB</span></div>
+        <div class="rval"><span class="rval-num" style="color:var(--green)">64</span><span class="rval-unit">人</span></div>
+        <div class="bar-cell"><div class="bar-track"><div class="bar-fill" style="width:77%;background:#9ca3af"></div></div></div>
+        <div class="rval"><span class="rval-num" style="color:#9ca3af">A+</span><span class="rval-unit">级</span></div>
+      </div>
+
+      <!-- 3rd -->
+      <div class="rank-row silver">
+        <div class="rnum s">🥈</div>
+        <div>
+          <div class="rname">王含笑组</div>
+          <div class="rsub">Top3明星：浩诚(3.6M) · 扰川(2.2M) · 和鸣(2.2M)</div>
+          <div class="rtags">
+            <span class="rtag" style="background:rgba(16,185,129,0.15);color:var(--green)">人员多</span>
+            <span class="rtag" style="background:rgba(59,130,246,0.15);color:var(--blue)">浩诚连续高产</span>
+          </div>
+        </div>
+        <div class="rval"><span class="rval-num" style="color:#9ca3af">55.4</span><span class="rval-unit">MB</span></div>
+        <div class="rval"><span class="rval-num" style="color:var(--green)">90</span><span class="rval-unit">人</span></div>
+        <div class="bar-cell"><div class="bar-track"><div class="bar-fill" style="width:76%;background:#9ca3af"></div></div></div>
+        <div class="rval"><span class="rval-num" style="color:#9ca3af">A+</span><span class="rval-unit">级</span></div>
+      </div>
+
+      <!-- 4th -->
+      <div class="rank-row bronze">
+        <div class="rnum b">🥉</div>
+        <div>
+          <div class="rname">沈鹏飞组</div>
+          <div class="rsub">Top3明星：可可老师(2.3M) · 江月(1.7M) · 昭宁(1.7M)</div>
+          <div class="rtags">
+            <span class="rtag" style="background:rgba(245,158,11,0.1);color:var(--amber)">稳定输出</span>
+          </div>
+        </div>
+        <div class="rval"><span class="rval-num" style="color:#b45309">40.8</span><span class="rval-unit">MB</span></div>
+        <div class="rval"><span class="rval-num" style="color:var(--green)">70</span><span class="rval-unit">人</span></div>
+        <div class="bar-cell"><div class="bar-track"><div class="bar-fill" style="width:56%;background:#b45309"></div></div></div>
+        <div class="rval"><span class="rval-num" style="color:#b45309">A</span><span class="rval-unit">级</span></div>
+      </div>
+
+      <!-- 5th -->
+      <div class="rank-row bronze">
+        <div class="rnum b">4</div>
+        <div>
+          <div class="rname">刘颖组</div>
+          <div class="rsub">Top3明星：朵朵南风(3.1M) · 张家喜芙(2.4M) · 陈老氿(2.1M)</div>
+          <div class="rtags">
+            <span class="rtag" style="background:rgba(16,185,129,0.1);color:var(--green)">高人效比</span>
+          </div>
+        </div>
+        <div class="rval"><span class="rval-num" style="color:var(--dim)">40.2</span><span class="rval-unit">MB</span></div>
+        <div class="rval"><span class="rval-num" style="color:var(--dim)">43</span><span class="rval-unit">人</span></div>
+        <div class="bar-cell"><div class="bar-track"><div class="bar-fill" style="width:55%;background:var(--blue)"></div></div></div>
+        <div class="rval"><span class="rval-num" style="color:var(--dim)">A</span><span class="rval-unit">级</span></div>
+      </div>
+
+      <!-- 6-10 -->
+      <div class="rank-row">
+        <div class="rnum n">5</div>
+        <div><div class="rname">冯建军组</div><div class="rsub">魂牵梦萦(3.2M) · 芋头(1.9M) — 38人 · 34.9MB</div></div>
+        <div class="rval"><span class="rval-num">34.9</span><span class="rval-unit">MB</span></div>
+        <div class="rval"><span class="rval-num">38</span><span class="rval-unit">人</span></div>
+        <div class="bar-cell"><div class="bar-track"><div class="bar-fill" style="width:48%;background:var(--dim)"></div></div></div>
+        <div class="rval"><span class="rval-num">A-</span></div>
+      </div>
+      <div class="rank-row">
+        <div class="rnum n">6</div>
+        <div><div class="rname">汪洋组</div><div class="rsub">南夕(2.2M) · 瑶光颜爵(1.9M) — 57人 · 30.1MB</div></div>
+        <div class="rval"><span class="rval-num">30.1</span><span class="rval-unit">MB</span></div>
+        <div class="rval"><span class="rval-num">57</span><span class="rval-unit">人</span></div>
+        <div class="bar-cell"><div class="bar-track"><div class="bar-fill" style="width:41%;background:var(--dim)"></div></div></div>
+        <div class="rval"><span class="rval-num">B+</span></div>
+      </div>
+      <div class="rank-row">
+        <div class="rnum n">7</div>
+        <div><div class="rname">柏江阳组</div><div class="rsub">jeanne(2.7M) · 剑猪哥哥(2.0M) — 32人 · 26.5MB</div></div>
+        <div class="rval"><span class="rval-num">26.5</span><span class="rval-unit">MB</span></div>
+        <div class="rval"><span class="rval-num">32</span><span class="rval-unit">人</span></div>
+        <div class="bar-cell"><div class="bar-track"><div class="bar-fill" style="width:36%;background:var(--dim)"></div></div></div>
+        <div class="rval"><span class="rval-num">B+</span></div>
+      </div>
+      <div class="rank-row">
+        <div class="rnum n">8</div>
+        <div><div class="rname">李东升组</div><div class="rsub">风与小花(2.5M) · 晚安九点半(1.4M) — 27人 · 18.1MB</div></div>
+        <div class="rval"><span class="rval-num">18.1</span><span class="rval-unit">MB</span></div>
+        <div class="rval"><span class="rval-num">27</span><span class="rval-unit">人</span></div>
+        <div class="bar-cell"><div class="bar-track"><div class="bar-fill" style="width:25%;background:var(--dim)"></div></div></div>
+        <div class="rval"><span class="rval-num">B</span></div>
+      </div>
+      <div class="rank-row">
+        <div class="rnum n">9</div>
+        <div><div class="rname">王向成组</div><div class="rsub">筱时光(2.9M) · 米粒逗逗(1.9M) — 19人 · 17.3MB · 人效极高</div></div>
+        <div class="rval"><span class="rval-num">17.3</span><span class="rval-unit">MB</span></div>
+        <div class="rval"><span class="rval-num">19</span><span class="rval-unit">人</span></div>
+        <div class="bar-cell"><div class="bar-track"><div class="bar-fill" style="width:24%;background:var(--green)"></div></div></div>
+        <div class="rval"><span class="rval-num" style="color:var(--green)">B+★</span></div>
+      </div>
+
+      <div class="chart-row">
+        <div class="chart-box">
+          <div class="chart-title">Top 10 团队数据量对比（MB）</div>
+          <canvas id="teamBar"></canvas>
+        </div>
+        <div class="chart-box">
+          <div class="chart-title">规模 vs 深度矩阵（人数 × 人均产出）</div>
+          <canvas id="bubbleChart"></canvas>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 个人明星 -->
+  <section>
+    <div class="page">
+      <div class="sec-label">03 · 个人明星墙</div>
+      <h2>跨组个人产出 Top 12 · 真正的长期主义者</h2>
+      <p class="sec-desc">一个人能连续多期、持续积累超过 2MB 的运营记录，说明她不是跑完一期就跑路，而是在做一门真正的手艺。</p>
+
+      <div class="star-grid">
+
+        <div class="star-card" style="border-color:rgba(245,158,11,0.4)">
+          <div class="star-header">
+            <div class="star-avatar" style="background:rgba(245,158,11,0.15);color:var(--amber)">🌟</div>
+            <div><div class="star-name">美人志</div><div class="star-team">曹宇翾组 · 全库体量第一</div></div>
+          </div>
+          <div class="star-quote" style="border-color:var(--amber)">单人 SOP 档案 4.5MB，是整个库里体量最大的个人——代表超长周期、超高密度的连续服务记录</div>
+          <div class="star-metrics">
+            <div class="smet"><span class="smet-val" style="color:var(--amber)">4.5MB</span><span class="smet-key">档案体量</span></div>
+            <div class="smet"><span class="smet-val" style="color:var(--green)">多期</span><span class="smet-key">连续运营</span></div>
+            <div class="smet"><span class="smet-val" style="color:var(--blue)">S</span><span class="smet-key">个人评级</span></div>
+          </div>
+        </div>
+
+        <div class="star-card" style="border-color:rgba(139,92,246,0.35)">
+          <div class="star-header">
+            <div class="star-avatar" style="background:rgba(139,92,246,0.15);color:var(--purple)">💎</div>
+            <div><div class="star-name">新奇奇</div><div class="star-team">刘鹏瑞组 · 组内天花板</div></div>
+          </div>
+          <div class="star-quote" style="border-color:var(--purple)">3.9MB + 一版早期档案，是刘鹏瑞组内体量最大的助教，方法论最完整</div>
+          <div class="star-metrics">
+            <div class="smet"><span class="smet-val" style="color:var(--purple)">3.9MB</span><span class="smet-key">档案体量</span></div>
+            <div class="smet"><span class="smet-val" style="color:var(--green)">多期</span><span class="smet-key">连续运营</span></div>
+            <div class="smet"><span class="smet-val" style="color:var(--purple)">S-</span><span class="smet-key">个人评级</span></div>
+          </div>
+        </div>
+
+        <div class="star-card" style="border-color:rgba(59,130,246,0.35)">
+          <div class="star-header">
+            <div class="star-avatar" style="background:rgba(59,130,246,0.15);color:var(--blue)">🔷</div>
+            <div><div class="star-name">浩诚</div><div class="star-team">王含笑组 · 组内第一</div></div>
+          </div>
+          <div class="star-quote" style="border-color:var(--blue)">3.6MB 高质量档案，是王含笑组中最具代表性的核心骨干，已形成个人运营风格</div>
+          <div class="star-metrics">
+            <div class="smet"><span class="smet-val" style="color:var(--blue)">3.6MB</span><span class="smet-key">档案体量</span></div>
+            <div class="smet"><span class="smet-val" style="color:var(--green)">稳定</span><span class="smet-key">续期率</span></div>
+            <div class="smet"><span class="smet-val" style="color:var(--blue)">A+</span><span class="smet-key">个人评级</span></div>
+          </div>
+        </div>
+
+        <div class="star-card" style="border-color:rgba(20,184,166,0.35)">
+          <div class="star-header">
+            <div class="star-avatar" style="background:rgba(20,184,166,0.15);color:var(--teal)">🌊</div>
+            <div><div class="star-name">清音</div><div class="star-team">刘鹏瑞组 · 3.0MB</div></div>
+          </div>
+          <div class="star-quote" style="border-color:var(--teal)">多期更新、内容密度极高，是刘鹏瑞组中私聊逼单节奏最精密的助教之一</div>
+          <div class="star-metrics">
+            <div class="smet"><span class="smet-val" style="color:var(--teal)">3.0MB</span><span class="smet-key">档案体量</span></div>
+            <div class="smet"><span class="smet-val" style="color:var(--green)">精密</span><span class="smet-key">节奏把控</span></div>
+            <div class="smet"><span class="smet-val" style="color:var(--teal)">A+</span><span class="smet-key">个人评级</span></div>
+          </div>
+        </div>
+
+        <div class="star-card" style="border-color:rgba(245,158,11,0.25)">
+          <div class="star-header">
+            <div class="star-avatar" style="background:rgba(245,158,11,0.1);color:var(--amber)">🌸</div>
+            <div><div class="star-name">朵朵南风</div><div class="star-team">刘颖组 · 组内第一 3.1MB</div></div>
+          </div>
+          <div class="star-quote" style="border-color:var(--amber)">刘颖组高人效比代表，43人规模整体贡献40MB，朵朵南风是组里最核心的定海神针</div>
+          <div class="star-metrics">
+            <div class="smet"><span class="smet-val" style="color:var(--amber)">3.1MB</span><span class="smet-key">档案体量</span></div>
+            <div class="smet"><span class="smet-val" style="color:var(--green)">高稳</span><span class="smet-key">续期表现</span></div>
+            <div class="smet"><span class="smet-val" style="color:var(--amber)">A+</span><span class="smet-key">个人评级</span></div>
+          </div>
+        </div>
+
+        <div class="star-card" style="border-color:rgba(239,68,68,0.25)">
+          <div class="star-header">
+            <div class="star-avatar" style="background:rgba(239,68,68,0.1);color:var(--red)">🔥</div>
+            <div><div class="star-name">魂牵梦萦</div><div class="star-team">冯建军组 · 3.2MB</div></div>
+          </div>
+          <div class="star-quote" style="border-color:var(--red)">冯建军组里最重的一个人，体量超3MB，是整组的顶梁柱</div>
+          <div class="star-metrics">
+            <div class="smet"><span class="smet-val" style="color:var(--red)">3.2MB</span><span class="smet-key">档案体量</span></div>
+            <div class="smet"><span class="smet-val" style="color:var(--green)">持续</span><span class="smet-key">运营状态</span></div>
+            <div class="smet"><span class="smet-val" style="color:var(--red)">A+</span><span class="smet-key">个人评级</span></div>
+          </div>
+        </div>
+
+        <div class="star-card" style="border-color:rgba(16,185,129,0.3)">
+          <div class="star-header">
+            <div class="star-avatar" style="background:rgba(16,185,129,0.15);color:var(--green)">🤝</div>
+            <div><div class="star-name">筱时光</div><div class="star-team">王向成组 · 人效最高团队代表</div></div>
+          </div>
+          <div class="star-quote" style="border-color:var(--green)">王向成组只有19人，但人均产出极高。筱时光2.9MB，代表精英小团队的高人效路线</div>
+          <div class="star-metrics">
+            <div class="smet"><span class="smet-val" style="color:var(--green)">2.9MB</span><span class="smet-key">档案体量</span></div>
+            <div class="smet"><span class="smet-val" style="color:var(--green)">极高</span><span class="smet-key">人均产出</span></div>
+            <div class="smet"><span class="smet-val" style="color:var(--green)">A+</span><span class="smet-key">个人评级</span></div>
+          </div>
+        </div>
+
+        <div class="star-card" style="border-color:rgba(139,92,246,0.25)">
+          <div class="star-header">
+            <div class="star-avatar" style="background:rgba(139,92,246,0.1);color:var(--purple)">📖</div>
+            <div><div class="star-name">王小仙</div><div class="star-team">刘鹏瑞组 · 2.9MB</div></div>
+          </div>
+          <div class="star-quote" style="border-color:var(--purple)">刘鹏瑞组人才密集，王小仙是里面跑多期且持续稳定的核心成员之一</div>
+          <div class="star-metrics">
+            <div class="smet"><span class="smet-val" style="color:var(--purple)">2.9MB</span><span class="smet-key">档案体量</span></div>
+            <div class="smet"><span class="smet-val" style="color:var(--green)">多期</span><span class="smet-key">连续运营</span></div>
+            <div class="smet"><span class="smet-val" style="color:var(--purple)">A</span><span class="smet-key">个人评级</span></div>
+          </div>
+        </div>
+
+        <div class="star-card">
+          <div class="star-header">
+            <div class="star-avatar" style="background:rgba(59,130,246,0.1);color:var(--blue)">🎓</div>
+            <div><div class="star-name">小徐助教</div><div class="star-team">刘国旭-全职组 · 4.0MB</div></div>
+          </div>
+          <div class="star-quote" style="border-color:var(--blue)">全职组中最高产个人，小徐助教有两个版本共约 5.9MB，跑了多期且持续迭代是最佳全职路线样本</div>
+          <div class="star-metrics">
+            <div class="smet"><span class="smet-val" style="color:var(--blue)">4.0MB</span><span class="smet-key">主档体量</span></div>
+            <div class="smet"><span class="smet-val" style="color:var(--green)">全职</span><span class="smet-key">长期投入</span></div>
+            <div class="smet"><span class="smet-val" style="color:var(--blue)">A+</span><span class="smet-key">个人评级</span></div>
+          </div>
+        </div>
+
+        <div class="star-card">
+          <div class="star-header">
+            <div class="star-avatar" style="background:rgba(20,184,166,0.1);color:var(--teal)">🌙</div>
+            <div><div class="star-name">风与小花</div><div class="star-team">李东升组 · 2.5MB</div></div>
+          </div>
+          <div class="star-quote" style="border-color:var(--teal)">李东升组头号核心，持续高质量输出</div>
+          <div class="star-metrics">
+            <div class="smet"><span class="smet-val" style="color:var(--teal)">2.5MB</span><span class="smet-key">档案体量</span></div>
+            <div class="smet"><span class="smet-val" style="color:var(--green)">稳定</span><span class="smet-key">续期</span></div>
+            <div class="smet"><span class="smet-val" style="color:var(--teal)">A</span><span class="smet-key">个人评级</span></div>
+          </div>
+        </div>
+
+        <div class="star-card">
+          <div class="star-header">
+            <div class="star-avatar" style="background:rgba(245,158,11,0.1);color:var(--amber)">☀️</div>
+            <div><div class="star-name">jeanne</div><div class="star-team">柏江阳组 · 2.7MB</div></div>
+          </div>
+          <div class="star-quote" style="border-color:var(--amber)">柏江阳组最具代表性的个人，组内产出天花板</div>
+          <div class="star-metrics">
+            <div class="smet"><span class="smet-val" style="color:var(--amber)">2.7MB</span><span class="smet-key">档案体量</span></div>
+            <div class="smet"><span class="smet-val" style="color:var(--green)">持续</span><span class="smet-key">续期</span></div>
+            <div class="smet"><span class="smet-val" style="color:var(--amber)">A</span><span class="smet-key">个人评级</span></div>
+          </div>
+        </div>
+
+        <div class="star-card">
+          <div class="star-header">
+            <div class="star-avatar" style="background:rgba(16,185,129,0.1);color:var(--green)">🌿</div>
+            <div><div class="star-name">97团团</div><div class="star-team">曹宇翾组 · 2.8MB</div></div>
+          </div>
+          <div class="star-quote" style="border-color:var(--green)">跟美人志齐头并进，是曹宇翾组第二支柱，两人合力撑起了整组约12%的体量</div>
+          <div class="star-metrics">
+            <div class="smet"><span class="smet-val" style="color:var(--green)">2.8MB</span><span class="smet-key">档案体量</span></div>
+            <div class="smet"><span class="smet-val" style="color:var(--green)">稳健</span><span class="smet-key">输出频率</span></div>
+            <div class="smet"><span class="smet-val" style="color:var(--green)">A</span><span class="smet-key">个人评级</span></div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- 核心结论 -->
+  <section>
+    <div class="page">
+      <div class="sec-label">04 · 管理决策建议</div>
+      <h2>从数据里看到的长期主义本质</h2>
+      <p class="sec-desc">这些数字背后，几条值得拿去对照当下决策的结论。</p>
+
+      <div class="insight-grid">
+        <div class="insight-card" style="border-color:rgba(245,158,11,0.3)">
+          <div class="insight-icon">🏆</div>
+          <div class="insight-title">刘鹏瑞组是唯一的 S 级团队</div>
+          <div class="insight-body">73MB · 93人 · 方法论最完整 · 言若 SOP 已经率先完成 AI 化提炼。这个团队的打法已经是全公司最接近"可复制模板"的存在，值得作为全公司的方法论样板来推广。</div>
+        </div>
+        <div class="insight-card" style="border-color:rgba(139,92,246,0.3)">
+          <div class="insight-icon">💎</div>
+          <div class="insight-title">曹宇翾组有全库最强个人</div>
+          <div class="insight-body">美人志 4.5MB 是全库 Top 1。这一个人的运营体量，已经超过很多小团队的总和。这说明曹宇翾组在少数人才身上出现了极强的个人爆发——但这也意味着团队对这几个人的依赖风险较高。</div>
+        </div>
+        <div class="insight-card" style="border-color:rgba(16,185,129,0.3)">
+          <div class="insight-icon">⚡</div>
+          <div class="insight-title">王向成组是"人效典范"</div>
+          <div class="insight-body">19人 · 17MB · 筱时光一人贡献 2.9MB。这个团队人少但人均产出高，是精英化运营路线的最好证明。如果我们未来走 AI 驱动减少人数的路，王向成组就是先行者。</div>
+        </div>
+        <div class="insight-card" style="border-color:rgba(239,68,68,0.3)">
+          <div class="insight-icon">⚠️</div>
+          <div class="insight-title">大团队的隐患：人员虚胖</div>
+          <div class="insight-body">王含笑组 90 人但人均产出仅 0.6MB；汪洋组 57 人人均 0.53MB。对比王向成组的 0.91MB/人，说明人数多并不代表产出好。大团队里存在大量低效人员，值得做一次人效复盘和清退。</div>
+        </div>
+        <div class="insight-card" style="border-color:rgba(59,130,246,0.3)">
+          <div class="insight-icon">🔮</div>
+          <div class="insight-title">全职化是提升稳定性的出路</div>
+          <div class="insight-body">刘国旭-全职组只有 6 人怎能产出 11MB？小徐助教一人就贡献了 4MB+，是因为全职投入的人可以持续运营，不会像兼职一样跑一期消失。AI 时代，核心人才应该往全职化方向转化。</div>
+        </div>
+        <div class="insight-card" style="border-color:rgba(20,184,166,0.3)">
+          <div class="insight-icon">🤖</div>
+          <div class="insight-title">下一步：把这些人的打法装进 AI</div>
+          <div class="insight-body">言若（刘鹏瑞组）的 SOP 已经完成 AI 化提炼，成为大卫智能体演练系统的核心知识库。接下来应该优先对美人志、新奇奇、浩诚等高产个人的 SOP 做同样的解析，实现优秀打法的系统性复制。</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <a href="index.html" style="color:var(--amber);text-decoration:none;font-size:14px;font-weight:600">← 返回首页</a>
+    <div style="margin-top:12px">喜播集团 · 兼职员工体系 SOP 全量分析 · 基于 soplist 目录真实数据 © 2026</div>
+  </footer>
+
+  <script>
+    new Chart(document.getElementById('teamBar'), {
+      type: 'bar',
+      data: {
+        labels: ['刘鹏瑞', '曹宇翾', '王含笑', '沈鹏飞', '刘颖', '冯建军', '汪洋', '柏江阳', '李东升', '王向成'],
+        datasets: [{
+          label: '数据量(MB)',
+          data: [72.9, 56.0, 55.4, 40.8, 40.2, 34.9, 30.1, 26.5, 18.1, 17.3],
+          backgroundColor: ['rgba(245,158,11,0.8)','rgba(156,163,175,0.7)','rgba(156,163,175,0.6)','rgba(180,83,9,0.7)','rgba(59,130,246,0.6)','rgba(59,130,246,0.5)','rgba(100,116,139,0.5)','rgba(100,116,139,0.5)','rgba(100,116,139,0.4)','rgba(16,185,129,0.65)'],
+          borderRadius: 8, borderSkipped: false
+        }]
+      },
+      options: {
+        indexAxis: 'y',
+        plugins: { legend: { display: false } },
+        scales: { x: { grid: { color: '#27272a' }, ticks: { color: '#71717a' } }, y: { grid: { display: false }, ticks: { color: '#a1a1aa', font: { size: 11 } } } }
+      }
+    });
+
+    new Chart(document.getElementById('bubbleChart'), {
+      type: 'bubble',
+      data: {
+        datasets: [
+          { label: '刘鹏瑞组', data: [{ x: 93, y: 0.78, r: 22 }], backgroundColor: 'rgba(245,158,11,0.7)' },
+          { label: '曹宇翾组', data: [{ x: 64, y: 0.88, r: 18 }], backgroundColor: 'rgba(139,92,246,0.7)' },
+          { label: '王含笑组', data: [{ x: 90, y: 0.62, r: 17 }], backgroundColor: 'rgba(156,163,175,0.6)' },
+          { label: '刘颖组', data: [{ x: 43, y: 0.93, r: 13 }], backgroundColor: 'rgba(59,130,246,0.7)' },
+          { label: '王向成组', data: [{ x: 19, y: 0.91, r: 8 }], backgroundColor: 'rgba(16,185,129,0.8)' },
+          { label: '汪洋组', data: [{ x: 57, y: 0.53, r: 10 }], backgroundColor: 'rgba(100,116,139,0.5)' },
+          { label: '全职组', data: [{ x: 6, y: 1.88, r: 6 }], backgroundColor: 'rgba(20,184,166,0.8)' }
+        ]
+      },
+      options: {
+        plugins: { legend: { labels: { color: '#a1a1aa', font: { size: 10 }, padding: 10 } } },
+        scales: {
+          x: { title: { display: true, text: '团队人数', color: '#71717a' }, grid: { color: '#27272a' }, ticks: { color: '#71717a' } },
+          y: { title: { display: true, text: '人均产出(MB/人)', color: '#71717a' }, grid: { color: '#27272a' }, ticks: { color: '#71717a' } }
+        }
+      }
+    });
+  </script>
+</body>
+</html>

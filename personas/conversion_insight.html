@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>有声书用户画像数据透视与洞察</title>
+    <style>
+        :root {
+            --text-main: #333333;
+            --text-light: #666666;
+            --border-line: #e0e0e0;
+            --bg-body: #f7f9fa;
+            --bg-card: #ffffff;
+            --table-header: #2b3a4a;
+            --insight-bg: #fffaf0;
+            --insight-border: #f0c36d;
+            --primary-blue: #2f54eb;
+        }
+
+        body {
+            margin: 0;
+            padding: 20px;
+            background-color: var(--bg-body);
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "PingFang SC", "Microsoft YaHei", sans-serif;
+            color: var(--text-main);
+            line-height: 1.6;
+        }
+
+        .report-container {
+            max-width: 960px;
+            margin: 0 auto;
+            background-color: var(--bg-card);
+            padding: 30px 40px;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.04);
+            border-radius: 8px;
+        }
+
+        h1 {
+            font-size: 24px;
+            margin: 0 0 10px 0;
+            text-align: center;
+        }
+
+        .meta-info {
+            text-align: center;
+            font-size: 13px;
+            color: var(--text-light);
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 1px dashed var(--border-line);
+        }
+
+        .data-section {
+            margin-bottom: 36px;
+        }
+
+        h3 {
+            font-size: 16px;
+            color: var(--primary-blue);
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+        }
+
+        h3::before {
+            content: "";
+            display: inline-block;
+            width: 4px;
+            height: 14px;
+            background-color: var(--primary-blue);
+            margin-right: 8px;
+            flex-shrink: 0;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 14px;
+            margin-bottom: 10px;
+        }
+
+        th {
+            background-color: var(--table-header);
+            color: #fff;
+            font-weight: 600;
+            padding: 10px 14px;
+            text-align: left;
+            border: 1px solid #1f2d3d;
+        }
+
+        td {
+            border: 1px solid var(--border-line);
+            padding: 10px 14px;
+            color: #4a4a4a;
+            vertical-align: top;
+        }
+
+        .col-dimension { width: 12%; }
+        .col-data { width: 26%; }
+        .col-insight { width: 36%; }
+
+        .insight-cell {
+            background-color: var(--insight-bg);
+            border-left: 3px solid var(--insight-border);
+            font-size: 13px;
+            color: #5a4a2a;
+            line-height: 1.7;
+        }
+
+        .insight-tag {
+            display: inline-block;
+            background-color: #f0c36d;
+            color: #5a3e00;
+            font-size: 11px;
+            font-weight: 700;
+            padding: 1px 6px;
+            border-radius: 2px;
+            margin-bottom: 4px;
+        }
+
+        .note {
+            font-size: 12px;
+            color: #999;
+            margin-top: 4px;
+        }
+
+        @media (max-width: 768px) {
+            .report-container { padding: 16px; }
+            th, td { padding: 8px; font-size: 13px; }
+            .col-dimension { width: 15%; }
+            .col-data { width: 28%; }
+            .col-insight { width: 29%; }
+        }
+    </style>
+
+  
+
+
+  
+
+
+  
+
+
+  
+
+
+  
+
+
+  
+
+
+  
+
+
+  <!-- 引入统一样式基础(DARK MODE OVERRIDE) -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #09090b;
+      --bg-surface: #18181b;
+      --bg-surface-hover: #27272a;
+      --border: #3f3f46;
+      --text: #f4f4f5;
+      --text-dim: #a1a1aa;
+      --text-muted: #71717a;
+      
+      --brand-primary: #ef4444; 
+      --brand-secondary: #f97316; 
+      --brand-accent: #10b981; 
+      --brand-glow: rgba(239, 68, 68, 0.2);
+
+      /* PAGE SPECIFIC OVERRIDES */
+      --text-main: var(--text) !important;
+      --text-light: var(--text-dim) !important;
+      --border-line: var(--border) !important;
+      --bg-body: var(--bg) !important;
+      --bg-card: var(--bg-surface) !important;
+      --table-header: #1e1e24 !important;
+      --insight-bg: rgba(155, 81, 224, 0.05) !important; 
+      --insight-border: #9b51e0 !important;
+      --primary-blue: #60a5fa !important;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    
+    body {
+      font-family: 'Inter', -apple-system, 'PingFang SC', sans-serif !important;
+      background-color: var(--bg) !important;
+      color: var(--text) !important;
+      line-height: 1.6;
+    }
+
+    /* Background FX */
+    .bg-glow {
+      position: fixed; top: -20vh; left: 50%; transform: translateX(-50%);
+      width: 100vw; height: 60vh;
+      background: radial-gradient(ellipse at bottom, rgba(249, 115, 22, 0.15) 0%, rgba(9, 9, 11, 0) 70%);
+      z-index: -1; pointer-events: none;
+    }
+
+    /* Nav */
+    .site-nav {
+      position: sticky; top: 0; z-index: 9999;
+      background: rgba(9, 9, 11, 0.8); backdrop-filter: blur(16px);
+      border-bottom: 1px solid rgba(255,255,255,0.05);
+      padding: 0 clamp(16px, 4vw, 32px);
+    }
+    .site-nav-inner {
+      max-width: 1400px; margin: 0 auto;
+      display: flex; align-items: center; height: 60px;
+      gap: 12px; overflow-x: auto; scrollbar-width: none;
+    }
+    .site-nav-inner::-webkit-scrollbar { display: none; }
+    .nav-logo { font-size: 16px; font-weight: 900; color: var(--text); white-space: nowrap; text-decoration: none; margin-right: 20px; display: flex; align-items: center; gap: 8px;}
+    .nav-logo span { color: var(--brand-secondary); }
+    .nav-link {
+      display: flex; align-items: center; gap: 6px;
+      padding: 6px 14px; border-radius: 100px;
+      font-size: 13px; font-weight: 600; color: var(--text-dim);
+      text-decoration: none; white-space: nowrap; transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .nav-link:hover { color: var(--text); background: rgba(255,255,255,0.1); }
+    .nav-link.active { color: #fff; background: var(--brand-primary); box-shadow: 0 0 20px var(--brand-glow); }
+
+    /* GLOBAL OVERRIDES */
+    body, p, div, span, li, td, article, main, section {
+        color: rgba(255, 255, 255, 0.85) !important;
+    }
+    h1, h2, h3, h4, .title, strong, b, .card-title, .node-q, .branch-label { color: #ffffff !important; }
+    
+    /* COMPREHENSIVE SUBSTRING MATCHING FOR CONTAINER BACKGROUNDS */
+    .report-container, .page-container, .dashboard-container, .process-container, .map-container, 
+    .container, .tree-section, .node-content, .branch-item, .panel, table, .table-wrapper, .page,
+    [class*="card"]:not(.card-d), [class*="-box"]:not(.action-box), [class*="-wrap"], 
+    [class*="bg-gray-"], [class*="bg-blue-"], [class*="bg-red-"], [class*="bg-orange-"], [class*="bg-white"],
+    [class*="lane"], [class*="-step"], [class*="-track"], [class*="tag"], [class*="badge"],
+    [class*="alert"], [class*="-block"], [class*="banner"], [class*="reasoning"], [class*="insight"],
+    [class*="greeting"], [class*="recalibrate"], [class*="hook-"], input, select, textarea, button,
+    div[style*="background:#FFF"], div[style*="background-color: #FFF"] {
+       background-color: var(--bg-surface) !important;
+       border-color: var(--border) !important;
+       box-shadow: 0 4px 20px rgba(0,0,0,0.5) !important;
+    }
+
+    /* EXCEPTIONS & SPECIAL HIGHLIGHTS */
+    .logic-banner {
+       background: linear-gradient(135deg, #1e1e24, #09090b) !important;
+       box-shadow: 0 10px 40px rgba(0,0,0,0.5) !important;
+    }
+    .branch-item { background-color: #27272a !important; }
+    .card-d { background-color: #2e1010 !important; border-color: #ef4444 !important;}
+    .formula { background: rgba(255,255,255,0.05) !important; color: #facc15 !important; }
+    
+    /* TABLE STYLES */
+    td, .text-content, p { border-color: var(--border) !important;}
+    th { background: #18181b !important; border-color: var(--border) !important; color: #ffffff !important;}
+    table { border-collapse: collapse; }
+    
+    /* INSIGHT METRICS & DEFAULTS */
+    .insight-cell, .insight-cell p, .insight-cell div, .insight-cell span { 
+        color: #e9d5ff !important; 
+        background-color: rgba(155, 81, 224, 0.05) !important;
+    }
+    .insight-tag { color: #ffffff !important; }
+    .note, .meta-info, .desc, .text-muted, .text-light, .text-dim, .definition, [class*="text-gray-"], [class*="text-secondary"] { 
+        color: #a1a1aa !important; 
+    }
+    a { color: #60a5fa !important; }
+
+    .main-container {
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 40px 24px;
+    }
+  </style>
+
+  <link rel="icon" type="image/x-icon" href="/favicon.ico">
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+</head>
+<body>
+<script src="navbar.js?v=20260328"></script>
+
+
+<div class="report-container">
+    <h1>有声书用户画像数据透视与洞察</h1>
+    <div class="meta-info">
+        数据统计周期：2026年2月1日至 2026年3月23日<br>
+        报告类型：基础事实数据呈现 + 大卫AI助手逐项洞察（洞察仅供CEO推演参考，非最终决策）
+    </div>
+
+    <!-- 第一部分：人口学基础特征 -->
+    <div class="data-section">
+        <h3>1. 人口学基础特征数据</h3>
+        <table>
+            <tr>
+                <th class="col-dimension">维度</th>
+                <th class="col-data">未转化人群</th>
+                <th class="col-data">转化成功人群</th>
+                <th class="col-insight">大卫AI助手洞察</th>
+            </tr>
+            <tr>
+                <td><strong>性别</strong></td>
+                <td>1. 女 (50,499)<br>2. 男 (22,675)</td>
+                <td>1. 女 (约1,637)<br>2. 男 (约783)</td>
+                <td class="insight-cell">
+                    <span class="insight-tag">无显著差异</span><br>
+                    两组人群的性别结构基本一致，女性均占七成左右。性别并不构成转化与否的核心分水岭，差异的根源在其他维度。
+                </td>
+            </tr>
+            <tr>
+                <td><strong>年龄段</strong></td>
+                <td>1. 25-29岁 (14,216)<br>2. 35-39岁 (12,052)<br>3. 30-34岁 (10,984)<br>4. 40-49岁 (10,757)</td>
+                <td>1. 35-39岁 (644)<br>2. 30-34岁 (565)<br>3. 25-29岁 (438)<br>4. 40-49岁 (430)</td>
+                <td class="insight-cell">
+                    <span class="insight-tag">关键分水岭</span><br>
+                    未转化盘中25-29岁占据绝对榜首（1.4万人）。但在真实付费端，30-39岁牢牢霸占前两位，25-29岁跌至第三。<strong>30岁是一道隐形的支付能力分界线</strong>：年轻群体有极强的"兼职搞钱"诉求但缺乏试错储蓄，而30岁以上人群拥有更成熟的判断力和可支配的现金流。
+                </td>
+            </tr>
+            <tr>
+                <td><strong>婚姻</strong></td>
+                <td>1. 已婚 (30,495)<br>2. 未婚 (16,458)</td>
+                <td>1. 已婚 (1,350)<br>2. 未婚 (426)</td>
+                <td class="insight-cell">
+                    <span class="insight-tag">一致但加深</span><br>
+                    两组中已婚均为绝对多数。但已婚与已育（见下文子女数据）的叠加恰恰说明：推动这群人点击广告的驱动力就是"家庭经济压力"本身。已婚已育是结果，不是原因。
+                </td>
+            </tr>
+            <tr>
+                <td><strong>学历</strong></td>
+                <td>1. 高中及以下 (30,271)<br>2. 本科 (20,031)<br>3. 大专 (9,471)</td>
+                <td>1. 高中及以下 (1,040)<br>2. 本科 (820)<br>3. 大专 (223)<br>4. 硕士 (108)</td>
+                <td class="insight-cell">
+                    <span class="insight-tag">微妙偏移</span><br>
+                    虽然两组的"高中及以下"均排名第一，但是如果换算为占比结构：未转化盘中"高中及以下"占比约43%；而付费盘中，本科（820人）的占比被显著抬高，接近"高中及以下"的79%。<strong>本科及以上人群的转化意愿明显更强</strong>，可能因为其对"知识投资"的认知接受度更高。
+                </td>
+            </tr>
+        </table>
+    </div>
+
+    <!-- 第二部分：社会经济与消费特征 -->
+    <div class="data-section">
+        <h3>2. 社会经济与消费特征数据</h3>
+        <table>
+            <tr>
+                <th class="col-dimension">维度</th>
+                <th class="col-data">未转化人群</th>
+                <th class="col-data">转化成功人群</th>
+                <th class="col-insight">大卫AI助手洞察</th>
+            </tr>
+            <tr>
+                <td><strong>城市等级</strong></td>
+                <td>1. 二线 (21,854)<br>2. 三线 (15,210)<br>3. 五线 (11,415)<br>4. 一线 (8,439)</td>
+                <td>1. 二线 (821)<br>2. 三线 (573)<br>3. 一线 (455)<br>4. 五线 (386)</td>
+                <td class="insight-cell">
+                    <span class="insight-tag">排名逆转</span><br>
+                    核心变化点：未转化盘中"五线城市"排第三 > 一线城市排第四；付费盘中<strong>一线城市（455人）跃升至第三，将五线（386人）打落到第四</strong>。下沉市场很容易被广告吸引留下线索，但大量留资属于"看看就走"的无效流量。一二线城市的人群在面对付费决策时，明显更加干脆果断。
+                </td>
+            </tr>
+            <tr>
+                <td><strong>消费水平</strong></td>
+                <td>1. 5档 (22,747)<br>2. 1档 (21,159)<br>3. 3档 (18,711)<br>4. 4档 (10,825)</td>
+                <td>1. 5档 (873)<br>2. 3档 (680)<br>3. 1档 (627)<br>4. 4档 (412)</td>
+                <td class="insight-cell">
+                    <span class="insight-tag">中间层崛起</span><br>
+                    未转化盘呈现极端两极分化：5档（高消费）和1档（低消费）几乎持平。但在付费盘中，<strong>3档消费（中间层）强劲上升到第二位</strong>，1档消费从第二跌至第三。说明最终能拍板买课的，不是最有钱的（他们可能不屑于此），也不是最穷的（他们买不起），而是具有务实理财观的中产阶层。
+                </td>
+            </tr>
+            <tr>
+                <td><strong>手机品牌</strong></td>
+                <td>1. 苹果 (19,481)<br>2. vivo (12,154)<br>3. 华为 (11,478)<br>4. OPPO (8,872)</td>
+                <td>1. 苹果 (572)<br>2. 华为 (562)<br>3. vivo (394)<br>4. 小米 (327)</td>
+                <td class="insight-cell">
+                    <span class="insight-tag">华为信号极强</span><br>
+                    这是所有维度中<strong>最剧烈的排位变动</strong>。未转化盘中华为仅排第三（1.1万），远落后于vivo（1.2万）；但在付费盘中，<strong>华为（562人）直接飙升到第二位，几乎追平苹果（572人）</strong>，而vivo和OPPO大幅滑坡。华为用户群在中国市场具有鲜明的"成熟职场人/公务员/高知人群"标签，这个群体对"知识投资"的接受度和支付果断性远超下沉OV机型用户。
+                </td>
+            </tr>
+            <tr>
+                <td><strong>手机价格</strong></td>
+                <td>1. 7000+ (17,767)<br>2. 2000-2999 (14,509)<br>3. 1000-1999 (13,598)<br>4. 3000-3999 (8,264)</td>
+                <td>1. 7000+ (546)<br>2. 2000-2999 (534)<br>3. 1000-1999 (372)<br>4. 4000-4999 (315)</td>
+                <td class="insight-cell">
+                    <span class="insight-tag">趋势印证</span><br>
+                    两组中"7000元及以上"均排名第一，但在付费盘中，<strong>4000-4999元段位跃升至第四（替代了原来的3000-3999元）</strong>，整体价格带向上偏移。与手机品牌数据形成印证：付费人群的手机均价在上浮，进一步说明终端资产水平与购课意愿正度相关。
+                </td>
+            </tr>
+            <tr>
+                <td><strong>车辆</strong></td>
+                <td>无车 (55,563)<br>有车 (18,309)</td>
+                <td>无车 (1,943)<br>有车 (676)</td>
+                <td class="insight-cell">
+                    <span class="insight-tag">有车比例上升</span><br>
+                    未转化盘中有车比例约25%；付费盘中有车比例升至约26%。虽然绝对差异不大，但方向与城市等级和手机终端的趋势完全一致：<strong>资产净值越高的人群，转化倾向越强</strong>。
+                </td>
+            </tr>
+        </table>
+    </div>
+
+    <!-- 第三部分：获客渠道 -->
+    <div class="data-section">
+        <h3>3. 获客渠道数据</h3>
+        <table>
+            <tr>
+                <th class="col-dimension">维度</th>
+                <th class="col-data">未转化人群</th>
+                <th class="col-data">转化成功人群</th>
+                <th class="col-insight">大卫AI助手洞察</th>
+            </tr>
+            <tr>
+                <td><strong>一级渠道</strong></td>
+                <td>1. 站内资源位 (38,032)<br>2. 站外其他 (20,360)<br>3. 直播渠道 (8,277)<br>4. 私域 (7,471)<br>5. APPpush (5,971)</td>
+                <td>1. 站内资源位 (1,068)<br>2. 直播渠道 (485)<br>3. 站外其他 (320)<br>4. B站 (227)<br>5. 私域 (145)</td>
+                <td class="insight-cell">
+                    <span class="insight-tag">渠道效率冰火两重天</span><br>
+                    <strong>①站外其他：</strong>留资20,360人，仅转化320人（转化率约1.6%），效率极低。<br>
+                    <strong>②直播渠道：</strong>留资8,277人，转化485人（转化率约<strong>5.9%</strong>），效率约为站外其他的<strong>3.7倍</strong>。<br>
+                    <strong>③B站：</strong>留资5,934人，转化227人（转化率约3.8%），在非直播渠道中表现最为亮眼。<br>
+                    核心差异极其明显：泛联盟图文弹窗带来的是大量无目的的冲动型留资；而直播这种长且密集的信息传递场景，能有效筛选出真正有意图的高转化用户。
+                </td>
+            </tr>
+        </table>
+        <div class="note">* 注：以上数据均为对脱敏原始数据表的清洗抽取，洞察分析基于数据反差提炼，仅供参考，非最终决策。</div>
+    </div>
+
+</div>
+
+</body>
+</html>

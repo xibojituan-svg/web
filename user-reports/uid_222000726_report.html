@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>用户诊断报告：UID 222000726 - 喜播CEO战略看板</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Noto+Sans+SC:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-base: #0f1115;
+            --bg-panel: rgba(255, 255, 255, 0.03);
+            --bg-panel-hover: rgba(255, 255, 255, 0.06);
+            --border-color: rgba(255, 255, 255, 0.08);
+            --text-main: #f3f4f6;
+            --text-dim: #9ca3af;
+            --danger: #ef4444; 
+            --danger-bg: rgba(239, 68, 68, 0.1);
+            --warn: #eab308;
+            --warn-bg: rgba(234, 179, 8, 0.1);
+        }
+        body {
+            background-color: var(--bg-base);
+            color: var(--text-main);
+            font-family: 'Inter', 'Noto Sans SC', sans-serif;
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+        }
+        .container {
+            margin: 0 auto;
+            padding: 3rem;
+            max-width: 80rem;
+        }
+        .header {
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 2rem;
+            margin-bottom: 2rem;
+        }
+        .uid-badge {
+            display: inline-block;
+            background: linear-gradient(135deg, rgba(234, 179, 8, 0.2), rgba(161, 98, 7, 0.2));
+            color: #eab308;
+            padding: 0.5rem 1.25rem;
+            border-radius: 999px;
+            font-size: 0.875rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            border: 1px solid rgba(234, 179, 8, 0.2);
+        }
+        h1 {
+            font-size: 2.25rem;
+            font-weight: 800;
+            margin: 0;
+            letter-spacing: -0.02em;
+        }
+        h1 span {
+            color: var(--text-dim);
+            font-weight: 500;
+            font-size: 1.5rem;
+        }
+        .tag-row {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+        .tag {
+            padding: 0.4rem 1rem;
+            border-radius: 6px;
+            font-size: 0.875rem;
+            font-weight: 600;
+        }
+        .tag-warn {
+            background-color: var(--warn-bg);
+            color: var(--warn);
+            border: 1px solid rgba(234, 179, 8, 0.2);
+        }
+        
+        .grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+        .panel {
+            background-color: var(--bg-panel);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 2rem;
+            transition: all 0.3s ease;
+        }
+        .panel:hover {
+            background-color: var(--bg-panel-hover);
+        }
+        .panel-full {
+            grid-column: 1 / -1;
+        }
+        .panel h2 {
+            font-size: 1.25rem;
+            margin-top: 0;
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        ul {
+            padding-left: 1.5rem;
+            margin: 0;
+            color: var(--text-dim);
+        }
+        li {
+            margin-bottom: 0.75rem;
+        }
+        strong {
+            color: var(--text-main);
+        }
+        
+        .chat-bubble {
+            background: rgba(255,255,255,0.05);
+            padding: 1.25rem;
+            border-radius: 0 12px 12px 12px;
+            margin-bottom: 1rem;
+            border-left: 3px solid var(--warn);
+        }
+        .chat-label {
+            font-size: 0.75rem;
+            color: var(--warn);
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+        .chat-text {
+            color: var(--text-main);
+            font-size: 0.95rem;
+        }
+        
+        .action-box {
+            background: linear-gradient(135deg, rgba(234, 179, 8, 0.1), rgba(17, 24, 39, 0.8));
+            border-left: 4px solid var(--warn);
+            padding: 2rem;
+            border-radius: 8px;
+            margin-top: 1rem;
+        }
+        
+        .highlight-text {
+            background: rgba(234, 179, 8, 0.2);
+            padding: 0 0.3rem;
+            border-radius: 4px;
+            color: #fde047;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <div class="uid-badge">Data Record #18 [Partial Refund / Downgrade]</div>
+            <h1>UID 222000726 <span>— 馨慧(自我怀疑/习惯性放弃型)</span></h1>
+            <div class="tag-row">
+                <div class="tag tag-warn">⚠️ 自我效能缺失</div>
+                <div class="tag tag-warn">📉 承诺恐慌引发降级</div>
+            </div>
+        </div>
+
+        <div class="grid">
+            <div class="panel">
+                <h2>📊 用户基础画像</h2>
+                <ul>
+                    <li><strong>用户群组:</strong> “习惯性放弃者”/ 冲动消费但无自信。</li>
+                    <li><strong>心理防线:</strong> 极度缺乏自我效能感，买课是一种“缓解焦虑”的方式，但深知自己做不到。</li>
+                    <li><strong>流失触发点:</strong> 高投入意味着“高承诺倒逼”。当班主任推4380元的长线四个月课程时，用户严重超载，触发“历史失败创伤”导致部分退费（1500元）降级至2880基础班。</li>
+                </ul>
+            </div>
+            
+            <div class="panel">
+                <h2>🕵️‍♂️ 班主任/干预者</h2>
+                <ul>
+                    <li><strong>干预者:</strong> 十一-金牌写作招募教练(武广秀)</li>
+                    <li><strong>干预策略:</strong> 先极致推高收益与4999元赠课，试图拔高客单到4380元。</li>
+                    <li><strong>挽回防守:</strong> 在用户坚决表达缺乏信心后，没有强行死磕，而是迅速同意退还1500差价，柔性降级到2880基础班保住了基本盘。操作及时，是一次成功的「撤退保单」。</li>
+                </ul>
+            </div>
+
+            <div class="panel panel-full">
+                <h2>💥 核心诊断还原：被内部“承诺恐慌”击穿的高客单</h2>
+                <p style="color: var(--text-dim); margin-bottom: 1.5rem;">
+                    这类用户并非真的缺这1500块钱，而是<strong>无法承担长达四个月的学习压力预期</strong>。他们曾经报过大量的课程且失败，对“坚持”二字极度敏感。高客单价对他们而言不是金钱压力，而是“必须要坚持”的心理恐惧。
+                </p>
+                
+                <div class="chat-bubble">
+                    <div class="chat-label">自我效能感底座塌陷实录</div>
+                    <div class="chat-text">
+                        <strong>班主任：</strong>“把剩下的钱补了，直接报名旗舰，送你4999的网文小说课程... 这一套课现在没有直接售卖”<br>
+                        <strong>用户：</strong>“算了，老师，我还是先上基础班吧... <strong>我不是一个特别能坚持的人</strong>”<br>
+                        <strong>用户：</strong>“其实以前报过很多课，大部分都坚持不下来”<br>
+                        <strong>用户：</strong>“算了，我不是对自己特别有信心”<br>
+                    </div>
+                </div>
+
+                <div style="margin-top:2rem">
+                    <h3 style="color:white; font-size:1.1rem">🔥 诊断发现：</h3>
+                    <ul>
+                        <li><span class="highlight-text">“差价退款”本质是“承诺恐慌释放”：</span>用户误点1500链接后，面对剩余的尾款，触发了过往“买课不学”的羞耻感和恐惧。她退的不是钱，是退掉了后2个月的“学习负担”。</li>
+                        <li><span class="highlight-text">履约期的慢性死亡：</span>尽管降级到了基础班，但到了履约期末端（4月3日），班主任催促“你竟然还没交作业”，证明其习惯性放弃的基因依然存在，后续极有可能沉默流失转黑粉。</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="panel panel-full action-box">
+                <h2 style="color: #fde047; margin-bottom: 1rem;">⚡ CEO 级别断点行动 (Action Plan)</h2>
+                <ul>
+                    <li><strong>人群标记「易放弃体质」：</strong> 班主任在建档时，一旦获取到“我以前报了都没学完”、“没信心坚持”等关键词，必须为其打上<code>#易放弃体质#</code>标签。</li>
+                    <li><strong>运营手段重构：</strong> 对于<code>#易放弃体质#</code>，决不能压大课件和长交付周期（四个月太长）。给这类人的交付必须是<strong>“奶头乐式极简里程碑”</strong>：第一周只要能跑通一个AI小脚本产生1块钱收益，立刻全天候猛烈夸奖提供情绪价值，而不是告诉她“网文长篇小说以后赚大钱”。</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>单客 UE 商业漏斗模型 (CEO 战略罗盘)</title>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <style>
+        :root { --bg: #09090b; --text: #f4f4f5; }
+        body { font-family: 'Inter', -apple-system, 'PingFang SC', sans-serif; background-color: var(--bg); color: var(--text); line-height: 1.6; padding-top: 2rem; padding-bottom: 5rem; }
+        .glass-card { background: rgba(24, 24, 27, 0.85); backdrop-filter: blur(16px); border: 1px solid #3f3f46; box-shadow: 0 4px 30px rgba(0, 0, 0, 0.5); }
+        .accordion-transition { transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1); }
+        .data-value { font-family: 'Inter', monospace; font-variant-numeric: tabular-nums; }
+        /* Pathway styles */
+        .path-node { position: relative; }
+        .path-node:not(:last-child)::after {
+            content: ''; position: absolute; right: -20px; top: 50%; transform: translateY(-50%);
+            width: 16px; height: 2px; background: #52525b; z-index: 1;
+        }
+        .path-node:not(:last-child)::before {
+            content: ''; position: absolute; right: -24px; top: 50%; transform: translateY(-50%) rotate(45deg);
+            width: 8px; height: 8px; border-top: 2px solid #52525b; border-right: 2px solid #52525b; z-index: 1;
+        }
+    </style>
+</head>
+<body class="px-6">
+    <script src="navbar.js"></script>
+    
+    <div id="app" class="max-w-[1200px] mx-auto mt-10" v-cloak>
+        <div class="mb-10 text-center">
+            <h1 class="text-4xl font-black mb-3 bg-gradient-to-r from-blue-400 via-purple-400 to-rose-400 bg-clip-text text-transparent">战略单客 UE 罗盘 (流量归因版)</h1>
+            <p class="text-gray-400 text-sm max-w-3xl mx-auto leading-relaxed">
+                放弃传统糊涂账，采用顶级大厂“基于引流入口计算终身单客价值”的第一性法则。将全盘复购、跨线搭售以及巨额退费彻底穿透归因到【首购钩子产品】，精准识别哪条护城河在印钞，哪条护城河在疯狂流血！
+            </p>
+        </div>
+
+        <div class="space-y-6">
+            <!-- Level 1: Domains -->
+            <div v-for="domain in domains" :key="domain.id" class="glass-card rounded-2xl overflow-hidden border border-gray-800">
+                <!-- Domain Header -->
+                <div @click="domain.expanded = !domain.expanded" 
+                     class="cursor-pointer p-6 flex justify-between items-center hover:bg-white/5 transition-colors relative overflow-hidden"
+                     :class="`bg-gradient-to-r ${domain.color} bg-opacity-20`">
+                    <div class="absolute inset-0 bg-black opacity-60"></div>
+                    <div class="relative z-10 flex items-center gap-4">
+                        <div class="w-12 h-12 rounded-full bg-black/50 flex items-center justify-center border border-white/20">
+                            <i :class="[domain.icon, 'text-2xl text-white']"></i>
+                        </div>
+                        <div>
+                            <h2 class="text-2xl font-bold tracking-tight text-white flex items-center gap-3">
+                                第 1 层：{{ domain.name }} 
+                                <span class="text-xs font-normal px-2 py-1 rounded bg-black/50 border border-gray-600 text-gray-300">大盘健康度: <span :class="domain.summary.health.includes('警报') || domain.summary.health.includes('亏损') || domain.summary.health.includes('危急') ? 'text-red-400 font-bold' : 'text-green-400'">{{ domain.summary.health }}</span></span>
+                            </h2>
+                            <p class="text-sm text-gray-400 mt-1">横剖该流量池下引进来的所有用户的终局价值。</p>
+                        </div>
+                    </div>
+                    <div class="relative z-10 text-gray-400 text-2xl">
+                        <i class="fas" :class="domain.expanded ? 'fa-chevron-up' : 'fa-chevron-down'"></i>
+                    </div>
+                </div>
+
+                <!-- Level 2: Hooks -->
+                <div v-show="domain.expanded" class="accordion-transition bg-[#0f0f13] p-6 space-y-4">
+                    <div v-for="hook in domain.hooks" :key="hook.id" class="rounded-xl border border-gray-800 bg-black overflow-hidden shadow-lg">
+                        
+                        <!-- Hook Header -->
+                        <div @click="hook.expanded = !hook.expanded" class="cursor-pointer p-5 flex justify-between items-center hover:bg-gray-900 transition-colors border-b border-gray-800">
+                            <div>
+                                <h3 class="text-lg font-bold text-gray-200">
+                                    <span class="text-gray-500 text-xs mr-2 border border-gray-700 rounded px-1.5 py-0.5">第 2 层·打单锚点</span> {{ hook.name }}
+                                </h3>
+                            </div>
+                            <div class="text-gray-500">
+                                <span class="text-xs mr-4">点击钻取单客模型与心智漏斗</span>
+                                <i class="fas" :class="hook.expanded ? 'fa-minus text-blue-500' : 'fa-plus'"></i>
+                            </div>
+                        </div>
+
+                        <!-- Level 3 & 4: UE & Path -->
+                        <div v-show="hook.expanded" class="p-6 bg-[#18181b] border-t border-gray-900 accordion-transition">
+                            
+                            <h4 class="text-sm font-bold text-gray-400 mb-4 border-l-2 border-blue-500 pl-2">第 3 层：该钩子引流下单客 UE (四大金刚)</h4>
+                            
+                            <!-- 4 UE Pillars -->
+                            <div class="grid grid-cols-1 md:grid-cols-4 gap-4 mb-8">
+                                <div class="bg-black/40 p-4 rounded-lg border border-gray-800 relative overflow-hidden">
+                                    <div class="text-xs text-blue-400 font-bold mb-1">CAC 获取单客成本</div>
+                                    <div class="text-2xl font-black text-white mb-2 data-value">¥{{ fmt(hook.ue.cac) }}</div>
+                                    <div class="text-[11px] text-gray-500 leading-tight border-t border-gray-800 pt-2">{{ hook.ue.cac_detail }}</div>
+                                </div>
+                                <div class="bg-black/40 p-4 rounded-lg border border-gray-800 relative overflow-hidden">
+                                    <div class="text-xs text-yellow-500 font-bold mb-1">LTV 单客终身净值</div>
+                                    <div class="text-2xl font-black text-white mb-2 data-value flex items-center justify-between">
+                                        ¥{{ fmt(hook.ue.ltv + hook.ue.refund_impact) }}
+                                        <span v-if="hook.ue.refund_impact < 0" class="text-xs bg-red-900/40 text-red-500 px-1.5 py-0.5 rounded border border-red-900"><i class="fas fa-tint"></i> 含退费折损</span>
+                                    </div>
+                                    <div class="text-[11px] text-gray-500 leading-tight border-t border-gray-800 pt-2">{{ hook.ue.ltv_detail }}</div>
+                                </div>
+                                <div class="bg-black/40 p-4 rounded-lg border border-gray-800 relative overflow-hidden">
+                                    <div class="text-xs text-purple-400 font-bold mb-1">COC 单客履约成本</div>
+                                    <div class="text-2xl font-black text-white mb-2 data-value">¥{{ fmt(hook.ue.coc) }}</div>
+                                    <div class="text-[11px] text-gray-500 leading-tight border-t border-gray-800 pt-2">{{ hook.ue.coc_detail }}</div>
+                                </div>
+                                <div class="p-4 rounded-lg border relative overflow-hidden flex flex-col justify-center" :class="hook.ue.margin > 0 ? 'bg-emerald-900/20 border-emerald-900/50' : 'bg-red-900/20 border-red-900/50'">
+                                    <div class="text-xs font-bold mb-1" :class="hook.ue.margin > 0 ? 'text-emerald-400' : 'text-red-400'">Unit Margin 单客边际净贡献</div>
+                                    <div class="text-3xl font-black mb-1 data-value" :class="hook.ue.margin > 0 ? 'text-emerald-500' : 'text-red-500'">¥{{ fmt(hook.ue.margin) }}</div>
+                                    <div class="text-[11px] text-gray-400 border-t border-gray-800 pt-2 opacity-80">= LTV - CAC - COC. <span v-if="hook.ue.margin < 0" class="text-red-400 font-bold block mt-1"><i class="fas fa-radiation"></i> 引来一个亏一个，必须熔断广告！</span></div>
+                                </div>
+                            </div>
+
+                            <!-- Level 4: Path Visualization -->
+                            <h4 class="text-sm font-bold text-gray-400 mb-4 border-l-2 border-purple-500 pl-2 mt-8">第 4 层：单客 LTV 演化地图 (复购与流血下钻)</h4>
+                            <div class="bg-[#09090b] border border-gray-800 rounded-xl p-6">
+                                <div class="flex flex-wrap gap-y-8 items-center">
+                                    <div v-for="(node, idx) in hook.path" :key="idx" class="path-node pr-10 flex-shrink-0">
+                                        
+                                        <!-- Node Box -->
+                                        <div class="rounded-lg border p-3 min-w-[140px] max-w-[180px]" 
+                                             :class="{
+                                                'bg-blue-900/20 border-blue-800/50 text-blue-200': node.type === 'in',
+                                                'bg-yellow-900/20 border-yellow-700/50 text-yellow-300': node.type === 'core',
+                                                'bg-red-950/40 border-red-800 text-red-400 shadow-[0_0_15px_rgba(239,68,68,0.2)]': node.type === 'alert',
+                                                'bg-emerald-900/20 border-emerald-800/50 text-emerald-300': node.type === 'up',
+                                                'bg-fuchsia-900/20 border-fuchsia-800/50 text-fuchsia-300': node.type === 'cross'
+                                             }">
+                                            <div class="text-[10px] uppercase font-black tracking-wider opacity-70 mb-1 flex items-center gap-1">
+                                                <i class="fas" :class="{
+                                                    'fa-filter': node.type === 'in', 'fa-anchor': node.type === 'core', 
+                                                    'fa-skull-crossbones': node.type === 'alert', 'fa-cart-plus': node.type === 'up',
+                                                    'fa-random': node.type === 'cross'
+                                                }"></i> {{ node.step }}
+                                            </div>
+                                            <div class="text-sm font-bold leading-tight">{{ node.item }}</div>
+                                        </div>
+
+                                    </div>
+                                    <!-- End flag -->
+                                    <div class="text-gray-600 ml-[-20px] flex items-center">
+                                        <i class="fas fa-flag-checkered text-xl"></i>
+                                    </div>
+                                </div>
+                                <div v-if="hook.path.some(n => n.type === 'alert')" class="mt-6 p-3 bg-red-900/10 border border-red-900/30 rounded text-xs text-red-300 leading-relaxed">
+                                    <i class="fas fa-lightbulb text-red-500 mr-1"></i> <strong class="text-white">业务挂扣指示：</strong> 此阵地爆发高额退款漏损。根据我们在【退费分析报告】中的核销，销售前端使用虚假话术强塞进来的客户在体验后发生崩盘，严重拉低了此漏斗的终局 LTV。不治理此漏损，前端投流等于给海底漏斗倒水。
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+        </div>
+        
+        <!-- P&L Link -->
+        <div class="mt-8 text-center glass-card p-6 border-blue-900/30">
+            <p class="text-gray-400 text-sm mb-3">如果需要纵观全公司的月度和年度资金糊涂账（总流水、总毛利摊销），请跳转传统会计大盘表。</p>
+            <a href="traditional_pl_dashboard.html" class="inline-block px-6 py-2 bg-blue-600 hover:bg-blue-500 text-white font-bold rounded shadow-[0_0_15px_rgba(37,99,235,0.4)] transition">
+                <i class="fas fa-file-invoice-dollar mr-2"></i> 切换至公司级全景利润表 (P&L) (开发中)
+            </a>
+        </div>
+    </div>
+
+    <script>
+        const { createApp, ref } = Vue;
+
+        createApp({
+            setup() {
+                const domains = ref([
+                    {
+                        id: 'audio', name: '有声书引流大区', icon: 'fas fa-headphones', color: 'from-blue-600 to-indigo-900', expanded: true, summary: { health: '亚健康 (边际率被退款拉爆)' },
+                        hooks: [
+                            {
+                                id: 'audio_l1', name: '精英L1进门营 (核心营收钩子)', expanded: true,
+                                ue: { cac: 850, cac_detail: '短视频直投 CPL 85计算 × 10%首单转化', ltv: 6200, ltv_detail: '首单3980 + 30%复购研修班 + 15%加购声卡。', refund_impact: -350, coc: 2200, coc_detail: '课管提成 + 讲师课酬 + 寄送配套硬件成本', margin: 2800 },
+                                path: [
+                                    { step: '破冰门票', item: '9.9元声音诊断课', type: 'in' },
+                                    { step: '核心首单', item: '3980元 L1进阶营', type: 'core' },
+                                    { step: '退款漏损', item: '冲动报班大面积退费 (-350)', type: 'alert' },
+                                    { step: '生态内复购', item: '1500元 专业声卡硬件', type: 'up' },
+                                    { step: '跨界全家桶', item: '5980元 张震私教 (10%渗透)', type: 'cross' }
+                                ]
+                            },
+                            {
+                                id: 'audio_camp', name: '9.9元声音变现引流营', expanded: false,
+                                ue: { cac: 70, cac_detail: '自媒体矩阵低成本裂变', ltv: 9.9, ltv_detail: '仅作过滤网，纯引流无直接利润', refund_impact: 0, coc: 40, coc_detail: '全自动化社群，零星班主任精力', margin: -100.1 },
+                                path: [{ step: '引流', item: '9.9元入门课', type: 'in' }, { step: '终点', item: '未能转化 (停留此步)', type: 'core' }]
+                            }
+                        ]
+                    },
+                    {
+                        id: 'ai', name: 'AI产品引流大区', icon: 'fas fa-robot', color: 'from-emerald-600 to-teal-900', expanded: false, summary: { health: '危急 (亏损拉客)' },
+                        hooks: [
+                            {
+                                id: 'ai_video', name: 'AI短视频全能实战班', expanded: false,
+                                ue: { cac: 1500, cac_detail: '视频号投流极贵，转化率仅3%', ltv: 4980, ltv_detail: '单一部流课，尚无后续梯队课', refund_impact: -1200, coc: 2800, coc_detail: '高昂的AI代运营及版权代发分账', margin: -520 },
+                                path: [
+                                    { step: '福利引流', item: '1元带货爆库', type: 'in' },
+                                    { step: '极速逼单', item: '4980元 实战营', type: 'core' },
+                                    { step: '风暴级漏损', item: '交付难落地触发集体维权 (-1200)', type: 'alert' }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        id: 'ip', name: '张震IP超级战区', icon: 'fas fa-star', color: 'from-purple-600 to-fuchsia-900', expanded: false, summary: { health: '极优 (边际率 76%)' },
+                        hooks: [
+                            {
+                                id: 'ip_vip', name: '张震大师价值提升私门班', expanded: false,
+                                ue: { cac: 0, cac_detail: '纯靠有声全家桶自然溢出（0投流费）', ltv: 18000, ltv_detail: '年度闭门会+大师背书', refund_impact: -800, coc: 3500, coc_detail: '场地会务与大师排期时间对冲', margin: 13700 },
+                                path: [
+                                    { step: '内域沉淀', item: '有声高阶溢出高客群', type: 'in' },
+                                    { step: '顶奢首案', item: '12800元 私门大单', type: 'core' },
+                                    { step: '人脉带单', item: '+转介绍带来老板朋友 (+5200)', type: 'up' }
+                                ]
+                            }
+                        ]
+                    }
+                ]);
+
+                const fmt = (num) => Math.round(num).toLocaleString('en-US');
+
+                return { domains, fmt };
+            }
+        }).mount('#app');
+    </script>
+</body>
+</html>

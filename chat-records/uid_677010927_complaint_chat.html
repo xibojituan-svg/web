@@ -1,0 +1,1345 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chat Log</title>
+    <style>
+        body { font-family: 'PingFang SC', 'Microsoft YaHei', sans-serif; background-color: #f5f5f5; padding: 20px; }
+        .chat-container { max-width: 800px; margin: 0 auto; background: white; padding: 20px; border-radius: 10px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); }
+        .message { margin-bottom: 20px; display: flex; flex-direction: column; }
+        .user-A { align-items: flex-end; }
+        .user-B { align-items: flex-start; }
+        .header { font-size: 12px; color: #999; margin-bottom: 5px; }
+        .bubble { max-width: 70%; padding: 12px 16px; border-radius: 8px; font-size: 14px; line-height: 1.5; word-wrap: break-word; }
+        .user-A .bubble { background-color: #95ec69; color: #000; border-top-right-radius: 0; }
+        .user-B .bubble { background-color: #f0f0f0; color: #000; border-top-left-radius: 0; }
+    </style>
+</head>
+<body>
+    <div class="chat-container">
+    <h2>外诉高危投诉 - 案件还原</h2>
+
+        <div class="message user-B">
+            <div class="header">陌云九 AIGC全能视频创作营（13期） | 2026-03-13 19:59:16</div>
+            <div class="bubble">我已经添加了你，现在我们可以开始聊天了。</div>
+        </div>
+
+        <div class="message user-A">
+            <div class="header">喜小满班班(马莉) | 2026-03-13 19:59:22</div>
+            <div class="bubble">🎉亲爱的 陌云九             同学～终于等到你！ 欢迎来到AIGC 全能视频创作营13期的正课学习，我是你的班班喜小满✨从今天开始，今后的时间我都会像小太阳🌞一样陪伴你的成长哦～<br>♥️未来我们的课程将通过 微信【喜播学堂】小程序完成哦！<br>现在请点击下方⬇️喜播学堂小程序进入并用购课手机号码登录！然后<br>①👉点开底部-学习-对应课程确认课程，课程核对无误后返回小程序首页<br>②👉点右下角-我的--我的班级~~~~✌同学们已经在等你啦~（👀<br>注意：请务必按上方流程确认课程并进班级群，如果找不到班级群二维码，记得告诉我，我单独发给你哈）<br>③👉花1分钟填写下方⬇️《学员登记表》呦～让班班我更加了解你的情况，有助于后续顺利学习呦！！！<br>👏新人互动时间：入群后别忘记跟大家打招呼呦，可以这样说：大家好，我是「你的名字/昵称」很高兴认识大家，我平时喜欢「你的爱好」，新人报道，请多指教，再配上表情包😄🥰会更亲切呦～✨</div>
+        </div>
+
+        <div class="message user-A">
+            <div class="header">喜小满班班(马莉) | 2026-03-13 19:59:25</div>
+            <div class="bubble">哈喽哈喽，你先看一下上面刚刚给你发的一些内容哈，然后填一下学员信息登记表，填完了以后呢跟我说一声哈。如果现在你有时间的话，也可以跟我聊一下你报咱们AI短视频的一个初衷，或者说是咱们有没有自己一个喜欢的赛道呀，或者方向呀都可以。然后也可以说一下咱们平时能够学习的时间段有哪些，也可以跟我聊一下，这样子我可以对咱们有一个大致的了解。等咱们的陪跑官进群了以后呢，我也好方便沟通咱们的一个情况，这样子对咱们后续学习是有所帮助的哟。</div>
+        </div>
+
+        <div class="message user-B">
+            <div class="header">陌云九 AIGC全能视频创作营（13期） | 2026-03-13 20:02:19</div>
+            <div class="bubble">老师，我是安馨，麻烦把我抱进班级群和新手村4群一下，谢谢啦[呲牙]</div>
+        </div>
+
+        <div class="message user-A">
+            <div class="header">喜小满班班(马莉) | 2026-03-13 20:04:55</div>
+            <div class="bubble">好的[捂脸]</div>
+        </div>
+
+        <div class="message user-A">
+            <div class="header">喜小满班班(马莉) | 2026-03-13 20:05:16</div>
+            <div class="bubble">新手村你让前端老师拉你，班级群我可以拉你哦。</div>
+        </div>
+
+        <div class="message user-B">
+            <div class="header">陌云九 AIGC全能视频创作营（13期） | 2026-03-13 20:05:41</div>
+            <div class="bubble">好哒</div>
+        </div>
+
+        <div class="message user-A">
+            <div class="header">喜小满班班(马莉) | 2026-03-13 20:05:54</div>
+            <div class="bubble">嗯进去了</div>
+        </div>
+
+        <div class="message user-B">
+            <div class="header">陌云九 AIGC全能视频创作营（13期） | 2026-03-13 20:06:19</div>
+            <div class="bubble">谢谢老师</div>
+        </div>
+
+        <div class="message user-A">
+            <div class="header">喜小满班班(马莉) | 2026-03-13 20:06:38</div>
+            <div class="bubble">不客气的</div>
+        </div>
+
+        <div class="message user-B">
+            <div class="header">陌云九 AIGC全能视频创作营（13期） | 2026-03-13 20:07:16</div>
+            <div class="bubble">那我就把那个小号退出去了哦</div>
+        </div>
+
+        <div class="message user-A">
+            <div class="header">喜小满班班(马莉) | 2026-03-13 20:07:36</div>
+            <div class="bubble">好的</div>
+        </div>
+
+        <div class="message user-A">
+            <div class="header">喜小满班班(马莉) | 2026-03-14 09:13:03</div>
+            <div class="bubble">哈喽🌞，早上好，今天上重要的一天哦，重要的事情比较多哦，请注意查收哈:<br>⭐【今日待办】1️⃣  晚上19: 00  开营见面班会哦，会议链接在下方哈，有时间一定来参加哈，凭借直播口令领取福利哦<br>2️⃣  查看喜播学堂小程序里自己大咖直播课入口是否是倒计时，如果不是，记得跟我说 ，找不到入口也和我说哈   也可以看一下班级群里发的入口截图哦   3️⃣  今天可以看第一周录播课了，已经解锁，在明天大咖直播前看完即可哈，第一周偏基础性的一些知识，虽然基础但是重要哦，基础打牢，才能建造上方建筑对吧？在看课的过程中有任何问题，都可以和我说哈❤️</div>
+        </div>
+
+        <div class="message user-A">
+            <div class="header">喜小满班班(马莉) | 2026-03-14 09:13:11</div>
+            <div class="bubble">会议主题：开营见面班会<br>会议时间：2026/03/14 19:00<br>会议链接https://xibojiaoyu.meeting.tencent.com/dm/nXD8EB2t7vUJ<br>#腾讯会议：708-992-226<br>复制该信息，打开手机腾讯会议即可参与</div>
+        </div>
+
+        <div class="message user-A">
+            <div class="header">喜小满(马莉) | 2026-03-14 18:31:43</div>
+            <div class="bubble">哈喽🌙，开营班会 19:00 就要开始啦～有时间一定要来呦～❤️<br>会议链接:<br>https://xibojiaoyu.meeting.tencent.com/dm/nXD8EB2t7vUJ<br>#腾讯会议：708-992-226</div>
+        </div>
+
+        <div class="message user-A">
+            <div class="header">喜小满(马莉) | 2026-03-15 11:11:17</div>
+            <div class="bubble">哈喽🌞，今日份学习安排请查收<br>今天是咱们第一节大咖直播课呦，尽量跟直播哈，如果没时间也有回放哈，有问题随时问～建议提前5分钟进直播间哈<br>【直播时间】今天13:00-15:00<br>【直播链接】<br>【手机观看】📱微信小程序-喜播学堂 -学习-全能创作营-第一周大咖直播入口<br>【电脑观看】 💻https://m4s9b.xetslk.com/sl/31LfGD<br>🌈提前准备好小板凳哈，前排做好</div>
+        </div>
+
+        <div class="message user-A">
+            <div class="header">喜小满班班(马莉) | 2026-03-16 12:26:11</div>
+            <div class="bubble">哈喽🌞，班班来啦～(^_^)ノ<br>今日重点通知:<br>1️⃣禁言群已建立好，可将其置顶🔝，营期中所有资料重点都会发到群内哦，注意每天查看一下<br>2️⃣今晚19:00陪跑官答疑课，有时间记得参加哦，和陪跑大大第一次见面哦，不要错过，会议链接在禁言群内哦～<br>3️⃣交流群内有问题接龙哦，咱们有问题，可以写上去哈，晚上上课进行一一答疑<br>咱们一起加油⛽，把前面开始这几步一步步走稳哦～Oᴗoಣ  有任何问题跟我及时沟通哦</div>
+        </div>
+
+        <div class="message user-A">
+            <div class="header">喜小满(马莉) | 2026-03-16 18:28:47</div>
+            <div class="bubble">哈喽，陪跑官大大的答疑直播课马上就要开始了哈，19:00准时开始，搬好小板凳，前排做好哈，会议链接在禁言群里哦～找不到跟我说◍˃ᵕ˂◍</div>
+        </div>
+
+        <div class="message user-B">
+            <div class="header">陌云九 AIGC全能视频创作营（13期） | 2026-03-16 21:59:18</div>
+            <div class="bubble">老师你好，我想问一下，为什么我们交费完没有给我们签合同啊？</div>
+        </div>
+
+        <div class="message user-B">
+            <div class="header">陌云九 AIGC全能视频创作营（13期） | 2026-03-16 21:59:39</div>
+            <div class="bubble">班班你好，我想问一下，为什么我们交费完没有给我们签合同啊？</div>
+        </div>
+
+        <div class="message user-A">
+            <div class="header">喜小满(马莉) | 2026-03-16 22:16:48</div>
+            <div class="bubble">合同有的，在喜播学堂小程序里  点我的   设置里面哦</div>
+        </div>
+
+        <div class="message user-A">
+            <div class="header">喜小满(马莉) | 2026-03-16 22:16:57</div>
+            <div class="bubble">怎么突然问这个</div>
+        </div>
+
+        <div class="message user-B">
+            <div class="header">陌云九 AIGC全能视频创作营（13期） | 2026-03-16 22:26:44</div>
+            <div class="bubble">我去看看，因为交费之前直播里面不是说了很多权益吗？7天无理由退费，每周定向派单，各种各样的福利。但是如果没有合同做保障的话，以后不兑现我找谁去啊？</div>
+        </div>
+
+        <div class="message user-A">
+            <div class="header">喜小满(马莉) | 2026-03-16 22:28:01</div>
+            <div class="bubble">对了咱们今天听课感觉如何？</div>
+        </div>
+
+        <div class="message user-A">
+            <div class="header">喜小满(马莉) | 2026-03-16 22:28:10</div>
+            <div class="bubble">有任何问题都可以说哈</div>
+        </div>
+
+        <div class="message user-B">
+            <div class="header">陌云九 AIGC全能视频创作营（13期） | 2026-03-16 22:33:07</div>
+            <div class="bubble">你说的是那个课程协议就是合同？</div>
+        </div>
+
+        <div class="message user-B">
+            <div class="header">陌云九 AIGC全能视频创作营（13期） | 2026-03-16 22:35:38</div>
+            <div class="bubble">我想确认几个必须白纸黑字落实的核心问题，麻烦您逐条明确回复，我只认合同和官方证明：<br>1. 你们承诺的每周定向派单、喜马拉雅内部商单，是否会写进正式合同？能否明确每月最低派单数量、商单报酬和结算方式？<br>2. 您说喜马拉雅要把所有有声小说改编成AI短视频，是否有喜马拉雅官方公告/正式文件可以提供？<br>3. 如果后期未兑现派单、接单承诺，是否支持全额退费？合同里是否有明确的7天无理由退费条款？</div>
+        </div>
+
+        <div class="message user-B">
+            <div class="header">陌云九 AIGC全能视频创作营（13期） | 2026-03-16 22:39:14</div>
+            <div class="bubble">四天的免费课程我都有录屏，里面承诺的福利如果不能写进合同的话，那我就要求7天无理由退款了，我是3月11日付款的，现在才5天时间。</div>
+        </div>
+
+        <div class="message user-A">
+            <div class="header">喜小满(马莉) | 2026-03-16 22:39:22</div>
+            <div class="bubble">好的好的，我收到了你的问题。首先呢，就是我跟你说一下，就是咱们说上单的问题，上单的问题就是你现在嗯其实你就可以在小程序里面可以看到，你完全可以去尝试去做，做的过程中有问题就问，还是那句话，就是我派单峰的时候其实也说的很清楚，然后就是你进入了咱们的上单群了以后，，就会就是每周固定派单，是这样子的，有一个海外上单是这样子的一个情况，嗯，good network 平台的那个上单就是每周都会有安排单子给到学员，，但是呢，首先得你得过了试稿，懂那个意思吧？你得证明自己的学习能力就已经达到了那个标准，进了群了以后才可以，然后在前期上课之，就是进群就是嗯试稿的时候可以问。</div>
+        </div>
+
+        <div class="message user-A">
+            <div class="header">喜小满(马莉) | 2026-03-16 22:39:38</div>
+            <div class="bubble">试稿过程中有任何问题都可以跟我跟陪跑去沟通，然后看看你的作品哪里有问题，然后哪里不符合甲方的要求，就去针对性的去给你辅导，是这么一个情况，就是上单这一块。</div>
+        </div>
+
+        <div class="message user-A">
+            <div class="header">喜小满(马莉) | 2026-03-16 22:40:22</div>
+            <div class="bubble">我知道我们的课程都有录录录屏，你不用录，我们都有咱们的那个课程内容，所以说这块完全不用不用担心的。</div>
+        </div>
+
+        <div class="message user-A">
+            <div class="header">喜小满(马莉) | 2026-03-16 22:40:39</div>
+            <div class="bubble">没问题，你不光七天无理由，如果出现你说的这种情况，你什么时候都可以退款的。</div>
+        </div>
+
+        <div class="message user-A">
+            <div class="header">喜小满(马莉) | 2026-03-16 22:41:04</div>
+            <div class="bubble">咱们上课呢是自由的，没有说非得就是说不给你退款或者这种情况完全不会的放心，然后我就想说就是你的需求点在哪，你可以跟我表述的更清楚一些，就是担心什么。</div>
+        </div>
+
+        <div class="message user-B">
+            <div class="header">陌云九 AIGC全能视频创作营（13期） | 2026-03-16 22:41:31</div>
+            <div class="bubble">我一直以为你们是有合同要签的，但是到现在一直都没有给我们签合同呢？</div>
+        </div>
+
+        <div class="message user-A">
+            <div class="header">喜小满(马莉) | 2026-03-16 22:41:44</div>
+            <div class="bubble">还有今天上课的内容怎么样呀？嗯，陪跑官的上课节奏呀什么的，你这块你可以跟我反馈一下，是不是咱们今天听课效果不好，或者是让你产生了一种疑惑什么的都可以跟我反馈，我这边就是什么情况都可以跟我反馈，然后我会针对你的情况去调整的，放心。</div>
+        </div>
+
+        <div class="message user-A">
+            <div class="header">喜小满(马莉) | 2026-03-16 22:42:45</div>
+            <div class="bubble">签合同是这样子的，咱们比如说我刚才说的那个海外商单，good no work平台的那个，你过了试稿了以后进群了以后确实就会签约的，会有一个保密协议，懂吧？但是那个是前提是你要过了试稿进了专业的接单群才有，嗯，前期试稿的过程中可以去问肥泡，问我都是没有问题的，都可以给予你相应的一个指导。</div>
+        </div>
+
+        <div class="message user-A">
+            <div class="header">喜小满(马莉) | 2026-03-16 22:45:30</div>
+            <div class="bubble">再一个就是你刚刚提到的那些承诺是在直播间听到的，，还是说是前端助教老师给你说的？你可以把截图都给我，这都算是一个嗯反馈，我可以去反馈一下这个情况，懂我的意思吧？</div>
+        </div>
+
+        <div class="message user-A">
+            <div class="header">喜小满(马莉) | 2026-03-16 22:45:54</div>
+            <div class="bubble">但是我刚才说的我都可以保证，就是咱们在上学上课的过程中有问题都可以问，然后给你去针对性的去答疑，然后让你尽快的进到商单群，但是咱们首先得能力得拿到手呀，如果你没有能力，给你单子你也做不出来呀，是这个意思吧，我说话比较直接。</div>
+        </div>
+
+        <div class="message user-B">
+            <div class="header">陌云九 AIGC全能视频创作营（13期） | 2026-03-16 22:48:28</div>
+            <div class="bubble">意思就是直播间里面说的是不能写进合同的嘛？</div>
+        </div>
+
+        <div class="message user-B">
+            <div class="header">陌云九 AIGC全能视频创作营（13期） | 2026-03-16 22:49:22</div>
+            <div class="bubble">那我申请全额退款，流程怎么走？</div>
+        </div>
+
+        <div class="message user-A">
+            <div class="header">喜小满(马莉) | 2026-03-16 22:49:51</div>
+            <div class="bubble">那你可以给我反馈一下，就是你直播间听到的哪些内容你想写进合同里，然后具体的是在哪一节课听到的，我可以去反馈。</div>
+        </div>
+
+        <div class="message user-A">
+            <div class="header">喜小满(马莉) | 2026-03-16 22:50:18</div>
+            <div class="bubble">我这边会完全保证你的权益的，放心，不用着急这一时，嗯，我先弄清楚你的问题，然后再看看能不能解决，懂我的点吧？</div>
+        </div>
+
+        <div class="message user-B">
+            <div class="header">陌云九 AIGC全能视频创作营（13期） | 2026-03-16 22:51:19</div>
+            <div class="bubble">肯定着急啊，再拖两天就过7天无理由退款时间了啊</div>
+        </div>
+
+        <div class="message user-A">
+            <div class="header">喜小满(马莉) | 2026-03-16 22:52:37</div>
+            <div class="bubble">你真的不用担心，而且你我现在不是在了解你的情况嘛对不对？你现在跟我说清楚，他今天过了明天那不是也是第六天嘛，所以说嗯你完全可以把你的问题说清楚，然后嗯我再看怎么去解决这个问题。</div>
+        </div>
+
+        <div class="message user-A">
+            <div class="header">喜小满(马莉) | 2026-03-16 22:53:17</div>
+            <div class="bubble">而且咱们喜播毕竟这么多年了，10来年也不是说一天一天两天咱们的课程对不对，那么久了。</div>
+        </div>
+
+        <div class="message user-A">
+            <div class="header">喜小满(马莉) | 2026-03-16 22:53:47</div>
+            <div class="bubble">这点承诺还是有的，不可能说你交了钱，不给你退，然后你不满意还不给你退，那怎么可能，现在问题不就是你先把你的需求说出来，就是你说的那些承诺谁给你的承诺，嗯，是直播间的老师吗？是哪节课？你可以给我说一下，然后我去看一看，因为你现在给我发的那几个文字，我不知道具体是是什么情况，我可以去了解一下。</div>
+        </div>
+
+        <div class="message user-A">
+            <div class="header">喜小满(马莉) | 2026-03-16 22:54:03</div>
+            <div class="bubble">我也知道你录屏了，放心，我们的课都是公开的，我只是因为因为咱们的课前端的课我不是实时跟的，所以有些东西我得去了解，跟你了解，然后才能清楚呀，对不对？</div>
+        </div>
+
+        <div class="message user-A">
+            <div class="header">喜小满(马莉) | 2026-03-16 22:57:11</div>
+            <div class="bubble">然后那个设置里面，你不是有一个用户协议，还有一个课程协议嘛，你都可以看看里面的那些点，嗯，它有两个。</div>
+        </div>
+
+        <div class="message user-B">
+            <div class="header">陌云九 AIGC全能视频创作营（13期） | 2026-03-16 22:58:58</div>
+            <div class="bubble">对于你们宣传的承诺，我经过多方考虑肯定是有很多疑虑的，在这儿就不一一说明了。咱不是7天无理由退款吗，我觉得我的疑虑不需要向你说明，你们也可以退款吧</div>
+        </div>
+
+        <div class="message user-A">
+            <div class="header">喜小满(马莉) | 2026-03-16 23:00:49</div>
+            <div class="bubble">是的，当然，如果你不想解释，那肯定也是可以的，这个也不是说强制的，只是因为我想给你解决问题嘛，对吧？</div>
+        </div>
+
+        <div class="message user-B">
+            <div class="header">陌云九 AIGC全能视频创作营（13期） | 2026-03-16 23:01:07</div>
+            <div class="bubble">课程协议里面没有半点关于福利相关的，而且还撇开了喜播跟喜马拉雅之间的关联。</div>
+        </div>
+
+        <div class="message user-B">
+            <div class="header">陌云九 AIGC全能视频创作营（13期） | 2026-03-16 23:01:37</div>
+            <div class="bubble">好的，那就直接申请7天无理由退款吧。</div>
+        </div>
+
+        <div class="message user-A">
+            <div class="header">喜小满(马莉) | 2026-03-16 23:01:48</div>
+            <div class="bubble">那我就问你，你是不是对你变现这块还是存在疑虑，觉得不可能变现还是什么的，所以才会嗯想要一个合同什么的，应该是这样子的一个需求对吧？</div>
+        </div>
+
+        <div class="message user-B">
+            <div class="header">陌云九 AIGC全能视频创作营（13期） | 2026-03-16 23:03:03</div>
+            <div class="bubble">合同本来就是必须的呀，那不然前期的承诺没有半点保障。没有合同就是虚假宣传，诱导消费。</div>
+        </div>
+
+        <div class="message user-A">
+            <div class="header">喜小满(马莉) | 2026-03-16 23:06:29</div>
+            <div class="bubble">我懂你的意思，你的意思就是想要一个保障，但是我们首先是不是得技术得拿到手呀？就像我说的，你技术拿到手了以后，你自然能能进到咱们的商单群里面，就可以定期去接单呀。</div>
+        </div>
+
+        <div class="message user-A">
+            <div class="header">喜小满(马莉) | 2026-03-16 23:07:42</div>
+            <div class="bubble">而且今天我还收到了一个喜讯，就是我前面往期带的营期的有三个学员同时考上了咱们的陪跑呢，那你怎么说这个也不可能跑就是那个什么写在合同里呀，但是人家技术拿到手了就通过了考核，然后成为了我们陪跑官，对不对？不管是哪个方向，首先你得把技术学到手，你学到手了，哪个路子不是路子，哪个路子不能变现呢？对不对？</div>
+        </div>
+
+        <div class="message user-A">
+            <div class="header">喜小满(马莉) | 2026-03-16 23:08:32</div>
+            <div class="bubble">当然你想退，我不拦着，我能帮你办理的。</div>
+        </div>
+
+        <div class="message user-B">
+            <div class="header">陌云九 AIGC全能视频创作营（13期） | 2026-03-16 23:12:22</div>
+            <div class="bubble">[破涕为笑]重点不是这个啊。简单点说，你定向派单给我是你们的义务，这是前期你们的承诺，那我没能力做不了是我的问题，我做不了我可以不接单。我现在要的是你们承诺的东西我需要一个书面的保障。</div>
+        </div>
+
+        <div class="message user-B">
+            <div class="header">陌云九 AIGC全能视频创作营（13期） | 2026-03-16 23:13:08</div>
+            <div class="bubble">算了，不在一个频道上。直接申请退款吧。</div>
+        </div>
+
+        <div class="message user-A">
+            <div class="header">喜小满(马莉) | 2026-03-16 23:13:48</div>
+            <div class="bubble">你就是想要写在合同上对吧？</div>
+        </div>
+
+        <div class="message user-A">
+            <div class="header">喜小满(马莉) | 2026-03-16 23:18:20</div>
+            <div class="bubble">你还是对自己不够自信，技术学到手了，那些接单，不是水到渠成吗？我也是学员，也是这么过来的。</div>
+        </div>
+
+        <div class="message user-A">
+            <div class="header">喜小满(马莉) | 2026-03-16 23:18:45</div>
+            <div class="bubble">商单喜播学堂小程序每周都会更新这也是事实</div>
+        </div>
+
+        <div class="message user-A">
+            <div class="header">喜小满(马莉) | 2026-03-16 23:20:06</div>
+            <div class="bubble">如果你对咱们陪跑或者大咖，教授的内容或者课程存在质疑可以提出来，我们共同改进   并不是说你付费后没有人给你服务以及教学</div>
+        </div>
+
+        <div class="message user-A">
+            <div class="header">喜小满(马莉) | 2026-03-16 23:22:37</div>
+            <div class="bubble">所有的合同是建立在平等的基础上的，定期派单的前提是不是你得提前有做商单的能力，如果没有，甲方为什么给你签合同，对不对？你觉得我说的有没有道理？<br>所以你通过咱们课程学习完了，能力到手了，自然而然进入类似于海外商单群这样的接单群，自然而然就可以签约了呀。那个时候签约才是对等的。</div>
+        </div>
+
+        <div class="message user-A">
+            <div class="header">喜小满(马莉) | 2026-03-16 23:23:14</div>
+            <div class="bubble">目前我们的服务不就是为了让你有这份接单能力吗？</div>
+        </div>
+
+        <div class="message user-A">
+            <div class="header">喜小满(马莉) | 2026-03-16 23:23:59</div>
+            <div class="bubble">如果不会，可以单独给你开小灶，可以给你拉小群，这是我们能做到的，也是必须做到的。</div>
+        </div>
+
+        <div class="message user-B">
+            <div class="header">陌云九 AIGC全能视频创作营（13期） | 2026-03-17 00:40:20</div>
+            <div class="bubble">今天是第五天，3月16日晚上，我申请7天无理由退款。如果在超过7天还没有退，我就以这条对话做为申请退款的起始日期凭证，你们不得以超过时间为由不给我退款，否则我就去黑猫和12315投诉。</div>
+        </div>
+
+        <div class="message user-A">
+            <div class="header">喜小满(马莉) | 2026-03-17 00:40:45</div>
+            <div class="bubble">可以</div>
+        </div>
+
+        <div class="message user-B">
+            <div class="header">陌云九 AIGC全能视频创作营（13期） | 2026-03-17 00:41:09</div>
+            <div class="bubble">那麻烦你明天帮我办理吧</div>
+        </div>
+
+        <div class="message user-A">
+            <div class="header">喜小满(马莉) | 2026-03-17 00:41:46</div>
+            <div class="bubble">没有人不给你退   我从始至终都说可以，只是想了解你的需求，看能否帮到你</div>
+        </div>
+
+        <div class="message user-A">
+            <div class="header">喜小满(马莉) | 2026-03-17 06:45:45</div>
+            <div class="bubble">哈喽，早上好，我这边已经将你要退费的信息帮你提交上去了，咱们这边可以放心哈，等领导们上班看到信息后会处理，处理结果我会第一时间告诉你哦，你这边有任何疑问，都可以随时问我哈。</div>
+        </div>
+
+        <div class="message user-A">
+            <div class="header">喜小满(马莉) | 2026-03-17 10:39:11</div>
+            <div class="bubble">哈喽哈喽，我听前端就是老师跟我反馈说你还是质疑我们的上单的一个资源以及咱们教学的能力，嗯，到时候能不能接单这个问题是吗？嗯，你可以看一下我的班会回放，我当时也说了我带的学员很多的案例都讲了，然后他们是如何更好的去变现什么的，都讲了很多很多，然后还有学员优秀作品都有的。</div>
+        </div>
+
+        <div class="message user-A">
+            <div class="header">喜小满(马莉) | 2026-03-17 10:39:13</div>
+            <div class="bubble">录制：AIGC全能视频创作营13期开营见面班会<br>日期：2026-03-14 18:57:50<br>录制文件：https://meeting.tencent.com/crm/KwDMY9rja0<br>访问密码：1234<br>有效期至：2026-05-15 22:15:20<br>❤今日班会的回放哦，请注意查收，补回放后，可以补发我直播口令哈</div>
+        </div>
+
+        <div class="message user-A">
+            <div class="header">喜小满(马莉) | 2026-03-17 10:39:59</div>
+            <div class="bubble">当然早上我已经把你的申请提交上去了，你可以先看，然后也不耽误咱们退，对吧？两不耽误，你可以再考虑考虑，然后如果有什么问题也可以及时跟我说，因为咱们刚刚昨天说的那个海外商单我也在里面，我现在嗯已经接了很久的咱们这个海外商单的一些单子了，有很多的经验都可以分享给你，这块完全不用担心没有人指导或者是怎么样，主要就是你这块还是不太信任我，你可以看下班会的回放，然后还有福利呢，就是有一个直播口令发给我，然后我可以补发给你福利。</div>
+        </div>
+
+        <div class="message user-A">
+            <div class="header">喜小满(马莉) | 2026-03-17 10:40:55</div>
+            <div class="bubble">往期AI短视频奥斯卡之夜比赛优秀作品集合：<br>https://ucnj3tvvsebv.feishu.cn/wiki/WuL1w49CHiv2AwkxWtucThIjn6g</div>
+        </div>
+
+        <div class="message user-A">
+            <div class="header">喜小满(马莉) | 2026-03-17 10:41:33</div>
+            <div class="bubble">这个是咱们往期所有学员的一个参加奥斯卡之夜的一个比赛，每期都会有，然后咱们这期也有，如果你感兴趣，你可以看一下里面的学员作品，是不是你喜欢的点或者什么的，你可你也可以借鉴借鉴，即使咱们不学这个链接，你也可以保存，可以学习的。</div>
+        </div>
+
+        <div class="message user-A">
+            <div class="header">喜小满(马莉) | 2026-03-17 10:42:03</div>
+            <div class="bubble">我争取我这边能够给到你的都会给到你，放心，我说了这些并不是说不让你退，咱退想退还是可以的，只是说我肯定会尽我最大的能力去帮到你，我发的这些东西你可以保存，因为有些东西还是挺实用的，尤其是咱们班会回放的一个福利，是是很多我整理的一个提示词，可以提前告诉你是提示词的福利，嗯很多的一个模板呀什么的。</div>
+        </div>
+
+        <div class="message user-A">
+            <div class="header">喜小满(马莉) | 2026-03-17 10:42:30</div>
+            <div class="bubble">当然，如果你想再看一看再学一学也可以告诉我，然后咱们的申请是可以去跟去去撤回的也是可以的，你跟我随时同步你的一个情况就行哈，不用跟我客气的，我就是嗯只是单纯的想帮到你而已，嗯。</div>
+        </div>
+
+        <div class="message user-A">
+            <div class="header">喜小满(马莉) | 2026-03-17 10:44:21</div>
+            <div class="bubble">因为我之前看你在群里发的那个九尾狐的那个作品嘛，觉得你真的是能力还是可以的，只是说估计是情绪到了这个点上有点接受不了或者是怎么的，但是我觉得踏踏实实学肯定是没有问题的，因为你的作品在那放着呢，嗯，不管是审美还是嗯就是人物造型都是没有问题的，嗯，上手应该很会很快真的，只要就是需要有人再点拨一下，指点一下，很快的就会进步起来的。</div>
+        </div>
+
+        <div class="message user-A">
+            <div class="header">喜小满(马莉) | 2026-03-17 11:08:57</div>
+            <div class="bubble">申请早上已经提交，那就等通知吧，应该会在1-3个工作日咱们的退款会原路返回哈，后续有任何问题还是可以来找我哈</div>
+        </div>
+
+        <div class="message user-A">
+            <div class="header">喜小满(马莉) | 2026-03-17 11:10:36</div>
+            <div class="bubble">那我这边按规定就把咱退出班级群了哈    咱们前面学的这一部分知识不懂的也可以单独问我哈。我一直都在❤️</div>
+        </div>
+
+        <div class="message user-A">
+            <div class="header">喜小满(马莉) | 2026-03-17 11:42:47</div>
+            <div class="bubble">哈喽，刚核实到AIGC全能视频创作营您已学习至第1周，扣除已学习部分课程费用，剩余可退金额为2607.5元。AIGC商业视频实战营【补差】未学习，可全额退款1000元，您的课程共计可退金额为3607.5元。你看有什么问题吗？</div>
+        </div>
+
+        <div class="message user-A">
+            <div class="header">喜小满(马莉) | 2026-03-17 11:43:27</div>
+            <div class="bubble">咱们第一周的内容，哪里不懂就问哈，包括第一周作业我看你也提交了，我可以让大大单独给你做点评哦。如果你需要的话。</div>
+        </div>
+
+        <div class="message user-B">
+            <div class="header">陌云九 AIGC全能视频创作营（13期） | 2026-03-17 11:55:16</div>
+            <div class="bubble">一节课扣372.5是怎么算的？</div>
+        </div>
+
+        <div class="message user-A">
+            <div class="header">喜小满(马莉) | 2026-03-17 11:59:23</div>
+            <div class="bubble">录播课，大咖课，以及大大答疑以及作业提交这三块</div>
+        </div>
+
+        <div class="message user-B">
+            <div class="header">陌云九 AIGC全能视频创作营（13期） | 2026-03-17 11:59:43</div>
+            <div class="bubble">算了不扯了，确认退款，直接退吧。</div>
+        </div>
+
+        <div class="message user-A">
+            <div class="header">喜小满(马莉) | 2026-03-17 11:59:54</div>
+            <div class="bubble">有疑问可以提出</div>
+        </div>
+
+        <div class="message user-B">
+            <div class="header">陌云九 AIGC全能视频创作营（13期） | 2026-03-17 12:00:10</div>
+            <div class="bubble">没有疑问了。</div>
+        </div>
+
+        <div class="message user-A">
+            <div class="header">喜小满(马莉) | 2026-03-17 12:00:13</div>
+            <div class="bubble">因为这是系统识别你的看课记录得出来的</div>
+        </div>
+
+        <div class="message user-A">
+            <div class="header">喜小满(马莉) | 2026-03-17 12:00:15</div>
+            <div class="bubble">好的</div>
+        </div>
+
+        <div class="message user-A">
+            <div class="header">喜小满(马莉) | 2026-03-17 12:02:09</div>
+            <div class="bubble">我知道你的心情，已经帮你加急处理哈，退款会在1-3天内到账，请注意查收</div>
+        </div>
+
+        <div class="message user-A">
+            <div class="header">喜小满(马莉) | 2026-03-17 12:02:14</div>
+            <div class="bubble">有问题跟我说</div>
+        </div>
+
+        <div class="message user-B">
+            <div class="header">陌云九 AIGC全能视频创作营（13期） | 2026-03-17 12:02:27</div>
+            <div class="bubble">好的，麻烦了。</div>
+        </div>
+
+        <div class="message user-A">
+            <div class="header">喜小满(马莉) | 2026-03-17 12:02:31</div>
+            <div class="bubble">不客气</div>
+        </div>
+
+        <div class="message user-B">
+            <div class="header">陌云九 AIGC全能视频创作营（13期） | 2026-03-17 12:05:19</div>
+            <div class="bubble">退款到账了</div>
+        </div>
+
+        <div class="message user-A">
+            <div class="header">喜小满(马莉) | 2026-03-17 12:05:25</div>
+            <div class="bubble">好的👌🏻</div>
+        </div>
+
+        <div class="message user-A">
+            <div class="header">喜小满(马莉) | 2026-03-17 12:05:46</div>
+            <div class="bubble">所以我能帮到你的，肯定义不容辞</div>
+        </div>
+
+        <div class="message user-B">
+            <div class="header">陌云九 AIGC全能视频创作营（13期） | 2026-03-17 12:06:24</div>
+            <div class="bubble">如果想了解真实原因，我现在可以跟你继续沟通，如果你愿意听，有时间听的话。</div>
+        </div>
+
+        <div class="message user-A">
+            <div class="header">喜小满(马莉) | 2026-03-17 12:06:35</div>
+            <div class="bubble">非常愿意</div>
+        </div>
+
+        <div class="message user-A">
+            <div class="header">喜小满(马莉) | 2026-03-17 12:06:44</div>
+            <div class="bubble">我从昨天就想听</div>
+        </div>
+
+        <div class="message user-B">
+            <div class="header">陌云九 AIGC全能视频创作营（13期） | 2026-03-17 12:07:42</div>
+            <div class="bubble">在这之前先说说我这一两天的学习情况和学习之前的基础吧。</div>
+        </div>
+
+        <div class="message user-A">
+            <div class="header">喜小满(马莉) | 2026-03-17 12:08:17</div>
+            <div class="bubble">可以</div>
+        </div>
+
+        <div class="message user-A">
+            <div class="header">喜小满(马莉) | 2026-03-17 12:09:37</div>
+            <div class="bubble">其实我为什么愿意听呢？就是因为你的真实反馈，如果是前端，我就是夸大宣传，如果有真实内容，他真的是夸大宣传的话，我可以去上面去讲，这样子对我也是有所帮助，知道吧？所以为什么昨天我一直在问，为什么就是前端到底承诺了你什么，我后端能够承诺给你什么？然后昨天基本上是我都沟通的很清楚，嗯，但是你一直没有说，就一直揪着说合同的事情，嗯，你可以说一下，我还真的挺想知道到底是因为哪一点，嗯。</div>
+        </div>
+
+        <div class="message user-B">
+            <div class="header">陌云九 AIGC全能视频创作营（13期） | 2026-03-17 12:11:27</div>
+            <div class="bubble">我学习之前几乎等于0基础，ai几乎只用过豆包，只会当搜索引擎用，然后闲聊。剪映只会最简单最基础的一些操作，电脑会使用，不精通。年龄44岁，高中学历，无特长，目前无业，以前做生意碰到疫情，负债60万。想学这个也是想给自己找一条出路。</div>
+        </div>
+
+        <div class="message user-B">
+            <div class="header">陌云九 AIGC全能视频创作营（13期） | 2026-03-17 12:12:11</div>
+            <div class="bubble">这是第一天学完做的图片版</div>
+        </div>
+
+        <div class="message user-A">
+            <div class="header">喜小满(马莉) | 2026-03-17 12:12:30</div>
+            <div class="bubble">这是一条引用/回复消息：<br>"[视频]"<br>------<br>这个我看过，所以我说你有天赋的</div>
+        </div>
+
+        <div class="message user-A">
+            <div class="header">喜小满(马莉) | 2026-03-17 12:12:45</div>
+            <div class="bubble">就是画面审美这块</div>
+        </div>
+
+        <div class="message user-B">
+            <div class="header">陌云九 AIGC全能视频创作营（13期） | 2026-03-17 12:12:47</div>
+            <div class="bubble">这是还没来得及改完的动画版</div>
+        </div>
+
+        <div class="message user-A">
+            <div class="header">喜小满(马莉) | 2026-03-17 12:13:14</div>
+            <div class="bubble">然后那？我好奇你做这么好，为啥不好好踏实学？</div>
+        </div>
+
+        <div class="message user-A">
+            <div class="header">喜小满(马莉) | 2026-03-17 12:13:33</div>
+            <div class="bubble">负债确实压力大，但是这何尝不是一次机会</div>
+        </div>
+
+        <div class="message user-B">
+            <div class="header">陌云九 AIGC全能视频创作营（13期） | 2026-03-17 12:14:50</div>
+            <div class="bubble">然后智能体以前也一点没接触过，学完第一节直播课以后自己也成功搭建了课程里面的，然后自己还做了功能拓展也实现，本来还有下一步构思，还没来得及做。</div>
+        </div>
+
+        <div class="message user-A">
+            <div class="header">喜小满(马莉) | 2026-03-17 12:15:16</div>
+            <div class="bubble">嗯，感觉学习节奏也是可以的</div>
+        </div>
+
+        <div class="message user-B">
+            <div class="header">陌云九 AIGC全能视频创作营（13期） | 2026-03-17 12:17:53</div>
+            <div class="bubble">这是自己运行还没搭建完的智能体的视频</div>
+        </div>
+
+        <div class="message user-A">
+            <div class="header">喜小满(马莉) | 2026-03-17 12:18:42</div>
+            <div class="bubble">挺好的，其他同学还没搞明白的你都能上手了[强]</div>
+        </div>
+
+        <div class="message user-A">
+            <div class="header">喜小满(马莉) | 2026-03-17 12:19:31</div>
+            <div class="bubble">有部分同学是没听懂智能体这块的。所以你的理解力还是可以的。</div>
+        </div>
+
+        <div class="message user-A">
+            <div class="header">喜小满(马莉) | 2026-03-17 12:19:40</div>
+            <div class="bubble">那为啥不学了？</div>
+        </div>
+
+        <div class="message user-B">
+            <div class="header">陌云九 AIGC全能视频创作营（13期） | 2026-03-17 12:20:21</div>
+            <div class="bubble">所以，班班，你客观的评价一下，结合我最开始提供给你的自己的基础信息。你觉得我到底学习能力怎么样？我其实很努力很认真在学。不用鼓励，就真实评价。</div>
+        </div>
+
+        <div class="message user-A">
+            <div class="header">喜小满(马莉) | 2026-03-17 12:25:16</div>
+            <div class="bubble">首先我没有鼓励你，我上面所说的全是真的，因为你没有特殊的，就只是参加了录播课，然后直播课对不对？然后还自己完成了作业，而且做出来作业跟那个爆款视频很接近，画风也很接近，然后唯美程度也很接近。所以说我觉得你是有这方面天赋的，真的，不要看学历，不要对自己否定太多。</div>
+        </div>
+
+        <div class="message user-A">
+            <div class="header">喜小满(马莉) | 2026-03-17 12:25:31</div>
+            <div class="bubble">我客观事实告诉你就是你很有天赋可以坚持下去，即使不在我们平台学习也是可以值得去做的，真的。</div>
+        </div>
+
+        <div class="message user-A">
+            <div class="header">喜小满(马莉) | 2026-03-17 12:26:11</div>
+            <div class="bubble">因为我带过的学员很多，往期带过的学员很多，最终变现的有那，确实也有一部分是变现不了的，因为他本身能力基础在那里，他的审美需要去系统性的提升，这些东西不是说学一天两天就能出来的。但是有些人天生他的审美就在线的，不需要去额外的学习，通过咱们两个两个月的学习，三个月的学习，就能够去完成更好的作品。不然我昨天跟你说，我三个带出来的学员三个去当陪跑了，那难道是，嗯，不是一种证明吗？</div>
+        </div>
+
+        <div class="message user-A">
+            <div class="header">喜小满(马莉) | 2026-03-17 12:26:45</div>
+            <div class="bubble">就是我说的是实话，嗯，所以说你不用去说，我感觉你就是对自己不够自信，也感觉我们是一直在鼓励你，但是我说的每一句话都是真实性的客观评价，因为你之前也在群里发了那个什么九尾狐，还有其他的一些视频作业嘛，我都有看到呀，其他同学都都说你太厉害了，都跟不上，我还在后面还得安慰别人，说跟着我们课程走，没事的，别人能做到的你也能做到。</div>
+        </div>
+
+        <div class="message user-A">
+            <div class="header">喜小满(马莉) | 2026-03-17 12:27:14</div>
+            <div class="bubble">你只是看不到自己的闪光点而已，我感觉你是在否定自己，嗯，真的，所以你就是要自信一点，一定要好好学，即使你不继续学，你现在反正也退款了嘛，那你也要自己钻研，也也许就是需要的时间长一点，因为没有系统的学习，需要自己去刻苦的去钻研每一个点。</div>
+        </div>
+
+        <div class="message user-A">
+            <div class="header">喜小满(马莉) | 2026-03-17 12:27:38</div>
+            <div class="bubble">就包括你刚才那个治愈视频它的背景音乐配的就很有感觉，而且音频这一块很有感觉的话这个也是感觉跟天生的有的人对音频的感触能力不是很高，配出来的音效没有代入感嗯。</div>
+        </div>
+
+        <div class="message user-A">
+            <div class="header">喜小满(马莉) | 2026-03-17 12:27:57</div>
+            <div class="bubble">这是一条引用/回复消息：<br>"[视频]"<br>------<br>就这个</div>
+        </div>
+
+        <div class="message user-B">
+            <div class="header">陌云九 AIGC全能视频创作营（13期） | 2026-03-17 12:28:02</div>
+            <div class="bubble">我没有否定自己，甚至我很有信心学好。但是现实是我不得不低头。</div>
+        </div>
+
+        <div class="message user-A">
+            <div class="header">喜小满(马莉) | 2026-03-17 12:28:10</div>
+            <div class="bubble">而且我们的课程还没有开始，你就能做成这样，还加了音效什么的，我都我都有点惊呆了。</div>
+        </div>
+
+        <div class="message user-A">
+            <div class="header">喜小满(马莉) | 2026-03-17 12:28:23</div>
+            <div class="bubble">为什么低头？你不要低头，都已经这样了，还能怎么样？</div>
+        </div>
+
+        <div class="message user-B">
+            <div class="header">陌云九 AIGC全能视频创作营（13期） | 2026-03-17 12:28:30</div>
+            <div class="bubble">昨晚我情绪很崩溃，其实写了很长一段话，但是没有发给你看。</div>
+        </div>
+
+        <div class="message user-A">
+            <div class="header">喜小满(马莉) | 2026-03-17 12:28:40</div>
+            <div class="bubble">最坏也坏不到哪去，所以你好好学肯定会有往上走的，你不学肯定上不去，但是你学说不定就哪天就上去了，每个人都有低谷期的。</div>
+        </div>
+
+        <div class="message user-A">
+            <div class="header">喜小满(马莉) | 2026-03-17 12:29:02</div>
+            <div class="bubble">我能感受到你的崩溃，真的，所以我一直昨天一直在就是通过我的方式去安慰你，然后能够通过我的方式去能够给你帮助，但是你好像一直在那个情绪里没有出来。</div>
+        </div>
+
+        <div class="message user-A">
+            <div class="header">喜小满(马莉) | 2026-03-17 12:29:14</div>
+            <div class="bubble">能告诉我你崩溃的点是哪里吗？就是因为负债的压力是吗？</div>
+        </div>
+
+        <div class="message user-B">
+            <div class="header">陌云九 AIGC全能视频创作营（13期） | 2026-03-17 12:30:42</div>
+            <div class="bubble">如果，班班，学习两个月后，我做不到一个月最少挣5000块，或者说看不到以后，没有给出确定性的收益，我可能只有跳楼了，你还会劝我继续在你们这里学习吗？</div>
+        </div>
+
+        <div class="message user-A">
+            <div class="header">喜小满(马莉) | 2026-03-17 12:32:22</div>
+            <div class="bubble">先不说能不能实现，不要轻易说跳楼  不值当  人生就那么大点事 谁还没点债</div>
+        </div>
+
+        <div class="message user-A">
+            <div class="header">喜小满(马莉) | 2026-03-17 12:32:47</div>
+            <div class="bubble">房贷，车贷 哪个都压的人喘不过来气</div>
+        </div>
+
+        <div class="message user-B">
+            <div class="header">陌云九 AIGC全能视频创作营（13期） | 2026-03-17 12:32:55</div>
+            <div class="bubble">我自己现在一边哭一边在跟你说话，我一个40多岁的大男人了，没有崩溃到一定程度，不可能轻易流泪。</div>
+        </div>
+
+        <div class="message user-A">
+            <div class="header">喜小满(马莉) | 2026-03-17 12:33:15</div>
+            <div class="bubble">我懂你[拥抱][拥抱][拥抱]</div>
+        </div>
+
+        <div class="message user-A">
+            <div class="header">喜小满(马莉) | 2026-03-17 12:33:20</div>
+            <div class="bubble">哭吧，没事，</div>
+        </div>
+
+        <div class="message user-A">
+            <div class="header">喜小满(马莉) | 2026-03-17 12:33:25</div>
+            <div class="bubble">男人也可以流泪的</div>
+        </div>
+
+        <div class="message user-A">
+            <div class="header">喜小满(马莉) | 2026-03-17 12:33:35</div>
+            <div class="bubble">谁也没规定男人不可以哭</div>
+        </div>
+
+        <div class="message user-B">
+            <div class="header">陌云九 AIGC全能视频创作营（13期） | 2026-03-17 12:34:00</div>
+            <div class="bubble">所以最后给你看看昨晚准备给你看的那段长文字吧。</div>
+        </div>
+
+        <div class="message user-A">
+            <div class="header">喜小满(马莉) | 2026-03-17 12:34:17</div>
+            <div class="bubble">我也是要强的人，也会陷入情绪崩溃的时候，有的时候需要和人交流</div>
+        </div>
+
+        <div class="message user-A">
+            <div class="header">喜小满(马莉) | 2026-03-17 12:34:24</div>
+            <div class="bubble">嗯，你发吧。</div>
+        </div>
+
+        <div class="message user-A">
+            <div class="header">喜小满(马莉) | 2026-03-17 12:34:38</div>
+            <div class="bubble">以后也可以来找我，我有空还是会回复你的。</div>
+        </div>
+
+        <div class="message user-B">
+            <div class="header">陌云九 AIGC全能视频创作营（13期） | 2026-03-17 12:36:44</div>
+            <div class="bubble">不想解释了，你帮不了我。谁都帮不了我。我这辈子完了。没有人支持我。我想改变，没有路。我没日没夜学习课程，画图，做视频，研究课程里老师教的智能体，拓展智能体功能。我从一个0基础什么都不会的小白，到现在慢慢上手一步一步做过来。可是在家人眼里，我就是个废物。花钱去学这些网上到处都能找到的课程就是傻子，学完出来还是什么都做不了，不会有单子给我做，也靠这个挣不了钱。我就是被割韭菜了。黑猫上，网络上，到处都是喜播学员的投诉，没有合同约束，我们只是弱势群体不给你单子或者少量低价单丢出来敷衍一下，我们又能怎么办？他们全都看到了，否定了一切，我无法反驳。所以，如了所有人的愿吧。引流直播课程里面各种福利权益天花乱坠，但是没有一个有书面保障，全都是口头空话，这能拿出来说服谁？后面各种理由推脱我又能如何？哪怕有能力做人家就说你没达到要求不给你单子做又能怎样？我无力辩解。罢了。就这样吧。退款我不学了还不行吗？前路向好又如何？被割韭菜又如何？退款当没接触到没有烦恼。我无奈，绝望，万念俱灭！对不起，我想学，可我不能学！我有信心学好，可我没机会学。我只能去工厂继续打螺丝，空闲时间（几乎没有，只能牺牲睡眠时间）花更多的时间和精力自学，没有预期，没有资源，就算做出来东西也只能自己看看，别人看看。想靠它变现？交给老天爷吧！所以你能理解多数底层人物为什么大概率一辈子很难翻身的原因了吗？我就是个活生生的例子。我44岁了，疫情让我负债60万，没有学历没有特长，我不知道我还能做什么？</div>
+        </div>
+
+        <div class="message user-A">
+            <div class="header">喜小满(马莉) | 2026-03-17 12:41:50</div>
+            <div class="bubble">首先负债不是你的错，不要把压力给到自己，家人不赞同你学习，如果扭转不了，那就不报名，自学，虽然慢些，但是不要放弃，我认为你可以的。</div>
+        </div>
+
+        <div class="message user-A">
+            <div class="header">喜小满(马莉) | 2026-03-17 12:43:07</div>
+            <div class="bubble">确实网上有一些负面言论，但是你自己想一下，哪个大的平台没有一些负面言论那？那说明他做的够大，才会有，咱们平台十来年，一直存在，难道不是一种证明吗？</div>
+        </div>
+
+        <div class="message user-A">
+            <div class="header">喜小满(马莉) | 2026-03-17 12:44:33</div>
+            <div class="bubble">确实网上也有教程，大家难道不知道吗？那为啥都来报名？大家难道傻吗？肯定想系统的学习对吧？更快的去做到自己的目标，你觉得我说的对不？</div>
+        </div>
+
+        <div class="message user-B">
+            <div class="header">陌云九 AIGC全能视频创作营（13期） | 2026-03-17 12:44:46</div>
+            <div class="bubble">我不想把难题丢给你，毕竟你也只是一名老师或者说打工人，你们也有任务或者提成，有良心有底线的可能会好一些，没有底线的谁管别人死活。可能你没有了解免费直播课里面讲了些什么，里面承诺各种福利一大堆，但是缴费以后合同上一个都没有提现出来，甚至可以说没有签合同。课程协议只针对课程交付，甚至协议里面还跟喜马拉雅划清了界限。</div>
+        </div>
+
+        <div class="message user-A">
+            <div class="header">喜小满(马莉) | 2026-03-17 12:45:10</div>
+            <div class="bubble">但是如果你家里人不同意，咱们也不用硬着来，那就像你说的自学，虽然慢，但是也不是不可以</div>
+        </div>
+
+        <div class="message user-A">
+            <div class="header">喜小满(马莉) | 2026-03-17 12:45:35</div>
+            <div class="bubble">总之不要把错归于自己  努力就不会有问题，总会好的，人生总会走上坡路</div>
+        </div>
+
+        <div class="message user-A">
+            <div class="header">喜小满(马莉) | 2026-03-17 12:46:30</div>
+            <div class="bubble">再低能低到哪去，我也是普通人，我也有负债，都一样，但是我依旧相信努力了，总会有结果。</div>
+        </div>
+
+        <div class="message user-A">
+            <div class="header">喜小满(马莉) | 2026-03-17 12:47:36</div>
+            <div class="bubble">这是一条引用/回复消息：<br>"我不想把难题丢给你，毕竟你也只是一名老师或者说打工人，你们也有任务或者提成，有良心有底线的可能会好一些，没有底线的谁管别人死活。可能你没有了解免费直播课里面讲了些什么，里面承诺各种福利一大堆，但是缴费以后合同上一个都没有提现出来，甚至可以说没有签合同。课程协议只针对课程交付，甚至协议里面还跟喜马拉雅划清了界限。"<br>------<br>我懂你的点  这个我无法去更改</div>
+        </div>
+
+        <div class="message user-A">
+            <div class="header">喜小满(马莉) | 2026-03-17 12:47:53</div>
+            <div class="bubble">但是还是那句话，我能理解你当下的难处</div>
+        </div>
+
+        <div class="message user-A">
+            <div class="header">喜小满(马莉) | 2026-03-17 12:47:57</div>
+            <div class="bubble">崩溃</div>
+        </div>
+
+        <div class="message user-A">
+            <div class="header">喜小满(马莉) | 2026-03-17 12:48:56</div>
+            <div class="bubble">但是前端的课，你是不是没听全？承诺如果真的说直接给你派单，或者承诺啥啥啥，请你截图给我，我去反馈</div>
+        </div>
+
+        <div class="message user-A">
+            <div class="header">喜小满(马莉) | 2026-03-17 12:49:18</div>
+            <div class="bubble">因为没有哪个甲方，不看能力，直接签合约的</div>
+        </div>
+
+        <div class="message user-A">
+            <div class="header">喜小满(马莉) | 2026-03-17 12:49:26</div>
+            <div class="bubble">如果将来你碰到了，那一定是骗子</div>
+        </div>
+
+        <div class="message user-A">
+            <div class="header">喜小满(马莉) | 2026-03-17 12:50:53</div>
+            <div class="bubble">有没有好些？不要哭了哦[拥抱]  不然眼睛会肿的</div>
+        </div>
+
+        <div class="message user-B">
+            <div class="header">陌云九 AIGC全能视频创作营（13期） | 2026-03-17 12:54:46</div>
+            <div class="bubble">不是签合约，就是承诺每周都会有定向派单，自己根据能力和时间去接对应的单做。那我没能力做我就不接啊。这跟你们派单没有冲突啊。但是问题就在这里，会不会派单，是不是低价单，没有书面保障。能力方面的审核没有评判标准。这些都是必须在合同里面体现出来的内容。但是没有合同，只有口头承诺。</div>
+        </div>
+
+        <div class="message user-A">
+            <div class="header">喜小满(马莉) | 2026-03-17 12:56:25</div>
+            <div class="bubble">你试稿通过后进入商单群就会签合同，每周派单，我也在那个群，我也抽空在做的</div>
+        </div>
+
+        <div class="message user-A">
+            <div class="header">喜小满(马莉) | 2026-03-17 12:56:53</div>
+            <div class="bubble">试稿一直是重复的订单，可以反复尝试</div>
+        </div>
+
+        <div class="message user-B">
+            <div class="header">陌云九 AIGC全能视频创作营（13期） | 2026-03-17 12:57:11</div>
+            <div class="bubble">签合约是接单以后签合约，跟你们给不给我单让我选择做还是不做没有必然冲突。</div>
+        </div>
+
+        <div class="message user-B">
+            <div class="header">陌云九 AIGC全能视频创作营（13期） | 2026-03-17 12:59:49</div>
+            <div class="bubble">我的意思是如果平台真的想让学员安心学习，真的学完以后只要有能力就能有不错的收入。就应该在付款以后签订合同，明确权益，派单有保障，能力评估有合理标准，引流承诺的福利就应该体现在合同里面，而不是只有口头承诺。</div>
+        </div>
+
+        <div class="message user-A">
+            <div class="header">喜小满(马莉) | 2026-03-17 13:01:12</div>
+            <div class="bubble">好的，这个点我会去反馈   我知道你的意思</div>
+        </div>
+
+        <div class="message user-B">
+            <div class="header">陌云九 AIGC全能视频创作营（13期） | 2026-03-17 13:09:33</div>
+            <div class="bubble">举个例子，庄周老师在直播的时候就说过，毕业以后，这期学员可以进他的工作室，这只是直播的口头承诺，给了学员预期。那付费以后是不是应该签订一个合同，合同里面说明只要学业正常完成学业以后，按什么样的标准评定，通过以后进入工作室，进去工作室有些什么福利，是不是也应该在合同里面注明？那不然，只是一句口头承诺，完全没有说服力。没有合同约束，说过的话不认账，或者故意调高进入门槛，一句你能力不足不满足进入条件，那我们能怎么办呢？</div>
+        </div>
+
+        <div class="message user-A">
+            <div class="header">喜小满(马莉) | 2026-03-17 13:12:55</div>
+            <div class="bubble">你考虑的也没问题，确实合同这方面没有去针对这块的说明，还有啥前端口头承诺吗？有时间可以再跟我说说</div>
+        </div>
+
+        <div class="message user-B">
+            <div class="header">260306陌云九 | 2026-03-13 20:37:00</div>
+            <div class="bubble">我通过了你的联系人验证请求，现在我们可以开始聊天了</div>
+        </div>
+
+        <div class="message user-A">
+            <div class="header">展颜🦋【AIGC短视频🥇教练】(李惠) | 2026-03-13 20:37:06</div>
+            <div class="bubble">哈喽😃  陌云九    欢迎参加AIGC短视频训练营！我是展颜老师，有丰富的AI短视频实操和带班经验。ps:我是真人，不是AI哦~<br>❤ 训练营将学习AI短视频制作流程。详细讲解内部行业信息，AI生文、生图、音频、剪辑、短剧的变现的方法和接单渠道💡从基础的AI实操开始，逐步带大家走进AI的商业世界，相关学习资料也会在学习期间逐步发放</div>
+        </div>
+
+        <div class="message user-A">
+            <div class="header">展颜🦋【AIGC短视频🥇教练】(李惠) | 2026-03-13 20:39:07</div>
+            <div class="bubble">哈喽😃</div>
+        </div>
+
+        <div class="message user-A">
+            <div class="header">展颜🦋【AIGC短视频🥇教练】(李惠) | 2026-03-13 20:39:14</div>
+            <div class="bubble">我拉你进群哈</div>
+        </div>
+
+        <div class="message user-B">
+            <div class="header">260306陌云九 | 2026-03-13 20:40:56</div>
+            <div class="bubble">好哒，谢谢老师</div>
+        </div>
+
+        <div class="message user-A">
+            <div class="header">展颜🦋【AIGC短视频🥇教练】(李惠) | 2026-03-14 08:03:41</div>
+            <div class="bubble">早上好呀，其实老师有很多学员，都是从0到1过渡来的，除了AI短视频以外，我们还有很多变现的机会。只要你好好学习，跟着行业大咖，机会都是很多很多的，加入系统学习后，有师哥师姐们陪着你大家一起抱团取暖。</div>
+        </div>
+
+        <div class="message user-A">
+            <div class="header">展颜🦋【AIGC短视频🥇教练】(李惠) | 2026-03-14 08:04:05</div>
+            <div class="bubble">所以我们一定要先入圈，才有机会获得这个收益，要是不加入进来，很多资源甲方爸爸都跟你无缘呀，咱们要珍惜现在能看见AI趋势的好眼界，果断的跟上这个社会潮流，发才能成为一个优秀的AI短视频达人。</div>
+        </div>
+
+        <div class="message user-A">
+            <div class="header">展颜🦋【AIGC短视频🥇教练】(李惠) | 2026-03-14 08:04:17</div>
+            <div class="bubble">还是那句话，只要你好好学习，跟着老师，跟着喜播，跟着咱们的行业大咖，机会都是很多很多的，加入系统学习后，老师邀请加入我的个人工作室，我们站外的商单咱们喜马也给咱们联系了不少，都是不定时发送的，要知道，选择大于努力，我们这一辈子能赶上的风口机会不多，得抓住啊</div>
+        </div>
+
+        <div class="message user-A">
+            <div class="header">展颜🦋【AIGC短视频🥇教练】(李惠) | 2026-03-14 08:04:49</div>
+            <div class="bubble">报名链接：https://m.xibojiaoyu.com/gatekeeper/lms-sale-page/coupon?groupId=25082143879896&utm_source=salesid_juntong1</div>
+        </div>
+
+        <div class="message user-A">
+            <div class="header">展颜🦋【AIGC短视频🥇教练】(李惠) | 2026-03-14 09:28:42</div>
+            <div class="bubble">跟一些宝子聊完之后我感觉很多宝子有些误区，感觉3天体验营学到的东西足够自己去自学变现了，自己做过短视频这个赛道就知道，并不是说，你内容好你技术好你就一定可以变现，你不了解平台规则，赛道不精准，用户画像不清晰，不懂搭建账号，不懂人设打造，不懂变现底层逻辑，不懂运营，就算你东西做的再好也没用，不但变现不了，还会浪费你的钱去疯狂投抖+，实现不了变现哦~</div>
+        </div>
+
+        <div class="message user-A">
+            <div class="header">展颜🦋【AIGC短视频🥇教练】(李惠) | 2026-03-14 12:36:41</div>
+            <div class="bubble">师姐知道，有的同学没有自己的短视频账号，咱们小白刚开始，可以跟着做小说推文和图文带货，这两个是比较容易变现的方式！像小说推文就是靠播放量和推广收益来赚钱的，推文带货就是靠卖商品来赚钱的。第一个月咱也有机会赚个四五千，甚至五六千都是很有可能的，哪怕慢一点儿也没有关系，就算是赚两千、一千是不是也还可以呢？</div>
+        </div>
+
+        <div class="message user-A">
+            <div class="header">展颜🦋【AIGC短视频🥇教练】(李惠) | 2026-03-14 12:36:52</div>
+            <div class="bubble">虽说不算特别多啊，但是毕竟是刚开始，后期都可以持续去做的，像我们报名第二周，就有机会获取这个收益了，不用担心说自己挣不到钱，想永远是停留在原地，行动才是最好的开始。咱们AI短视频，只要同学你想学，想做，那就能去赚这份钱。现在都是全民去做短视频的时代了，咱们肯定要跟上，利用AI工具的加持，收益自然而然的，对吧？干嘛不给自己一个这样的机会呢？不要心里负担太大啊，毕竟不是什么大难事！一次踏着风口学习变现而已，不是上刀山，哈哈哈师姐开玩笑😄所以，咱就踏踏实实的跟着老师们学起来，去执行就好了！</div>
+        </div>
+
+        <div class="message user-A">
+            <div class="header">展颜🦋【AIGC短视频🥇教练】(李惠) | 2026-03-14 14:08:41</div>
+            <div class="bubble">1.我们的导师都是业内一线的实战专家，账号粉丝百万的大咖老师，他们会将多年的经验倾囊相授传授给你 会帮助你紧课跟最新行业趋势，确保您学到的是最前沿的知识，且课程会随着技术的不断突破持续更新迭代，更新之后的内容，也是对您开放的。</div>
+        </div>
+
+        <div class="message user-A">
+            <div class="header">展颜🦋【AIGC短视频🥇教练】(李惠) | 2026-03-14 14:09:37</div>
+            <div class="bubble">2.系统学员的专属资源绿通，不限量商单资源 课程不仅教你如何用AI赋能短视频，还会传授短视频运营和变现的实用技巧。比如如何吸引粉丝、如何增加互动、如何打造个人IP等。在变现方面，我们会教你如何快速提高收益。很多同学学成后都开启了自己的短视频创业之路，副业当主业干。这些都是喜播教育的专属秘笈，传授给我们的学员。</div>
+        </div>
+
+        <div class="message user-A">
+            <div class="header">展颜🦋【AIGC短视频🥇教练】(李惠) | 2026-03-14 14:10:21</div>
+            <div class="bubble">3.实战专家学习期间除睡觉全程陪跑我们提供的陪跑服务，因此无论是在技术方面还是搞钱实战方面，有很丰富的经验，能够提供给您学习规划和指导；🎉🎉🎉</div>
+        </div>
+
+        <div class="message user-A">
+            <div class="header">展颜🦋【AIGC短视频🥇教练】(李惠) | 2026-03-14 14:10:52</div>
+            <div class="bubble">宝子，别让费用阻碍你的学习之路，我们提供灵活的支付方案，让每个同学都有机会学习，去提升自己，把握机会！✊ 老师重申一遍，这不是消费，是对自己最有价值的投资</div>
+        </div>
+
+        <div class="message user-A">
+            <div class="header">展颜🦋【AIGC短视频🥇教练】(李惠) | 2026-03-14 14:11:06</div>
+            <div class="bubble">报名链接：https://m.xibojiaoyu.com/gatekeeper/lms-sale-page/coupon?groupId=25082143879896&utm_source=salesid_zhanyan1</div>
+        </div>
+
+        <div class="message user-A">
+            <div class="header">展颜🦋【AIGC短视频🥇教练】(李惠) | 2026-03-14 14:58:41</div>
+            <div class="bubble">1：官方强背书：喜马拉雅旗下喜播教育官方出品课程<br>2：大咖导师团：6位AI行业专家和短视频领域操盘手<br>3：课程体系化：4大模块内容由浅入深，逐个突破学习难点<br>4：自研AI工具：赠送音剪AI、珠峰数智人<br>5：资源侧倾斜：“有声书推广”系列商单机会（封面专辑、动画小说预告片、漫画小说推文）<br>6：高效服务组：陪跑官+班主任，20人/班的小班制，长周期陪跑（3.5个月）</div>
+        </div>
+
+        <div class="message user-A">
+            <div class="header">展颜1(李惠) | 2026-03-14 16:58:38</div>
+            <div class="bubble">【Ai实战变现案列】⬇<br>AI+小说推文<br>AI+写简历<br>AI+数字人<br>AI+名人采访<br>AI+绘图定制头像<br>AI+英语+动漫+音频<br>AI+老照片修复<br>Ai+制作视频<br>等等 AI都是可以帮您实现的<br>想都是问题，做才有答案~<br>最后一个学习名额，你要不要？</div>
+        </div>
+
+        <div class="message user-A">
+            <div class="header">展颜1(李惠) | 2026-03-14 16:58:42</div>
+            <div class="bubble">报名链接：https://m.ximalaya.com/gatekeeper/lms-sale-page/coupon?groupId=25082143879896&utm_source=salesid_juntong1</div>
+        </div>
+
+        <div class="message user-A">
+            <div class="header">展颜1(李惠) | 2026-03-14 20:01:40</div>
+            <div class="bubble">刚刚老师看到后台有一个人领券了，不知道是不是你。不管是不是你，务必回复下哦，我也要统计报名学员，申请报名福利走邮件了，到时候落下你，就真的麻烦了，务必回复哈</div>
+        </div>
+
+        <div class="message user-B">
+            <div class="header">260306陌云九 | 2026-03-14 22:47:57</div>
+            <div class="bubble">老师你是不是发错了呀，我自己报名了的呀。另外个号“小铃铛🔔”报的名</div>
+        </div>
+
+        <div class="message user-A">
+            <div class="header">展颜1(李惠) | 2026-03-14 22:48:50</div>
+            <div class="bubble">[捂脸]，不好意思，确实是发错了</div>
+        </div>
+
+        <div class="message user-B">
+            <div class="header">260306陌云九 | 2026-03-14 22:49:47</div>
+            <div class="bubble">[偷笑]没事哈</div>
+        </div>
+
+        <div class="message user-A">
+            <div class="header">展颜🦋【AIGC短视频🥇教练】(李惠) | 2026-03-17 08:19:58</div>
+            <div class="bubble">宝子，后台提示我说咱们想退费，咋回事呀？</div>
+        </div>
+
+        <div class="message user-A">
+            <div class="header">展颜🦋【AIGC短视频🥇教练】(李惠) | 2026-03-17 08:46:41</div>
+            <div class="bubble">如果你确实害怕被骗，现在退出也都来得及的。毕竟没有什么成本支出</div>
+        </div>
+
+        <div class="message user-A">
+            <div class="header">展颜🦋【AIGC短视频🥇教练】(李惠) | 2026-03-17 08:47:09</div>
+            <div class="bubble">真听真看真感受～如果你觉得理不清这个脉路，不妨学习完整个营期看看自己能否收获到行业一手资讯呢～</div>
+        </div>
+
+        <div class="message user-A">
+            <div class="header">展颜🦋【AIGC短视频🥇教练】(李惠) | 2026-03-17 08:47:27</div>
+            <div class="bubble">黑红也是红，对待明星的待遇对待一个企业，反而我觉得生在这样的企业很幸福。</div>
+        </div>
+
+        <div class="message user-A">
+            <div class="header">展颜🦋【AIGC短视频🥇教练】(李惠) | 2026-03-17 09:23:24</div>
+            <div class="bubble">至于你看的负面消息!师姐只想说:树大招风，别人攻击我们只是因为我们做得太好，动了别人的蛋糕。其中的意思咱们可以慢慢去琢磨。就像宋丹丹说的，没有绯闻的名人那算不上名人。所以师姐想说:大胆一点，可能你之前遭遇的一切就是为了让你赶上今天这波难得的机遇。人不可能一直倒霉，所以要坚信发生在我们身边的都是美好。你说呢？</div>
+        </div>
+
+        <div class="message user-B">
+            <div class="header">260306陌云九 | 2026-03-17 09:43:26</div>
+            <div class="bubble">直接7天无理由退费吧</div>
+        </div>
+
+        <div class="message user-A">
+            <div class="header">展颜🦋【AIGC短视频🥇教练】(李惠) | 2026-03-17 09:46:32</div>
+            <div class="bubble">可以退的哈，咱们是什么原因呢</div>
+        </div>
+
+        <div class="message user-A">
+            <div class="header">展颜🦋【AIGC短视频🥇教练】(李惠) | 2026-03-17 09:47:40</div>
+            <div class="bubble">你看咱们赠课福利资料我们这边也发了，咱们才开课，小程序里也开通了课程，咱们到这边不是来真正学到技术拿资源的吗？</div>
+        </div>
+
+        <div class="message user-A">
+            <div class="header">展颜🦋【AIGC短视频🥇教练】(李惠) | 2026-03-17 09:48:18</div>
+            <div class="bubble">任可一家如果把保证收益什么的写进合同，那决对是骗子</div>
+        </div>
+
+        <div class="message user-A">
+            <div class="header">展颜🦋【AIGC短视频🥇教练】(李惠) | 2026-03-17 09:50:08</div>
+            <div class="bubble">这么和你说吧，但凡有人跟你说多久能赚多少钱赶紧跑，还要跑快点🤭是这样的，咱们多久能有收益这个也是取决我们自己掌握的技能和行动力，看你能花多少时间和心思投入进来，就像直播课上老师说的有些同学有基础又肯干，咱们又有资源渠道，一来就赚到钱也是大有人在，那咱们现在学习来先从简单的做起，像生生图片、小说推文、短剧推广等这些简单的做起，一天先给百度AI生50张图也能有个百把块的收入，随着技能娴熟去做片花、商单这些价格高一些的单子，平均2~300/分钟，收益也自然就越来越多啦。</div>
+        </div>
+
+        <div class="message user-B">
+            <div class="header">260306陌云九 | 2026-03-17 10:00:33</div>
+            <div class="bubble">说过的话都不敢写进合同，甚至提都不提合同的事，那做那些承诺干嘛呢？吸引人买课？这年头口头承诺有用吗？更何况还是收费的口头承诺。我不想跟你们拉扯了，退费吧，既然七天无理由退款，那就当我没有原因申请退款吧。</div>
+        </div>
+
+        <div class="message user-A">
+            <div class="header">展颜🦋【AIGC短视频🥇教练】(李惠) | 2026-03-17 10:02:47</div>
+            <div class="bubble">合同是在购买课程时在付款栏就给到咱们了啊</div>
+        </div>
+
+        <div class="message user-B">
+            <div class="header">260306陌云九 | 2026-03-17 10:03:36</div>
+            <div class="bubble">就那个课程协议？</div>
+        </div>
+
+        <div class="message user-A">
+            <div class="header">展颜🦋【AIGC短视频🥇教练】(李惠) | 2026-03-17 10:03:51</div>
+            <div class="bubble">我们确实是有定向派单，也是从第一周后陆续开通商单呀，这个没有说慌呀</div>
+        </div>
+
+        <div class="message user-A">
+            <div class="header">展颜🦋【AIGC短视频🥇教练】(李惠) | 2026-03-17 10:05:07</div>
+            <div class="bubble">海外商单我们也有很多呀</div>
+        </div>
+
+        <div class="message user-A">
+            <div class="header">展颜🦋【AIGC短视频🥇教练】(李惠) | 2026-03-17 10:05:43</div>
+            <div class="bubble">你不能说来了啥也不说就躺平，把协议写进去，那不才是真欺骗消费者吗</div>
+        </div>
+
+        <div class="message user-A">
+            <div class="header">展颜🦋【AIGC短视频🥇教练】(李惠) | 2026-03-17 10:06:24</div>
+            <div class="bubble">就大学他也不能写都保证毕业对吧，还是看咱们个人能力，好好学，接商单那是最简单的</div>
+        </div>
+
+        <div class="message user-B">
+            <div class="header">260306陌云九 | 2026-03-17 10:09:28</div>
+            <div class="bubble">连最简单的都不敢写进合同？我学完有能力接单了没地方接我找谁去？空口白话谁不会说？到时候各种推脱刁难我连个证据都没有。</div>
+        </div>
+
+        <div class="message user-A">
+            <div class="header">展颜🦋【AIGC短视频🥇教练】(李惠) | 2026-03-17 10:10:27</div>
+            <div class="bubble">你看我这个学员人家学出来就应聘陪跑官了，拿 着一个月1.5万以年的兼职收入，也挺香的</div>
+        </div>
+
+        <div class="message user-A">
+            <div class="header">展颜🦋【AIGC短视频🥇教练】(李惠) | 2026-03-17 10:10:44</div>
+            <div class="bubble">你看我这个学员人家学出来就应聘陪跑官了，拿 着一个月1.5万以上的兼职收入，也挺香的</div>
+        </div>
+
+        <div class="message user-A">
+            <div class="header">展颜🦋【AIGC短视频🥇教练】(李惠) | 2026-03-17 10:11:50</div>
+            <div class="bubble">喜马拉雅平台这么大，我们真不至于骗你一个3980费用，砸自已的招牌</div>
+        </div>
+
+        <div class="message user-A">
+            <div class="header">展颜🦋【AIGC短视频🥇教练】(李惠) | 2026-03-17 10:13:35</div>
+            <div class="bubble">这是我们海外商单</div>
+        </div>
+
+        <div class="message user-A">
+            <div class="header">展颜🦋【AIGC短视频🥇教练】(李惠) | 2026-03-17 10:14:55</div>
+            <div class="bubble">我们现在是商单做不过来，很多学员都被甲方抢走了，就怕你以后不接小单子，都奔大单子去了</div>
+        </div>
+
+        <div class="message user-A">
+            <div class="header">展颜🦋【AIGC短视频🥇教练】(李惠) | 2026-03-17 10:17:55</div>
+            <div class="bubble">AI短视频确实能赚钱，市场也大，像目前咱们国内80%的版权书都在喜马这里，喜马光每年买版权书的投入就有几十亿，最不缺资源，</div>
+        </div>
+
+        <div class="message user-A">
+            <div class="header">展颜🦋【AIGC短视频🥇教练】(李惠) | 2026-03-17 10:18:37</div>
+            <div class="bubble">现在市面上很多小平台都跑我们里拿资源然后转手再给自已的学员，你可想想看那可不是一手资源了呀</div>
+        </div>
+
+        <div class="message user-A">
+            <div class="header">展颜🦋【AIGC短视频🥇教练】(李惠) | 2026-03-17 10:20:02</div>
+            <div class="bubble">你知道我们的平台对自已学员多宠吗？外面的人技术再好，想接我们的资源我们都不给，这些资源都只留给自已的学员</div>
+        </div>
+
+        <div class="message user-A">
+            <div class="header">展颜🦋【AIGC短视频🥇教练】(李惠) | 2026-03-17 10:20:29</div>
+            <div class="bubble">而且后期只要喜马拉雅不倒闭，咱们的权益一直在，市面上哪个平台能做到</div>
+        </div>
+
+        <div class="message user-A">
+            <div class="header">展颜🦋【AIGC短视频🥇教练】(李惠) | 2026-03-17 10:21:13</div>
+            <div class="bubble">你看外面学过的人也跑来学</div>
+        </div>
+
+        <div class="message user-A">
+            <div class="header">展颜🦋【AIGC短视频🥇教练】(李惠) | 2026-03-17 10:25:35</div>
+            <div class="bubble">我也是这里毕业的，放心吧[拥抱]，咱们平台不是小平台，不是以收割韭菜为目的，我们是想实实在在教你们技能，拿到我们资源以后共赢</div>
+        </div>
+
+        <div class="message user-A">
+            <div class="header">展颜🦋【AIGC短视频🥇教练】(李惠) | 2026-03-17 10:26:40</div>
+            <div class="bubble">咱们课程学习中经常会对自已的班班、陪跑官点评，反馈，如果你有哪里不满意你就直接提</div>
+        </div>
+
+        <div class="message user-A">
+            <div class="header">展颜🦋【AIGC短视频🥇教练】(李惠) | 2026-03-17 10:26:58</div>
+            <div class="bubble">我们的目的就一个把咱们教好，学会，变现</div>
+        </div>
+
+        <div class="message user-B">
+            <div class="header">260306陌云九 | 2026-03-17 10:53:07</div>
+            <div class="bubble">不用说了，我意已决，我昨天晚上已经申请了7天无理由退款，希望你们能尽快处理退费事宜。拖过了7天无理由时间我不负责。既然是7天无理由退款，那我可以不用解释其他的，你们直接给我处理退款就行了。</div>
+        </div>
+
+        <div class="message user-A">
+            <div class="header">展颜🦋【AIGC短视频🥇教练】(李惠) | 2026-03-17 10:53:58</div>
+            <div class="bubble">可以的，那你让班班给你办理就好，不用7天的，最快24小时就到帐的</div>
+        </div>
+
+        <div class="message user-B">
+            <div class="header">260306陌云九 | 2026-03-17 10:54:27</div>
+            <div class="bubble">好的，昨晚已经提交给她了。</div>
+        </div>
+
+        <div class="message user-A">
+            <div class="header">展颜🦋【AIGC短视频🥇教练】(李惠) | 2026-03-17 10:54:41</div>
+            <div class="bubble">好的</div>
+        </div>
+
+        <div class="message user-A">
+            <div class="header">展颜🦋【AIGC短视频🥇教练】(李惠) | 2026-03-17 12:06:05</div>
+            <div class="bubble">咱们查看一下哈，已经退费到账了哈</div>
+        </div>
+
+        <div class="message user-B">
+            <div class="header">260306陌云九 | 2026-03-17 12:06:41</div>
+            <div class="bubble">收到，麻烦了！</div>
+        </div>
+
+        <div class="message user-A">
+            <div class="header">展颜🦋【AIGC短视频🥇教练】(李惠) | 2026-03-17 12:08:07</div>
+            <div class="bubble">没事，赠送你的课先好好学吧，多学技能没有坏处</div>
+        </div>
+
+        <div class="message user-A">
+            <div class="header">展颜🦋【AIGC短视频🥇工作室合伙人】(李惠) | 2026-03-24 19:02:54</div>
+            <div class="bubble">您好呀，为了更好的规划您在喜马的成长之路，帮你获得兼职副业机会，现由我们非常优秀的喜播瑶瑶安排您接下来的学习和就业指导。请及时关注喜播瑶瑶私信，您将获得免费课程、学习资料、学习活动、就业机会等各项福利，助您开启兼职副业之旅！</div>
+        </div>
+
+        <div class="message user-B">
+            <div class="header">陌云九 | 2026-03-13 20:48:20</div>
+            <div class="bubble">@云栖舟-江苏 可以看看你那个视频用seedance的提示词吗？学习一下</div>
+        </div>
+
+        <div class="message user-B">
+            <div class="header">陌云九 | 2026-03-13 20:50:14</div>
+            <div class="bubble">随意1-2段吧，学习一下思路</div>
+        </div>
+
+        <div class="message user-B">
+            <div class="header">陌云九 | 2026-03-13 20:54:46</div>
+            <div class="bubble">收到，谢谢</div>
+        </div>
+
+        <div class="message user-B">
+            <div class="header">陌云九 | 2026-03-14 14:49:29</div>
+            <div class="bubble">我也瞎搞了一个，不满意[破涕为笑]</div>
+        </div>
+
+        <div class="message user-B">
+            <div class="header">陌云九 | 2026-03-14 15:01:37</div>
+            <div class="bubble">梭哈了也才这个样子[捂脸]</div>
+        </div>
+
+        <div class="message user-B">
+            <div class="header">陌云九 | 2026-03-14 23:36:22</div>
+            <div class="bubble">我也是，可能是因为以前接触得少的原因？新知识吸收起来困难些</div>
+        </div>
+
+        <div class="message user-B">
+            <div class="header">陌云九 | 2026-03-15 11:20:17</div>
+            <div class="bubble">@啥也不是-成都 什么成了？</div>
+        </div>
+
+        <div class="message user-B">
+            <div class="header">陌云九 | 2026-03-15 11:21:14</div>
+            <div class="bubble">[破涕为笑]</div>
+        </div>
+
+        <div class="message user-B">
+            <div class="header">陌云九 | 2026-03-15 11:21:33</div>
+            <div class="bubble">练的什么丹药啊？</div>
+        </div>
+
+        <div class="message user-B">
+            <div class="header">陌云九 | 2026-03-15 11:23:27</div>
+            <div class="bubble">[强]</div>
+        </div>
+
+        <div class="message user-B">
+            <div class="header">陌云九 | 2026-03-15 12:01:28</div>
+            <div class="bubble">欢迎有声的麋鹿大大[庆祝][爆竹][爆竹]</div>
+        </div>
+
+        <div class="message user-B">
+            <div class="header">陌云九 | 2026-03-15 12:09:46</div>
+            <div class="bubble">拥抱麋鹿大大，拥抱AI[偷笑]</div>
+        </div>
+
+        <div class="message user-B">
+            <div class="header">陌云九 | 2026-03-15 19:31:17</div>
+            <div class="bubble">感觉是不是应该把切换图片的时间跟音乐节奏卡一下点会更好？</div>
+        </div>
+
+        <div class="message user-B">
+            <div class="header">陌云九 | 2026-03-15 19:34:56</div>
+            <div class="bubble">哎哟。。我没注意，不是刻意卡的，可能设置的时间刚好合上了。</div>
+        </div>
+
+        <div class="message user-B">
+            <div class="header">陌云九 | 2026-03-15 19:35:25</div>
+            <div class="bubble">这是第一版，下一版是让图片动起来变成视频。</div>
+        </div>
+
+        <div class="message user-B">
+            <div class="header">陌云九 | 2026-03-15 23:07:20</div>
+            <div class="bubble">仿照着今天直播做的，但是我太喜欢这个原文案和音乐了，舍不得改，改了一下角色和风格。</div>
+        </div>
+
+        <div class="message user-B">
+            <div class="header">陌云九 | 2026-03-15 23:27:49</div>
+            <div class="bubble">没有哈</div>
+        </div>
+
+        <div class="message user-B">
+            <div class="header">陌云九 | 2026-03-15 23:28:10</div>
+            <div class="bubble">我现在不发，等后面想好赛道了才考虑发吧，现在不想乱发平台</div>
+        </div>
+
+        <div class="message user-B">
+            <div class="header">陌云九 | 2026-03-15 23:28:32</div>
+            <div class="bubble">现在做主要就是练习</div>
+        </div>
+
+        <div class="message user-A">
+            <div class="header">喜播瑶瑶 | 2026-03-26 10:40:55</div>
+            <div class="bubble">阿寻在路上你好呀~ 我是艾米老师的助教，超开心能成为你的专属兼职指导朋友！</div>
+        </div>
+
+        <div class="message user-A">
+            <div class="header">喜播瑶瑶 | 2026-03-26 10:47:58</div>
+            <div class="bubble">艾米老师的配音，是不是很传神！</div>
+        </div>
+
+        <div class="message user-A">
+            <div class="header">喜播瑶瑶 | 2026-03-26 13:47:57</div>
+            <div class="bubble">其实我在想，咱们这个时代，真正值钱的不是信息，而是输出能力。<br>文字表达、语言表达，是所有影响力的底层能力。<br>我们一起，先把每天都要用到的声音和表达练好，<br>再谈能走多远💪</div>
+        </div>
+
+        <div class="message user-A">
+            <div class="header">喜播瑶瑶 | 2026-03-26 13:48:58</div>
+            <div class="bubble">正好，艾米老师每周日都有免费公开课<br>一定先【关注视频号】，开播会实时提醒你的⬆️</div>
+        </div>
+
+        <div class="message user-A">
+            <div class="header">喜播瑶瑶 | 2026-03-26 16:50:00</div>
+            <div class="bubble">这是我准备的一份送你的见面礼！😎<br>看完后可以跟我讲讲你对声音塑造的新收获hhh</div>
+        </div>
+
+        <div class="message user-A">
+            <div class="header">喜播瑶瑶 | 2026-03-27 21:05:03</div>
+            <div class="bubble">阿寻在路上，今天想和你聊聊~<br>还记得体验课里那段情感朗诵吗？我分享给我们官方点评官老师听了之后，她和我说你的音色潜力超棒！</div>
+        </div>
+
+        <div class="message user-A">
+            <div class="header">喜播瑶瑶 | 2026-03-27 21:15:03</div>
+            <div class="bubble">我就在想啊，你当时是为什么没继续深造呀？</div>
+        </div>
+
+        <div class="message user-A">
+            <div class="header">喜播瑶瑶 | 2026-03-28 21:15:05</div>
+            <div class="bubble">没事，可以再感受感受看看，刚入行时我也踩过不少坑，基础差、普通话不标准，还被机构坑过学费。试音投了十几次都没中，差点就想放弃——所以特别懂你既想学、又怕踩坑的心情。</div>
+        </div>
+
+        <div class="message user-A">
+            <div class="header">喜播瑶瑶 | 2026-03-28 21:30:27</div>
+            <div class="bubble">后来我偶然听了艾米老师的直播，我决定再给自己一次机会，跟着喜播的大咖老师和艾米这样负责的点评官老师一点点学。<br>普通话、气息、情感都明显进步了，最近已经接到3个录书单，连邻居家孩子都找我学主持哈哈哈</div>
+        </div>
+
+        <div class="message user-A">
+            <div class="header">喜播瑶瑶 | 2026-03-28 21:40:28</div>
+            <div class="bubble">正好~我们请了艾米老师给大家做免费的纠音直播（每周日晚），一定先感受感受，或许也可以少走点弯路[拥抱][拥抱]</div>
+        </div>
+
+        <div class="message user-A">
+            <div class="header">喜播瑶瑶 | 2026-03-29 19:20:14</div>
+            <div class="bubble">招募官们刚在看大家的声线档案！有老师说你的音色超适合社科/情感类读物，和《读者》签约主播同款特质~</div>
+        </div>
+
+        <div class="message user-A">
+            <div class="header">喜播瑶瑶 | 2026-03-29 19:20:35</div>
+            <div class="bubble">我特意为你留了免费的声音兼职体验名额🔑 绿色通道直达<br>点小程序直接报名，不要浪费你这么好的声音条件啊！</div>
+        </div>
+
+        <div class="message user-B">
+            <div class="header">陌云九 | 2026-03-13 21:02:43</div>
+            <div class="bubble">前面很火的霍去病导演也说了是用纳米漫剧流水线做的</div>
+        </div>
+
+        <div class="message user-B">
+            <div class="header">陌云九 | 2026-03-13 21:40:38</div>
+            <div class="bubble">人家说了是整部剧3000块算力成本啊，这很便宜了啊。</div>
+        </div>
+
+        <div class="message user-B">
+            <div class="header">陌云九 | 2026-03-13 22:07:49</div>
+            <div class="bubble">@土豆 嗯，好像是说的3000块算力成本，一个4分钟，一个6分钟，20个人48小时完成的，不包含吃饭睡觉的时间。</div>
+        </div>
+
+        <div class="message user-B">
+            <div class="header">陌云九 | 2026-03-13 22:25:29</div>
+            <div class="bubble">今天发现豆包图片生成里面只有4.0和4.5了呢？你们是不是也这样啊？</div>
+        </div>
+
+    </div>
+</body>
+</html>

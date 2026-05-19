@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="zh-CN" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>喜播战略诊断平台 - 承诺说了没人兑现，工具用不上，好好一个人被耗走了</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        dark: {
+                            900: '#0f1115',
+                            800: '#161920',
+                            700: '#1f242d',
+                            600: '#343b47',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+        body { font-family: 'Inter', system-ui, sans-serif; background-color: #0f1115; color: #f3f4f6; }
+        .grid-bg {
+            background-image: linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
+                              linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
+            background-size: 20px 20px;
+        }
+        .glow-orange { box-shadow: 0 0 20px rgba(251, 146, 60, 0.15); }
+        .glow-blue { box-shadow: 0 0 20px rgba(59, 130, 246, 0.15); }
+    </style>
+</head>
+<body class="grid-bg min-h-screen">
+    <nav class="border-b border-white/10 bg-dark-800/80 backdrop-blur-md sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16">
+                <div class="flex items-center gap-3">
+                    <div class="w-8 h-8 rounded bg-orange-500/20 flex items-center justify-center border border-orange-500/50">
+                        <svg class="w-5 h-5 text-orange-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                    </div>
+                    <span class="text-lg font-bold tracking-wider text-orange-400">承诺说了没人兑现，工具用不上，好好一个人被耗走了</span>
+                </div>
+                <div class="text-sm font-mono text-gray-400">UID: 227950458 · 雨霖铃 | 案卷评级：B+级（工具断供 + 承诺穿透失败）</div>
+            </div>
+        </div>
+    </nav>
+
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-8">
+
+        <!-- Header Section -->
+        <header class="bg-dark-800 border border-orange-500/30 rounded-xl p-8 glow-orange relative overflow-hidden">
+            <div class="absolute inset-0 bg-orange-500/5"></div>
+            <div class="relative z-10 flex flex-col md:flex-row gap-8 justify-between items-start">
+                <div class="space-y-4 max-w-3xl">
+                    <div class="inline-flex items-center gap-2 px-3 py-1 bg-orange-500/10 text-orange-400 rounded-full text-xs font-bold border border-orange-500/20">
+                        <span class="w-2 h-2 rounded-full bg-orange-500 animate-pulse"></span>
+                        承诺穿透失败 × 工具性断供 × 无声流失
+                    </div>
+                    <h1 class="text-3xl font-bold">承诺说了没人兑现，工具用不上，好好一个人被耗走了</h1>
+                    <p class="text-gray-400 leading-relaxed text-sm">
+                        <strong class="text-gray-200">用户：雨霖铃（甘肃，约40岁，上班族，单位严格管控手机）</strong><br>
+                        这是一个从未闹过事，一句投诉都没有发过，但在第3周开课时悄悄回复了一个"好的"就消失了的用户。<br><br>
+                        她不是因为失望才走的——她是被一件件"答应了但没有人落实"的小事<strong class="text-orange-300">一点点磨没了耐心</strong>：
+                        版权书领了不知怎么用，工具软件13天没搞明白，招募官答应的"班主任会特别关照你"没有任何兑现，
+                        课程学习全依赖手机但她上班根本碰不到手机。她在这套系统里找不到任何入口，最终选择了最礼貌的方式——沉默离开。
+                    </p>
+                </div>
+                <div class="flex flex-col gap-3 min-w-[200px]">
+                    <div class="bg-dark-900 border border-white/5 p-4 rounded-lg">
+                        <div class="text-xs text-gray-500 mb-1">涉事角色</div>
+                        <div class="font-bold text-orange-400">招募官·青木 / 班主任·天下乌贼</div>
+                    </div>
+                    <div class="bg-dark-900 border border-white/5 p-4 rounded-lg">
+                        <div class="text-xs text-gray-500 mb-1">流失类型</div>
+                        <div class="font-bold text-gray-200">工具断供 + 承诺空头支票</div>
+                    </div>
+                    <div class="bg-dark-900 border border-white/5 p-4 rounded-lg">
+                        <div class="text-xs text-gray-500 mb-1">退费时间节点</div>
+                        <div class="font-bold text-blue-400">付费第17天 · 第3周刚解锁时</div>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <!-- User Profile -->
+        <div class="bg-dark-800 border border-white/5 rounded-xl p-6">
+            <h3 class="text-lg font-bold mb-4 flex items-center gap-2">
+                <svg class="w-5 h-5 text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"></path></svg>
+                用户真实画像
+            </h3>
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+                <div class="p-4 bg-dark-900 rounded-lg border border-blue-500/10">
+                    <div class="text-xs text-gray-500 mb-1">地域 / 年龄</div>
+                    <div class="font-semibold text-sm">甘肃 · 约40岁</div>
+                </div>
+                <div class="p-4 bg-dark-900 rounded-lg border border-blue-500/10">
+                    <div class="text-xs text-gray-500 mb-1">职业状态</div>
+                    <div class="font-semibold text-sm">上班族（单位禁止用手机）</div>
+                </div>
+                <div class="p-4 bg-dark-900 rounded-lg border border-blue-500/10">
+                    <div class="text-xs text-gray-500 mb-1">声音条件</div>
+                    <div class="font-semibold text-sm text-green-400">普通话优良（御姐音潜力）</div>
+                </div>
+                <div class="p-4 bg-dark-900 rounded-lg border border-blue-500/10">
+                    <div class="text-xs text-gray-500 mb-1">学习动机</div>
+                    <div class="font-semibold text-sm">怕脑子固化 + 找能赚钱的副业</div>
+                </div>
+            </div>
+            <div class="mt-4 p-4 bg-blue-500/5 border border-blue-500/20 rounded-lg">
+                <p class="text-sm text-gray-300 leading-relaxed">
+                    <strong class="text-blue-300">关键背景：</strong>她在体验营时表现非常积极，三天全勤，主动提交录音，声音反馈也很好。招募官青木在通关时亲口说"你是我挑出来的人，我已经给班主任打过招呼，会特别关照你"。
+                    用户带着这份被重视的感觉付款报名，但进入正式班后，没有任何这类关照出现过。
+                </p>
+            </div>
+        </div>
+
+        <!-- 4 Key Failure Points -->
+        <div class="space-y-4">
+            <h3 class="text-lg font-bold flex items-center gap-2">
+                <svg class="w-5 h-5 text-red-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"></path></svg>
+                四个让她悄悄走掉的具体原因
+            </h3>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div class="bg-dark-800 border border-orange-500/20 rounded-xl p-6 border-l-4 border-l-orange-500">
+                    <div class="text-sm font-bold text-orange-400 mb-2">① 版权书领了，不知道下一步怎么做</div>
+                    <p class="text-sm text-gray-400 leading-relaxed">
+                        3月17日领到版权书后，她接连问：怎么录？用什么软件？怎么上传？
+                        这些问题从3月17日一直问到3月30日，整整<strong class="text-orange-300">13天</strong>。
+                        版权书对她来说是一份"收了不知道干什么"的文件，没有任何配套行动指引。
+                    </p>
+                </div>
+                <div class="bg-dark-800 border border-red-500/20 rounded-xl p-6 border-l-4 border-l-red-500">
+                    <div class="text-sm font-bold text-red-400 mb-2">② 工具软件给了链接，进去永远在"等待审批"</div>
+                    <p class="text-sm text-gray-400 leading-relaxed">
+                        师姐给的画本公开课录制链接，她无论什么时候点开，都显示"等待审批"。
+                        师姐回复："我问问"。此后这件事<strong class="text-red-300">再没有任何下文</strong>。
+                        用户自己跑去B站搜教程，师姐建议"你自己先摸索"。
+                    </p>
+                </div>
+                <div class="bg-dark-800 border border-yellow-500/20 rounded-xl p-6 border-l-4 border-l-yellow-500">
+                    <div class="text-sm font-bold text-yellow-400 mb-2">③ 招募官当面答应的事，班主任完全不知道</div>
+                    <p class="text-sm text-gray-400 leading-relaxed">
+                        招募官说过"你是我亲自挑出来的人，我给班主任打过招呼"，但班主任对她的服务与其他学员
+                        <strong class="text-yellow-300">没有任何区别</strong>。承诺从来没有传递到交付端，变成了一张空头支票。
+                    </p>
+                </div>
+                <div class="bg-dark-800 border border-purple-500/20 rounded-xl p-6 border-l-4 border-l-purple-500">
+                    <div class="text-sm font-bold text-purple-400 mb-2">④ 整套课程依赖手机，但她上班根本碰不到手机</div>
+                    <p class="text-sm text-gray-400 leading-relaxed">
+                        她在3月30日明确告知："单位管理严格，上班期间根本不让碰手机，只能休息时躲起来看一眼。"
+                        而喜播的所有学习动作（直播、小程序、录音提交、画本操作）全都依赖手机实时在线。
+                        <strong class="text-purple-300">这个根本矛盾在购课前后都没有被识别过。</strong>
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Key Insight -->
+        <div class="bg-gradient-to-r from-blue-900/20 to-dark-800 border border-blue-500/30 rounded-xl p-6">
+            <h3 class="text-lg font-bold mb-3 text-blue-400 flex items-center gap-2">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"></path></svg>
+                最核心的一句话
+            </h3>
+            <blockquote class="text-xl font-semibold text-gray-100 leading-relaxed border-l-4 border-blue-500 pl-6 italic">
+                "她退费的真实原因不是'不想学'，<br>
+                而是<span class="text-blue-300">每次想学都找不到入口</span>，最终被耗死的。"
+            </blockquote>
+            <p class="mt-4 text-sm text-gray-400 leading-relaxed">
+                4月2日的退出极其安静——班主任：「同学您好，如果您确定不想学习了……」，用户只回了一个字：「好的」。
+                全程没有投诉，没有情绪，没有任何迹象。但她在这个系统里经历的是：领了书不知道怎么录，
+                工具打不开，链接进不去，问了没人跟进，课程时间和上班时间完全冲突。
+                一个积极的人，就这样被磨走了。
+            </p>
+        </div>
+
+        <!-- CEO Actions -->
+        <div class="bg-gradient-to-r from-red-900/30 to-dark-800 border border-red-500/30 rounded-xl p-6">
+            <h3 class="text-xl font-bold mb-4 text-red-400 flex items-center gap-2">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                三条必须落地的整改动作
+            </h3>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mt-4">
+                <div class="bg-dark-900 border border-red-500/20 p-5 rounded-lg">
+                    <div class="text-sm font-bold text-red-400 mb-2">① 招募官的承诺必须追踪落地</div>
+                    <p class="text-xs text-gray-400 leading-relaxed">
+                        凡招募官对用户说了"特别关照"、"优先资源"之类的话，必须同步到班主任，
+                        并在7天内完成第一次落地行动。没有落地的承诺，系统自动升级为预警。
+                    </p>
+                </div>
+                <div class="bg-dark-900 border border-orange-500/20 p-5 rounded-lg">
+                    <div class="text-sm font-bold text-orange-400 mb-2">② 版权书发放必须绑定"用起来"指引</div>
+                    <p class="text-xs text-gray-400 leading-relaxed">
+                        发出版权书链接的当天，必须同步发《手机录制3步操作视频》和《本周行动计划》，
+                        而不是把一份文件扔给用户，让她自己去猜怎么用。
+                    </p>
+                </div>
+                <div class="bg-dark-900 border border-purple-500/20 p-5 rounded-lg">
+                    <div class="text-sm font-bold text-purple-400 mb-2">③ 购课前要问清楚：白天能用手机吗？</div>
+                    <p class="text-xs text-gray-400 leading-relaxed">
+                        建立"操作环境适配核查"——凡用户自述白天无法接触手机或电脑，
+                        必须在购课前告知哪些课程内容是需要实时在线的，
+                        并建议选择弹性班，而非绑定固定营期时间轴。
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Timeline -->
+        <div class="bg-dark-800 border border-white/5 rounded-xl p-6">
+            <h3 class="text-lg font-bold mb-6 flex items-center gap-2">
+                <svg class="w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                关键时间轴
+            </h3>
+            <div class="space-y-3">
+                <div class="flex gap-4 items-start">
+                    <div class="text-xs text-gray-500 w-24 shrink-0 pt-0.5">03月13日</div>
+                    <div class="w-2 h-2 rounded-full bg-green-500 mt-1 shrink-0"></div>
+                    <div class="text-sm text-gray-300">加入体验营，积极参与，全程正面互动</div>
+                </div>
+                <div class="flex gap-4 items-start">
+                    <div class="text-xs text-gray-500 w-24 shrink-0 pt-0.5">03月16日</div>
+                    <div class="w-2 h-2 rounded-full bg-blue-500 mt-1 shrink-0"></div>
+                    <div class="text-sm text-gray-300">体验营通关，招募官说"你是我挑出来的人"，付款购入精英版4个月课程</div>
+                </div>
+                <div class="flex gap-4 items-start">
+                    <div class="text-xs text-gray-500 w-24 shrink-0 pt-0.5">03月17日</div>
+                    <div class="w-2 h-2 rounded-full bg-yellow-500 mt-1 shrink-0"></div>
+                    <div class="text-sm text-gray-300">领取版权书，开始问"怎么录、用什么软件"→ 13天内问了同样的问题</div>
+                </div>
+                <div class="flex gap-4 items-start">
+                    <div class="text-xs text-gray-500 w-24 shrink-0 pt-0.5">03月19日</div>
+                    <div class="w-2 h-2 rounded-full bg-blue-400 mt-1 shrink-0"></div>
+                    <div class="text-sm text-gray-300">正式开营，积极参与班会，态度仍然非常好</div>
+                </div>
+                <div class="flex gap-4 items-start">
+                    <div class="text-xs text-gray-500 w-24 shrink-0 pt-0.5">03月27日</div>
+                    <div class="w-2 h-2 rounded-full bg-orange-500 mt-1 shrink-0"></div>
+                    <div class="text-sm text-gray-300">画本公开课链接始终"等待审批"无法访问，师姐"我问问"后无下文</div>
+                </div>
+                <div class="flex gap-4 items-start">
+                    <div class="text-xs text-gray-500 w-24 shrink-0 pt-0.5">03月30日</div>
+                    <div class="w-2 h-2 rounded-full bg-red-400 mt-1 shrink-0"></div>
+                    <div class="text-sm text-gray-300">明确说明单位不允许碰手机，但课程体系依旧无法适配她的工作场景</div>
+                </div>
+                <div class="flex gap-4 items-start">
+                    <div class="text-xs text-gray-500 w-24 shrink-0 pt-0.5">04月02日</div>
+                    <div class="w-2 h-2 rounded-full bg-gray-600 mt-1 shrink-0"></div>
+                    <div class="text-sm text-gray-300">第3周上课第一天，班主任问"确定不学了吗"，她只说"好的"——无声退场</div>
+                </div>
+            </div>
+        </div>
+
+    </main>
+</body>
+</html>

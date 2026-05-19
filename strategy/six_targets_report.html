@@ -1,0 +1,566 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+  <title>六大战略靶点进化报告 · 大卫智能体团队 1.0</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Noto+Serif+SC:wght@700;900&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --bg:#09090b;--s1:#18181b;--s2:#27272a;--s3:#3f3f46;
+      --text:#f4f4f5;--dim:#a1a1aa;--muted:#71717a;
+      --green:#10b981;--blue:#3b82f6;--amber:#f59e0b;
+      --red:#ef4444;--purple:#8b5cf6;--orange:#f97316;--teal:#14b8a6;--pink:#ec4899;
+    }
+    *{margin:0;padding:0;box-sizing:border-box;}html{scroll-behavior:smooth;}
+    body{font-family:'Inter','PingFang SC',sans-serif;background:var(--bg);color:var(--text);line-height:1.75;-webkit-font-smoothing:antialiased;}
+    .glow{position:fixed;top:-15vh;left:50%;transform:translateX(-50%);width:100vw;height:55vh;background:radial-gradient(ellipse at bottom,rgba(139,92,246,0.1),transparent 70%);z-index:-1;pointer-events:none;}
+
+    /* ── NAV TABS ── */
+    .sticky-nav{position:sticky;top:0;z-index:100;background:rgba(9,9,11,0.92);backdrop-filter:blur(16px);border-bottom:1px solid var(--s3);padding:0 24px;}
+    .nav-inner{max-width:1200px;margin:0 auto;display:flex;gap:4px;overflow-x:auto;padding:12px 0;}
+    .nav-tab{flex-shrink:0;padding:7px 16px;border-radius:8px;font-size:12px;font-weight:700;color:var(--muted);cursor:pointer;transition:all 0.2s;text-decoration:none;white-space:nowrap;}
+    .nav-tab:hover,.nav-tab.active{background:rgba(139,92,246,0.15);color:#fff;border:1px solid rgba(139,92,246,0.3);}
+    .nav-tab{border:1px solid transparent;}
+
+    /* ── HERO ── */
+    .hero{padding:72px 24px 56px;text-align:center;border-bottom:1px solid var(--s3);position:relative;overflow:hidden;}
+    .hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at top,rgba(139,92,246,0.08),transparent 60%);}
+    .badge{display:inline-flex;align-items:center;gap:8px;padding:6px 18px;border-radius:100px;background:rgba(139,92,246,0.1);border:1px solid rgba(139,92,246,0.3);color:var(--purple);font-size:12px;font-weight:800;letter-spacing:1.5px;margin-bottom:24px;}
+    .dot{width:7px;height:7px;border-radius:50%;background:var(--purple);animation:pulse 2s infinite;}
+    h1{font-family:'Noto Serif SC',serif;font-size:clamp(26px,4.5vw,48px);font-weight:900;line-height:1.2;background:linear-gradient(160deg,#fff 30%,#c4b5fd 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;margin-bottom:18px;}
+    .hero-sub{font-size:15px;color:var(--dim);max-width:760px;margin:0 auto 24px;}
+    .hero-meta{font-size:11px;color:var(--muted);letter-spacing:1px;}
+    .target-pills{display:flex;flex-wrap:wrap;justify-content:center;gap:8px;margin-top:28px;}
+    .tpill{padding:6px 16px;border-radius:100px;font-size:12px;font-weight:700;border:1px solid;cursor:pointer;}
+
+    /* ── PAGE ── */
+    .page{max-width:1100px;margin:0 auto;padding:0 24px;}
+    .target-section{padding:72px 0;border-bottom:1px solid rgba(255,255,255,0.04);}
+    .target-header{display:flex;align-items:flex-start;gap:20px;margin-bottom:36px;}
+    .target-num{width:56px;height:56px;border-radius:14px;display:flex;align-items:center;justify-content:center;font-size:24px;flex-shrink:0;}
+    .target-titles{flex:1;}
+    .target-label{font-size:11px;font-weight:800;letter-spacing:2px;text-transform:uppercase;margin-bottom:6px;}
+    .target-name{font-family:'Noto Serif SC',serif;font-size:clamp(20px,3vw,28px);font-weight:900;color:#fff;line-height:1.3;}
+    .target-diag{font-size:14px;color:var(--dim);margin-top:8px;line-height:1.7;}
+
+    /* ── AGENT CARDS ── */
+    .agent-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:14px;margin:24px 0;}
+    .agent-card{background:var(--s1);border:1px solid var(--s3);border-radius:14px;padding:20px;transition:all 0.3s;}
+    .agent-card:hover{border-color:rgba(255,255,255,0.15);transform:translateY(-3px);}
+    .agent-code{font-size:11px;font-weight:800;letter-spacing:1.5px;margin-bottom:8px;}
+    .agent-role{font-size:15px;font-weight:800;color:#fff;margin-bottom:6px;}
+    .agent-problem{font-size:12px;color:var(--red);font-weight:600;padding:6px 10px;background:rgba(239,68,68,0.06);border-radius:6px;margin-bottom:10px;}
+    .agent-solution{font-size:13px;color:var(--dim);line-height:1.8;}
+    .agent-bullets{list-style:none;margin-top:8px;}
+    .agent-bullets li{font-size:12px;color:var(--dim);padding:4px 0;border-bottom:1px solid var(--s2);display:flex;align-items:flex-start;gap:8px;line-height:1.6;}
+    .agent-bullets li:last-child{border:none;}
+    .agent-bullets li::before{content:'→';color:var(--purple);flex-shrink:0;}
+
+    /* ── OBJECTION TREE ── */
+    .obj-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:14px;margin:24px 0;}
+    .obj-card{background:var(--s1);border:1px solid var(--s3);border-radius:14px;padding:20px;}
+    .obj-trigger{font-size:13px;font-weight:800;color:var(--amber);margin-bottom:4px;display:flex;align-items:center;gap:8px;}
+    .obj-quote{font-size:12px;font-style:italic;color:var(--dim);margin-bottom:14px;}
+    .obj-steps{counter-reset:step;}
+    .obj-step{counter-increment:step;display:flex;gap:10px;font-size:12px;color:var(--dim);margin-bottom:8px;line-height:1.7;}
+    .obj-step::before{content:counter(step);font-weight:900;color:var(--amber);font-size:14px;flex-shrink:0;width:18px;}
+
+    /* ── TRIGGER RADAR ── */
+    .radar-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:14px;margin:24px 0;}
+    .radar-card{background:var(--s1);border:1px solid var(--s3);border-radius:14px;padding:20px;}
+    .radar-type{font-size:11px;font-weight:800;letter-spacing:1px;padding:3px 10px;border-radius:100px;display:inline-block;margin-bottom:10px;}
+    .radar-trigger{font-size:14px;font-weight:800;color:#fff;margin-bottom:8px;}
+    .radar-scene{font-size:12px;color:var(--muted);margin-bottom:10px;font-style:italic;}
+    .radar-action{font-size:13px;color:var(--dim);line-height:1.7;}
+    .radar-example{background:var(--s2);border-radius:8px;padding:10px 12px;margin-top:10px;font-size:12px;color:var(--dim);font-style:italic;}
+
+    /* ── TAG CLOUD ── */
+    .tag-section-title{font-size:13px;font-weight:700;color:var(--dim);margin:20px 0 12px;}
+    .tag-cloud{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:24px;}
+    .mtag{font-size:12px;padding:6px 14px;border-radius:8px;font-weight:600;border:1px solid;}
+
+    /* ── WARNING LIST ── */
+    .warn-list{display:flex;flex-direction:column;gap:12px;margin:24px 0;}
+    .warn-item{background:var(--s1);border:1px solid var(--s3);border-radius:12px;padding:18px 20px;display:flex;gap:16px;}
+    .warn-badge{font-size:11px;font-weight:800;padding:4px 10px;border-radius:6px;flex-shrink:0;align-self:flex-start;letter-spacing:0.5px;}
+    .warn-content{flex:1;}
+    .warn-title{font-size:14px;font-weight:800;color:#fff;margin-bottom:6px;}
+    .warn-problem{font-size:12px;color:var(--red);margin-bottom:8px;}
+    .warn-fix{font-size:13px;color:var(--dim);line-height:1.7;}
+
+    /* ── SECOND CURVE ── */
+    .curve-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:14px;margin:24px 0;}
+    .curve-card{background:var(--s1);border:1px solid var(--s3);border-radius:14px;padding:20px;transition:all 0.3s;}
+    .curve-card:hover{transform:translateY(-3px);}
+    .curve-icon{font-size:32px;margin-bottom:12px;}
+    .curve-name{font-size:15px;font-weight:800;color:#fff;margin-bottom:4px;}
+    .curve-target{font-size:12px;color:var(--muted);margin-bottom:12px;}
+    .curve-value{font-size:13px;color:var(--dim);line-height:1.7;margin-bottom:12px;}
+    .curve-products{display:flex;flex-direction:column;gap:6px;}
+    .curve-product{font-size:12px;color:var(--dim);padding:6px 10px;background:var(--s2);border-radius:6px;}
+
+    /* ── CALLOUT ── */
+    .callout{border-radius:12px;padding:16px 20px;margin:20px 0;}
+    .callout.purple{background:rgba(139,92,246,0.06);border-left:4px solid var(--purple);}
+    .callout-text{font-size:14px;color:var(--dim);line-height:1.8;}
+    .callout-text strong{color:var(--text);}
+
+    footer{border-top:1px solid var(--s3);padding:40px 24px;text-align:center;color:var(--muted);font-size:12px;}
+    @keyframes pulse{0%{box-shadow:0 0 0 0 rgba(139,92,246,0.4);}70%{box-shadow:0 0 0 10px transparent;}100%{box-shadow:0 0 0 0 transparent;}}
+    @media(max-width:768px){.agent-grid,.obj-grid,.radar-grid,.curve-grid{grid-template-columns:1fr;}}
+  </style>
+  <link rel="icon" href="/favicon.ico">
+</head>
+<body>
+  <script src="navbar.js?v=20260328"></script>
+  <div class="glow"></div>
+
+  <!-- HERO -->
+  <div class="hero">
+    <div class="badge"><div class="dot"></div>全局进化红头文件 · 大卫智能体团队 1.0</div>
+    <h1>六大战略靶点<br>进化总结报告</h1>
+    <p class="hero-sub">基于多轮服务实战数据提炼的核心进化图谱。8份归档文件 · 跨期蒸馏 · 去重提纯。所有结论均来自真实的用户互动与业务问题。</p>
+    <div class="hero-meta">大卫智能体团队 1.0 内部研究报告 &nbsp;·&nbsp; 立即生效</div>
+    <div class="target-pills">
+      <a href="#t1" class="tpill" style="color:var(--purple);border-color:rgba(139,92,246,0.4)">🤖 智能体协同</a>
+      <a href="#t2" class="tpill" style="color:var(--amber);border-color:rgba(245,158,11,0.4)">🛡️ 异议卸力树</a>
+      <a href="#t3" class="tpill" style="color:var(--pink);border-color:rgba(236,72,153,0.4)">💖 情绪扳机雷达</a>
+      <a href="#t4" class="tpill" style="color:var(--blue);border-color:rgba(59,130,246,0.4)">🔬 用户微观画像</a>
+      <a href="#t5" class="tpill" style="color:var(--red);border-color:rgba(239,68,68,0.4)">📈 产品预警</a>
+      <a href="#t6" class="tpill" style="color:var(--green);border-color:rgba(16,185,129,0.4)">🔭 第二曲线</a>
+    </div>
+  </div>
+
+  <!-- ── 靶点一：智能体协同 ── -->
+  <div class="target-section" id="t1">
+    <div class="page">
+      <div class="target-header">
+        <div class="target-num" style="background:rgba(139,92,246,0.15);color:var(--purple)">🤖</div>
+        <div class="target-titles">
+          <div class="target-label" style="color:var(--purple)">靶点一</div>
+          <div class="target-name">智能体协同作战体系 (A01–A04)</div>
+          <div class="target-diag"><strong>核心问题：</strong>目前各智能体"烟囱式"孤岛运作，缺乏用户状态感知与策略联动。用户在不同端口（班主任/社群/教师）反复询问同一基础信息，服务方无法感知用户完整画像，导致体验断裂。<br><strong>进化方向：</strong>"感知—决策—执行—优化"一体化作战网络。</div>
+        </div>
+      </div>
+
+      <div class="agent-grid">
+        <div class="agent-card" style="border-color:rgba(139,92,246,0.3)">
+          <div class="agent-code" style="color:var(--purple)">A01 · 信息中枢</div>
+          <div class="agent-role">全局感知与状态识别引擎</div>
+          <div class="agent-problem">核心缺陷：被动接收，无法构建用户动态画像</div>
+          <ul class="agent-bullets">
+            <li>构建"学员数字孪生"中枢，强制所有服务触点实时读写中央数据库</li>
+            <li>对话中实时标注关键信号：<code style="color:var(--purple)">[经济压力:高]</code> <code style="color:var(--purple)">[决策犹豫:强]</code></li>
+            <li>跨期/跨课数据贯通，建立学员终身学习ID，历史数据无缝继承</li>
+            <li>黄金24小时内强制采集：资金承载力、时间可用性、家庭支持度</li>
+          </ul>
+        </div>
+        <div class="agent-card" style="border-color:rgba(59,130,246,0.3)">
+          <div class="agent-code" style="color:var(--blue)">A02 · 意图识别</div>
+          <div class="agent-role">需求分流与路径规划引擎</div>
+          <div class="agent-problem">核心缺陷：SOP线性推进，意图误判，需求错配</div>
+          <ul class="agent-bullets">
+            <li>部署"需求探针"：将"变现/挣钱/接单/迷茫"识别为高优先级深度咨询意图</li>
+            <li>自动关联"可视化变现路径图"：当前阶段→可尝试任务→所需资源→潜在收益</li>
+            <li>精准分流：技术问题→知识库；学习规划→具备深度权限的顾问</li>
+            <li>"三段式自适应协议"：共情锚定→MVP价值狙击→低摩擦力行动牵引</li>
+          </ul>
+        </div>
+        <div class="agent-card" style="border-color:rgba(16,185,129,0.3)">
+          <div class="agent-code" style="color:var(--green)">A03 · 互动激励</div>
+          <div class="agent-role">关系维护与信任构建引擎</div>
+          <div class="agent-problem">核心缺陷：话术机械，激励空泛，信任单点依赖</div>
+          <ul class="agent-bullets">
+            <li>社交信号三分类承接：问候/报到型 · 成就分享型 · 压力吐槽型</li>
+            <li>激励颗粒度细化："行为→勋章→权益"体系（连续3天打卡 → 解锁专属音效包）</li>
+            <li>识别高活跃用户，赋予"氛围组长/答疑小助手"非正式角色</li>
+            <li>精准激励：调取"相似处境学员"成功案例，而非空泛鸡汤</li>
+          </ul>
+        </div>
+        <div class="agent-card" style="border-color:rgba(239,68,68,0.3)">
+          <div class="agent-code" style="color:var(--red)">A04 · 风控预警</div>
+          <div class="agent-role">风险识别与异常处置引擎</div>
+          <div class="agent-problem">核心缺陷：风险响应滞后，直至退费才介入</div>
+          <ul class="agent-bullets">
+            <li>三维信号监控：行为信号（多端口重复提问）/ 言语信号（"搞不来"）/ 情绪信号</li>
+            <li>分级预警：黄色→自动推送学习简化方案；橙色→人工价值再锚定；红色→软着陆</li>
+            <li>合规哨兵：实时扫描"保证/100%/稳赚"等绝对承诺词，弹窗警示并提供替代话术</li>
+            <li>熔断机制：风险熵值超标时暂停标准流程，强制转人工复核</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="callout purple">
+        <div class="callout-text">🏗️ <strong>终极目标：</strong>从"流程驱动"升级为"状态驱动"。所有智能体共享同一套动态用户画像，基于实时情绪扳机与决策阻力，联动执行"<strong>共情→价值→行动</strong>"协议。每次服务交互，都是对这台精密作战机器的压力测试与数据燃料。</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── 靶点二：异议卸力 ── -->
+  <div class="target-section" id="t2">
+    <div class="page">
+      <div class="target-header">
+        <div class="target-num" style="background:rgba(245,158,11,0.15);color:var(--amber)">🛡️</div>
+        <div class="target-titles">
+          <div class="target-label" style="color:var(--amber)">靶点二</div>
+          <div class="target-name">标准化话术博弈卸力树</div>
+          <div class="target-diag"><strong>核心问题：</strong>异议处理停留在"反驳"层面，未完成"认知重构"。用户异议背后是<strong>安全感缺失、掌控感丧失、预期落差</strong>。<br><strong>进化方向：</strong>预设全场景卸力路径，核心在于重构认知、赋予选择、转移焦点。</div>
+        </div>
+      </div>
+
+      <div class="obj-grid">
+        <div class="obj-card" style="border-color:rgba(239,68,68,0.3)">
+          <div class="obj-trigger">💸 价格/经济压力</div>
+          <div class="obj-quote">"没钱" / "学费太高了"</div>
+          <div class="obj-steps">
+            <div class="obj-step">价值重构："这是投资一项能产生现金流的技能，这是相似学员的投入产出记录"</div>
+            <div class="obj-step">风险对冲：提供官方分期，或先参加"0成本实战营"，用实战收入来决定是否继续</div>
+            <div class="obj-step">方案拆解：支持分期，降低一次性支出门槛</div>
+          </div>
+        </div>
+        <div class="obj-card" style="border-color:rgba(245,158,11,0.3)">
+          <div class="obj-trigger">🤔 课程价值质疑</div>
+          <div class="obj-quote">"有用吗？" / "只有8节？"</div>
+          <div class="obj-steps">
+            <div class="obj-step">结构化澄清：是24节直播+60节录播+N节辅导的科学体系，这是课程表与资源清单</div>
+            <div class="obj-step">闭环展示：设计核心是"学完即用"，第8天开接单权限，形成"学习-赚钱"正循环</div>
+          </div>
+        </div>
+        <div class="obj-card" style="border-color:rgba(100,116,139,0.3)">
+          <div class="obj-trigger">⏳ 决策拖延</div>
+          <div class="obj-quote">"我再想想" / "等等再说"</div>
+          <div class="obj-steps">
+            <div class="obj-step">稀缺锁定：名额/优惠/资源基于本期锁定，明天释放</div>
+            <div class="obj-step">损失具象化：犹豫可能错失本期独家资源和高能量班级</div>
+          </div>
+        </div>
+        <div class="obj-card" style="border-color:rgba(139,92,246,0.3)">
+          <div class="obj-trigger">👥 家人不支持</div>
+          <div class="obj-quote">"家人/伴侣不同意"</div>
+          <div class="obj-steps">
+            <div class="obj-step">共情探寻：先搞清楚家人担心的是时间、费用、还是对行业不了解</div>
+            <div class="obj-step">分叉应对：担心费用→低成本试错方案；担心时间→每天30分钟专属计划；不了解→提供行业资料</div>
+            <div class="obj-step">绝不鼓励"悄悄学"——明确提示这会增加压力打折效果</div>
+          </div>
+        </div>
+        <div class="obj-card" style="border-color:rgba(16,185,129,0.3)">
+          <div class="obj-trigger">🙄 太麻烦/没时间</div>
+          <div class="obj-quote">"怕学不会" / "没时间"</div>
+          <div class="obj-steps">
+            <div class="obj-step">共情归一化："超过70%新手都有同感，这不是您个人的问题"</div>
+            <div class="obj-step">拆解最小化：今天只聚焦第一个小步骤，给"极简三步法"</div>
+            <div class="obj-step">重构价值："正因时间宝贵，才更怕试错。15分钟理清核心比自己摸索2小时高效5倍"</div>
+          </div>
+        </div>
+        <div class="obj-card" style="border-color:rgba(239,68,68,0.3)">
+          <div class="obj-trigger">😤 效果未达承诺</div>
+          <div class="obj-quote">"我还没赚到钱" / "被骗了"</div>
+          <div class="obj-steps">
+            <div class="obj-step">接纳情绪，定位责任："可能有些描述让您产生了过高期待，这部分我们需要反思"</div>
+            <div class="obj-step">澄清事实，区分节点："第二周接单"指权限开放，"月入万元"是顶尖学员积累数月后的结果</div>
+            <div class="obj-step">聚焦当下：退费解决不了根本需求，马上协调免费1v1诊断找到具体卡点</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── 靶点三：情绪扳机 ── -->
+  <div class="target-section" id="t3">
+    <div class="page">
+      <div class="target-header">
+        <div class="target-num" style="background:rgba(236,72,153,0.15);color:var(--pink)">💖</div>
+        <div class="target-titles">
+          <div class="target-label" style="color:var(--pink)">靶点三</div>
+          <div class="target-name">用户情绪扳机雷达 · Aha 时刻制造</div>
+          <div class="target-diag"><strong>核心洞察：</strong>情绪峰值是转化的临界点。用户的核心情绪需求是<strong>被看见、掌控感、独特性与希望感</strong>。Aha 时刻在于满足这些深层需求，而非推销。</div>
+        </div>
+      </div>
+
+      <div class="radar-grid">
+        <div class="radar-card" style="border-color:rgba(239,68,68,0.3)">
+          <div class="radar-type" style="background:rgba(239,68,68,0.1);color:var(--red)">🔴 高风险</div>
+          <div class="radar-trigger">挫败感扳机</div>
+          <div class="radar-scene">场景：提出具体问题（"怎么挣钱？"），得到通用流程化回复</div>
+          <div class="radar-action">立即标记"高优先级需求未满足"，触发深度咨询流程。必须承认问题具体性，提供可执行的下一步。</div>
+        </div>
+        <div class="radar-card" style="border-color:rgba(245,158,11,0.3)">
+          <div class="radar-type" style="background:rgba(245,158,11,0.1);color:var(--amber)">🟡 中风险</div>
+          <div class="radar-trigger">迷茫感扳机</div>
+          <div class="radar-scene">场景：在不同端口重复问基础问题；"不知道从哪开始"</div>
+          <div class="radar-action">判定为"路径迷失"，触发中枢推送个人专属任务看板或极简学习路径图。</div>
+          <div class="radar-example">"这是为您梳理的当前阶段核心任务，请查收"</div>
+        </div>
+        <div class="radar-card" style="border-color:rgba(16,185,129,0.3)">
+          <div class="radar-type" style="background:rgba(16,185,129,0.1);color:var(--green)">🟢 机会点</div>
+          <div class="radar-trigger">试探性互动扳机</div>
+          <div class="radar-scene">场景：发送"123" / "测试" / 轻松语气开场（"你的学员上线喽"）</div>
+          <div class="radar-action">识别为"低能量状态下的连接试探"。必须个性化承接，并导向一个有意义的轻量级行动。</div>
+          <div class="radar-example">"捕捉到一只上线的[昵称]同学！来得正好，刚整理了新手避坑指南，第一个发你？"</div>
+        </div>
+        <div class="radar-card" style="border-color:rgba(139,92,246,0.3)">
+          <div class="radar-type" style="background:rgba(139,92,246,0.1);color:var(--purple)">✨ Aha制造点</div>
+          <div class="radar-trigger">"被看见"与"成长感"扳机</div>
+          <div class="radar-scene">场景：展示细微进步、分享独特见解、帮助他人</div>
+          <div class="radar-action">给予具体而非泛泛的表扬，并关联其长期价值。</div>
+          <div class="radar-example">"您对医生三次出场情绪的分析非常精准，这种文本分析能力正是优质旁白的关键！"</div>
+        </div>
+        <div class="radar-card" style="border-color:rgba(59,130,246,0.3)">
+          <div class="radar-type" style="background:rgba(59,130,246,0.1);color:var(--blue)">✨ Aha制造点</div>
+          <div class="radar-trigger">"掌控感回归"扳机</div>
+          <div class="radar-scene">场景：用户面对复杂任务或流程感到焦虑时</div>
+          <div class="radar-action">提供清晰路径、选择权和进度可视化。</div>
+          <div class="radar-example">"根据您的优势，我从20个角色中预筛了3个最匹配的。这是您的专属进度地图，已完成80%。"</div>
+        </div>
+        <div class="radar-card" style="border-color:rgba(20,184,166,0.3)">
+          <div class="radar-type" style="background:rgba(20,184,166,0.1);color:var(--teal)">✨ Aha制造点</div>
+          <div class="radar-trigger">"归属感"与"价值感"扳机</div>
+          <div class="radar-scene">场景：用户表达对社群认可，或主动寻求参与机会</div>
+          <div class="radar-action">公开表扬其社群贡献，并立即提供参与路径。识别高活跃用户，赋予非正式领袖角色。</div>
+          <div class="radar-example">"我们正好有个旁白兴趣小组，您愿意来做第一批分享者吗？"</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── 靶点四：用户画像 ── -->
+  <div class="target-section" id="t4">
+    <div class="page">
+      <div class="target-header">
+        <div class="target-num" style="background:rgba(59,130,246,0.15);color:var(--blue)">🔬</div>
+        <div class="target-titles">
+          <div class="target-label" style="color:var(--blue)">靶点四</div>
+          <div class="target-name">高价值用户微观画像标签库</div>
+          <div class="target-diag"><strong>核心洞察：</strong>用户是多维度的，单一的ABCD分层不够用。需要识别影响服务成败的微观行为模式，用多维标签立体刻画，驱动精准策略。</div>
+        </div>
+      </div>
+
+      <div class="tag-section-title">· 按学习动机分类</div>
+      <div class="tag-cloud">
+        <span class="mtag" style="color:var(--red);border-color:rgba(239,68,68,0.3);background:rgba(239,68,68,0.06)">焦虑驱动-变现寻求者</span>
+        <span class="mtag" style="color:var(--green);border-color:rgba(16,185,129,0.3);background:rgba(16,185,129,0.06)">兴趣驱动-价值实现者</span>
+        <span class="mtag" style="color:var(--purple);border-color:rgba(139,92,246,0.3);background:rgba(139,92,246,0.06)">关系驱动-认可寻求者</span>
+        <span class="mtag" style="color:var(--blue);border-color:rgba(59,130,246,0.3);background:rgba(59,130,246,0.06)">路径探索-技术爱好者</span>
+      </div>
+
+      <div class="tag-section-title">· 按风险画像分类</div>
+      <div class="tag-cloud">
+        <span class="mtag" style="color:var(--amber);border-color:rgba(245,158,11,0.3);background:rgba(245,158,11,0.06)">挣扎线徘徊者</span>
+        <span class="mtag" style="color:var(--amber);border-color:rgba(245,158,11,0.3);background:rgba(245,158,11,0.06)">价值敏感者</span>
+        <span class="mtag" style="color:var(--red);border-color:rgba(239,68,68,0.3);background:rgba(239,68,68,0.06)">恐惧负债型</span>
+        <span class="mtag" style="color:var(--amber);border-color:rgba(245,158,11,0.3);background:rgba(245,158,11,0.06)">高机会成本恐惧者</span>
+        <span class="mtag" style="color:var(--red);border-color:rgba(239,68,68,0.3);background:rgba(239,68,68,0.06)">损失厌恶型</span>
+        <span class="mtag" style="color:var(--blue);border-color:rgba(59,130,246,0.3);background:rgba(59,130,246,0.06)">隐性冒险者</span>
+        <span class="mtag" style="color:var(--red);border-color:rgba(239,68,68,0.3);background:rgba(239,68,68,0.06)">低信任阈值者</span>
+      </div>
+
+      <div class="tag-section-title">· 按行为与决策风格分类</div>
+      <div class="tag-cloud">
+        <span class="mtag" style="color:var(--green);border-color:rgba(16,185,129,0.3);background:rgba(16,185,129,0.06)">高潜自驱领袖型</span>
+        <span class="mtag" style="color:var(--green);border-color:rgba(16,185,129,0.3);background:rgba(16,185,129,0.06)">高服从-高互助型</span>
+        <span class="mtag" style="color:var(--dim);border-color:var(--s3);background:var(--s2)">沉默配合型</span>
+        <span class="mtag" style="color:var(--dim);border-color:var(--s3);background:var(--s2)">礼貌拖延者</span>
+        <span class="mtag" style="color:var(--purple);border-color:rgba(139,92,246,0.3);background:rgba(139,92,246,0.06)">验证型从众者</span>
+        <span class="mtag" style="color:var(--blue);border-color:rgba(59,130,246,0.3);background:rgba(59,130,246,0.06)">清单驱动者</span>
+        <span class="mtag" style="color:var(--amber);border-color:rgba(245,158,11,0.3);background:rgba(245,158,11,0.06)">彩票型决策者</span>
+        <span class="mtag" style="color:var(--dim);border-color:var(--s3);background:var(--s2)">反馈延迟者</span>
+        <span class="mtag" style="color:var(--dim);border-color:var(--s3);background:var(--s2)">任务响应者</span>
+        <span class="mtag" style="color:var(--teal);border-color:rgba(20,184,166,0.3);background:rgba(20,184,166,0.06)">技术规避型</span>
+        <span class="mtag" style="color:var(--pink);border-color:rgba(236,72,153,0.3);background:rgba(236,72,153,0.06)">社群氛围引擎</span>
+      </div>
+
+      <div class="tag-section-title">· 高价值用户关键心理组合（最值得关注）</div>
+      <div class="agent-grid">
+        <div class="agent-card" style="border-color:rgba(245,158,11,0.3)">
+          <div class="agent-code" style="color:var(--amber)">高价值组合 A</div>
+          <div class="agent-role">高希望-低自信矛盾体</div>
+          <div class="agent-solution">渴望成功但极度不相信自己。需要具体的进步证据、精准的成就感制造，以及"掌控感回归"系列扳机激活。</div>
+        </div>
+        <div class="agent-card" style="border-color:rgba(16,185,129,0.3)">
+          <div class="agent-code" style="color:var(--green)">高价值组合 B</div>
+          <div class="agent-role">兴趣驱动+隐性领袖型</div>
+          <div class="agent-solution">因热爱而来，有自发组织他人的倾向。是社群守护者的候选人，赋予角色和特权即可完成绑定，复购率极高。</div>
+        </div>
+        <div class="agent-card" style="border-color:rgba(139,92,246,0.3)">
+          <div class="agent-code" style="color:var(--purple)">高风险组合 C</div>
+          <div class="agent-role">焦虑变现+损失厌恶型</div>
+          <div class="agent-solution">来自经济压力，且极度不愿意接受损失。如果预期管理失败，退费概率极高。需要早期就执行"预期校正协议"，避免后期爆雷。</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── 靶点五：产品预警 ── -->
+  <div class="target-section" id="t5">
+    <div class="page">
+      <div class="target-header">
+        <div class="target-num" style="background:rgba(239,68,68,0.15);color:var(--red)">📈</div>
+        <div class="target-titles">
+          <div class="target-label" style="color:var(--red)">靶点五</div>
+          <div class="target-name">产研客诉预警与产品优化指令</div>
+          <div class="target-diag"><strong>核心洞察：</strong>服务端的核心槽点根源于产品设计缺陷与流程断层。服务人员的"异议处理"本质上是在替产品的结构性问题买单。</div>
+        </div>
+      </div>
+
+      <div class="warn-list">
+        <div class="warn-item">
+          <div class="warn-badge" style="background:rgba(239,68,68,0.15);color:var(--red)">🔴 高危</div>
+          <div class="warn-content">
+            <div class="warn-title">销售承诺与产品交付断层</div>
+            <div class="warn-problem">预警："资源/保证接单/高收益"等销售话术与产品实际能力严重不匹配，是退费客诉首要根源</div>
+            <div class="warn-fix">→ 在CRM嵌入实时话术过滤器；→ 购买后首次登录强制展示"学习与收益关系说明"（用概率分布图）；→ 支付环节将关键条款显性化确认</div>
+          </div>
+        </div>
+        <div class="warn-item">
+          <div class="warn-badge" style="background:rgba(239,68,68,0.15);color:var(--red)">🔴 高危</div>
+          <div class="warn-content">
+            <div class="warn-title">学习路径与变现路径脱节</div>
+            <div class="warn-problem">预警：大量学员在课程中期仍得不到清晰变现答复，完课率骤降并引发集中客诉："学完了，然后呢？"</div>
+            <div class="warn-fix">→ 每个课程章节标注"本模块与哪些变现任务相关"并链接到接单入口；→ 开发"个人变现进度条"可视化；→ 建立"结业闯关任务"和内部任务平台</div>
+          </div>
+        </div>
+        <div class="warn-item">
+          <div class="warn-badge" style="background:rgba(239,68,68,0.15);color:var(--red)">🔴 高危</div>
+          <div class="warn-content">
+            <div class="warn-title">多平台体验割裂</div>
+            <div class="warn-problem">预警：学员需在喜马拉雅/腾讯会议/飞书/微信多平台跳转，信息分散，被标记"特殊关怀"仍收到通用营销信息</div>
+            <div class="warn-fix">→ 研发"统一学习中枢"聚合课程/直播/作业/沟通；→ 建立学员旅程视图，确保任何服务角色接入时都能看到完整历史</div>
+          </div>
+        </div>
+        <div class="warn-item">
+          <div class="warn-badge" style="background:rgba(245,158,11,0.15);color:var(--amber)">🟡 中危</div>
+          <div class="warn-content">
+            <div class="warn-title">产品刚性与碎片化时间矛盾</div>
+            <div class="warn-problem">预警：长周期重投入课程与用户碎片化高压生活节奏不兼容，完课率低、体验差</div>
+            <div class="warn-fix">→ 开发"异步核心课/微任务"体系（直播精华剪辑压缩30-40%）；→ "学习强度自选"：深度模式/核心掌握模式；→ "计划性中断"功能：客观原因暂停，服务期顺延</div>
+          </div>
+        </div>
+        <div class="warn-item">
+          <div class="warn-badge" style="background:rgba(245,158,11,0.15);color:var(--amber)">🟡 中危</div>
+          <div class="warn-content">
+            <div class="warn-title">工具链对移动端/新手不友好</div>
+            <div class="warn-problem">预警：核心操作（如AU录音、作业提交）对纯手机用户或技术新手门槛过高，导致早期挫败</div>
+            <div class="warn-fix">→ 所有教学关键动作必须提供"完整手机端替代方案"和视频指引；→ 开发"新手墙热力图"在频繁卡顿处设置智能挽留弹窗</div>
+          </div>
+        </div>
+        <div class="warn-item">
+          <div class="warn-badge" style="background:rgba(245,158,11,0.15);color:var(--amber)">🟡 中危</div>
+          <div class="warn-content">
+            <div class="warn-title">服务响应与真实需求错配</div>
+            <div class="warn-problem">预警："请按时上课"等标准化回复无法应对多样化实时诉求，是引发不满的常见导火索</div>
+            <div class="warn-fix">→ 为服务端配备"场景化应对知识库"；→ 针对"怎么挣钱"类问题，自动弹出变现路径导览和卸力话术树关键点</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── 靶点六：第二曲线 ── -->
+  <div class="target-section" id="t6" style="border-bottom:none">
+    <div class="page">
+      <div class="target-header">
+        <div class="target-num" style="background:rgba(16,185,129,0.15);color:var(--green)">🔭</div>
+        <div class="target-titles">
+          <div class="target-label" style="color:var(--green)">靶点六</div>
+          <div class="target-name">破圈生态与商业第二曲线蓝图</div>
+          <div class="target-diag"><strong>核心战略：</strong>从"技能培训"升级为"生态赋能平台"。现有用户的核心焦虑在少儿教育/大健康/财商领域存在高度镜像，可复用核心能力开辟新赛道。<br><strong>核心能力复用公式：</strong>识别用户焦虑 → 提供结构化路径 → 给予即时反馈 → 构建支持系统</div>
+        </div>
+      </div>
+
+      <div class="curve-grid">
+        <div class="curve-card" style="border-color:rgba(245,158,11,0.3)">
+          <div class="curve-icon">👴</div>
+          <div class="curve-name">银发经济·"岁月留声"</div>
+          <div class="curve-target">目标用户：退休教师/干部，有阅历有时间，寻求价值实现</div>
+          <div class="curve-value">价值主张：从"技能培训"升级为"精神养老"与"情感价值变现"</div>
+          <div class="curve-products">
+            <div class="curve-product">🎙️ "经典诵读与人文旁白"专项课</div>
+            <div class="curve-product">📖 "个人有声回忆录"定制服务</div>
+            <div class="curve-product">🌟 "银发好声音"经纪服务→对接出版社/文旅</div>
+          </div>
+        </div>
+        <div class="curve-card" style="border-color:rgba(236,72,153,0.3)">
+          <div class="curve-icon">👨‍👩‍👧</div>
+          <div class="curve-name">家庭场景·"亲子共创"</div>
+          <div class="curve-target">目标用户：有孩家庭、关注亲子关系的成人学员</div>
+          <div class="curve-value">价值主张：将个人技能学习延伸至家庭情感互动与儿童素质教育</div>
+          <div class="curve-products">
+            <div class="curve-product">🎭 "亲子故事配音工作坊"</div>
+            <div class="curve-product">🎭 "少儿口才与声音戏剧"课程</div>
+            <div class="curve-product">🎁 "家庭节日有声贺卡"定制工具</div>
+          </div>
+        </div>
+        <div class="curve-card" style="border-color:rgba(20,184,166,0.3)">
+          <div class="curve-icon">🧘</div>
+          <div class="curve-name">大健康·"舒心诵读"</div>
+          <div class="curve-target">目标用户：关注身心健康、有减压需求的白领及中老年</div>
+          <div class="curve-value">价值主张：切入大健康赛道，声音培训与身心健康服务结合</div>
+          <div class="curve-products">
+            <div class="curve-product">🎙️ "正念冥想引导词录制"课程</div>
+            <div class="curve-product">🫁 "声音养生"工作坊（腹式呼吸/诵读）</div>
+            <div class="curve-product">🤝 与健康APP/线下机构合作输送内容</div>
+          </div>
+        </div>
+        <div class="curve-card" style="border-color:rgba(139,92,246,0.3)">
+          <div class="curve-icon">🚀</div>
+          <div class="curve-name">个体创业·"一人工作室"</div>
+          <div class="curve-target">目标用户：有强烈变现诉求、希望建立个人事业的学员</div>
+          <div class="curve-value">价值主张：从"培训学员"转型为"赋能小微创业者"</div>
+          <div class="curve-products">
+            <div class="curve-product">💼 "个人声音品牌孵化"高阶课程</div>
+            <div class="curve-product">🤖 "AI+声音"个体户工具箱</div>
+            <div class="curve-product">📦 "微任务"接单平台（5分钟旁白/单句配音）</div>
+          </div>
+        </div>
+        <div class="curve-card" style="border-color:rgba(59,130,246,0.3)">
+          <div class="curve-icon">🏢</div>
+          <div class="curve-name">B端赋能·企业内训线</div>
+          <div class="curve-target">目标用户：企业市场部/新媒体部门/培训经理</div>
+          <div class="curve-value">价值主张：将C端验证的教学体系改造为B端AI内训方案</div>
+          <div class="curve-products">
+            <div class="curve-product">📊 "AI短视频内训方案"企业定制版</div>
+            <div class="curve-product">🎓 "声音品牌"企业讲师培育</div>
+          </div>
+        </div>
+        <div class="curve-card" style="border-color:rgba(245,158,11,0.3)">
+          <div class="curve-icon">🌐</div>
+          <div class="curve-name">平台化升级·工具+交易闭环</div>
+          <div class="curve-target">目标：从培训抽佣转向平台佣金，从线性收入到网络效应</div>
+          <div class="curve-value">价值主张：构建"工具+内容市场+交易"平台；总部提供品牌与中台资源</div>
+          <div class="curve-products">
+            <div class="curve-product">⚙️ 整合轻量AI创作工具</div>
+            <div class="curve-product">🏙️ "城市合伙人/行业工作室"加盟体系</div>
+            <div class="curve-product">🎬 "制片人训练营/团队管理课"高阶线</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="callout purple" style="margin-top:32px">
+        <div class="callout-text">🔮 <strong>终极战略逻辑：</strong>所有第二曲线共享同一套底层方法论——<strong>识别焦虑 → 结构化路径 → 即时正反馈 → 支持系统</strong>。这套逻辑在声音培训业务中已经经过数百名用户的压力验证，可以以极低的迁徙成本复制到少儿/大健康/财商等任何具有"焦虑的务实者"用户群体的市场。</div>
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    <a href="index.html" style="color:var(--purple);text-decoration:none;font-size:14px;font-weight:600">← 返回首页</a>
+    <div style="margin-top:12px">大卫智能体团队 1.0 · 全局进化红头文件 GEV-2024-001 · 基于 8 份归档迭代提炼 · 立即生效 © 2026</div>
+  </footer>
+
+  <script>
+    // 高亮当前靶点导航
+    const sections = document.querySelectorAll('.target-section');
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(e => {
+        if(e.isIntersecting){
+          document.querySelectorAll('.tpill').forEach(p => p.classList.remove('active'));
+          const id = e.target.id;
+          const pill = document.querySelector(`.tpill[href="#${id}"]`);
+          if(pill) pill.classList.add('active');
+        }
+      });
+    }, {rootMargin:'-30% 0px -60% 0px'});
+    sections.forEach(s => observer.observe(s));
+  </script>
+</body>
+</html>

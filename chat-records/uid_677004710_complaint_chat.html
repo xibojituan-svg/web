@@ -1,0 +1,1735 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chat Log</title>
+    <style>
+        body { font-family: 'PingFang SC', 'Microsoft YaHei', sans-serif; background-color: #f5f5f5; padding: 20px; }
+        .chat-container { max-width: 800px; margin: 0 auto; background: white; padding: 20px; border-radius: 10px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); }
+        .message { margin-bottom: 20px; display: flex; flex-direction: column; }
+        .user-A { align-items: flex-end; }
+        .user-B { align-items: flex-start; }
+        .header { font-size: 12px; color: #999; margin-bottom: 5px; }
+        .bubble { max-width: 70%; padding: 12px 16px; border-radius: 8px; font-size: 14px; line-height: 1.5; word-wrap: break-word; }
+        .user-A .bubble { background-color: #95ec69; color: #000; border-top-right-radius: 0; }
+        .user-B .bubble { background-color: #f0f0f0; color: #000; border-top-left-radius: 0; }
+    </style>
+</head>
+<body>
+    <div class="chat-container">
+    <h2>外诉高危投诉 - 案件还原</h2>
+
+        <div class="message user-B">
+            <div class="header">260306黑猫（不是警长） | 2026-03-06 12:05:32</div>
+            <div class="bubble">我已经添加了你，现在我们可以开始聊天了。</div>
+        </div>
+
+        <div class="message user-B">
+            <div class="header">芒果桃心6(王娜) | 2026-03-06 12:05:36</div>
+            <div class="bubble">你好呀~ 黑猫（不是警长）<br>👏欢迎加入【喜播官方有声演播招募营】<br>👑我是官方招募负责人S级招募官【芒果】班班  助你顺利通过招募<br>🌟5天免费招募营，你的收获：<br>1. 二十多种有声兼职岗位<br>2. 按时参加官方直播课，发试音单子<br>3. 学习美化声音、百变声线等兼职必备技能<br>4. 怎么获得官方接书资源<br>5.长期稳定的兼职机会<br>(学姐是真人哈～学员比较多所以回复慢，请耐心等待)</div>
+        </div>
+
+        <div class="message user-B">
+            <div class="header">芒果桃心6(王娜) | 2026-03-06 12:05:48</div>
+            <div class="bubble">那学姐重申一下，招募说明会一定要来，否则后续就没有办法接单了。会讲招募规则、兼职规则，那参加过后呢才能把你的档案入库，后续才能接单。</div>
+        </div>
+
+        <div class="message user-B">
+            <div class="header">芒果桃心6(王娜) | 2026-03-06 12:05:54</div>
+            <div class="bubble">✅参加 8号中午 12：00官方 【招募说明会】了解招募流程、快速兼职接单~缺席无法接单~ 点击预约链接：</div>
+        </div>
+
+        <div class="message user-B">
+            <div class="header">芒果桃心6(王娜) | 2026-03-06 12:06:10</div>
+            <div class="bubble">预约好发我：已预约<br>✅咱们来看官方时薪90-300元的试音单  学姐给你做官方【 声音鉴定】</div>
+        </div>
+
+        <div class="message user-B">
+            <div class="header">芒果桃心6(王娜) | 2026-03-06 12:06:27</div>
+            <div class="bubble">这是一条引用/回复消息：<br>"芒果【筱斐团队】：<br>[小程序]"<br>------<br>预约了吗？直接点一下就可以了</div>
+        </div>
+
+        <div class="message user-B">
+            <div class="header">芒果桃心6(王娜) | 2026-03-06 12:07:00</div>
+            <div class="bubble">截图发我一下 下午发奖励的哦</div>
+        </div>
+
+        <div class="message user-B">
+            <div class="header">260306黑猫（不是警长） | 2026-03-06 12:07:00</div>
+            <div class="bubble">能直接开始兼职配音么？之前有过相关经验</div>
+        </div>
+
+        <div class="message user-B">
+            <div class="header">芒果桃心6(王娜) | 2026-03-06 12:07:07</div>
+            <div class="bubble">下午发奖励的哦</div>
+        </div>
+
+        <div class="message user-B">
+            <div class="header">芒果桃心6(王娜) | 2026-03-06 12:07:22</div>
+            <div class="bubble">这是一条引用/回复消息：<br>"黑猫（不是警长）：<br>能直接开始兼职配音么？之前有过相关经验"<br>------<br>8号中午招募说明会学姐会详细讲的哈 这也是其他同学们关心的问题  会告诉大家怎么做哈</div>
+        </div>
+
+        <div class="message user-B">
+            <div class="header">芒果桃心6(王娜) | 2026-03-06 12:07:35</div>
+            <div class="bubble">你发我   已预约   我统计一下</div>
+        </div>
+
+        <div class="message user-B">
+            <div class="header">芒果桃心6(王娜) | 2026-03-06 12:08:18</div>
+            <div class="bubble">记得预约好发我  已预约  亲爱的</div>
+        </div>
+
+        <div class="message user-B">
+            <div class="header">芒果桃心6(王娜) | 2026-03-06 12:08:50</div>
+            <div class="bubble">那学姐给你发的这个呢是官方声音鉴定，录好了以后分享给我哈，然后呢我会提交官方来审核。</div>
+        </div>
+
+        <div class="message user-B">
+            <div class="header">芒果桃心6(王娜) | 2026-03-06 12:08:55</div>
+            <div class="bubble">完成  私信回复我：111<br>领取奖励  🌹学姐已经抱你进官方群~录好分享到群～<br>如果不方便录制 也告诉学姐一下哈</div>
+        </div>
+
+        <div class="message user-B">
+            <div class="header">芒果桃心6(王娜) | 2026-03-06 12:09:31</div>
+            <div class="bubble">这是一条引用/回复消息：<br>"芒果【筱斐团队】：<br>[小程序]"<br>------<br>大概几点完成？一两分钟就可以录好了</div>
+        </div>
+
+        <div class="message user-B">
+            <div class="header">芒果桃心6(王娜) | 2026-03-06 12:25:13</div>
+            <div class="bubble">这是一条引用/回复消息：<br>"芒果【筱斐团队】：<br>[小程序]"<br>------<br>大概几点完成声音鉴定？  不要错过考核哦  一两分钟就可以录好了</div>
+        </div>
+
+        <div class="message user-B">
+            <div class="header">260306黑猫（不是警长） | 2026-03-06 12:43:23</div>
+            <div class="bubble">完成了</div>
+        </div>
+
+        <div class="message user-B">
+            <div class="header">芒果桃心6(王娜) | 2026-03-06 12:43:58</div>
+            <div class="bubble">发群里一份哈  发完回复我  111</div>
+        </div>
+
+        <div class="message user-B">
+            <div class="header">260306黑猫（不是警长） | 2026-03-06 12:45:21</div>
+            <div class="bubble">111</div>
+        </div>
+
+        <div class="message user-B">
+            <div class="header">芒果桃心6(王娜) | 2026-03-06 12:45:28</div>
+            <div class="bubble">嗯呢 学姐统计好  就给你发奖励哈 重要消息 我会@你的~</div>
+        </div>
+
+        <div class="message user-B">
+            <div class="header">芒果桃心6(王娜) | 2026-03-06 12:45:44</div>
+            <div class="bubble">，因为咱们的班级人还没齐哈，学姐还在给大家收集声音鉴定，那咱们呢可以先去忙，接下来呢就可以耐心的等参加我们的直播班会就好啦。嗯，多留意班级消息哦，重要的我都会通知的。</div>
+        </div>
+
+        <div class="message user-B">
+            <div class="header">芒果桃心6(王娜) | 2026-03-06 12:45:57</div>
+            <div class="bubble">官方招募课能参加吧？ 上面学姐为你准备的官方时薪单 时薪90-300元哦<br>✅ 晚点发奖励  记得留意哦</div>
+        </div>
+
+        <div class="message user-B">
+            <div class="header">芒果桃心6(王娜) | 2026-03-06 13:06:28</div>
+            <div class="bubble">这是一条引用/回复消息：<br>"芒果【筱斐团队】：<br>官方招募课能参加吧？ 上面学姐为你准备的官方时薪单 时薪90-300元哦<br>✅ 晚点发奖励  记得留意哦"<br>------<br>官方招募课能参加吧？</div>
+        </div>
+
+        <div class="message user-B">
+            <div class="header">260306黑猫（不是警长） | 2026-03-06 13:19:43</div>
+            <div class="bubble">可以</div>
+        </div>
+
+        <div class="message user-B">
+            <div class="header">芒果桃心6(王娜) | 2026-03-06 13:37:50</div>
+            <div class="bubble">下午发奖励 留意哈</div>
+        </div>
+
+        <div class="message user-B">
+            <div class="header">芒果桃心6(王娜) | 2026-03-06 15:19:17</div>
+            <div class="bubble">群里回复一下哈</div>
+        </div>
+
+        <div class="message user-B">
+            <div class="header">芒果桃心6(王娜) | 2026-03-06 15:19:20</div>
+            <div class="bubble">❤️我已完成声音鉴定 🎁收到官方见面礼<br>❤️期待【明天晚上20:00图文班会+有奖问答】</div>
+        </div>
+
+        <div class="message user-B">
+            <div class="header">芒果桃心6(王娜) | 2026-03-06 17:30:42</div>
+            <div class="bubble">学习一下班级的开班讲解哈~了解一下官方平台 有助于以后兼职<br>✌ 学姐发的奖励  记得留意哈</div>
+        </div>
+
+        <div class="message user-B">
+            <div class="header">芒果桃心6(王娜) | 2026-03-06 18:52:42</div>
+            <div class="bubble">♥认准头像带有【@喜播】标识的【芒果】学姐<br>其他人发的链接和消息，不要去点，避免上当受骗和产生财产损失哦~<br>♥这个很重要哦~</div>
+        </div>
+
+        <div class="message user-B">
+            <div class="header">芒果桃心6(王娜) | 2026-03-06 21:18:31</div>
+            <div class="bubble">宝子~ 来玩一下官方声音价值测试 预估声音兼职前景 ✍️好玩哦 【测试截图可以发学姐】<br>今天第一天入营，可以适应一下哈～<br>声音鉴定的报告不要着急哦~~咱们班还有同学没提交呢 学姐明天统一提交至官方。<br>早点休息哦[月亮]祝你的梦中充满了幸福和温馨～晚安[月亮]好梦～</div>
+        </div>
+
+        <div class="message user-B">
+            <div class="header">芒果桃心6(王娜) | 2026-03-07 08:02:35</div>
+            <div class="bubble">好呀~记得练习基本功哦✌️语速越慢越好  中午我会发奖励 多留意</div>
+        </div>
+
+        <div class="message user-B">
+            <div class="header">芒果桃心6(王娜) | 2026-03-07 10:09:57</div>
+            <div class="bubble">学习一下班级的开班讲解哈~了解一下官方平台 有助于以后兼职<br>✌ 下午学姐发奖励  记得留意哈</div>
+        </div>
+
+        <div class="message user-B">
+            <div class="header">芒果桃心6(王娜) | 2026-03-07 12:10:07</div>
+            <div class="bubble">✌️知道群里发的怎么录吗？ 随时问学姐<br>🎉用手机自带录音功能录音  文件名   单名+微信昵称</div>
+        </div>
+
+        <div class="message user-B">
+            <div class="header">芒果桃心6(王娜) | 2026-03-07 15:30:43</div>
+            <div class="bubble">亲爱的，咱们声音鉴定已经完成，学姐陆续提交官方。 学姐给你一个额外加分项～<br>目前有声行业最受欢迎的赛道之一——悬疑小作业～<br>✌️完成后分享到群里就好哈～<br>😊 声音鉴定报告官方统一审核，学姐拿到后第一时间来给到你哦～😘</div>
+        </div>
+
+        <div class="message user-B">
+            <div class="header">芒果桃心6(王娜) | 2026-03-07 19:51:25</div>
+            <div class="bubble">亲爱的，看过来哦[勾引]10分钟后群里会进行图文班会，为了尽早兼职先熟悉官方平台哦[加油][加油][加油]<br>还有有奖问答哦～ 答案在上面小程序里哈  学姐会赠送价值299的声音美化课程哦～</div>
+        </div>
+
+        <div class="message user-B">
+            <div class="header">芒果桃心6(王娜) | 2026-03-07 20:02:10</div>
+            <div class="bubble">群里有奖问答了  ✌️参与就赠送价值299的声音美化课程哦</div>
+        </div>
+
+        <div class="message user-B">
+            <div class="header">芒果桃心6(王娜) | 2026-03-07 21:36:07</div>
+            <div class="bubble">宝子~ 😁【按时上课 学姐每天都有奖励】 明天10：30的商单哈✌ 早点休息哦～晚安[月亮]好梦～</div>
+        </div>
+
+        <div class="message user-B">
+            <div class="header">芒果桃心6(王娜) | 2026-03-08 08:04:35</div>
+            <div class="bubble">⏰上午好呀☀️ 群里发早功了 练习哈【绕口令需要语速慢  越慢越好】<br>留意10点多的商单哈</div>
+        </div>
+
+        <div class="message user-B">
+            <div class="header">芒果桃心6(王娜) | 2026-03-08 08:59:40</div>
+            <div class="bubble">🎉亲爱的，这是你完成的声音鉴定吗？  是的话   回复【777】 为你建立「主播档案」</div>
+        </div>
+
+        <div class="message user-B">
+            <div class="header">芒果桃心6(王娜) | 2026-03-08 09:15:08</div>
+            <div class="bubble">回复  777   不然弄错会影响到你的考核结果哦～<br>因为中午直播课结束后 学姐就会发初审通知了<br>❤声音鉴定如果搞错了可能第一次初审 你就不能通过啦~~~</div>
+        </div>
+
+        <div class="message user-B">
+            <div class="header">芒果桃心6(王娜) | 2026-03-08 09:31:01</div>
+            <div class="bubble">抓紧回复 777  [庆祝]你已经通过预审[庆祝]不然名额被别人抢占了</div>
+        </div>
+
+        <div class="message user-B">
+            <div class="header">芒果桃心6(王娜) | 2026-03-08 09:47:01</div>
+            <div class="bubble">宝子，是上班在忙吗？ 不忙回复一下学姐  777  哦~~<br>不然你的主播档案 容易出错 ~~</div>
+        </div>
+
+        <div class="message user-B">
+            <div class="header">芒果桃心6(王娜) | 2026-03-08 09:56:53</div>
+            <div class="bubble">宝子 ~上面的声音鉴定  是不是你的哦？  因为下午学姐要给你做一对一的点评的<br>别整岔了再~<br>确认是的 回复我：777</div>
+        </div>
+
+        <div class="message user-B">
+            <div class="header">芒果桃心6(王娜) | 2026-03-08 10:07:07</div>
+            <div class="bubble">12：00能准时参加吧？～ 奖励 🉐【哪吒同款角色音视频教程】 【有声演播变现方式手册】听课🉐🎁 结营后将获得有声资料大礼包一份哦✌ 争取帮你早日上手接单，期待不？</div>
+        </div>
+
+        <div class="message user-B">
+            <div class="header">芒果桃心6(王娜) | 2026-03-08 10:12:40</div>
+            <div class="bubble">亲爱的，群里刚发的✌~参加中午的直播课才能录～<br>不知道怎么录不用担心哈   一会中午课上会教你怎么录的</div>
+        </div>
+
+        <div class="message user-B">
+            <div class="header">芒果桃心6(王娜) | 2026-03-08 11:03:40</div>
+            <div class="bubble">亲爱的~ 定好闹钟 准时参加 12：00咱们招募课咯  今天奖励可多呢~<br>🎁 到课送《有声演播变现方式手册》，凭口令领取《少男少女角色音》视频课<br>仅限直播间领取✌<br>✌【12：00没有来听课   会给你打电话  催你上课哈</div>
+        </div>
+
+        <div class="message user-B">
+            <div class="header">芒果桃心6(王娜) | 2026-03-08 11:31:27</div>
+            <div class="bubble">亲爱的 ~空了做一下实名认证，试音和工资结算都是通过这个账号打给你的哈～<br>【未成年不用认证】✌<br>【步骤】喜马拉雅首页 ：点 我----头像----编辑资料----申请认证【一会上课 我也会讲的</div>
+        </div>
+
+        <div class="message user-B">
+            <div class="header">芒果桃心6(王娜) | 2026-03-08 11:43:26</div>
+            <div class="bubble">上课 不要问口令✌️ 师姐会讲到的  认真听课 【不要离开  看一下上面的截图  后台全程监控】</div>
+        </div>
+
+        <div class="message user-B">
+            <div class="header">芒果桃心6(王娜) | 2026-03-08 11:49:24</div>
+            <div class="bubble">直播课开始咯～ 直接点上面链接✌️<br>讲怎么赚钱、怎么接单～兼职规则</div>
+        </div>
+
+        <div class="message user-B">
+            <div class="header">芒果桃心6(王娜) | 2026-03-08 11:53:22</div>
+            <div class="bubble">📢开播啦~ 微信点击上面链接<br>✌️分享不了直播间的 同学  系统版本问题  就安心听课哈</div>
+        </div>
+
+        <div class="message user-B">
+            <div class="header">芒果桃心6(王娜) | 2026-03-08 11:57:52</div>
+            <div class="bubble">哈喽，找到直播间了吗？～学姐开始讲 怎么获得每小时90-300的时薪单了，✊快跟上还没进来呀？</div>
+        </div>
+
+        <div class="message user-B">
+            <div class="header">芒果桃心6(王娜) | 2026-03-08 11:58:05</div>
+            <div class="bubble">认真听课✌️没有参加直播课的同学就意味着淘汰</div>
+        </div>
+
+        <div class="message user-B">
+            <div class="header">芒果桃心6(王娜) | 2026-03-08 12:00:08</div>
+            <div class="bubble">给到打卡口令，作业考核获得1对1的点评  点击上面的链接上课</div>
+        </div>
+
+        <div class="message user-B">
+            <div class="header">芒果桃心6(王娜) | 2026-03-08 12:02:38</div>
+            <div class="bubble">官方后台查到你没在  快来  快进～上课链接</div>
+        </div>
+
+        <div class="message user-B">
+            <div class="header">芒果桃心6(王娜) | 2026-03-08 12:05:56</div>
+            <div class="bubble">敲重点❤学姐会公布  口令私发我哈   才可以解锁接单+作业点评权限✌<br>我现在录书综合收入大概在1.5W左右   23年10月入行3个月后转全职，在喜马全职做了两年多了哈<br>直播开始了学姐就不能回复消息了哈，有问题留言，下课回复哈～</div>
+        </div>
+
+        <div class="message user-B">
+            <div class="header">芒果桃心6(王娜) | 2026-03-08 12:09:04</div>
+            <div class="bubble">♥直播界面，点右上角三个点~点浮窗~<br>不影响听课，电脑也可以看</div>
+        </div>
+
+        <div class="message user-B">
+            <div class="header">芒果桃心6(王娜) | 2026-03-08 12:20:33</div>
+            <div class="bubble">我刚发你的商单要怎么录制？来，认真听我说，手机都有录音机的功能</div>
+        </div>
+
+        <div class="message user-B">
+            <div class="header">芒果桃心6(王娜) | 2026-03-08 12:30:52</div>
+            <div class="bubble">下课记得发我口令   找我领取 ♥奖励🉐【哪吒同款角色音视频教程】</div>
+        </div>
+
+        <div class="message user-B">
+            <div class="header">芒果桃心6(王娜) | 2026-03-08 12:31:47</div>
+            <div class="bubble">我是学姐的助理  学姐让我提醒你来上课  快 官方监控到你了</div>
+        </div>
+
+        <div class="message user-B">
+            <div class="header">芒果桃心6(王娜) | 2026-03-08 12:36:17</div>
+            <div class="bubble">快进直播间   今天直播间来官方监考官了  快进来</div>
+        </div>
+
+        <div class="message user-B">
+            <div class="header">芒果桃心6(王娜) | 2026-03-08 12:48:14</div>
+            <div class="bubble">后面要讲到口令了，✌️认真听哦 记得私发口令给我哦~<br>没有口令就没有官方接单权限喽</div>
+        </div>
+
+        <div class="message user-B">
+            <div class="header">芒果桃心6(王娜) | 2026-03-08 12:54:02</div>
+            <div class="bubble">快进来听课[疑问]你的声音已经通过审核[庆祝]错过损失大了</div>
+        </div>
+
+        <div class="message user-B">
+            <div class="header">芒果桃心6(王娜) | 2026-03-08 12:55:44</div>
+            <div class="bubble">离开直播间后台有记录，别错过口令影响考核  实在有事要用手机，点击开启浮窗，不耽误听课</div>
+        </div>
+
+        <div class="message user-B">
+            <div class="header">芒果桃心6(王娜) | 2026-03-08 13:03:28</div>
+            <div class="bubble">别离开  讲方言单子了  💰薪资更香哦</div>
+        </div>
+
+        <div class="message user-B">
+            <div class="header">芒果桃心6(王娜) | 2026-03-08 13:04:13</div>
+            <div class="bubble">官方后台查到你没在  快来  快进～上课链接</div>
+        </div>
+
+        <div class="message user-B">
+            <div class="header">芒果桃心6(王娜) | 2026-03-08 13:08:18</div>
+            <div class="bubble">有声市场80-90%的版权书都在喜马，没有版权录制最高会罚款25W，学姐马上讲怎么获得版权了，记笔记哈～</div>
+        </div>
+
+        <div class="message user-B">
+            <div class="header">芒果桃心6(王娜) | 2026-03-08 13:18:27</div>
+            <div class="bubble">想加入有声的话   记得留意一下记笔记哈</div>
+        </div>
+
+        <div class="message user-B">
+            <div class="header">芒果桃心6(王娜) | 2026-03-08 13:20:56</div>
+            <div class="bubble">马上公布口令了 不要错过哦  ✅私发我领取【哪吒同款角色音视频教程哦】✌</div>
+        </div>
+
+        <div class="message user-B">
+            <div class="header">芒果桃心6(王娜) | 2026-03-08 13:22:10</div>
+            <div class="bubble">快进直播间   今天直播间来官方监考官了  快进来</div>
+        </div>
+
+        <div class="message user-B">
+            <div class="header">芒果桃心6(王娜) | 2026-03-08 13:27:17</div>
+            <div class="bubble">快进来听课[疑问]你的声音已经通过审核[庆祝]错过损失大了</div>
+        </div>
+
+        <div class="message user-B">
+            <div class="header">芒果桃心6(王娜) | 2026-03-08 13:29:17</div>
+            <div class="bubble">坚持就是兼职的胜利  不然错过损失大了 ♥奖励🉐【哪吒同款角色音视频教程】</div>
+        </div>
+
+        <div class="message user-B">
+            <div class="header">芒果桃心6(王娜) | 2026-03-08 13:38:27</div>
+            <div class="bubble">马上公布口令了 不要错过哦  ✅</div>
+        </div>
+
+        <div class="message user-B">
+            <div class="header">芒果桃心6(王娜) | 2026-03-08 13:44:14</div>
+            <div class="bubble">亲爱的，中午招募课结束了，学姐没收到你的「口令」，咱们是没有听完，还是打算放弃本次招募资格？<br>如果咱们想要继续来学习，做兼职副业的话，务必回复我「继续学习」～学姐会调整你的学习安排</div>
+        </div>
+
+        <div class="message user-B">
+            <div class="header">260306黑猫（不是警长） | 2026-03-08 13:44:35</div>
+            <div class="bubble">继续学习</div>
+        </div>
+
+        <div class="message user-B">
+            <div class="header">芒果桃心6(王娜) | 2026-03-08 13:46:51</div>
+            <div class="bubble">太棒啦！看到你愿意继续投入学习，真的特别为你开心～你的声音鉴定作业我们已经收到啦！</div>
+        </div>
+
+        <div class="message user-B">
+            <div class="header">芒果桃心6(王娜) | 2026-03-08 13:46:56</div>
+            <div class="bubble">后续我会根据你的学习进度，及时为你安排下一步的练习和反馈，一起加油冲榜变现！</div>
+        </div>
+
+        <div class="message user-B">
+            <div class="header">芒果桃心6(王娜) | 2026-03-08 13:52:12</div>
+            <div class="bubble">中午上课了吗?五个字的口令发我哦 有奖励的[礼物]</div>
+        </div>
+
+        <div class="message user-B">
+            <div class="header">芒果桃心6(王娜) | 2026-03-08 13:56:13</div>
+            <div class="bubble">记得 快去录商单  群里发了录制方法 去看一下<br>晚上8点多奖励 有口令的同学 手机时薪单子哈 加油</div>
+        </div>
+
+        <div class="message user-B">
+            <div class="header">芒果桃心6(王娜) | 2026-03-08 14:22:02</div>
+            <div class="bubble">✌你的官方声音鉴定报告来啦  学姐正在逐个发放  稍等哈</div>
+        </div>
+
+        <div class="message user-B">
+            <div class="header">芒果桃心6(王娜) | 2026-03-08 14:34:27</div>
+            <div class="bubble">🎉恭喜你   通过了官方老师初审[烟花] 考核官对你的初次表现还是比较认可的<br>声线：御姐音，气势足 说话很干练清爽，声音底子不错哦，演播自然有感情，抑扬顿挫把握不错；经过演播技巧培训，可以演绎女王音哦。<br>预测适合赛道：社科文史哲类、都市言情类、古代宫廷类</div>
+        </div>
+
+        <div class="message user-B">
+            <div class="header">芒果桃心6(王娜) | 2026-03-08 14:34:33</div>
+            <div class="bubble">音域很宽，可塑性是很强的，声音饱满，给人一种很温暖的感觉 ，这种音色经过系统学习可以尝试儿童类文学（这个赛道前景很好哦！喜马在重点推）<br>学姐也听了你的录音，我给你点建议哈～</div>
+        </div>
+
+        <div class="message user-B">
+            <div class="header">芒果桃心6(王娜) | 2026-03-08 14:35:40</div>
+            <div class="bubble">来，学姐给你点建议。首先咱们的音色底子很不错，因为呢天生的御姐音其实挺少的。那我们之后学了基本功提打挺松以后，坚持练会让你的声音更加清晰，更加饱满。，包括会有一些气口，这个也是基本功的练习。嗯，即便只是短短的五天时间，只要你坚持跟着练，，我们每天早上八点钟都会有那个基本功，你会发现自己的整个声音状态会不一样哈。</div>
+        </div>
+
+        <div class="message user-B">
+            <div class="header">芒果桃心6(王娜) | 2026-03-08 14:35:48</div>
+            <div class="bubble">亲爱的 咱们做兼职的话，每天能抽出来几个小时的碎片化时间？ 今天是第一天听到你的声音  感觉还不错✌️</div>
+        </div>
+
+        <div class="message user-B">
+            <div class="header">260306黑猫（不是警长） | 2026-03-08 14:36:20</div>
+            <div class="bubble">每天可以抽出时间兼职的</div>
+        </div>
+
+        <div class="message user-B">
+            <div class="header">芒果桃心6(王娜) | 2026-03-08 14:39:15</div>
+            <div class="bubble">每天能抽出时间来学习和练习，这对你进入有声行业特别重要。咱们先把体验营的节奏跟上，打好基本功，后面机会自然会多起来。</div>
+        </div>
+
+        <div class="message user-B">
+            <div class="header">芒果桃心6(王娜) | 2026-03-08 14:40:53</div>
+            <div class="bubble">嗯嗯  能考察这个行业 你眼光不错 有声确实没有想象的那么不接地气  只是有了信息差而已 你这几天要借着官方这次机会 可要把行业了解全面了~你的声音已经通过官方审核 是不是更有信心啦？</div>
+        </div>
+
+        <div class="message user-B">
+            <div class="header">芒果桃心6(王娜) | 2026-03-08 14:41:00</div>
+            <div class="bubble">对了 明天12点直播课能来吧？不然这么好的声音苗子就浪费了 只要你认真跟着 学姐肯定好好带你 ~其实进入一个行业  引路人很重要对不对~</div>
+        </div>
+
+        <div class="message user-B">
+            <div class="header">芒果桃心6(王娜) | 2026-03-08 14:46:15</div>
+            <div class="bubble">记得收藏，每天跟着练习5分钟[拥抱] 对于改善口腔状态、吐字发音饱满 效果会特别好哦～[耶][耶][耶]</div>
+        </div>
+
+        <div class="message user-B">
+            <div class="header">芒果桃心6(王娜) | 2026-03-08 15:07:46</div>
+            <div class="bubble">亲爱的，官方声音鉴定报告已经出炉🔥，学姐没有收到你中午的打卡「口令」。<br>没有口令没法解锁声音鉴定报告，一会儿顺序到你就只能跳过啦～声音就没法入档后续没法接单哦～<br>回放链接给你了，咱们听完了吗？</div>
+        </div>
+
+        <div class="message user-B">
+            <div class="header">芒果桃心6(王娜) | 2026-03-08 16:00:53</div>
+            <div class="bubble">亲爱的，第二个考核作业旁白作业来咯～<br>👆上面小程序点开后有四篇文本选一个～ 旁白课程群里有，可以去听一下哈～<br>录好发在群哦，今天给到了我直播口令的同学，明天上午我都会来给你1对1点评哈～</div>
+        </div>
+
+        <div class="message user-B">
+            <div class="header">芒果桃心6(王娜) | 2026-03-08 16:17:54</div>
+            <div class="bubble">同学，你的声音已经通过初审，现在有时间嘛？<br>本来官方的要求是只有中午上课的同学才能收到官方报告和初审结果的，那学姐先把课程录屏给到你，那你别忘了补口令给到学姐哦，咱们双向奔赴一次，你不会让学姐失望吧？[爱心]</div>
+        </div>
+
+        <div class="message user-B">
+            <div class="header">芒果桃心6(王娜) | 2026-03-08 17:18:00</div>
+            <div class="bubble">亲爱的，点击链接观看：我带过很多兼职的小伙伴，收入还算可观，你应该还是想要继续学习有声开展副业的吧？<br>咱们训练营就是做有声书主播筛选淘汰的，每天都会有人被筛出去，期待你能留下来，学姐不想轻易放弃你哈~<br>你只要认真学习你会获得更多的试音机会哈[愉快]加油💪</div>
+        </div>
+
+        <div class="message user-B">
+            <div class="header">芒果桃心6(王娜) | 2026-03-08 17:28:13</div>
+            <div class="bubble">亲爱的~旁白作业学姐帮你提交官方审核。<br>变现直播课我会讲旁白技巧 ，剧组缺旁白哈  一般录制次数不用太多，不然嘴巴会不受控制的～群里8点发的上课奖励  不要错过哦</div>
+        </div>
+
+        <div class="message user-B">
+            <div class="header">芒果桃心6(王娜) | 2026-03-08 17:31:23</div>
+            <div class="bubble">宝子~你已经通过初审~咱做下学籍登记哈~<br>入库到官方声音库完成【一声一档】，后续系统自动推送适合你的书单👇：</div>
+        </div>
+
+        <div class="message user-B">
+            <div class="header">芒果桃心6(王娜) | 2026-03-08 17:31:29</div>
+            <div class="bubble">[是/否  学生]：<br>[我的性别]：<br>[所在城市]:<br>[喜欢有声书类型]：<br>[手机类型(匹配试音程序)苹果/华为鸿蒙/安卓其他]：</div>
+        </div>
+
+        <div class="message user-B">
+            <div class="header">260306黑猫（不是警长） | 2026-03-08 17:32:18</div>
+            <div class="bubble">[是/否  学生]：否<br>[我的性别]： 女<br>[所在城市]: 北京<br>[喜欢有声书类型]：童书、古言、博客<br>[手机类型(匹配试音程序)苹果/华为鸿蒙/安卓其他]：苹果</div>
+        </div>
+
+        <div class="message user-B">
+            <div class="header">芒果桃心6(王娜) | 2026-03-08 17:34:27</div>
+            <div class="bubble">已经收到你提交的信息啦！这边帮你登记到学籍哈～</div>
+        </div>
+
+        <div class="message user-B">
+            <div class="header">芒果桃心6(王娜) | 2026-03-08 18:41:15</div>
+            <div class="bubble">学姐帮你提交</div>
+        </div>
+
+        <div class="message user-B">
+            <div class="header">芒果桃心6(王娜) | 2026-03-08 18:47:50</div>
+            <div class="bubble">亲爱的🎧点击链接收听~ 中午直播课很重要，口令发我 🎁 领取奖励和官方试音单 🎙补课链接：</div>
+        </div>
+
+        <div class="message user-B">
+            <div class="header">芒果桃心6(王娜) | 2026-03-08 19:52:58</div>
+            <div class="bubble">亲爱的，中午「招募课」的口令学姐没有收到你的，为了不影响你的考核结果，务必【今天之内】将口令补发给我，这样学姐能帮你顺利上传到喜马拉雅系统。<br>学姐衷心期待收到你的口令，也期待看到你在声音道路上的不断进步与成长[加油]</div>
+        </div>
+
+        <div class="message user-B">
+            <div class="header">芒果桃心6(王娜) | 2026-03-08 20:02:25</div>
+            <div class="bubble">🎉群里奖励  录音音频的文件名：   单名+微信昵称<br>【中午上课的同学才能录的哈】✌️</div>
+        </div>
+
+        <div class="message user-B">
+            <div class="header">260306黑猫（不是警长） | 2026-03-08 20:26:05</div>
+            <div class="bubble">我要做主播</div>
+        </div>
+
+        <div class="message user-B">
+            <div class="header">芒果桃心6(王娜) | 2026-03-08 20:26:25</div>
+            <div class="bubble">加油哦～完课奖励~我已经给你置顶啦～以后有适合你的角色先联系你哦～看好你呀~<br>✅恭喜完成第一个通关任务，已为你开通学籍啦～群里回复一下👇</div>
+        </div>
+
+        <div class="message user-B">
+            <div class="header">芒果桃心6(王娜) | 2026-03-08 20:26:32</div>
+            <div class="bubble">❤️已收到直播课打卡奖励 ✌<br>❤️准时参加明天12点官方变现课<br>20+赚钱岗位快速挣到第一桶金💰</div>
+        </div>
+
+        <div class="message user-B">
+            <div class="header">芒果桃心6(王娜) | 2026-03-08 20:27:43</div>
+            <div class="bubble">有啥不明白的随时来问我哈～</div>
+        </div>
+
+        <div class="message user-B">
+            <div class="header">芒果桃心6(王娜) | 2026-03-08 22:10:19</div>
+            <div class="bubble">亲爱的，点开上面的手册看一下  自己可以做哪些岗位  明天中午我会详细讲<br>🔆明12点直播课必听~关系你能否拿到官方兼职入场券机会<br>今晚早点休息，明天见～好梦😘</div>
+        </div>
+
+        <div class="message user-B">
+            <div class="header">芒果桃心6(王娜) | 2026-03-09 00:12:55</div>
+            <div class="bubble">OK我帮你提交</div>
+        </div>
+
+        <div class="message user-B">
+            <div class="header">260306黑猫（不是警长） | 2026-03-09 00:13:04</div>
+            <div class="bubble">好的感谢</div>
+        </div>
+
+        <div class="message user-B">
+            <div class="header">芒果桃心6(王娜) | 2026-03-09 00:15:07</div>
+            <div class="bubble">不用客气啦！我们一起学习进步，遇到什么问题随时联系我哈，我会一直陪着你把体验营学完，有什么需要直接跟我说就成哦。</div>
+        </div>
+
+        <div class="message user-B">
+            <div class="header">芒果桃心6(王娜) | 2026-03-09 08:08:26</div>
+            <div class="bubble">早呀☀️群里发早功喽☀记得练习～<br>会让你的声音越来越好听哦～</div>
+        </div>
+
+        <div class="message user-B">
+            <div class="header">芒果桃心6(王娜) | 2026-03-09 08:57:55</div>
+            <div class="bubble">宝儿，大咖精品课，是大名鼎鼎的行业泰斗~王明军老师哦<br>《三体》演播者✌️<br>学姐马上来点评你的旁白考核哈～等我哦～</div>
+        </div>
+
+        <div class="message user-B">
+            <div class="header">芒果桃心6(王娜) | 2026-03-09 09:04:13</div>
+            <div class="bubble">亲爱的，首先公布一下哈： 经由教务组老师及我一致评定儿童文本【旁白作业】考核通过！<br>学姐接下来给你点评哈～</div>
+        </div>
+
+        <div class="message user-B">
+            <div class="header">芒果桃心6(王娜) | 2026-03-09 09:04:23</div>
+            <div class="bubble">儿童绘本，你整体演播很流畅，语速、语调把握的不错，活泼的状态都有啦～保持这个状态，跟上步伐你很有潜力成为本期优秀学员~<br>咱们演播前可以先想一下，这个故事是白天给宝宝讲的还是晚上给宝宝讲的哦~</div>
+        </div>
+
+        <div class="message user-B">
+            <div class="header">芒果桃心6(王娜) | 2026-03-09 09:05:07</div>
+            <div class="bubble">其实都可以，只是说呢咱们呈现的方式不一样。那我们这篇文章是针对3~6岁的小朋友的一个故事，那这个年龄段的小朋友特性是啥？比较活泼好动，注意力比较容易被分散，不容易集中。嗯，那针对这个年龄段的小朋友呢，白天的话咱们要夸张一点，来吸引小朋友的注意力。但是到了晚上，我们家宝贝要睡觉了对吧？，我不能让他太兴奋了，不然就睡不着了。所以在晚上的话呢，咱们就要轻柔一点。哎，但是，不管是白天还是晚上，咱们都要把拳击提起来，笑着说，让宝贝觉得，哎，妈妈很喜欢我，我愿意听他讲故事哈。</div>
+        </div>
+
+        <div class="message user-B">
+            <div class="header">260306黑-1御 | 2026-03-09 09:05:27</div>
+            <div class="bubble">OK明白啦</div>
+        </div>
+
+        <div class="message user-B">
+            <div class="header">芒果桃心6(王娜) | 2026-03-09 09:05:37</div>
+            <div class="bubble">嗯，白天，学姐来举个例子。这天，狐狸挑了个奇怪的担子，这担子看着像手表，有一个像表针一样的指针，四周有许多小格子，每隔一个空格子里面就会放上许多好吃好玩的东西。嗯，有感觉到我是在笑着跟你说吗？</div>
+        </div>
+
+        <div class="message user-B">
+            <div class="header">芒果桃心6(王娜) | 2026-03-09 09:06:07</div>
+            <div class="bubble">好，如果是晚上，我来举个例子。这天，狐狸挑了个奇怪的担子，这担子看着像手表，有一个像表针一样的指针，四周有许多小格子，每隔一个空格子里面就会放上许多好吃好玩的东西。哎，有感觉到学姐是在笑着跟你说吗？</div>
+        </div>
+
+        <div class="message user-B">
+            <div class="header">芒果桃心6(王娜) | 2026-03-09 09:06:14</div>
+            <div class="bubble">今天的作业来看还是蛮具备演播潜力的  你声线底子比较好可塑性大 ~你好好学 我带你~让你有声之路走得更顺畅，让你声音演播技巧升值还是可以的 学姐很看好你，有在有声行业发展兼职的打算吗？</div>
+        </div>
+
+        <div class="message user-B">
+            <div class="header">260306黑-1御 | 2026-03-09 09:06:46</div>
+            <div class="bubble">哦哦好的好的</div>
+        </div>
+
+        <div class="message user-B">
+            <div class="header">芒果桃心6(王娜) | 2026-03-09 09:11:23</div>
+            <div class="bubble">嗯嗯好的呢 现实是做什么行业的呀~咱们家里人支持你学习有声嘛？</div>
+        </div>
+
+        <div class="message user-B">
+            <div class="header">260306黑-1御 | 2026-03-09 09:12:36</div>
+            <div class="bubble">现在是短视频编导，平时也会自己出镜和给自己的视频配音，家人支持的</div>
+        </div>
+
+        <div class="message user-B">
+            <div class="header">芒果桃心6(王娜) | 2026-03-09 09:15:28</div>
+            <div class="bubble">中午12点直播课能准时来吧？讲怎么快速挣到有声第一桶金💰【关系到能不能通关成功】</div>
+        </div>
+
+        <div class="message user-B">
+            <div class="header">260306黑-1御 | 2026-03-09 09:15:41</div>
+            <div class="bubble">可以</div>
+        </div>
+
+        <div class="message user-B">
+            <div class="header">芒果桃心6(王娜) | 2026-03-09 09:23:38</div>
+            <div class="bubble">这天，狐狸挑了一个奇怪的担子。这担子看着像手表，有一个像表针一样的指针，四周有许多小格子，每隔一个空格子，里面就会放上许多好吃、好玩的东西。</div>
+        </div>
+
+        <div class="message user-B">
+            <div class="header">芒果桃心6(王娜) | 2026-03-09 09:23:45</div>
+            <div class="bubble">这句你再来一遍，发语音条给我就好</div>
+        </div>
+
+        <div class="message user-B">
+            <div class="header">260306黑-1御 | 2026-03-09 10:27:35</div>
+            <div class="bubble">这天，狐狸挑了一个奇怪的担子，这担子看着像手表，有一个像表针一样的指针，四周有许多的小格子。</div>
+        </div>
+
+        <div class="message user-B">
+            <div class="header">芒果桃心6(王娜) | 2026-03-09 10:33:56</div>
+            <div class="bubble">班级群分享的都是 有声挣钱相关的 工作岗位 ✌一定看哈<br>中午会现场演示 看了更能听明白~挣钱 20+工种<br>✌今天直播课按时出勤 最后一天考核了</div>
+        </div>
+
+        <div class="message user-B">
+            <div class="header">芒果桃心6(王娜) | 2026-03-09 10:34:49</div>
+            <div class="bubble">这段描写挺有意思的！狐狸挑着个像手表的担子，画面感一下就出来了～你是想练习儿童故事演播吗？</div>
+        </div>
+
+        <div class="message user-B">
+            <div class="header">芒果桃心6(王娜) | 2026-03-09 10:34:54</div>
+            <div class="bubble">还是需要我帮你看看这段怎么录更出彩？</div>
+        </div>
+
+        <div class="message user-B">
+            <div class="header">260306黑-1御 | 2026-03-09 10:34:58</div>
+            <div class="bubble">可以</div>
+        </div>
+
+        <div class="message user-B">
+            <div class="header">260306黑-1御 | 2026-03-09 10:35:11</div>
+            <div class="bubble">哈哈哈就是想尽快开始接单赚钱</div>
+        </div>
+
+        <div class="message user-B">
+            <div class="header">芒果桃心6(王娜) | 2026-03-09 10:37:22</div>
+            <div class="bubble">有这份冲劲特别好！接单变现确实是很多同学的目标，而扎实的基本功和系统学习是前提。</div>
+        </div>
+
+        <div class="message user-B">
+            <div class="header">芒果桃心6(王娜) | 2026-03-09 10:37:26</div>
+            <div class="bubble">今天中午12点的直播课会重点讲如何通过训练营阶段打好基础、逐步具备接单能力，记得准时来听！</div>
+        </div>
+
+        <div class="message user-B">
+            <div class="header">260306黑-1御 | 2026-03-09 10:39:31</div>
+            <div class="bubble">OK OK</div>
+        </div>
+
+        <div class="message user-B">
+            <div class="header">芒果桃心6(王娜) | 2026-03-09 11:01:09</div>
+            <div class="bubble">💕今天给大家准备了《接单渠道手册》（完课同学专属）🎁<br>12：00来直播间累计观看满60分钟以上，凭口令领取《动漫角色音视频教程》一份啦~🔥<br>今天 全面讲解关于挣钱的赛道了~关系到能否通关哈✌</div>
+        </div>
+
+        <div class="message user-B">
+            <div class="header">芒果桃心6(王娜) | 2026-03-09 11:30:40</div>
+            <div class="bubble">记得下课领🎤《动漫角色音教程》（凭口令）</div>
+        </div>
+
+        <div class="message user-B">
+            <div class="header">芒果桃心6(王娜) | 2026-03-09 11:30:57</div>
+            <div class="bubble">亲爱的，吃饭了没？，一会我们12点官方直播，今天讲的都是挣钱的方式，有20多种的有声变现渠道，包括有声书是怎么样一个制作的流程，，也一定要来听哦，不然就白参加了。嗯，如果没有吃饭的话也可以边吃一边听，嗯，我的声音应该还是能够让你下饭的哈。</div>
+        </div>
+
+        <div class="message user-B">
+            <div class="header">芒果桃心6(王娜) | 2026-03-09 11:31:04</div>
+            <div class="bubble">学姐来送福利啦❤<br>都参加  今天 和昨天 两节课的同学~<br>学姐赠送🎤《老年角色音教程》✌️</div>
+        </div>
+
+        <div class="message user-B">
+            <div class="header">芒果桃心6(王娜) | 2026-03-09 11:49:33</div>
+            <div class="bubble">亲爱的，直播要开始啦~有声如何尽快挣到第一桶金，怎么领工资的！有声主播赚钱大揭秘✌️进来了没？</div>
+        </div>
+
+        <div class="message user-B">
+            <div class="header">芒果桃心6(王娜) | 2026-03-09 11:52:37</div>
+            <div class="bubble">📢开播啦~ 分享不了直播间的 同学  系统版本问题  就安心听课哈<br>【关系到通关成功】错过口令没有综合成绩哈📝</div>
+        </div>
+
+        <div class="message user-B">
+            <div class="header">芒果桃心6(王娜) | 2026-03-09 11:56:03</div>
+            <div class="bubble">有声主播赚钱大揭秘 ~咋领工资 宝子你进直播没上课链接</div>
+        </div>
+
+        <div class="message user-B">
+            <div class="header">芒果桃心6(王娜) | 2026-03-09 11:59:42</div>
+            <div class="bubble">开始了   微信点击上面链接✌️</div>
+        </div>
+
+        <div class="message user-B">
+            <div class="header">芒果桃心6(王娜) | 2026-03-09 12:01:52</div>
+            <div class="bubble">点链接听课🎤讲 怎么赚钱  ~点击上面链接</div>
+        </div>
+
+        <div class="message user-B">
+            <div class="header">芒果桃心6(王娜) | 2026-03-09 12:06:05</div>
+            <div class="bubble">点链接听课🎤讲 怎么赚钱  ~点击上课链接</div>
+        </div>
+
+        <div class="message user-B">
+            <div class="header">芒果桃心6(王娜) | 2026-03-09 12:07:23</div>
+            <div class="bubble">今天学姐主要讲挣钱变现的渠道，斜杠工种，薪资待遇，下午学姐给你做兼职规划，要认真听完哦～</div>
+        </div>
+
+        <div class="message user-B">
+            <div class="header">芒果桃心6(王娜) | 2026-03-09 12:09:47</div>
+            <div class="bubble">学姐送🎤《动漫角色音视频教程》 听课满60分钟以上~凭今天口令</div>
+        </div>
+
+        <div class="message user-B">
+            <div class="header">芒果桃心6(王娜) | 2026-03-09 12:12:12</div>
+            <div class="bubble">学姐讲挣钱变现的渠道，斜杠工种，薪资待遇，要认真听完哦～</div>
+        </div>
+
+        <div class="message user-B">
+            <div class="header">芒果桃心6(王娜) | 2026-03-09 12:19:25</div>
+            <div class="bubble">别错过  快进来✅【快速挣到第一桶金】学姐开始讲啦～还有哪些工作是适合你的哟</div>
+        </div>
+
+        <div class="message user-B">
+            <div class="header">芒果桃心6(王娜) | 2026-03-09 12:30:22</div>
+            <div class="bubble">下课记得发我口令   领取 ♥奖励《动漫角色音视频教程》【接单渠道手册】 凭今天口令哈</div>
+        </div>
+
+        <div class="message user-B">
+            <div class="header">芒果桃心6(王娜) | 2026-03-09 12:40:54</div>
+            <div class="bubble">认真听哈～今天变现课 关系到能否通关  别瞌睡哈~</div>
+        </div>
+
+        <div class="message user-B">
+            <div class="header">芒果桃心6(王娜) | 2026-03-09 12:45:26</div>
+            <div class="bubble">快进来 听课 有声20多种兼职岗位，别离开   快来</div>
+        </div>
+
+        <div class="message user-B">
+            <div class="header">芒果桃心6(王娜) | 2026-03-09 12:49:09</div>
+            <div class="bubble">没离开直播间吧？✌我去帮你申请奖励【老年角色音教程】数量</div>
+        </div>
+
+        <div class="message user-B">
+            <div class="header">芒果桃心6(王娜) | 2026-03-09 12:52:05</div>
+            <div class="bubble">快进来  ✌别错过最后拿到官方兼职入场券的机会  快</div>
+        </div>
+
+        <div class="message user-B">
+            <div class="header">芒果桃心6(王娜) | 2026-03-09 12:56:33</div>
+            <div class="bubble">快进来  别错过最后拿到兼职接书的机会  快</div>
+        </div>
+
+        <div class="message user-B">
+            <div class="header">芒果桃心6(王娜) | 2026-03-09 13:08:09</div>
+            <div class="bubble">一会记得听口令～学姐会送一套《接单渠道宝典》🎁<br>明天早上 独宠优秀学员奖励✌【老年角色音教程】</div>
+        </div>
+
+        <div class="message user-B">
+            <div class="header">芒果桃心6(王娜) | 2026-03-09 13:18:43</div>
+            <div class="bubble">想加入有声行业的同学  👋保存好笔记哈</div>
+        </div>
+
+        <div class="message user-B">
+            <div class="header">芒果桃心6(王娜) | 2026-03-09 13:28:18</div>
+            <div class="bubble">马上公布口令了  别瞌睡哈～别错过哈🎁最后一天考核了</div>
+        </div>
+
+        <div class="message user-B">
+            <div class="header">260306黑-1御 | 2026-03-09 13:44:45</div>
+            <div class="bubble">求带飞</div>
+        </div>
+
+        <div class="message user-B">
+            <div class="header">芒果桃心6(王娜) | 2026-03-09 13:45:53</div>
+            <div class="bubble">亲爱的~跟着学姐走，学姐带你起飞🛫完课奖励哦～把视频保存下来跟着练哦～可美化声音，百变声线~接单渠道记得看哈 有助于兼职</div>
+        </div>
+
+        <div class="message user-B">
+            <div class="header">芒果桃心6(王娜) | 2026-03-09 13:47:18</div>
+            <div class="bubble">说实话哈，你的声音条件很不错，，可塑性也是真的强，适合的赛道还比较多，像比如说古言呐，穿越，恐怖悬疑，都市，社科，这些其实都是目前很火的赛道，嗯，以后你都可以去尝试。，那现在呢咱们就差演播技巧这块了，，但是也不用担心哈，演播技巧等你入行之后跟着我们的大咖老师学，以他们的经验来说，咱们提升起来是非常快的。</div>
+        </div>
+
+        <div class="message user-B">
+            <div class="header">芒果桃心6(王娜) | 2026-03-09 13:47:33</div>
+            <div class="bubble">亲爱的，刚刚分享的行业内兼职的收入有多少种有记清楚不？ 咱比较倾向于往哪个方向的发展呢？快速、长期还是斜杠？</div>
+        </div>
+
+        <div class="message user-B">
+            <div class="header">260306黑-1御 | 2026-03-09 13:48:50</div>
+            <div class="bubble">快速和长期吧，希望未来能有个兼职的工作，可以有一个长期的收入</div>
+        </div>
+
+        <div class="message user-B">
+            <div class="header">260306黑-1御 | 2026-03-09 13:50:26</div>
+            <div class="bubble">直播听了一下，对商业单挺感兴趣的，主要我的主要职业是编导，之前也做过广告，感觉更能理解甲方需求，相对录书的话时间也更自由一些</div>
+        </div>
+
+        <div class="message user-B">
+            <div class="header">芒果桃心6(王娜) | 2026-03-09 13:51:31</div>
+            <div class="bubble">其实现在有声行业很适合灵活兼职哈，很多专业主播一开始也是用业余或碎片时间从兼职做起的。我们的体验营就是专门帮大家初步了解这个领域，看看合不合适、有没有兴趣，也让你先感受一下副业兼职入门的流程和体验。</div>
+        </div>
+
+        <div class="message user-B">
+            <div class="header">260306黑-1御 | 2026-03-09 13:51:32</div>
+            <div class="bubble">录书的话就怕时间不可控，因为现在我的主职工作会忙一阵闲一阵，别到时候接了单，又突然忙起来，没时间录了[叹气]</div>
+        </div>
+
+        <div class="message user-B">
+            <div class="header">芒果桃心6(王娜) | 2026-03-09 13:51:42</div>
+            <div class="bubble">我自己当时也是在体验营阶段逐步找到适合自己的方向，后面慢慢积累，才慢慢拓展开来。目前平台也有试音、录书这些资源，你都可以逐步接触和练习。</div>
+        </div>
+
+        <div class="message user-B">
+            <div class="header">260306黑-1御 | 2026-03-09 13:51:43</div>
+            <div class="bubble">好的</div>
+        </div>
+
+        <div class="message user-B">
+            <div class="header">260306黑-1御 | 2026-03-09 13:51:52</div>
+            <div class="bubble">好的感谢</div>
+        </div>
+
+        <div class="message user-B">
+            <div class="header">芒果桃心6(王娜) | 2026-03-09 13:51:54</div>
+            <div class="bubble">如果你是希望把有声作为兼职变现，这个行业整体还是挺友好的，也容易帮你养成持续成长的习惯。你要是有想特别了解的，比如变现方式、录音技巧或者资源获取，都可以告诉我哈，我可以帮你梳理一下更适合你的入门路线哦。</div>
+        </div>
+
+        <div class="message user-B">
+            <div class="header">260306黑-1御 | 2026-03-09 13:52:23</div>
+            <div class="bubble">变现方式和资源获取都想了解一下～</div>
+        </div>
+
+        <div class="message user-B">
+            <div class="header">260306黑-1御 | 2026-03-09 13:52:37</div>
+            <div class="bubble">录音技巧我有看你之前的分享，正在练习中哈哈</div>
+        </div>
+
+        <div class="message user-B">
+            <div class="header">芒果桃心6(王娜) | 2026-03-09 13:52:43</div>
+            <div class="bubble">嗯，那斜杠这一块呢，像画本呐、对轨呀、审听都是特别简单的。那画本呢比较适合我们爱看小说的小伙伴，对轨呢就是音频的剪开和衔接，那审听就是挑毛病，都是比较容易上手的，刚入行就能干起来就能挣点钱的那种活。嗯，校误也可以考虑，你有想法的话，那等你快毕业了的时候来找学姐，学姐亲自带你。</div>
+        </div>
+
+        <div class="message user-B">
+            <div class="header">260306黑-1御 | 2026-03-09 13:53:03</div>
+            <div class="bubble">好的好的</div>
+        </div>
+
+        <div class="message user-B">
+            <div class="header">芒果桃心6(王娜) | 2026-03-09 13:53:04</div>
+            <div class="bubble">嗯，那么你呢，因为声音条件都不错，以后呢咱们要以声音输出的岗位为主，那在录书配音之外，如果有时间有精力的话，可以兼顾一些写稿的工作，从简单的开始入手，毕竟有声行业呢最大的一个好处就是不冲突，都是可以叠加的哈。</div>
+        </div>
+
+        <div class="message user-B">
+            <div class="header">芒果桃心6(王娜) | 2026-03-09 13:53:11</div>
+            <div class="bubble">因为都还是新手，所以一般最高就这个价格了～都是一步一步来的，所以咱们根据自己的时间来分配就很好～</div>
+        </div>
+
+        <div class="message user-B">
+            <div class="header">芒果桃心6(王娜) | 2026-03-09 13:53:24</div>
+            <div class="bubble">学姐给你看下我这边带的学员在时薪、分成书和斜杠方面的哈 这样的还能接受吗？</div>
+        </div>
+
+        <div class="message user-B">
+            <div class="header">260306黑-1御 | 2026-03-09 13:53:36</div>
+            <div class="bubble">可以的</div>
+        </div>
+
+        <div class="message user-B">
+            <div class="header">芒果桃心6(王娜) | 2026-03-09 13:56:49</div>
+            <div class="bubble">你有编导和广告背景，理解甲方需求确实是做商业单的天然优势！像广告旁白、品牌TVC配音、短视频口播这类商单，对策划感和节奏把控要求高，特别适合你这样的背景。</div>
+        </div>
+
+        <div class="message user-B">
+            <div class="header">芒果桃心6(王娜) | 2026-03-09 13:57:02</div>
+            <div class="bubble">除了录音类工作，其实还有不少时间灵活的斜杠岗位，比如画本、对轨、审听，不需要固定档期，还能同步提升听辨能力，很适合主职节奏不稳定的学员。</div>
+        </div>
+
+        <div class="message user-B">
+            <div class="header">芒果桃心6(王娜) | 2026-03-09 13:57:05</div>
+            <div class="bubble">你对哪一类更感兴趣？广告旁白？角色配音？还是其他方向？告诉我具体方向，我好帮你重点留意匹配的资源和机会！</div>
+        </div>
+
+        <div class="message user-B">
+            <div class="header">芒果桃心6(王娜) | 2026-03-09 13:57:28</div>
+            <div class="bubble">其实，有声行业的门槛还不是很高，所以最主要还是技巧的掌握和运用。嗯，大部分人其实都能做有声，那我们为什么觉得这不是一般人能够做的呢？归根结底其实还是不了解这个行业，因为没有正确的人引路人带他们入圈，所以有了信息差。</div>
+        </div>
+
+        <div class="message user-B">
+            <div class="header">芒果桃心6(王娜) | 2026-03-09 13:58:06</div>
+            <div class="bubble">，那从你的作业和学习情况来看，完全是可以做到的哈。录音只是其中一个方面，我们也有很多写稿的，对吧？，像手机就可以完成的画本呐、统筹、审听这些。嗯，那你要有空的话，一个月也可以多接几本书，，多做几项写稿，其实收入也挺可观的。嗯，那之后呢你加入我的团队，只要努力达到标准就会有资源哈，我可以帮你优先安排对接。，所以有声行业它一定是个值得长期占有的一个行业。</div>
+        </div>
+
+        <div class="message user-B">
+            <div class="header">芒果桃心6(王娜) | 2026-03-09 13:58:20</div>
+            <div class="bubble">这是咱们之后有机会可以录的这类书，给你分享看一下，保存了吗?</div>
+        </div>
+
+        <div class="message user-B">
+            <div class="header">260306黑-1御 | 2026-03-09 13:58:22</div>
+            <div class="bubble">哈哈哈哈都很感兴趣，现阶段刚刚开始学习，只要有合适的机会，都愿意多多尝试，学习过后的知识，也得从实践开始入手，尝试之后，才能说对哪个方向比较侧重嘛</div>
+        </div>
+
+        <div class="message user-B">
+            <div class="header">260306黑-1御 | 2026-03-09 13:58:38</div>
+            <div class="bubble">保存了</div>
+        </div>
+
+        <div class="message user-B">
+            <div class="header">260306黑-1御 | 2026-03-09 13:59:09</div>
+            <div class="bubble">「芒果【筱斐团队】：[该消息类型暂不能展示]」<br>- - - - - - - - - - - - - - -<br>好的感谢～</div>
+        </div>
+
+        <div class="message user-B">
+            <div class="header">芒果桃心6(王娜) | 2026-03-09 14:01:28</div>
+            <div class="bubble">明天11点我们就宣布通关结果啦～明天中午12点最后一场直播能来哈～</div>
+        </div>
+
+        <div class="message user-B">
+            <div class="header">260306黑-1御 | 2026-03-09 14:01:34</div>
+            <div class="bubble">可以的</div>
+        </div>
+
+        <div class="message user-B">
+            <div class="header">芒果桃心6(王娜) | 2026-03-09 14:32:57</div>
+            <div class="bubble">🔥最后一次录音考核（角色音三选一）<br>请务必在明日上午10:00点前完成，✨最迟截止明天10:00‼️截止明天10:00‼️<br>明天上午要汇总最终学习审核名单啦😎 ！</div>
+        </div>
+
+        <div class="message user-B">
+            <div class="header">260306黑-1御 | 2026-03-09 15:39:40</div>
+            <div class="bubble">已完成，发群里了</div>
+        </div>
+
+        <div class="message user-B">
+            <div class="header">芒果桃心6(王娜) | 2026-03-09 15:40:28</div>
+            <div class="bubble">亲爱的，收到你的角色考核作业了，学姐来给你上传，角色音更好玩一些是吧？群里 19:00 点 发的奖励～记得录哈</div>
+        </div>
+
+        <div class="message user-B">
+            <div class="header">芒果桃心6(王娜) | 2026-03-09 15:43:38</div>
+            <div class="bubble">宝子✌️恭喜你～今天考核已通过🙌：<br>【选择有声学习的原因】: （选序号）<br>1.热爱有声演播，喜欢朗诵，想给自己录一些声音作品和美好的回忆<br>2.小白，想学技巧开启变现，也想拿官方资源和扶持政策；寻找志同道合的伙伴，共同进步结伴而行<br>3. 学会技巧后想带着孩子一起阅读，养成好习惯，平衡家庭的同时有额外的收入<br>4. 喜欢听书，想试试播书，纯小白想提升声音质感提高沟通能力在本职工作上能更上一个台阶<br>5. 已经是成熟的主播了解官方和有声行业就是要快速入行变现拿资源的<br>【学习小目标】（选序号）：<br>一 美化声音<br>二 提升表达能力<br>三 认真学习声音训练的知识，完成练习作业取得结业证书<br>四 拿到进入有声行业入场券</div>
+        </div>
+
+        <div class="message user-B">
+            <div class="header">芒果桃心6(王娜) | 2026-03-09 15:43:45</div>
+            <div class="bubble">直接发我序号就可以~学姐会帮你登记入档❤</div>
+        </div>
+
+        <div class="message user-B">
+            <div class="header">260306黑-1御 | 2026-03-09 15:44:26</div>
+            <div class="bubble">2、四</div>
+        </div>
+
+        <div class="message user-B">
+            <div class="header">260306黑-1御 | 2026-03-09 15:45:13</div>
+            <div class="bubble">刚刚群里补录了7号的音频，因为我8号才开始上课，看到了7号的音频就也补录了一下</div>
+        </div>
+
+        <div class="message user-B">
+            <div class="header">芒果桃心6(王娜) | 2026-03-09 15:50:02</div>
+            <div class="bubble">你选的学习原因【2】和目标【四】已经登记好啦！</div>
+        </div>
+
+        <div class="message user-B">
+            <div class="header">芒果桃心6(王娜) | 2026-03-09 15:50:06</div>
+            <div class="bubble">结合你对商业配音（比如广告旁白、TVC）的兴趣，今晚19点群里有专属奖励任务，记得来看～</div>
+        </div>
+
+        <div class="message user-B">
+            <div class="header">260306黑-1御 | 2026-03-09 15:52:31</div>
+            <div class="bubble">OK OK</div>
+        </div>
+
+        <div class="message user-B">
+            <div class="header">芒果桃心6(王娜) | 2026-03-09 19:09:35</div>
+            <div class="bubble">群里又发奖励了~快去录音了<br>教务处老师对你的印象不错哈~刚刚跟我提到你了<br>✌加油争取通关</div>
+        </div>
+
+        <div class="message user-B">
+            <div class="header">芒果桃心6(王娜) | 2026-03-09 22:09:15</div>
+            <div class="bubble">亲爱的，学姐在整理通关名单，你的作业真的进步了好多～很棒哦～👍你的戏感和声线我还是很喜欢的  你在我内定的名额内<br>上面这是你明天办理入职后 你未来所有的官方接单渠道 都是官方长期提供的<br>明天11点我们公布通关名单✍️期待通关✌激动不😁？</div>
+        </div>
+
+        <div class="message user-B">
+            <div class="header">芒果桃心6(王娜) | 2026-03-09 22:18:14</div>
+            <div class="bubble">今天 昨天两节课都上满  发我两个口令的同学  明天早上 奖励✌  【老年角色音教程】哦</div>
+        </div>
+
+        <div class="message user-B">
+            <div class="header">芒果桃心6(王娜) | 2026-03-10 08:02:06</div>
+            <div class="bubble">早呀 今天是四声歌哈  以后可以长期坚持练习哦~</div>
+        </div>
+
+        <div class="message user-B">
+            <div class="header">芒果桃心6(王娜) | 2026-03-10 08:58:08</div>
+            <div class="bubble">亲爱的[拥抱][拥抱]《英雄联盟》、《王者荣耀》的演播者【武向彤】来教你角色音啦～[哇]视频单独发你一份哦～[调皮]<br>学姐马上就来点评最后一次作业啦～等我哟[耶][666]</div>
+        </div>
+
+        <div class="message user-B">
+            <div class="header">芒果桃心6(王娜) | 2026-03-10 09:01:19</div>
+            <div class="bubble">亲爱的，恭喜你！ 经由教务组老师及我一致评定儿童文本【角色音作业】考核通过！<br>3次作业考核都顺利通过了～很棒哦～学姐接下来给你点评哈！</div>
+        </div>
+
+        <div class="message user-B">
+            <div class="header">芒果桃心6(王娜) | 2026-03-10 09:01:28</div>
+            <div class="bubble">你的声音很有亲和力，演播儿童文学毫无违和感。旁白很流畅，总体讲述感还是很不错的，这次真的情绪更饱满了，就像给孩子讲故事一样，进步不小哟！</div>
+        </div>
+
+        <div class="message user-B">
+            <div class="header">芒果桃心6(王娜) | 2026-03-10 09:01:44</div>
+            <div class="bubble">有一天，一只小猴子下山来，他走到一块玉米地里，看见玉米结的又大又多。嗯，感觉到学姐是笑着跟你说的吧？</div>
+        </div>
+
+        <div class="message user-B">
+            <div class="header">芒果桃心6(王娜) | 2026-03-10 09:01:51</div>
+            <div class="bubble">小猴子的角色音还可以更夸张，和旁白的区分再大一些</div>
+        </div>
+
+        <div class="message user-B">
+            <div class="header">芒果桃心6(王娜) | 2026-03-10 09:01:57</div>
+            <div class="bubble">哇，这里的桃子又大又红，看着就好吃。</div>
+        </div>
+
+        <div class="message user-B">
+            <div class="header">芒果桃心6(王娜) | 2026-03-10 09:02:04</div>
+            <div class="bubble">放开自己 ，你很棒的！而且儿童类型市场很不错，价格也比普通单高。<br>继续跟紧学姐的步伐，努力学习，学姐期待你的蜕变哦～</div>
+        </div>
+
+        <div class="message user-B">
+            <div class="header">芒果桃心6(王娜) | 2026-03-10 09:02:11</div>
+            <div class="bubble">咱们这几天练基本功录作业有觉得厌烦吗？</div>
+        </div>
+
+        <div class="message user-B">
+            <div class="header">芒果桃心6(王娜) | 2026-03-10 09:07:18</div>
+            <div class="bubble">嗯嗯 早功练习了吗？基本功要坚持练，其实这个行业不难，然后学姐说的需要改进的地方  需要你之后注意加入到演播中 如果不觉得一遍遍厌烦，这个行业就适合你哦~</div>
+        </div>
+
+        <div class="message user-B">
+            <div class="header">芒果桃心6(王娜) | 2026-03-10 09:07:25</div>
+            <div class="bubble">等你入行后 学姐会优先带你  到时候会有 学姐、师兄陪伴你成长~等你在官方平台上听到自己录的书，是不是很有成就感的？</div>
+        </div>
+
+        <div class="message user-B">
+            <div class="header">260306黑-1御 | 2026-03-10 09:07:38</div>
+            <div class="bubble">「芒果【筱斐团队】：咱们这几天练基本功录作业有觉得厌烦吗？」<br>- - - - - - - - - - - - - - -<br>没有，觉得挺有趣的，后续也会有点评，也能感受到自己的进步，应该的</div>
+        </div>
+
+        <div class="message user-B">
+            <div class="header">260306黑-1御 | 2026-03-10 09:07:54</div>
+            <div class="bubble">好的感谢</div>
+        </div>
+
+        <div class="message user-B">
+            <div class="header">芒果桃心6(王娜) | 2026-03-10 10:47:16</div>
+            <div class="bubble">学姐专宠福利♥优秀学员  奖励《老年角色音教程》<br>兑换码：https://pqwar.xetslk.com/s/2sDj3b<br>官方通关名单 学姐正在颁发✌️</div>
+        </div>
+
+        <div class="message user-B">
+            <div class="header">芒果桃心6(王娜) | 2026-03-10 11:08:27</div>
+            <div class="bubble">亲爱的[庆祝]根据你在训练营学习的表现综合评定，恭喜你通关成功[庆祝]～<br>开启学姐独宠资源✌<br>1、专属版权书，帮助你度过小白尴尬期<br>2、学习期间试音指导<br>3、少量20%VIP版权书名额<br>4、优先入官方剧社权限<br>……解锁更多 中午揭晓~</div>
+        </div>
+
+        <div class="message user-B">
+            <div class="header">芒果桃心6(王娜) | 2026-03-10 11:08:42</div>
+            <div class="bubble">学姐特此邀请你参加中午【12:00优秀专属课】✌<br>上面是你今天办理入职后 你未来的接单渠道都是官方长期提供的<br>中午讲讲新手小白入行后第8天开通【边学习边录书】渠道【喜播学堂小程序】<br>咱们一定能来吧？如果没有回复就视为自动放弃这样的 【直接入职】的机会了哦<br>可以参加回复  1</div>
+        </div>
+
+        <div class="message user-B">
+            <div class="header">260306黑-1御 | 2026-03-10 11:09:02</div>
+            <div class="bubble">1</div>
+        </div>
+
+        <div class="message user-B">
+            <div class="header">260306黑-1御 | 2026-03-10 11:27:31</div>
+            <div class="bubble">「芒果【筱斐团队】：[图片]」<br>- - - - - - - - - - - - - - -<br>我想问一下咱们这个考核的通过率是多少啊？</div>
+        </div>
+
+        <div class="message user-B">
+            <div class="header">芒果桃心6(王娜) | 2026-03-10 11:47:44</div>
+            <div class="bubble">亲爱的，【优秀专属课】开始啦～学姐只邀请通关的同学～[嘘]<br>讲去哪里接单及如何用手机在有声赚钱，官方福利及助学金发布<br>100倍注意✌️这场直播没有回放，今天的课程特别重要</div>
+        </div>
+
+        <div class="message user-B">
+            <div class="header">芒果桃心6(王娜) | 2026-03-10 11:53:04</div>
+            <div class="bubble">直播课开始了 想跟着学姐发展挣钱的 来~点击上面的链接✌️</div>
+        </div>
+
+        <div class="message user-B">
+            <div class="header">芒果桃心6(王娜) | 2026-03-10 11:56:49</div>
+            <div class="bubble">【优秀专属】开始啦～<br>学姐只邀请通关的同学，不要把直播间分享到班级群哦～[嘘]<br>讲接单及用手机在喜马赚钱，官方福利等<br>100倍注意✌没有回放，特别重要</div>
+        </div>
+
+        <div class="message user-B">
+            <div class="header">芒果桃心6(王娜) | 2026-03-10 11:58:54</div>
+            <div class="bubble">上课喽～私信就不回复啦~<br>今天是官方选拔，一定要认真听课，学姐期待你的加入♥️</div>
+        </div>
+
+        <div class="message user-B">
+            <div class="header">芒果桃心6(王娜) | 2026-03-10 11:59:38</div>
+            <div class="bubble">还没有来听课吗？一会我的助理会给你打电话  催你上课哈 注意</div>
+        </div>
+
+        <div class="message user-B">
+            <div class="header">芒果桃心6(王娜) | 2026-03-10 12:03:44</div>
+            <div class="bubble">我是学姐的助理  学姐让我提醒你来上课  快 官方监控到你了</div>
+        </div>
+
+        <div class="message user-B">
+            <div class="header">芒果桃心6(王娜) | 2026-03-10 12:07:36</div>
+            <div class="bubble">今天直播间有专属福利哈，优秀学员专场～点击上面的链接✌️</div>
+        </div>
+
+        <div class="message user-B">
+            <div class="header">芒果桃心6(王娜) | 2026-03-10 12:10:38</div>
+            <div class="bubble">直播课开始了 想跟着学姐发展挣钱的 来~<br>点击上面直播链接</div>
+        </div>
+
+        <div class="message user-B">
+            <div class="header">芒果桃心6(王娜) | 2026-03-10 12:13:06</div>
+            <div class="bubble">✌直播的界面，点右上角三个点。点浮窗，<br>不影响听课，电脑也可以看</div>
+        </div>
+
+        <div class="message user-B">
+            <div class="header">芒果桃心6(王娜) | 2026-03-10 12:15:11</div>
+            <div class="bubble">马上讲开通的接单渠道啦，抱喜马拉雅大腿啦👍~</div>
+        </div>
+
+        <div class="message user-B">
+            <div class="header">芒果桃心6(王娜) | 2026-03-10 12:18:34</div>
+            <div class="bubble">想拿到学姐的独宠资源 ✌️点击上面直播链接</div>
+        </div>
+
+        <div class="message user-B">
+            <div class="header">芒果桃心6(王娜) | 2026-03-10 12:20:39</div>
+            <div class="bubble">✌记得学姐昨天说过的赠送 版权书哦 别错过</div>
+        </div>
+
+        <div class="message user-B">
+            <div class="header">芒果桃心6(王娜) | 2026-03-10 12:23:33</div>
+            <div class="bubble">咋还没来呢？快来领完课大礼包啦 完课奖励 官方时薪书单✌️</div>
+        </div>
+
+        <div class="message user-B">
+            <div class="header">芒果桃心6(王娜) | 2026-03-10 12:25:43</div>
+            <div class="bubble">快进来  ✌别错过最后拿到官方兼职入场券的机会  快</div>
+        </div>
+
+        <div class="message user-B">
+            <div class="header">芒果桃心6(王娜) | 2026-03-10 12:27:45</div>
+            <div class="bubble">想拿到官方单子资源的  快直接点击进来</div>
+        </div>
+
+        <div class="message user-B">
+            <div class="header">芒果桃心6(王娜) | 2026-03-10 12:30:16</div>
+            <div class="bubble">✌通关同学专属：同时拥有学姐个人资源  官方资源✌记得记笔记 别瞌睡哈</div>
+        </div>
+
+        <div class="message user-B">
+            <div class="header">芒果桃心6(王娜) | 2026-03-10 12:30:38</div>
+            <div class="bubble">快进来  别错过最后拿到兼职接书的机会  快</div>
+        </div>
+
+        <div class="message user-B">
+            <div class="header">芒果桃心6(王娜) | 2026-03-10 12:34:04</div>
+            <div class="bubble">今天马上办理入职了  别错过   进直播间了吗？</div>
+        </div>
+
+        <div class="message user-B">
+            <div class="header">芒果桃心6(王娜) | 2026-03-10 12:42:34</div>
+            <div class="bubble">✌️通关同学专属：同时拥有学姐个人资源  官方资源✌️记得记笔记 别瞌睡哦</div>
+        </div>
+
+        <div class="message user-B">
+            <div class="header">芒果桃心6(王娜) | 2026-03-10 12:47:17</div>
+            <div class="bubble">今天马上办理入职了  别错过</div>
+        </div>
+
+        <div class="message user-B">
+            <div class="header">芒果桃心6(王娜) | 2026-03-10 12:49:47</div>
+            <div class="bubble">现在开始讲课程怎么学，跟谁学，有什么福利扶持[拳头] 好好听哈～</div>
+        </div>
+
+        <div class="message user-B">
+            <div class="header">芒果桃心6(王娜) | 2026-03-10 12:59:09</div>
+            <div class="bubble">学姐开始讲，系统课程怎么学，直播间送课程福利&版权书💰啦～<br>名额有限，好好听哈～</div>
+        </div>
+
+        <div class="message user-B">
+            <div class="header">芒果桃心6(王娜) | 2026-03-10 13:08:42</div>
+            <div class="bubble">一会开始准备办理入职了哦 一会告诉我你加入哪个班~讲到最关键内容  打起精神来哈✌️</div>
+        </div>
+
+        <div class="message user-B">
+            <div class="header">芒果桃心6(王娜) | 2026-03-10 13:17:56</div>
+            <div class="bubble">一会下课  凭全部口令  领取🎁官方试音单【时薪90-300元】哈~</div>
+        </div>
+
+        <div class="message user-B">
+            <div class="header">芒果桃心6(王娜) | 2026-03-10 13:28:13</div>
+            <div class="bubble">准备在直播间抢名额了 抓紧时间~~~</div>
+        </div>
+
+        <div class="message user-B">
+            <div class="header">芒果桃心6(王娜) | 2026-03-10 13:40:33</div>
+            <div class="bubble">快抓住  直播间福利  报名直接带走✍️</div>
+        </div>
+
+        <div class="message user-B">
+            <div class="header">260306黑-10御 | 2026-03-10 13:45:13</div>
+            <div class="bubble">找不到购买课程的链接</div>
+        </div>
+
+        <div class="message user-B">
+            <div class="header">260306黑-10御 | 2026-03-10 13:45:22</div>
+            <div class="bubble">我想报名399的</div>
+        </div>
+
+        <div class="message user-B">
+            <div class="header">芒果桃心6(王娜) | 2026-03-10 13:46:03</div>
+            <div class="bubble">直接扫码 微信   支付宝花呗  信用卡都可以的</div>
+        </div>
+
+        <div class="message user-B">
+            <div class="header">芒果桃心6(王娜) | 2026-03-10 13:46:04</div>
+            <div class="bubble">报名通道已经开启🔛啦～<br>通过训练营这几天学习，学姐觉得你还是很优秀的，是咱们班里非常有塑造性的学员，你完全有能力可以朝着专业有声方向发展，我也会尽全力帮助你快速成长，带着你一起在有声行业长期发展[加油]<br>报名成功截图给我一下哈～学姐帮你安排福利和版权书💗</div>
+        </div>
+
+        <div class="message user-B">
+            <div class="header">260306黑-10御 | 2026-03-10 13:46:35</div>
+            <div class="bubble">要买399的</div>
+        </div>
+
+        <div class="message user-B">
+            <div class="header">260306黑-10御 | 2026-03-10 13:46:46</div>
+            <div class="bubble">2个月版本的</div>
+        </div>
+
+        <div class="message user-B">
+            <div class="header">芒果桃心6(王娜) | 2026-03-10 13:46:54</div>
+            <div class="bubble">一共两个   3980  和7380</div>
+        </div>
+
+        <div class="message user-B">
+            <div class="header">260306黑-10御 | 2026-03-10 13:47:27</div>
+            <div class="bubble">购买3980就是2个月的是么</div>
+        </div>
+
+        <div class="message user-B">
+            <div class="header">260306黑-10御 | 2026-03-10 13:47:33</div>
+            <div class="bubble">购买之后多久可以开始接单</div>
+        </div>
+
+        <div class="message user-B">
+            <div class="header">芒果桃心6(王娜) | 2026-03-10 13:47:35</div>
+            <div class="bubble">是的’</div>
+        </div>
+
+        <div class="message user-B">
+            <div class="header">芒果桃心6(王娜) | 2026-03-10 13:47:45</div>
+            <div class="bubble">直接扫码 微信   支付宝花呗  信用卡都可以的</div>
+        </div>
+
+        <div class="message user-B">
+            <div class="header">芒果桃心6(王娜) | 2026-03-10 13:48:03</div>
+            <div class="bubble">也是 喜播学堂第八天开通接单权限的</div>
+        </div>
+
+        <div class="message user-B">
+            <div class="header">芒果桃心6(王娜) | 2026-03-10 13:48:10</div>
+            <div class="bubble">资源是一样的</div>
+        </div>
+
+        <div class="message user-B">
+            <div class="header">260306黑-10御 | 2026-03-10 13:48:23</div>
+            <div class="bubble">会提供对应的商单资源么？</div>
+        </div>
+
+        <div class="message user-B">
+            <div class="header">芒果桃心6(王娜) | 2026-03-10 13:48:40</div>
+            <div class="bubble">官方资源都有的</div>
+        </div>
+
+        <div class="message user-B">
+            <div class="header">260306黑-10御 | 2026-03-10 13:48:46</div>
+            <div class="bubble">商单资源在哪里提供？</div>
+        </div>
+
+        <div class="message user-B">
+            <div class="header">芒果桃心6(王娜) | 2026-03-10 13:48:57</div>
+            <div class="bubble">报名  精品版权书直接拿走✍️</div>
+        </div>
+
+        <div class="message user-B">
+            <div class="header">260306黑-10御 | 2026-03-10 13:49:37</div>
+            <div class="bubble">想要获取商单资源，就是那种接一单赚多少钱的，版权书估计我也读不完</div>
+        </div>
+
+        <div class="message user-B">
+            <div class="header">芒果桃心6(王娜) | 2026-03-10 13:50:11</div>
+            <div class="bubble">官方资源都有的  资源上  精英和高阶是一样的</div>
+        </div>
+
+        <div class="message user-B">
+            <div class="header">芒果桃心6(王娜) | 2026-03-10 13:50:16</div>
+            <div class="bubble">领券了吗</div>
+        </div>
+
+        <div class="message user-B">
+            <div class="header">芒果桃心6(王娜) | 2026-03-10 14:02:05</div>
+            <div class="bubble">记得订单截图发我 我去给你申请版权书和福利</div>
+        </div>
+
+        <div class="message user-B">
+            <div class="header">芒果桃心6(王娜) | 2026-03-10 14:03:36</div>
+            <div class="bubble">报名的精英是吗</div>
+        </div>
+
+        <div class="message user-B">
+            <div class="header">芒果桃心6(王娜) | 2026-03-10 14:03:44</div>
+            <div class="bubble">订单号发我一下</div>
+        </div>
+
+        <div class="message user-B">
+            <div class="header">260306黑-10御 | 2026-03-10 14:04:38</div>
+            <div class="bubble">202603104001710007940920339</div>
+        </div>
+
+        <div class="message user-B">
+            <div class="header">芒果桃心6(王娜) | 2026-03-10 14:04:44</div>
+            <div class="bubble">我去申请</div>
+        </div>
+
+        <div class="message user-B">
+            <div class="header">芒果桃心6(王娜) | 2026-03-10 14:04:47</div>
+            <div class="bubble">OK我发个图片你确认一下哈</div>
+        </div>
+
+        <div class="message user-B">
+            <div class="header">260306黑-10御 | 2026-03-10 14:06:05</div>
+            <div class="bubble">确认</div>
+        </div>
+
+        <div class="message user-B">
+            <div class="header">芒果桃心6(王娜) | 2026-03-10 14:06:54</div>
+            <div class="bubble">五选一：5选1精品版权书：https://kk.bole868.com/1_I8Tw0T  选好了书名发给我【 直接下载保存好 记得保存到哪了 不然以后找不到哦】</div>
+        </div>
+
+        <div class="message user-B">
+            <div class="header">芒果桃心6(王娜) | 2026-03-10 14:07:06</div>
+            <div class="bubble">【敲重点！点击链接领取版权书】直接下载好 保存好 不然以后找不到哦~100选1终身版权书领取链接：https://kk.bole868.com/1_oID3Hj</div>
+        </div>
+
+        <div class="message user-B">
+            <div class="header">芒果桃心6(王娜) | 2026-03-10 14:07:15</div>
+            <div class="bubble">版权书单：https://imagev2.xibocdn.com/storages/1eaa-audiofreehighqps/DC/B4/GKwRIJEKikobABAAAAL9BU_o.png</div>
+        </div>
+
+        <div class="message user-B">
+            <div class="header">芒果桃心6(王娜) | 2026-03-10 14:07:21</div>
+            <div class="bubble">自己先看看上面这个版权的书单，选好书名发我  我个人送你两本</div>
+        </div>
+
+        <div class="message user-B">
+            <div class="header">260306黑-10御 | 2026-03-10 14:09:49</div>
+            <div class="bubble">有推荐的么？</div>
+        </div>
+
+        <div class="message user-B">
+            <div class="header">芒果桃心6(王娜) | 2026-03-10 14:10:06</div>
+            <div class="bubble">言情</div>
+        </div>
+
+        <div class="message user-B">
+            <div class="header">芒果桃心6(王娜) | 2026-03-10 14:10:40</div>
+            <div class="bubble">穿越</div>
+        </div>
+
+        <div class="message user-B">
+            <div class="header">芒果桃心6(王娜) | 2026-03-10 14:10:44</div>
+            <div class="bubble">比较受欢迎</div>
+        </div>
+
+        <div class="message user-B">
+            <div class="header">260306黑-10御 | 2026-03-10 14:11:46</div>
+            <div class="bubble">选好了，选了《若是妖妃，化魂入魄》、《小熊贝贝和它的朋友们》</div>
+        </div>
+
+        <div class="message user-B">
+            <div class="header">芒果桃心6(王娜) | 2026-03-10 14:12:28</div>
+            <div class="bubble">[OK]</div>
+        </div>
+
+        <div class="message user-B">
+            <div class="header">260306黑-10御 | 2026-03-10 14:12:44</div>
+            <div class="bubble">这两本是不是就可以在喜马拉雅开始读了？</div>
+        </div>
+
+        <div class="message user-B">
+            <div class="header">芒果桃心6(王娜) | 2026-03-10 14:13:07</div>
+            <div class="bubble">可以</div>
+        </div>
+
+        <div class="message user-B">
+            <div class="header">芒果桃心6(王娜) | 2026-03-10 14:13:11</div>
+            <div class="bubble">记得下载</div>
+        </div>
+
+        <div class="message user-B">
+            <div class="header">芒果桃心6(王娜) | 2026-03-10 14:13:44</div>
+            <div class="bubble">体验营明天结营，我把你抱出群了哈！先以系统课学习为主啦~听班主任的通知！学姐都在哦~</div>
+        </div>
+
+        <div class="message user-B">
+            <div class="header">260306黑-10御 | 2026-03-10 14:14:00</div>
+            <div class="bubble">OK</div>
+        </div>
+
+        <div class="message user-B">
+            <div class="header">260306黑-10御 | 2026-03-10 17:07:47</div>
+            <div class="bubble">请教一下，我已经开始录书了，是这样录么？这种录书的该如何有收益呢？</div>
+        </div>
+
+        <div class="message user-B">
+            <div class="header">芒果桃心6(王娜) | 2026-03-10 17:13:12</div>
+            <div class="bubble">这是刚刚选的书吗</div>
+        </div>
+
+        <div class="message user-B">
+            <div class="header">芒果桃心6(王娜) | 2026-03-10 17:13:38</div>
+            <div class="bubble">学姐了建议你学习一两周再录</div>
+        </div>
+
+        <div class="message user-B">
+            <div class="header">芒果桃心6(王娜) | 2026-03-10 17:13:46</div>
+            <div class="bubble">学习一下演播技巧</div>
+        </div>
+
+        <div class="message user-B">
+            <div class="header">260306黑-10御 | 2026-03-10 17:19:01</div>
+            <div class="bubble">好的</div>
+        </div>
+
+        <div class="message user-B">
+            <div class="header">260306黑-10御 | 2026-03-11 09:07:29</div>
+            <div class="bubble">哈喽我想退一下款，昨天听了一下班会，觉得自己不是很适合，我已经提交了3980的退款，你们后台处理尽快一下吧</div>
+        </div>
+
+        <div class="message user-B">
+            <div class="header">芒果桃心6(王娜) | 2026-03-11 09:30:22</div>
+            <div class="bubble">中午方便电话吗</div>
+        </div>
+
+        <div class="message user-B">
+            <div class="header">260306黑-10御 | 2026-03-11 09:31:57</div>
+            <div class="bubble">不需要电话了，直接退款吧，我也联系你们客服和微信了，辛苦尽快处理吧</div>
+        </div>
+
+        <div class="message user-B">
+            <div class="header">芒果桃心6(王娜) | 2026-03-11 09:36:14</div>
+            <div class="bubble">联系了客服会给你处理的</div>
+        </div>
+
+        <div class="message user-B">
+            <div class="header">芒果桃心6(王娜) | 2026-03-11 09:37:14</div>
+            <div class="bubble">只是学姐想知道具体的原因</div>
+        </div>
+
+        <div class="message user-B">
+            <div class="header">芒果桃心6(王娜) | 2026-03-11 09:37:29</div>
+            <div class="bubble">以后学姐也可以再完善一些</div>
+        </div>
+
+        <div class="message user-B">
+            <div class="header">芒果桃心6(王娜) | 2026-03-18 19:03:44</div>
+            <div class="bubble">您好呀，为了更好的规划您在喜马的成长之路，帮你获得兼职副业机会，现由我们非常优秀的喜播阿离安排您接下来的学习和就业指导。请及时关注喜播阿离私信，您将获得免费课程、学习资料、学习活动、就业机会等各项福利，助您开启兼职副业之旅！</div>
+        </div>
+
+        <div class="message user-A">
+            <div class="header">黑猫（不是警长）精英版202610 | 2026-03-10 13:51:14</div>
+            <div class="bubble">我已经添加了你，现在我们可以开始聊天了。</div>
+        </div>
+
+        <div class="message user-B">
+            <div class="header">陌嬉(吴念庆) | 2026-03-10 13:51:18</div>
+            <div class="bubble">Hi,  黑猫（不是警长）     欢迎宝加入攀登计划精英版课程学习~<br>💖为了顺利完成入学前的安排，请完成以下两项任务<br>1、仔细阅读<br>2026·第10期学员手册<br>👉chp8.cn/hWbzI5<br>2、为了在后续学习中为宝子提供更精准、贴合需求的指导，点击小程序，我的，班级，长按二维码，保存到手机上，用微信扫一扫，进入进班级群，进群以后点开群右上角三个点，看群公告，填写学员信息表等三个小任务哟~</div>
+        </div>
+
+        <div class="message user-B">
+            <div class="header">陌嬉(吴念庆) | 2026-03-10 13:51:21</div>
+            <div class="bubble">哈喽，欢迎宝子加入攀登计划精英版的课程学习，我是莫西班班，很高兴认识你呀。接下来的两个月就由班班来陪伴你的成长。为了顺利的完成入学前的安排，我们现在来完成两个小任务。首先点击下面的小程序，登录喜播学堂。登录的时候呢，一定一定要用你报课的手机号，选择用验证码登录的这个方式去登录，这样才可以正确的看到我们的课程。再按照下面图片的方式把UID复制给我就可以了。完成两个小任务以后，就快到班级群和小伙伴们一起用语音来打招呼吧。</div>
+        </div>
+
+        <div class="message user-A">
+            <div class="header">黑猫（不是警长）精英版202610 | 2026-03-10 13:58:49</div>
+            <div class="bubble">黑猫（不是警长）： 677004710</div>
+        </div>
+
+        <div class="message user-A">
+            <div class="header">黑猫（不是警长）精英版202610 | 2026-03-10 13:59:05</div>
+            <div class="bubble">uid账号⬆️</div>
+        </div>
+
+        <div class="message user-B">
+            <div class="header">陌嬉(吴念庆) | 2026-03-10 13:59:09</div>
+            <div class="bubble">效率真高呀</div>
+        </div>
+
+        <div class="message user-B">
+            <div class="header">陌嬉(吴念庆) | 2026-03-10 13:59:15</div>
+            <div class="bubble">宝，这是你的UID，以后会经常用到，自己也要记住哟</div>
+        </div>
+
+        <div class="message user-A">
+            <div class="header">黑猫（不是警长）精英版202610 | 2026-03-10 13:59:41</div>
+            <div class="bubble">好的</div>
+        </div>
+
+        <div class="message user-A">
+            <div class="header">黑猫（不是警长）精英版202610 | 2026-03-10 14:00:50</div>
+            <div class="bubble">现阶段有可以试音的商单么？想先试试看，边学边试音</div>
+        </div>
+
+        <div class="message user-A">
+            <div class="header">黑猫（不是警长）精英版202610 | 2026-03-10 14:01:11</div>
+            <div class="bubble">报课的目的就是最快速的开始接单赚钱</div>
+        </div>
+
+        <div class="message user-B">
+            <div class="header">陌嬉(吴念庆) | 2026-03-10 14:01:26</div>
+            <div class="bubble">宝，不着急，晚上我们开会一起说</div>
+        </div>
+
+        <div class="message user-B">
+            <div class="header">陌嬉(吴念庆) | 2026-03-10 14:01:39</div>
+            <div class="bubble">你是有基础的吗</div>
+        </div>
+
+        <div class="message user-A">
+            <div class="header">黑猫（不是警长）精英版202610 | 2026-03-10 14:05:43</div>
+            <div class="bubble">之前在中戏上过表演班，有专业的台词课，大学学的是导演专业，4年也有过台词和表演的训练，工作后有在剧组客串出演过角色，现在是编导，自己写的脚本也会自己配音</div>
+        </div>
+
+        <div class="message user-B">
+            <div class="header">陌嬉(吴念庆) | 2026-03-10 14:06:26</div>
+            <div class="bubble">那很不错呀</div>
+        </div>
+
+        <div class="message user-A">
+            <div class="header">黑猫（不是警长）精英版202610 | 2026-03-10 14:06:47</div>
+            <div class="bubble">现在想搞个兼职副业，觉得配音也算是有点基础，应该好起步，但就是没有相关资源，具体怎么操作也不太清楚</div>
+        </div>
+
+        <div class="message user-B">
+            <div class="header">陌嬉(吴念庆) | 2026-03-10 14:07:13</div>
+            <div class="bubble">是的呢，有这个基础就好好用起来</div>
+        </div>
+
+        <div class="message user-A">
+            <div class="header">黑猫（不是警长）精英版202610 | 2026-03-10 14:07:15</div>
+            <div class="bubble">所以报名这个课程了，说是后续可以提供对应的商单和兼职资源</div>
+        </div>
+
+        <div class="message user-B">
+            <div class="header">陌嬉(吴念庆) | 2026-03-10 14:11:07</div>
+            <div class="bubble">嗯呢，后面有试音接单的通道</div>
+        </div>
+
+        <div class="message user-A">
+            <div class="header">黑猫（不是警长）精英版202610 | 2026-03-10 14:11:51</div>
+            <div class="bubble">OK</div>
+        </div>
+
+        <div class="message user-B">
+            <div class="header">陌嬉(吴念庆) | 2026-03-10 14:16:29</div>
+            <div class="bubble">嗯呢</div>
+        </div>
+
+        <div class="message user-A">
+            <div class="header">黑猫（不是警长）精英版202610 | 2026-03-10 17:08:08</div>
+            <div class="bubble">请教一下，我已经开始录书了，是这样录么？这种录书的该如何有收益呢？</div>
+        </div>
+
+        <div class="message user-A">
+            <div class="header">陌嬉班班(吴念庆) | 2026-03-10 17:11:46</div>
+            <div class="bubble">这速度真快呀，宝，我们现在还是以学习为主，有声书的制作流程后面会有小灶课讲</div>
+        </div>
+
+        <div class="message user-A">
+            <div class="header">陌嬉班班(吴念庆) | 2026-03-10 17:11:57</div>
+            <div class="bubble">今天晚上有迎新班会，安排好时间哈</div>
+        </div>
+
+        <div class="message user-A">
+            <div class="header">黑猫（不是警长）精英版202610 | 2026-03-10 17:12:16</div>
+            <div class="bubble">哦哦好的</div>
+        </div>
+
+        <div class="message user-A">
+            <div class="header">陌嬉班班(吴念庆) | 2026-03-10 17:12:25</div>
+            <div class="bubble">嗯呢</div>
+        </div>
+
+        <div class="message user-A">
+            <div class="header">陌嬉班班(吴念庆) | 2026-03-10 17:24:53</div>
+            <div class="bubble">哈喽，宝，现在我们班人也到得差不多了，今天晚上我们在19:00大灶课以后，举行第一次班会，非常重要, 安排好时间准时参加哟<br>👉📺今晚19点直播预约入口：#小程序://喜播爱学/⏰今晚19点｜走进录音棚：学长的日常演播***/ifAbixFj1pQH6Zw<br>👉《迎新班会》<br>会议时间：20:00-22:00<br>#腾讯会议：375-472-547<br>先预约两个会议，班会需要用腾讯会议APP进入哟, 没有下载的可以先下载好~</div>
+        </div>
+
+        <div class="message user-A">
+            <div class="header">黑猫（不是警长）精英版202610 | 2026-03-11 09:05:32</div>
+            <div class="bubble">哈喽我想退一下款，昨天听了一下，觉得自己不是很适合，我已经提交了3980的退款，你们后台处理尽快一下吧</div>
+        </div>
+
+        <div class="message user-A">
+            <div class="header">陌嬉班班(吴念庆) | 2026-03-11 09:05:33</div>
+            <div class="bubble">宝，班班正在录书或渡劫修炼中......看到第一时间回复哈~记得练早功哟😊</div>
+        </div>
+
+        <div class="message user-A">
+            <div class="header">陌嬉班班(吴念庆) | 2026-03-11 11:26:48</div>
+            <div class="bubble">宝，你感觉怎么不适合呢</div>
+        </div>
+
+        <div class="message user-A">
+            <div class="header">陌嬉班班(吴念庆) | 2026-03-11 14:29:19</div>
+            <div class="bubble">宝，你来学习的目的就不一样，我们要跳出来看哟</div>
+        </div>
+
+        <div class="message user-A">
+            <div class="header">黑猫（不是警长）精英版202610 | 2026-03-11 14:32:22</div>
+            <div class="bubble">已经联系客服申请退款了，辛苦尽快办理退款吧</div>
+        </div>
+
+        <div class="message user-A">
+            <div class="header">陌嬉班班(吴念庆) | 2026-03-11 14:33:55</div>
+            <div class="bubble">退款会正常办理的，只是太可惜了</div>
+        </div>
+
+        <div class="message user-A">
+            <div class="header">陌嬉班班(吴念庆) | 2026-03-11 14:34:42</div>
+            <div class="bubble">我们还没有开始学习，你的基础这么好，应该有很好的发展的</div>
+        </div>
+
+        <div class="message user-A">
+            <div class="header">黑猫（不是警长）精英版202610 | 2026-03-11 14:36:07</div>
+            <div class="bubble">尽快办理退款吧，先不上课了</div>
+        </div>
+
+        <div class="message user-A">
+            <div class="header">陌嬉班班(吴念庆) | 2026-03-11 14:36:56</div>
+            <div class="bubble">你申请了退款，在处理的</div>
+        </div>
+
+        <div class="message user-A">
+            <div class="header">陌嬉班班(吴念庆) | 2026-03-11 19:04:11</div>
+            <div class="bubble">宝，你退款已经完成了哈，就先把你抱出群了，以后有什么需要也可以找我的哈</div>
+        </div>
+
+        <div class="message user-B">
+            <div class="header">T 黑猫（不是警长） 精英版202610 | 2026-03-11 19:04:23</div>
+            <div class="bubble">OK</div>
+        </div>
+
+        <div class="message user-A">
+            <div class="header">陌嬉班班(吴念庆) | 2026-03-11 19:04:55</div>
+            <div class="bubble">[OK]</div>
+        </div>
+
+        <div class="message user-A">
+            <div class="header">喜播阿离 | 2026-03-19 19:05:17</div>
+            <div class="bubble">嗨黑猫（不是警长），我是你的专属副业顾问。<br>看到你也是从有声书录制渠道过来的，握个手！🤝</div>
+        </div>
+
+        <div class="message user-A">
+            <div class="header">喜播阿离 | 2026-03-19 19:05:29</div>
+            <div class="bubble">这两年有声市场确实在变化。<br>不是说录音没机会，而是——<br>单纯靠“多录、多熬”越来越难跑出来。<br>越来越多创作者开始用 AI 写作、视频化，把声音变成一个更完整的表达资产。</div>
+        </div>
+
+        <div class="message user-A">
+            <div class="header">喜播阿离 | 2026-03-19 19:05:41</div>
+            <div class="bubble">我这边后续不会跟你聊“暴利副业”，<br>而是帮你看清：<br>✔ 有声+AI 真实的发展结构<br>✔ 普通人适不适合入局<br>✔ 如果入局，怎么少走弯路<br>我们的目标是把声音作为“核心资产”，通过 AI 写作和视频化，构建一套属于你自己的赚钱系统。<br>稍后我会发你一份《2026自媒体与 AI 创业终极指南》，<br>先帮你把大方向看清楚。</div>
+        </div>
+
+        <div class="message user-B">
+            <div class="header">黑猫（不是警长） | 2026-03-06 15:23:24</div>
+            <div class="bubble">❤️我已完成声音鉴定 🎁收到官方见面礼<br>❤️期待【明天晚上20:00图文班会+有奖问答】</div>
+        </div>
+
+        <div class="message user-B">
+            <div class="header">黑猫（不是警长） | 2026-03-08 20:27:03</div>
+            <div class="bubble">❤️已收到直播课打卡奖励 ✌<br>❤️准时参加明天12点官方变现课<br>20+赚钱岗位快速挣到第一桶金💰</div>
+        </div>
+
+    </div>
+</body>
+</html>

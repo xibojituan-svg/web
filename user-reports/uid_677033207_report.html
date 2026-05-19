@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="zh-CN" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>喜播战略诊断平台 - 违规案例查纠通报</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        dark: {
+                            900: '#0f1115',
+                            800: '#161920',
+                            700: '#1f242d',
+                            600: '#343b47',
+                        },
+                        warning: {
+                            500: '#f59e0b',
+                            900: '#78350f'
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+        body { font-family: 'Inter', system-ui, sans-serif; background-color: #0f1115; color: #f3f4f6; }
+        .grid-bg {
+            background-image: linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
+                              linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
+            background-size: 20px 20px;
+        }
+        .glow-red { box-shadow: 0 0 20px rgba(239, 68, 68, 0.15); }
+    </style>
+</head>
+<body class="grid-bg min-h-screen">
+    <nav class="border-b border-white/10 bg-dark-800/80 backdrop-blur-md sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16">
+                <div class="flex items-center gap-3">
+                    <div class="w-8 h-8 rounded bg-red-500/20 flex items-center justify-center border border-red-500/50">
+                        <svg class="w-5 h-5 text-red-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"></path></svg>
+                    </div>
+                    <span class="text-lg font-bold tracking-wider text-red-500">重案通报：无视急疾痛楚的病态榨取与画饼挽单</span>
+                </div>
+                <div class="text-sm font-mono text-gray-400">UID: 677033207 | 案卷评级：D级（极端伦理违规）</div>
+            </div>
+        </div>
+    </nav>
+
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-8">
+        
+        <!-- Header Section -->
+        <header class="bg-dark-800 border border-red-500/30 rounded-xl p-8 glow-red relative overflow-hidden">
+            <div class="absolute inset-0 bg-red-500/5"></div>
+            <div class="relative z-10 flex flex-col md:flex-row gap-8 justify-between items-start">
+                <div class="space-y-4 max-w-3xl">
+                    <div class="inline-flex items-center gap-2 px-3 py-1 bg-red-500/10 text-red-400 rounded-full text-xs font-bold border border-red-500/20">
+                        <span class="w-2 h-2 rounded-full bg-red-500 animate-pulse"></span>
+                        D级严重违规 · 丧失基础共情与伦理
+                    </div>
+                    <h1 class="text-3xl font-bold">手术缺钱下的“血馒头”：用虚假高薪留截急诊退费款</h1>
+                    <p class="text-gray-400 leading-relaxed text-sm">
+                        **违规事实概要：** 本案学员（Agoin，21岁，三线城市酒店女前台）因旧疾复发痛苦不堪，急需做手术且手术费凑不够，向班主任提出退费。
+                        此时班主任（星宸熹蕾）不但不予关怀与加急处理放行，反而施展了极其病态的连环施压与洗脑话术。班主任利用学员缺钱的焦虑点，画出“在我这能马上接到单，能赚出现有学费好几倍的钱交手术费”的无良大饼，甚至炫耀自己的特权与变现能力。在学员绝望地表达“等不了了，不手术会一直反复折磨很难受”时，依然高高在上地抛出“如果你一旦退掉，你可能就进不了我的班了”。在挽单彻底失败后，班主任光速变脸，留下冷冰冰的一句“好的”，彻底抛弃该学员。这种吃“人血馒头”的行径，严重踏破了企业价值观底线。
+                    </p>
+                </div>
+                <div class="flex flex-col gap-3 min-w-[200px]">
+                    <div class="bg-dark-900 border border-white/5 p-4 rounded-lg">
+                        <div class="text-xs text-gray-500 mb-1">涉事人员</div>
+                        <div class="font-bold text-red-400">暖暖 (招募) / 熹蕾班班 (班主任)</div>
+                    </div>
+                    <div class="bg-dark-900 border border-white/5 p-4 rounded-lg">
+                        <div class="text-xs text-gray-500 mb-1">流失定性</div>
+                        <div class="font-bold text-gray-200">极端错位：无视医学告急的病态画饼挽单</div>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <!-- Core Insights -->
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+            <!-- Left: Bug & System Breakdown -->
+            <div class="bg-dark-800 border border-white/5 rounded-xl p-6">
+                <h3 class="text-lg font-bold mb-4 flex items-center gap-2">
+                    <svg class="w-5 h-5 text-purple-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"></path></svg>
+                    病态挽单的“血馒头”三部曲
+                </h3>
+                <div class="space-y-4">
+                    <div class="p-4 bg-dark-900 rounded-lg border border-purple-500/20">
+                        <div class="text-sm font-bold text-purple-400 mb-2">1. 罔顾病情，反向利用“手术缺钱”进行诱导</div>
+                        <p class="text-sm text-gray-300">
+                            当学员明确表示<strong class="text-red-400">“我穷，动手术的钱还差点”</strong>时，班主任的回复令人发指：<br>
+                            <span class="italic text-gray-400">“如果你要是差钱，你更应该跟着我学，可以比别人多用点功。在我这赚点钱比你现在的学费容易得多。”</span><br>
+                            无视一个21岁女孩被疾病反复折磨的现实状况，企图用虚构的“短期暴利”来截留本可用作救命病痛的手术费。
+                        </p>
+                    </div>
+                    <div class="p-4 bg-dark-900 rounded-lg border border-purple-500/20">
+                        <div class="text-sm font-bold text-purple-400 mb-2">2. 居高临下的“特权炫耀”与错失恐惧症（FOMO）施压</div>
+                        <p class="text-sm text-gray-300">
+                            班主任在危机交涉中多次强调自己特供的“私域小灶”与资源垄断：<br>
+                            <span class="italic text-gray-400">“我的资源很多，随便一搜几百个派单群… 如果你退掉，以后可能就进不了我的班了。”</span><br>
+                            对底层服务行业学员进行圈层施压，实质上违背了教培的公开透明底线，营造一种强压的黑箱氛围。
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Right: Sales Breakdown -->
+            <div class="bg-dark-800 border border-white/5 rounded-xl p-6">
+                <h3 class="text-lg font-bold mb-4 flex items-center gap-2">
+                    <svg class="w-5 h-5 text-orange-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"></path></svg>
+                    交付前期的潜规则摩擦：“系统安装”闹剧
+                </h3>
+                <div class="space-y-4">
+                    <div class="p-4 bg-dark-900 rounded-lg border border-orange-500/20 border-l-4 border-l-orange-500">
+                        <div class="text-sm font-bold text-orange-400 mb-1">野路子交付引发信任裂痕</div>
+                        <p class="text-xs text-gray-400">
+                            在退课前的一周，学员因不懂安装“ToDesk”远程协助软件求助。班主任不是提供标准操作指南，而是用一种“我托关系找私人朋友（百万老师）帮你”的人情债口吻对话。<br>
+                            当学员表示担忧被安装流氓软件时，遭遇班主任的情绪反弹：<span class="italic text-gray-300">“我这么多学生从来没人质疑过，我这也是搭着人情，你这样让我挺为难的。”</span>这直接摧毁了下沉市场用户的安全感，暴露出后台支持流程极其不专业与极其作坊化。
+                        </p>
+                    </div>
+                    <div class="p-4 bg-dark-900 rounded-lg border border-orange-500/20 border-l-4 border-l-orange-500">
+                        <div class="text-sm font-bold text-orange-400 mb-1">一旦榨取无果：光速变脸断联</div>
+                        <p class="text-xs text-gray-400">
+                            面对女孩说“抱歉班班，有缘再见”，确认挽单无望后，原本长篇大论画饼的班主任，仅仅回复一个冷冰冰的“好的”，彻底无视患者即将面临的身体病痛，展现出极端功利的嗜血本性。
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Systemic Risk Alert -->
+        <div class="bg-gradient-to-r from-red-900/30 to-dark-800 border border-red-500/30 rounded-xl p-6">
+            <h3 class="text-xl font-bold mb-4 text-red-500 flex items-center gap-2">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"></path></svg>
+                战略整改：极危操作熔断与底线执法
+            </h3>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mt-6">
+                <div>
+                    <h4 class="font-bold text-gray-200 mb-3 border-b border-white/10 pb-2">1. 「救命治人级别」一剑熔断系统</h4>
+                    <p class="text-sm text-gray-400 leading-relaxed">
+                        业务系统必须更新生死级合规底线：<strong class="text-red-400">严禁向表达“急病、手术、直系亲属重症”等急需退还费用的学员进行任何形式的挽单。</strong>如触发此类关键字，客服需以最高顺位启动“绿色通道极速退款”，对该名班主任及招募端进行全量合规审查，实行“零容忍”下岗及罚款制度。
+                    </p>
+                </div>
+                <div>
+                    <h4 class="font-bold text-red-500 mb-3 border-b border-red-500/20 pb-2">2. 标准化教务工具，清理“私人代刷”</h4>
+                    <ul class="text-sm text-gray-300 space-y-3">
+                        <li class="flex items-start gap-2">
+                            <span class="text-red-500">⚡</span>
+                            <span><strong>标准化远程协助指引：</strong>所有班主任不得以个人名义或私找所谓关系人物（如“百万老师”）给学员乱装软件。必须使用教辅后台统一标准流程的视频操作指南与官方技术库。绝不能以“欠人情”的方式在技术门槛上对学员进行情感绑架。</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+    </main>
+</body>
+</html>
