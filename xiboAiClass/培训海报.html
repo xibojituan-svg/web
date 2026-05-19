@@ -1,0 +1,765 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>喜播 AI 内训营 · 让 AI 替你打工</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;900&display=swap" rel="stylesheet">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Inter', 'PingFang SC', 'Microsoft YaHei', sans-serif;
+    background: #f0f0f0;
+    color: #111;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 40px 20px;
+  }
+
+  .poster {
+    width: 720px;
+    background: #fff;
+    border-radius: 4px;
+    overflow: hidden;
+    box-shadow: 0 2px 40px rgba(0,0,0,0.10);
+  }
+
+  /* ===== 顶部导航栏 ===== */
+  .topbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 18px 36px;
+    border-bottom: 1px solid #e8e8e8;
+  }
+
+  .topbar-brand {
+    font-size: 13px;
+    font-weight: 600;
+    color: #111;
+    letter-spacing: 0.04em;
+  }
+
+  .topbar-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 11px;
+    color: #888;
+    letter-spacing: 0.06em;
+  }
+
+  .topbar-dot {
+    width: 6px; height: 6px;
+    background: #111;
+    border-radius: 50%;
+    animation: blink 2s infinite;
+  }
+  @keyframes blink { 0%,100%{opacity:1} 50%{opacity:0.3} }
+
+  /* ===== 主标题区 ===== */
+  .hero {
+    padding: 60px 36px 48px;
+    background: #fff;
+    border-bottom: 1px solid #e8e8e8;
+  }
+
+  .hero-eyebrow {
+    font-size: 11px;
+    font-weight: 600;
+    color: #888;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    margin-bottom: 20px;
+  }
+
+  .hero-title {
+    font-size: 52px;
+    font-weight: 900;
+    line-height: 1.05;
+    letter-spacing: -0.03em;
+    color: #111;
+    margin-bottom: 16px;
+  }
+
+  .hero-title em {
+    font-style: normal;
+    color: #555;
+  }
+
+  .hero-subtitle {
+    font-size: 15px;
+    color: #666;
+    line-height: 1.7;
+    max-width: 520px;
+    margin-bottom: 32px;
+    font-weight: 400;
+  }
+
+  .hero-meta {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+    flex-wrap: wrap;
+  }
+
+  .hero-meta-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 12px;
+    color: #888;
+  }
+
+  .hero-meta-icon {
+    width: 24px; height: 24px;
+    background: #f5f5f5;
+    border-radius: 6px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 12px;
+  }
+
+  /* ===== 目录导航 ===== */
+  .toc {
+    border-radius: 4px;
+    border: 1px solid #e8e8e8;
+    overflow: hidden;
+    margin: 0 36px 0;
+  }
+
+  .toc-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 16px 24px;
+    border-bottom: 1px solid #f0f0f0;
+    cursor: pointer;
+    transition: background 0.15s;
+  }
+
+  .toc-item:last-child { border-bottom: none; }
+  .toc-item:hover { background: #fafafa; }
+
+  .toc-left {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+
+  .toc-num {
+    font-size: 11px;
+    font-weight: 700;
+    color: #bbb;
+    letter-spacing: 0.05em;
+    width: 24px;
+  }
+
+  .toc-label {
+    font-size: 14px;
+    font-weight: 600;
+    color: #222;
+  }
+
+  .toc-arrow {
+    font-size: 14px;
+    color: #bbb;
+  }
+
+  /* ===== 内容分区 ===== */
+  .section-wrap {
+    padding: 0 36px;
+    border-bottom: 1px solid #e8e8e8;
+  }
+
+  .section-wrap:last-of-type {
+    border-bottom: none;
+  }
+
+  .part-header {
+    padding: 48px 0 32px;
+    border-bottom: 1px solid #f0f0f0;
+    margin-bottom: 32px;
+  }
+
+  .part-label {
+    font-size: 11px;
+    font-weight: 700;
+    color: #bbb;
+    letter-spacing: 0.14em;
+    margin-bottom: 10px;
+  }
+
+  .part-title {
+    font-size: 28px;
+    font-weight: 800;
+    color: #111;
+    letter-spacing: -0.02em;
+    line-height: 1.2;
+  }
+
+  .part-time {
+    margin-top: 8px;
+    font-size: 12px;
+    color: #aaa;
+  }
+
+  /* ===== 模块卡片 ===== */
+  .cards-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    margin-bottom: 36px;
+  }
+
+  .card {
+    background: #fafafa;
+    border: 1px solid #e8e8e8;
+    border-radius: 8px;
+    padding: 20px 20px 18px;
+    transition: border-color 0.2s, box-shadow 0.2s;
+  }
+
+  .card:hover {
+    border-color: #ccc;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+  }
+
+  .card-icon {
+    font-size: 20px;
+    margin-bottom: 10px;
+  }
+
+  .card-name {
+    font-size: 14px;
+    font-weight: 700;
+    color: #111;
+    margin-bottom: 6px;
+  }
+
+  .card-scene {
+    display: inline-block;
+    padding: 2px 8px;
+    background: #f0f0f0;
+    border-radius: 4px;
+    font-size: 10px;
+    color: #666;
+    margin-bottom: 8px;
+    font-weight: 500;
+  }
+
+  .card-desc {
+    font-size: 11.5px;
+    color: #888;
+    line-height: 1.65;
+  }
+
+  /* ===== 实战关卡列表 ===== */
+  .battle-list {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-bottom: 36px;
+  }
+
+  .battle-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 16px;
+    background: #fafafa;
+    border: 1px solid #e8e8e8;
+    border-radius: 8px;
+    padding: 18px 20px;
+    transition: border-color 0.15s;
+  }
+
+  .battle-item:hover { border-color: #ccc; }
+
+  .battle-num {
+    width: 32px; height: 32px;
+    border-radius: 8px;
+    background: #111;
+    color: #fff;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 13px;
+    font-weight: 800;
+    flex-shrink: 0;
+  }
+
+  .battle-content { flex: 1; }
+
+  .battle-title {
+    font-size: 14px;
+    font-weight: 700;
+    color: #111;
+    margin-bottom: 4px;
+  }
+
+  .battle-task {
+    font-size: 11.5px;
+    color: #888;
+    line-height: 1.6;
+  }
+
+  .battle-tag {
+    display: inline-block;
+    padding: 2px 8px;
+    background: #f0f0f0;
+    border-radius: 4px;
+    font-size: 10px;
+    color: #555;
+    font-weight: 600;
+    margin-right: 6px;
+    margin-bottom: 6px;
+  }
+
+  /* ===== 收获 ===== */
+  .gains-section {
+    padding: 40px 36px;
+    background: #fafafa;
+    border-top: 1px solid #e8e8e8;
+    border-bottom: 1px solid #e8e8e8;
+  }
+
+  .gains-label {
+    font-size: 11px;
+    font-weight: 700;
+    color: #bbb;
+    letter-spacing: 0.14em;
+    margin-bottom: 24px;
+  }
+
+  .gains-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+  }
+
+  .gain-item {
+    padding: 16px 14px;
+    background: #fff;
+    border: 1px solid #e8e8e8;
+    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+
+  .gain-emoji { font-size: 18px; }
+  .gain-name { font-size: 12.5px; font-weight: 700; color: #222; }
+  .gain-desc { font-size: 11px; color: #999; line-height: 1.5; }
+
+  /* ===== 讲师区 ===== */
+  .instructor-section {
+    padding: 32px 36px;
+    border-bottom: 1px solid #e8e8e8;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    background: #fff;
+  }
+
+  .instructor-avatar {
+    width: 68px;
+    height: 68px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid #e0e0e0;
+    flex-shrink: 0;
+    background: #f0f0f0;
+  }
+
+  .instructor-meta { flex: 1; }
+
+  .instructor-eyebrow {
+    font-size: 10px;
+    font-weight: 700;
+    color: #bbb;
+    letter-spacing: 0.12em;
+    margin-bottom: 4px;
+  }
+
+  .instructor-name {
+    font-size: 18px;
+    font-weight: 900;
+    color: #111;
+    margin-bottom: 6px;
+    letter-spacing: -0.01em;
+  }
+
+  .instructor-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-bottom: 8px;
+  }
+
+  .inst-tag {
+    padding: 2px 9px;
+    border-radius: 4px;
+    font-size: 10.5px;
+    font-weight: 600;
+    background: #f0f0f0;
+    color: #555;
+    border: 1px solid #e0e0e0;
+  }
+
+  .instructor-bio {
+    font-size: 11.5px;
+    color: #999;
+    line-height: 1.7;
+  }
+
+  /* ===== 专家顾问区块 ===== */
+  .speakers-section {
+    padding: 36px 36px;
+    border-bottom: 1px solid #e8e8e8;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1px;
+    background: #e8e8e8;
+  }
+
+  .speaker-card {
+    background: #fff;
+    padding: 28px 24px;
+    display: flex;
+    align-items: flex-start;
+    gap: 16px;
+  }
+
+  .speaker-avatar {
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 1.5px solid #e0e0e0;
+    flex-shrink: 0;
+    background: #f0f0f0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 22px;
+    overflow: hidden;
+  }
+
+  .speaker-meta { flex: 1; }
+
+  .speaker-eyebrow {
+    font-size: 9.5px;
+    font-weight: 700;
+    color: #bbb;
+    letter-spacing: 0.12em;
+    margin-bottom: 4px;
+  }
+
+  .speaker-name {
+    font-size: 16px;
+    font-weight: 900;
+    color: #111;
+    margin-bottom: 4px;
+    letter-spacing: -0.01em;
+  }
+
+  .speaker-org {
+    font-size: 11px;
+    color: #888;
+    margin-bottom: 8px;
+  }
+
+  .speaker-topic {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    padding: 4px 10px;
+    background: #f5f5f5;
+    border: 1px solid #e8e8e8;
+    border-radius: 4px;
+    font-size: 10.5px;
+    color: #444;
+    font-weight: 500;
+  }
+
+  .speaker-topic-label {
+    color: #bbb;
+    font-weight: 400;
+  }
+
+  /* ===== 底部 ===== */
+  .footer {
+    padding: 24px 36px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .footer-brand {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .brand-logo {
+    width: 32px; height: 32px;
+    background: #111;
+    border-radius: 8px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 16px;
+    color: #fff;
+  }
+
+  .brand-name {
+    font-size: 14px;
+    font-weight: 700;
+    color: #111;
+  }
+
+  .brand-sub {
+    font-size: 11px;
+    color: #aaa;
+  }
+
+  .cta-btn {
+    padding: 12px 26px;
+    background: #111;
+    border-radius: 8px;
+    font-size: 13px;
+    font-weight: 700;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    letter-spacing: 0.02em;
+  }
+
+  .cta-btn:hover { background: #333; }
+
+  /* 分隔横线 */
+  .divider {
+    height: 1px;
+    background: #e8e8e8;
+    margin: 0 36px;
+  }
+</style>
+</head>
+<body>
+<div class="poster">
+
+  <!-- 顶部导航 -->
+  <div class="topbar">
+    <span class="topbar-brand">喜播有声 · AI 内部特训营</span>
+    <span class="topbar-tag">
+      <span class="topbar-dot"></span>
+      限额开放
+    </span>
+  </div>
+
+  <!-- 主标题 -->
+  <div class="hero">
+    <div class="hero-eyebrow">INTERNAL TRAINING · 2026</div>
+    <div class="hero-title">
+      让 AI 替你打工<br>
+      <em>Claude 两日小白特训营</em>
+    </div>
+    <div class="hero-subtitle">
+      从思维破冰到实战落地，零基础也能带走会用 AI 的能力
+    </div>
+    <div class="hero-meta">
+      <div class="hero-meta-item">
+        <span class="hero-meta-icon">📅</span>
+        Day 1 理论 · Day 2 实战
+      </div>
+      <div class="hero-meta-item">
+        <span class="hero-meta-icon">⏱</span>
+        理论 2 小时 + 实战半天
+      </div>
+      <div class="hero-meta-item">
+        <span class="hero-meta-icon">👥</span>
+        内部同事专场
+      </div>
+    </div>
+  </div>
+
+  <!-- 目录 -->
+  <div class="toc" style="margin: 32px 36px;">
+    <div class="toc-item">
+      <div class="toc-left">
+        <span class="toc-num">01</span>
+        <span class="toc-label">核心理论 · 先换大脑再动手</span>
+      </div>
+      <span class="toc-arrow">→</span>
+    </div>
+    <div class="toc-item">
+      <div class="toc-left">
+        <span class="toc-num">02</span>
+        <span class="toc-label">训战实操 · 带着问题来，带着成果走</span>
+      </div>
+      <span class="toc-arrow">→</span>
+    </div>
+    <div class="toc-item">
+      <div class="toc-left">
+        <span class="toc-num">03</span>
+        <span class="toc-label">学完带走</span>
+      </div>
+      <span class="toc-arrow">→</span>
+    </div>
+  </div>
+
+  <!-- PART 01 -->
+  <div class="section-wrap">
+    <div class="part-header">
+      <div class="part-label">PART 01</div>
+      <div class="part-title">核心理论 · 先换大脑再动手</div>
+      <div class="part-time">≈ 2 小时</div>
+    </div>
+
+    <div class="cards-grid">
+      <div class="card">
+        <div class="card-icon">🔄</div>
+        <div class="card-name">思维大换血</div>
+        <div class="card-scene">企业经营管理</div>
+        <div class="card-desc">别把 AI 当打字机，当成不用睡觉的员工团队，老板只做两件事：提需求 & 微决策。</div>
+      </div>
+      <div class="card">
+        <div class="card-icon">🧠</div>
+        <div class="card-name">告别失忆助理</div>
+        <div class="card-scene">企业经营管理</div>
+        <div class="card-desc">项目记忆库（Project）= 给 AI 发入职手册，起草《员工架构调整通报》，让 AI 自带公司语气。</div>
+      </div>
+      <div class="card">
+        <div class="card-icon">✏️</div>
+        <div class="card-name">拒绝刷屏折磨</div>
+        <div class="card-scene">综合商业体运营</div>
+        <div class="card-desc">共享草稿纸（Cowork）= 定点手术式修改，商场亲子游园策划，鼠标框选一段精准改。</div>
+      </div>
+      <div class="card">
+        <div class="card-icon">🏭</div>
+        <div class="card-name">消灭重复劳动</div>
+        <div class="card-scene">有声作品量制作</div>
+        <div class="card-desc">标准化流水线（Skill）= 定规矩、一键产出。小说扔进去，3 秒吐出注完整的有声脚本。</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- PART 02 -->
+  <div class="section-wrap">
+    <div class="part-header">
+      <div class="part-label">PART 02</div>
+      <div class="part-title">训战实操 · 带着问题来，带着成果走</div>
+      <div class="part-time">≈ 半天工坊</div>
+    </div>
+
+    <div class="battle-list">
+      <div class="battle-item">
+        <div class="battle-num">01</div>
+        <div class="battle-content">
+          <div class="battle-tag">企业经营管理</div>
+          <div class="battle-title">第一关：喂背景，立规矩</div>
+          <div class="battle-task">上传部门历史文件，创建专属 Project 记忆库，现场产出我的个人 SKILL</div>
+        </div>
+      </div>
+      <div class="battle-item">
+        <div class="battle-num">02</div>
+        <div class="battle-content">
+          <div class="battle-tag">商业体运营策划</div>
+          <div class="battle-title">第二关：找痛点，共修改</div>
+          <div class="battle-task">Cowork 协作区生成《商场年中大促招商计划书》，完成 3 次精准画选修改，感受定点手术的爽快感</div>
+        </div>
+      </div>
+      <div class="battle-item">
+        <div class="battle-num">03</div>
+        <div class="battle-content">
+          <div class="battle-tag">有声作品量制作</div>
+          <div class="battle-title">第三关：定流程，开工厂</div>
+          <div class="battle-task">用真实小说原文，建立「绿务白 → 标台词 → 加音效」三步流水线，见证 2000 字瞬间变可录音脚本</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 收获 -->
+  <div class="gains-section">
+    <div class="gains-label">学完带走</div>
+    <div class="gains-grid">
+      <div class="gain-item">
+        <div class="gain-emoji">🧠</div>
+        <div class="gain-name">老板思维</div>
+        <div class="gain-desc">从用 AI 到指挥 AI</div>
+      </div>
+      <div class="gain-item">
+        <div class="gain-emoji">📁</div>
+        <div class="gain-name">专属记忆库</div>
+        <div class="gain-desc">再也不用反复解释背景</div>
+      </div>
+      <div class="gain-item">
+        <div class="gain-emoji">✏️</div>
+        <div class="gain-name">协作技巧</div>
+        <div class="gain-desc">策划案定点修改不刷屏</div>
+      </div>
+      <div class="gain-item">
+        <div class="gain-emoji">🏭</div>
+        <div class="gain-name">自动流水线</div>
+        <div class="gain-desc">重复工作一次定型永久跑</div>
+      </div>
+      <div class="gain-item">
+        <div class="gain-emoji">⏱</div>
+        <div class="gain-name">每天省 2 小时</div>
+        <div class="gain-desc">把时间还给真正重要的事</div>
+      </div>
+      <div class="gain-item">
+        <div class="gain-emoji">💪</div>
+        <div class="gain-name">实战成果</div>
+        <div class="gain-desc">两天产出三份真实业务文件</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 主讲 + 专家顾问 -->
+  <div class="speakers-section">
+
+    <!-- 主讲老师 -->
+    <div class="speaker-card">
+      <img class="speaker-avatar" src="蒋德铭.jpeg" alt="蒋德铭" />
+      <div class="speaker-meta">
+        <div class="speaker-eyebrow">主讲老师</div>
+        <div class="speaker-name">蒋德铭</div>
+        <div class="speaker-org">喜播教育总经理 · AI 实战派</div>
+        <div class="speaker-topic">
+          <span class="speaker-topic-label">主题</span>
+          让 AI 替你打工
+        </div>
+      </div>
+    </div>
+
+    <!-- 专家顾问 -->
+    <div class="speaker-card">
+      <img class="speaker-avatar" src="周鸿斌.png" alt="周鸿斌" />
+      <div class="speaker-meta">
+        <div class="speaker-eyebrow">特邀专家顾问</div>
+        <div class="speaker-name">周鸿斌</div>
+        <div class="speaker-org">喜马拉雅珠峰 AI 负责人</div>
+        <div class="speaker-topic">
+          <span class="speaker-topic-label">主题</span>
+          有声行业的 Agent 时代
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- 底部 -->
+  <div class="footer">
+    <div class="footer-brand">
+      <div class="brand-logo">🎙</div>
+      <div>
+        <div class="brand-name">喜播有声</div>
+        <div class="brand-sub">AI 内部特训营</div>
+      </div>
+    </div>
+    <button class="cta-btn">立即报名参训 →</button>
+  </div>
+
+</div>
+</body>
+</html>

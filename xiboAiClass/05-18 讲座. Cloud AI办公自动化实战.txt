@@ -1,0 +1,284 @@
+05-18 讲座_ Cloud AI办公自动化实战
+
+发言人 1  00:00:00
+我这个 cloud 这个数一超过了两次事情，相信不可能小板都适用不cloud可能在自己的工作，内容创作，甚至现场适业的事当中，
+
+发言人 2  00:00:04
+在绝大多数的情况总只健康折止，用为真正感受到 cloud的强大之处，当种感觉就好像你拿到了一把瑞士军刀，但是你只用了开屏器的的功能。其他的二型工具，你根本不知道在做什么。这不是在最近， cloud 推出了 cloud code，还有 skills coworkwork mpcr 生态的这些功能。
+
+发言人 2  00:00:13
+现在的 cloud不仅可以帮你写文案，问问题，整理资料。它真正的核心能力是可以连接到你的电脑，你的工具，你的工作流程，直接在你的电脑上帮你做事。比如帮你自动排去网页资料，生成落地，并且部署上线，把你的知识做成短语音或者成影片，全程不需要你干预，一切都会自动运行，甚至每天早上自动会把一份全课告发送到你的手机上。
+
+发言人 2  00:00:23
+最些关键的是对一切的事件全部都不需要你懂任何城序码。你描述你要什么，他做完给你确认，就算一个真正坐在你旁边的 a 员工，而不是一个只能在网页里回答问题的聊天机器人。既然知道了这个根本的差异，那今天这些内容就 cloud 正改，从入门到进接的完整水攻略。从 cloud chat的基础用法，和 cloud forwork excuse，移步到 cloud code以及 mp 的完整攻阅。
+
+发言人 2  00:00:35
+最我还要现场示排三个真实在跑的化系统， youtube选题日报，产品落地的步署，还有 youtube 知识常与一片全自动的生产流位线，说起来可能有点复杂。那即便你是一个纯小白的新手。只要认真看完今天这期内容，你也可以开始跟着做合作。先能掌握 cloud的使用技巧，看我们抓说，进步重题。
+
+发言人 2  00:00:44
+那么正式使用 cloud 的方法一般分为三种。那第一种就是直接来到 cloud的官网，在 Web上面去进行使用和对话。那第二种方法就是我们可以下载 cloud的桌面端应用，去使用 cloud chat、 cloud codework以及 cloud code 的所有完整的全部功能。
+
+发言人 2  00:00:52
+那第三种使用方法更近接一点，那就是我们可以直接在终端命令行里面，通过 C 的方式去跟我们的 cloud cloud code 去进行对话和处理工作。那今天这期内容我只会涵盖前面的两种使用方式，也是我最建议所有新手。刚开始学习和尝试的时候，重点学习的方式。但然是，我最推荐所有新手去优先重点学习和使用的方式，依然是 cloud 的桌面端。
+
+发言人 2  00:01:05
+我们可以直接在谷歌搜索 cloud然后点击 cloud desktop download 这个入口，然后找到这里面的一个桌面端的一个下载入口，点击load那下载完成之后，大家打开就可以看到 cloud的桌面端的一个视觉。虽然有时它的 ux会进行更新，但是基本可以分为三个主要的使用层次。
+
+发言人 2  00:01:16
+那第一个就是 cloud 的 chat 功能，大家可以看到左上角点击的这个小的图标，就是 cloud chat 的功能入口。那中间这个就是 cloud的 COwork，最右边的就是 cloud code 的入口。cloud chat 的使用方式，本质上就是你问他答，cloud chat 就像一个没有手脚的图书馆，懂很多东西，但没办法帮你做事。
+
+发言人 2  00:01:26
+你说帮我写电子邮件，他写完了，还是要自己复制粘贴，自己寄出。这也是绝大多数人现在用的方式，特别是2025年以前， ai 的主流的使用方式。那第二层就是 cloudwork那在这个层次 cloud 已经拥有了你电脑本身的一点点权限，他就以帮你整理特定资料、夹里面的资料和文件，查你的gmail，看你的谷歌日历，整理你的ex excel，就像一个外包的整理师，帮你整理现有的所有东西，但是还没有办法帮你从头创造。
+
+发言人 2  00:01:42
+并且因为它是运行在一个受限的伤头环境当中，所以可能在处理工作的过程当中，经常会遇到，它提示自己没有权限，什么什么的一些操作，还是需要你自己去进行操作。那第三个层次就是 cloud code这也是今天主句，一句话是清楚它的功能就是你描述它创造，同时他还是你的权能管家。
+
+发言人 2  00:01:53
+而且两个资料差别是什？明天你用 chatgpt 设定了一个旅游周期助手，你就只能在那个对话框里面去你使用的，换一个对话框，他就失忆了，什么都不知道。现在不用这样， cloud code 可以把你所有的工具所有的技能，所有的。全部都放在同一个 ai 身上，你直接跟这一个 ai 对话，他知道你是谁，知道你的习惯，知道你要用什成工具来完成这件事情。
+
+发言人 2  00:02:04
+他等于是你整个公司的 ai 团队，压缩成了一个对话式方。能不能听到 code的这个外词就会产生恐惧和抗惧，但千万不要被他的外表所迷惑。我们不需要用它来进行复杂的编程，或者需要去理解任何的程市码，一样能够用好 cloud code。 cloud code 的三个核心优势就是，第一，他真的了解你，你的所有资料、习惯、偏好，都存储在本地，每次打开他都记得你是谁，你喜欢什格式，你的语气要求是什么，不用每一次进行重复的自我介绍。
+
+发言人 2  00:02:19
+这面起到决定性帮助的，就是 cloud点 md 这个文档。它是 cloud 的长期记忆文件，放在专案的资料夹的目录里面，它会包含你的工作背景偏好，要求以及禁止事项，相当于它就是给新员工的入职手册。每次 cloud code 在进行工作处理的过程当中，都会优先去读取 cloud点 m的文档。
+
+发言人 2  00:02:29
+那第二就是 cloud code 可以拿到你所有工具的钥匙，你可以授权他直接联系你的g 台，你的 wordpress后台，你的 GM， notionionline 等等等等。不是告诉他，你应该这样做，而是他直接替你做完。不把内份小稿，在本地写了， cloud code 可以直接帮我上去调样式发文，以前一两个小时，现在他直接代牢了。
+
+发言人 2  00:02:39
+第三是个几乎无限的外挂工具。不管是， m cp 还是 cl安装好这些万能转插头， cloud code今天就能调网页，明天就能控制你的浏览器，后天就可以直接操作你的sl最关键的是它的工具生态还在快速成长。这是为什么用 chat 的人和用 cloud code 的人差距只会越来越大。
+
+发言人 2  00:02:49
+当我们在 进入 cloudwork以及 cloud code 的学线之前，我们先把 chat功能彻底的聊透。虽 chat 是 cloud 最基础的应用，但绝大多数人也只用这个其中的30十%。那第一个，大家在开始对话之前需要优先选择的就是你要对换的模型。
+
+发言人 2  00:02:58
+cloud有三个主要的模型， highiku和opes，highiku主。就是轻量快速，开医药，简单问答、分类都可以轻松搞定，省钱，但是品质有限的。sonnet 就是我们日常工作的主要使用的主义，90%的任务交给sonnet 就完全足够了，不需要每一件事情都去问PP，ets 就是最强、最贵的模型。
+
+发言人 2  00:03:08
+我们在处理比较复杂的商品决策，多层逻辑，需要真正的深度思考的时候才值得开。那在选择模型的时候，这里也可以注意， cloud 还提供了一个小的开关， adapt thinking大多数人可能都没有留意到这个开关的存在。开了它之后 不是直接给你答案而是现在那个推荐，把各种可能性，想过一遍，再给你结论。
+
+发言人 2  00:03:17
+什么时候要开，那你面对复杂的商业决策，有很多相互矛盾的条件，或者你需要的不是一个答案，而是一个分析框架的时候，就可以选择开启。那在对话框的左下角，大家可以看到一个加号，那这里除了我们常见，会去进行文件上传，主片上传的这个功能以外，还有两三个特别值得大家注意的，功能使用入口。
+
+发言人 2  00:03:27
+那第一个呢就是这里面的 add to project这可能也是 cloud 的最被低估的功能之一。ject 可以让你上传备开手册，s产品资料、历史文案，然后所有的对话都会在这个脉络下面进行。以前你每次可能都要重新去说，我是做什么的，我的这个项目的目标是什么，我要达成什么样的一个结果。
+
+发言人 2  00:03:37
+那有了 project之后，这些 cloud 都知道，你每次输出都是基于你对于业务的深度理解。那么们怎么具体去使用呢？就是可以点击这里面的 add project我们可以点击 start a new project或者选择我们已经创建好的 project然后我再去进行对换。
+
+发言人 2  00:03:46
+啊，是不是非常简单，那我们在创建一个新的 project 的时候，比如说我在这里创建了一个 youtube 脚本写作的一个 project，我就可把我频道过去的脚本文件全部通通上传到这里。那这样的话，每次跟他对话的时候，他都会清楚的知道我过去的脚本源风格是什么，我进行内容创作的习惯是什么，他都会非常清楚。
+
+发言人 2  00:03:56
+那如果你是想要创建一个网页应用，可以把自己的语言手册、品牌 logo产品说明等等的一些文件资料。都统统上传到这里面，在开始对话的时候就不需要重复了。
+
+发言人 3  00:04:05
+Choose from thousands of realistic voices to using your content change the way you record podcast voiceovers and branded content with the number one ai powered voice generating technology stop searching for the perfect voice and stop wasting time rerecording take after take. 
+
+发言人 3  00:04:22
+Try11 Labs for free and start elevating your content today. 就。
+
+发言人 5  00:04:37
+What if I told you that your biggest competitor just launched a new campaign and is absolutely crushing it, and you don't know why?
+
+发言人 5  00:04:43
+ And while you're guessing what's working, they're stealing your customers. But here's the thing, you don't have to guess anymore.
+
+发言人 5  00:04:47
+ Most marketers are flying blind when it comes to their competitive intelligence. They're spending thousands on ads without even understanding how their competitors are getting traffic.
+
+发言人 5  00:04:54
+ But what if you can see exactly how other brands grow online? What if you can peek behind the curtain to see their digital strategy?
+
+发言人 5  00:04:59
+ That's. Exactly what similar web does. Now watch this. I'm gonna pull up two major brands in the same space. Look at this. I can see that brand A and
+
+发言人 4  00:05:05
+ B get majority of their traffic from direct searches. And brand A also focuses heavily on referrals like award sites, coupons, and AI bots.
+
+发言人 5  00:05:13
+ But here's where it gets really interesting. I can see their exact top performing keywords, how much traffic each keyword is getting, even which of their ads is getting the most engagement.
+
+发言人 5  00:05:20
+ And here's the crazy part that I feel like nobody's talking about. I can see how often in ChatGPT, Gemini, and other AI tools recommend their brands versus ours.
+
+发言人 5  00:05:29
+ And other AI tools recommend brand one versus brand two.
+
+发言人 2  00:05:32
+ This is the future of competitive intelligence. And while everyone's focused on traditional search,
+
+发言人 5  00:05:36
+ I can see which brands are actually winning in the AI search results and what questions people are asking when it comes to AI in my industry.
+
+发言人 5  00:05:43
+ Now once you know exactly what's working for the brand. You can basically copy their strategy and improve it to make it even better.
+
+发言人 5  00:05:49
+ There's over10,000 companies actively using similar web, including us at creator does companies like Netflix, eBay, Shopify all rely on this data.
+
+发言人 5  00:05:56
+ They're done guessing. They're knowing exactly what the competitors are doing. I not only use similar web in a previous role, but we're actively using them in our agency to do competitive intelligence for all of our clients.
+
+发言人 5  00:06:06
+ I can show our clients exactly where their competitors are getting their traffic from and how we can actually use influencers to combat that.
+
+发言人 5  00:06:12
+ And the best part, you can try all this for free. Similar web is offering a seven day free trial with no credit card required. So if you're interested, check out the link in my bio. 
+
+发言人 2  00:06:25
+在开始对话的时候就不需要整作了，那除了本站这个工作以外，这核性最重要的，也是决定了普通人使用 ai以及一个 ai专家，或者一个聪明的工作者，他们输出结果的品质差距。它这个秘密就是在于你是否使用 skill skill是什么，就像你请了个分析师，你给他一个详细的说明书，你的职责是什么，工作流程是什么，说可是要求是什么，遇到什么情况，要怎么样去进行处理。
+
+发言人 2  00:06:38
+同时还给了这个分析师，他需要用到的所有的软件工具，比如说股票的分析工具、ppt 的制作工具等等。 skill就是包含了整个详细的导位说明书，包含了他要做到的内容的一个内容模板，的这样一个文件夹，就是你的 skill。那一般来说，获取 skill的方式有三种，我们可以通过 asic 官方的 skill库里面去进行搜索，获取，也可以通过一些第三方的 skill库，比如说 cloud 或者 skillup 这样的一些第三方的 skill 的一些集合网站。
+
+发言人 2  00:06:54
+那第二个获取 skill 的方式就是你可以通过 GitHub 这样的一个科研社区去获取各种各样的 skill，最后一种，也是最建议最强大的获取 skill方式，以及真正好用的。的一个获取来源，就是你自己去创建一个适用于你自己工作流程的创建自己q的方法也很简单，同共只有三步。
+
+发言人 2  00:07:04
+那第一步就是准备对应的一个标准文件，这个文件里面存放了你的判断维度、产查标准、输出的一些格式要求。那第二步就是告诉 cloud去进行q的一个创作，比如说根据这份文件，帮我创建exq， cloud 就会自动的去生成q点 id文档，然后在他们不断的对话和测试，迭代，去进行实际的执行，根据输出的品质，不断的调整自文件，那中间调整的具体操作都不需要你进行操作，你只需要反馈，告诉 ai，你想要怎么样去调整，你希望输出的结果达到什么样的一个要求。
+
+发言人 2  00:07:21
+那关于work 这功能，其实是在 cloud check以及 cloud code 这个功能，测试推出一段时间之后，才最后推出的一个最新的一个这样的一个工作模式。那这个工作模式推出，主要是为了解决一个核心的问题，就是，会去很多非技术工作者在尝试了 cloud code的这个工作方式之后，发现，即便不用懂代码，不用懂城市设计，不去进行任何的软件开发，和网店开发，使用 code依然会有很好的关注，可以处理大量繁琐的日常工作，或者进行各种各样的一些自动化的工作处理。
+
+发言人 2  00:07:39
+来到 cloud过的后台，首先最主要的这个对话框里面，我们需要去选择一个我们本地的文件目录，或者是创建一个新的项目工作目录。那当我们选择了一个文件目录之后，那在这个文件目录里面的所有操作权限，他要通过的都是拥有的，它没有系统级别的这样的一个操作权限，但它针对的项目级的权限，都是可以自由的去操作，这个目录里面所有的文件资料，包括可以去帮你整理、新建文件等等等。
+
+发言人 2  00:07:54
+那在app 这里面，它提供了两种模式，第一种模式就是需要经过你的同意之后，再去进行一个工作和任务的处理。那第二种模式就。可以去透过所有的这种权限请求，默认同意。那我们比如说在这里面已经选择了一个伊森 ai agent 的这个一个工作目录，我们可以问一下，我是谁，目前有什么 skill他就给到了，根据我目录里面的一个项目档案，他就识别到了我过去的一些资料和内容，核心工作，比如说内用创作、ai 这务题开发等等。
+
+发言人 2  00:08:12
+然后你目前拥有30项可用的 skill，只要分成几个方向，内容营销、设计、工程、生产力、文档格式等等等。那在这里面我们可以通过简单的对话，让 cloud work帮我们去进行一些简单的选题调研，和整理成一个选题的日报。那我们的 cloudwork就可以在我们的电脑本地的文件夹去进行工作处理，先去了解我的频道风格，然后开始帮我去搜集和整理 agent的相关的一个任务选题，然后再调用这样一个 skill 去整理成一个视觉化的选题官告。
+
+发言人 2  00:08:30
+ ok 那，稍等3五分钟的时间，可以看到， cloud coworkwork 已经帮我们完整的去搜集了网上的一些资料和信息，并且调用我们 skill生成了一个视觉化的选题日报，我们就可以点击一下这个选题日报，大家就可以看到，给到我的一个选题日报的这个结构啊，就是 ai agent 的选题日报，今天开始，根第一次频道风格整理，安加一对微信公众号，小红书的一个信息搜索来源，主题聚焦就是 ai agent 的实战，非开发者的视角，加上工具的深度评测。
+
+发言人 2  00:08:45
+在这里面就可以看到，给到我的购牌选题，还有创作的一些框架，那他这面给到的一些选题，比如说像 cloud computer use 的实测，帮你操控电脑，是什么体验？ cloud managed的 agents 刚刚发布，就是 cloud 提供了一个可以支持远端托管的一个 agent的功能。
+
+发言人 2  00:08:55
+那MCP是什么啊？这也是很多人有一些非技术人员经常会有提问的一些问题，比如说什么是MCP，什么是CLI.  i然后还有就是 ai 这部相关的一个市场洞察，等等，这样的一个非常完善的选题日报，就给我们展示在了眼前。那假设我们现在想要每天早上的8点、9点或者10点，定时的都收获到这样一份非常完善、详细、世觉体验，非常良好的这样一个选题报告，我们就可以来到这个 schedule 这里面，去创建一个现 test我们点击 newask然后在这个名字上面，我们就可以写一个每日10点选题日报，然后具体的一个描述的话，我们可以把刚的这个提示词复制过来。
+
+发言人 2  00:09:18
+然后这个工作区我们依然选择on ai agent的这个工作区，然后可以让它有足够的这个权限。那，默认的一个模型，我们可以选择 son4.6。这个频率的话，我们就可以选择 daily每天早上9点或者每天早上10点。那保存之后，大家可以看到这里面就已经预约了一个每天的一个定时任务。
+
+发言人 2  00:09:30
+那这个定时任务的开启，我们需要留意的一个小点，我们需要开启这个 kick awake 这个功能，需要让我们的这个电脑保持开启的这个状态。如果我们的电脑进入睡眠或者息屏，它是没有办法在后台工作的，所以我们需要让我的电脑保持一个这个开启的个状态。建议大家，如果是想要使用这个定时功能，尤其是这个本地定时的一个处理
+
+发言人 1  00:09:42
+功能，大家可以选择使用一些桌面的电脑，或者是使用像 mac mini 这样的一些工作站，来去设置这样的一些定时任务。
+
+发言人 2  00:09:47
+那 live 这个功能入口是可以用来干什么的，它的主要工作就是它可以通过 connector 这样的一个数据源，比如说我们可以通过在这里面去添加一些数据源，连接上我们的这个 google drive连接上我的这个，
+
+发言人 1  00:09:54
+连接上 google，假设说我们在这边连接上了我们自己的 google calendar，或者连接上了 zier尔 slack
+
+发言人 2  00:09:58
+等等其他的一些第三方的一些软件。我们都可以实时的从这些软件上面去获取到一些信息的推送。那么们有了这样一些实时的信息推送之后，我们就可以在这里面去创建一些工作的面板。比如说我们在这里面就可以让 ai 帮我们检查一下，你是不是有收到一些新的mail，没有去及时检查，我的谷歌有没有新的一些会议安排，我的今日的一些代卖事项啊，是否有完成，都可以在这个live artifact 这边去创建一个面板来实现。
+
+发言人 2  00:10:14
+那我们创建面板的方式也很简单，当后我们在这个 artifact 这里面， browseouse connector然后点击添加，点击选择这些已有的这样的一些数据源， connectoror都可以去进行自我的添加。比如说 n n stripe，如果我们连接上了 stripe，当我们的后台做到一个新的订单，我们就可以得到对应的订单的个通知。
+
+发言人 2  00:10:25
+当我们后台，比如说有新的一个会议，或者有人来预约了一个新的咨询，我们在前端，在 cloud 的这个面板上面就可以得到实时的一个通知。那当我们添加好数据源之后，我们就可以要求 cloud 创建一个实时的一个画面，然后去展示我们，比如说收到的一些mail收到的一会议的一些日历事件，还有一些待办事项，包括我们比如说收到了什么样的一些新的订单，或者我们的里，有什么样新的一个咨询预约，我们都可以让它汇总在这样一个实时的一个页面里面，我们可以去进行随时的查看。
+
+发言人 2  00:10:45
+那 dispatchatch 这个功能就是可以支持我们通过手机端来去操控我们电脑桌面的 cloud。那么当我们在 dispatch 这个功能这里面，根据它的这个引导，啊，下载了对应的 cloud 的这个手机端的 app然后并且关联好账号之后，就可通过手机远程操控我们电脑上的 cloud，来进行各种各样的一些工作任务的处理。
+
+发言人 2  00:10:56
+那了解了 这个使用方法之后，我们需要进一步的了解，比如说 cowork和 cloud code 究竟有什么区别。核心的一个区别就是在于，我们如果是使用 cloud code它的拥有的权限，拥有的操作本地电脑的这个权限范围会更大，它可以做的事情更多，规备一个上号环境和局限。
+
+发言人 2  00:11:06
+当我们已经制作好对应的一些 skill之后，我们就可以调用 skill让我们的 cloud code 帮我们去生成 ig 的一些贴文。比如说在这里面，我们就输入样一个提示词，结合这样的一个网页信息，调取 ig的 skill生成一个 AI agent的学习地图的一个 ig 贴文，它就开始生成了对应的 ig及 贴文的文字和这个图片的一个设计，给到我第一张生成的这个图片，你还在用 Chatgpt别人已经在管 AI 员工团队，2026ai 计划的分设里，你在哪个阶段？
+
+发言人 2  00:11:23
+这个就是一个很不错的首页方面的一个贴文配图。那除了 ig贴文以外，比如说我们通样的方法我们来到桌面端 cloud code 的这样一个功能界面，然后输入这样一个图示词。基于这里的信息，这面的信息，我们提供的是一个 lock的文档，就是我们过去整理的，给大家提供的一个免费资料。
+
+发言人 2  00:11:32
+基于这里面的资料和信息，以及 cloud code 相关的信息，帮我调用我们的这个 skill 整理一份 AI agent的新手学习实战地图。大家可以看到，在这里面，他就去先去抓取了两个最出页面的内容，抓取到完整的内容之后，开始生成对应的httml5，然后开始生成对应的数据化报告，然后我们再通过一句简单的提示词，我们可以让他用 这个工具，把它直接部署上线，我们可以直接输入这样一个提示词。
+
+发言人 2  00:11:46
+它就可以帮我们把刚刚生成好的这样的一个报告，直接部署成一个网页，我们点击这个网页，就可以看到，完整的生成好的这样一个设序化的一个报告，也就是我们 ai agent的新手学习地图，比如说我们新手学习，一定会有四个阶段，比如说 ai 工具提示特对化的阶段， ai 工作流、自动化的一个阶段，以及如何使用 ai agent的加q比如说 ai会有人设技以及技能，从思考、规划。
+
+发言人 2  00:12:00
+到执行，能够搜索网络，能够读取文章，它使用到的工具，比如说就是 cloud code 和 journal那第四个阶段就是 agent的 team，我们可以管理整个 ai 员工，我们只需要在关键的节点说 yes or no然后所有的选题、脚本、审稿、分发，所有的东西，都可以让我的 ai 员工团队来帮你们工作。
+
+发言人 2  00:12:09
+这个就是我们 ai agent 的一个新手学习地图，包括有哪一些类型的 ai 员工， cloud code 学习的一个位置和方法。cl code 在这里面起到的一个作用和帮助，都会在这个地图里面完整的去进行介绍。那除了这样的简报生成、网页设计的 skill以外，我们也可以去制作，比如说影片生成的 skill他在之前制作过一个猫咪经济学长影片的这样的一个 skill，我们就可以输入这样一句提例词，结合这个网页信息，帮我调用猫咪经济学的 skill，制作一期影片分享，讲解 ai agent 的学习知识，要求的内容只要3分钟的时场即可形式是16:9的长影片。
+
+发言人 2  00:12:29
+那这样在抽到指令之后， cloud code 就会去先抓取网页的内容，作为素材，同步准备工作目录。然后第一步，第二步就是基于网页素材去撰写3分钟的脚本，然后第三步开始生成配音，第四步生成 srt 的时间轴，第五步，批量生成10张场景图。生成完图片之后，它会进行合成音轨的处理，以及最后的剪辑和渲染。
+
+发言人 2  00:12:41
+剪辑完成之后，第六步就是部署上线，我们就可以直接通作链接进行预览，我们点击一下这个预览链接。那这个就是我们刚刚们通过一句提示词，加上一个 skill生成的3分钟的这种知识场影片，我们以来看一下生成的效果。
+
+发言人 4  00:12:50
+You're using AI every day, but you're leaving80% of it on the table. Here's the fix. Next time you open ChatGPT, don't type your prompt, just talk it out.
+
+发言人 4  00:12:59
+ And I mean. Through Whisper Flow, not chat GBT is built in voice. When you speak, you'll get five times more detail than when typing in half the time.
+
+发言人 4  00:13:07
+ And when you use Flow, you get the fastest, most accurate dictation. The prompt gets richer and cleaner. The answer gets better.
+
+发言人 4  00:13:15
+ Plus, it works in any app on any device. So the next time you need to send a text or an email, just speak it using Flow. AI polished ready to send.
+
+发言人 4  00:13:23
+ What used to take minutes takes seconds now. And next time you have an idea on the go, don't let it disappear. Just speak it, brain to screen in real time.
+
+发言人 4  00:13:30
+ How many good ideas have you lost because typing was just too slow? One dictation that's all it takes. Just try it once for free. 
+
+发言人 4  00:13:38
+And let me know if you went back to typing. 
+
+发言人 2  00:13:44
+我，这是传影片，我们可以来看一下生成的效果。
+
+发言人 1  00:13:46
+你有没有想过，你的猫咪助理有一天会比你更能干。在喵星国有一场悄悄发生的进化革命，大多数猫咪现在都还停在AI1.0的阶段，就是把AI当成一本超级百科全书。每次问，每次答，问完就结束了，他记不住你是谁，也不记得你上次说了什么，更不会主动帮你做任何事，这就叫做ai工具，也是大多数猫咪现在的用法。
+
+发言人 1  00:14:00
+然后是2.0，叫做 AI 工作流，就算在工厂里设计一条流水线，你先设定好流程，先摘要，再翻译，再自动生成配图，最后发布。
+
+发言人 2  00:14:05
+ 大家觉得这个生正的效果怎么样，我觉得已经非常不错，其实中间还有一些细节可能需要微调，那么我们只需要不断的去调整和优化我们这个 skill 就可以制作出来，节奏非常明快，这识含量信息密度也非常高，整个画面的体验也非常不错的，这样风格的知识场影片。那这样的影片到底能不能获取到流量，能不能开通pp能不能去积累你的潜在客户，能不能去进行流量变现，或者是产品销售变现，大家可以去看这几个频道。
+
+发言人 2  00:14:20
+像这样的频道，官我自己发现的就不低于8个，都是已经得到了市场的数据验证。那在过去我们制作一些长达5分钟、8分钟的知识场影片啊，我可能至少需要一等周的时间，我们需要先确定选题，然后写脚本。写完脚本之后候，我们要去收集对应的画面素材，或或者是自己去进行这个拍摄和录制，然后再进行剪辑。
+
+发言人 2  00:14:31
+剪辑的时，们还们需要先进行粗剪，再进行精简，最迫我们去生成一个完整的影片，上传到我们的 youtube频道。但现在我们只需要一句提示词，加上一个完整的 skill就可以自动完成 youtubeube的知识长影片，所有的操作都可以自动完成，中间不需要我们进行任何的介入和干预。
+
+发言人 2  00:14:40
+那这里核心关键其实就是在于 skill，关q的创建，我们在之后也会有具体的教程，让大家一步一步试调。但是我们在真正开始 skill 的创建之前，我们还需要先理解，另外一个非常重要的概念，那就是如何给你的 AI agent的添加上手和角，那这里面的手和角其实就是很多外部的工具，大模型的能力，以及如第三方软件的一些能力。
+
+发言人 2  00:14:52
+比如你本地的 cloud code， open cloud， confirm agent 能够去调用外部的第三方的软件工具，那么就需要理解这里面所用到的一个软件工具之间的数据重送的一个接口方。主要的接口方式就是这三种A、 m 和C 这三个都是A agent接入外部世界的三种不同的接口方式，反正区别就是在于谁在调用以及怎么调用。
+
+发言人 2  00:15:05
+那第一种方式就是城市的城市，A通过Cpt 方式去请求外部的服务，如说叫 cloud的检查登记，最后的A agent，发的是一个，他的请求，给到一个电信服务。因为 m是一个标准化的工具插作，就是这个协议也是在 提出的一个协议，就是他把工具包装成一个统一的格式，让 ai 能够直接理解这个工具能够做什么，要给什么参数。
+
+发言人 2  00:15:17
+他的部点就是不用每次动自己写的整核逻辑，然要抓好 m c server 就能够直接使用， ai 自己知道怎么呼效，相当于api 的标准化封装层。那 的话是一个人机互动的界面，他，就是人用的终端启令工具，他本身就是一个 c对打令它就可执行。这也是最早我们在没有 diy，也就是没有windows 系统，没有苹果系统以前，我们最主要跟机器进行交互的方式。
+
+发言人 2  00:15:31
+那的方式本身也是机器最适合的一种交互方式。那在这面，我们假设出想要让我的 cloud code 去以实现网页搜索，我们就可以让 cloud code 去安装 cloud 的这个 c， cloud它是一个网络搜索爬同的一个工具。我们只要安装好char cloud c 相当于你的 code 就拥有了网页的搜索网络爬同的一个能力。
+
+发言人 2  00:15:42
+那如果你想要让你的 cloud code 可以去操控，比如说你的 google drive，可以去操控你的 google，可以可去操控你的 google slide或者是 google dot可以去创建一个ogle的文档，那面你就需要去安装 google work的那这个就是谷歌官方提供的一个 cri 工具。
+
+发言人 2  00:15:51
+那如果你想要让你的 cloud code 可以去操控飞出操控，那你就需要去安装飞出 lock 的 ci那在这边大家可以看到，其实我已经在本地已经安装好了这样的一些 cri 工具，比如说飞出的 c包括像 f f mpt的一些。进行频剪辑的一个Ci还要进行ispper c i 这个是可以进行语音转文字的这样一个工具。
+
+发言人 2  00:16:04
+那还有其他连些 c 如说我们这个V c，vers的话，它可以提供一个前端部署的能力，我们可以直接让我的 code在创建好网页之后，就会以部署在线上，提供我们的一个预览链接去进行一个预览。那当我们安装好这样的一些工具之后，我们就可输入一个这样的提示词，就可以让我们的 code就告诉他，帮我搜集今天的 ai 热点信息，然后整理到google docs里面，然后给到我们一个文件链接，就近应域的。
+
+发言人 2  00:16:18
+首先他回复我们，就是两件事情可以进行，搜集爱 热点，同时确认google docs的一个连接状态。
+
+发言人 4  00:16:21
+那这个连接状态cast已经登录，那就说明这个连接状态没有问题，就开始搜集今天的这个 ai 热点。
+
