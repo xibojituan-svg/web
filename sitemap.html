@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>喜播公开站点导航</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'PingFang SC', 'Helvetica Neue', sans-serif;
+      background: #0f1117;
+      color: #e2e8f0;
+      min-height: 100vh;
+      padding: 40px 24px;
+    }
+    .header {
+      text-align: center;
+      margin-bottom: 48px;
+    }
+    .header h1 {
+      font-size: 28px;
+      font-weight: 700;
+      background: linear-gradient(135deg, #6ee7f7, #a78bfa);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      margin-bottom: 8px;
+    }
+    .header p {
+      color: #64748b;
+      font-size: 14px;
+    }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 24px;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    .card {
+      background: #1e2132;
+      border: 1px solid #2d3148;
+      border-radius: 16px;
+      padding: 24px;
+      transition: border-color 0.2s, transform 0.2s;
+    }
+    .card:hover {
+      border-color: #6ee7f7;
+      transform: translateY(-2px);
+    }
+    .card-header {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 16px;
+    }
+    .card-icon {
+      font-size: 28px;
+      width: 48px;
+      height: 48px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: #252840;
+      border-radius: 12px;
+    }
+    .card-title {
+      font-size: 16px;
+      font-weight: 600;
+      color: #f1f5f9;
+    }
+    .card-count {
+      font-size: 12px;
+      color: #64748b;
+      margin-top: 2px;
+    }
+    .link-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+    .link-list a {
+      display: block;
+      padding: 8px 12px;
+      border-radius: 8px;
+      color: #94a3b8;
+      text-decoration: none;
+      font-size: 13px;
+      background: #252840;
+      transition: background 0.15s, color 0.15s;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .link-list a:hover {
+      background: #2d3b6e;
+      color: #6ee7f7;
+    }
+    .more-tag {
+      display: inline-block;
+      margin-top: 10px;
+      font-size: 12px;
+      color: #475569;
+      padding: 4px 10px;
+      background: #1a1d2e;
+      border-radius: 6px;
+    }
+  </style>
+</head>
+<body>
+
+<div class="header">
+  <h1>喜播公开站点导航</h1>
+  <p>所有内容按类别整理，点击直接访问</p>
+</div>
+
+<div class="grid">
+
+  <!-- AI 智能体 -->
+  <div class="card">
+    <div class="card-header">
+      <div class="card-icon">🤖</div>
+      <div>
+        <div class="card-title">AI 智能体</div>
+        <div class="card-count">5 个页面</div>
+      </div>
+    </div>
+    <ul class="link-list">
+      <li><a href="agent/ai_agent_flow.html">智能体架构流程图</a></li>
+      <li><a href="agent/abcd_process_flow.html">ABCD 用户分层流程图</a></li>
+      <li><a href="agent/ai_era_org_thinking.html">AI 时代组织思考</a></li>
+      <li><a href="agent/ai_native_three_axes.html">AI 原生三轴模型</a></li>
+      <li><a href="agent/dual_track_system.html">双轨运营体系</a></li>
+    </ul>
+  </div>
+
+  <!-- 战略分析 -->
+  <div class="card">
+    <div class="card-header">
+      <div class="card-icon">📊</div>
+      <div>
+        <div class="card-title">战略分析</div>
+        <div class="card-count">8 个页面</div>
+      </div>
+    </div>
+    <ul class="link-list">
+      <li><a href="strategy/bsc_2026_campaigns.html">2026 年度战役规划</a></li>
+      <li><a href="strategy/competitor_analysis.html">竞品分析（拾方 / 利花）</a></li>
+      <li><a href="strategy/cross_business_strategy.html">跨品类转化策略</a></li>
+      <li><a href="strategy/channel_roi_report.html">渠道 ROI 截止报告</a></li>
+      <li><a href="strategy/financial_dashboard.html">财务 UE 看板</a></li>
+      <li><a href="strategy/refund_analysis.html">退款分析看板</a></li>
+      <li><a href="strategy/new_business_process.html">新业务流程图解</a></li>
+      <li><a href="strategy/six_targets_report.html">David 六大目标报告</a></li>
+    </ul>
+  </div>
+
+  <!-- 运营管理 -->
+  <div class="card">
+    <div class="card-header">
+      <div class="card-icon">⚙️</div>
+      <div>
+        <div class="card-title">运营管理</div>
+        <div class="card-count">6 个页面</div>
+      </div>
+    </div>
+    <ul class="link-list">
+      <li><a href="operations/class_manager_analysis.html">班主任深度诊断</a></li>
+      <li><a href="operations/class_manager_best_practices.html">班主任最佳实践</a></li>
+      <li><a href="operations/sales_team_audit.html">销售团队审计</a></li>
+      <li><a href="operations/incentive_plan.html">激励方案 V1</a></li>
+      <li><a href="operations/compliance_audit.html">合规审计</a></li>
+      <li><a href="operations/ai_copilot_monthly.html">AI 建设月度小结</a></li>
+    </ul>
+  </div>
+
+  <!-- 用户画像 -->
+  <div class="card">
+    <div class="card-header">
+      <div class="card-icon">🎯</div>
+      <div>
+        <div class="card-title">用户画像 &amp; 洞察</div>
+        <div class="card-count">12 个页面</div>
+      </div>
+    </div>
+    <ul class="link-list">
+      <li><a href="personas/user_tiering_atlas.html">用户分层图谱</a></li>
+      <li><a href="personas/user_segmentation.html">用户分群信息图</a></li>
+      <li><a href="personas/segmentation_radar.html">分群雷达地图</a></li>
+      <li><a href="personas/user_decoder.html">用户需求解码器</a></li>
+      <li><a href="personas/student_psychology.html">学员心理地图</a></li>
+      <li><a href="personas/conversion_insight.html">转化洞察文章</a></li>
+      <li><a href="personas/talent_atlas.html">长期人才图谱</a></li>
+      <li><a href="personas/d_user_optimization.html">D 类用户优化</a></li>
+      <li><a href="personas/customer_cases.html">客户案例 &amp; 洞察</a></li>
+      <li><a href="personas/short_video_insight.html">短视频转化洞察</a></li>
+      <li><a href="personas/writing_insight.html">写作转化洞察</a></li>
+      <li><a href="personas.html">人群画像总览</a></li>
+    </ul>
+  </div>
+
+  <!-- 用户诊断报告 -->
+  <div class="card">
+    <div class="card-header">
+      <div class="card-icon">📋</div>
+      <div>
+        <div class="card-title">用户诊断报告</div>
+        <div class="card-count">1000+ 份报告</div>
+      </div>
+    </div>
+    <ul class="link-list">
+      <li><a href="user-reports/uid_677133912_report.html">UID 677133912 报告</a></li>
+      <li><a href="user-reports/uid_677226103_report.html">UID 677226103 报告（音影）</a></li>
+      <li><a href="677226103.html">音影诊断报告（独立页）</a></li>
+    </ul>
+    <span class="more-tag">· 完整列表请直接访问 user-reports/ 目录 ·</span>
+  </div>
+
+  <!-- 培训材料 -->
+  <div class="card">
+    <div class="card-header">
+      <div class="card-icon">🎓</div>
+      <div>
+        <div class="card-title">培训材料</div>
+        <div class="card-count">1 个页面</div>
+      </div>
+    </div>
+    <ul class="link-list">
+      <li><a href="training/training_poster.html">AI 时代培训海报</a></li>
+    </ul>
+  </div>
+
+</div>
+
+</body>
+</html>

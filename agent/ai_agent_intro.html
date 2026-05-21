@@ -1,0 +1,1096 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>喜播 AI 智能体团队 · 系统性介绍</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#0a0e16; --bg2:#0f1521; --bg3:#141b2a;
+  --card:#141c2c; --card2:#1a2438;
+  --border:#1f2d44; --border2:#2a3a55;
+  --gold:#d4a55a; --gold-soft:#e8c987; --gold-deep:#a8803d;
+  --blue:#4f7cff; --cyan:#22d3ee; --emerald:#10b981;
+  --red:#ef4444; --orange:#fb923c; --yellow:#fbbf24;
+  --text:#e8edf5; --text2:#9fb0c8; --text3:#5d6e87; --text4:#3c4960;
+  --grad-gold:linear-gradient(135deg,#e8c987 0%,#d4a55a 50%,#a8803d 100%);
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:'Noto Sans SC',sans-serif;background:var(--bg);color:var(--text);line-height:1.7;-webkit-font-smoothing:antialiased;}
+.mono{font-family:'JetBrains Mono',monospace;}
+
+/* ============= HERO ============= */
+.hero{
+  background:radial-gradient(ellipse at 70% 30%,rgba(212,165,90,.08) 0%,transparent 55%),
+             radial-gradient(ellipse at 30% 70%,rgba(79,124,255,.05) 0%,transparent 50%),
+             linear-gradient(180deg,#0a0e16 0%,#0d1320 100%);
+  padding:80px 40px 70px;
+  position:relative;
+  overflow:hidden;
+  border-bottom:1px solid var(--border);
+}
+.hero::before{
+  content:'';position:absolute;inset:0;
+  background-image:
+    linear-gradient(rgba(212,165,90,.025) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(212,165,90,.025) 1px,transparent 1px);
+  background-size:50px 50px;
+  mask-image:radial-gradient(ellipse at center,black 30%,transparent 70%);
+}
+.hero-inner{max-width:1180px;margin:0 auto;position:relative;}
+.brand-line{
+  display:inline-flex;align-items:center;gap:14px;
+  margin-bottom:32px;
+  font-size:13px;letter-spacing:3px;
+  color:var(--gold-soft);
+  text-transform:uppercase;
+}
+.brand-line::before,.brand-line::after{
+  content:'';width:40px;height:1px;background:var(--gold);opacity:.4;
+}
+h1.hero-title{
+  font-size:clamp(32px,5.5vw,58px);
+  font-weight:900;
+  line-height:1.15;
+  letter-spacing:-1px;
+  margin-bottom:24px;
+  background:linear-gradient(135deg,#fff 0%,#e8c987 60%,#d4a55a 100%);
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;
+}
+.hero-sub{
+  color:var(--text2);
+  font-size:17px;
+  line-height:1.85;
+  max-width:780px;
+  margin-bottom:48px;
+}
+.hero-sub b{color:#fff;font-weight:600;}
+.hero-stats{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+  gap:0;
+  border:1px solid var(--border);
+  border-radius:18px;
+  background:rgba(20,28,44,.4);
+  backdrop-filter:blur(8px);
+  overflow:hidden;
+}
+.hstat{
+  padding:30px 28px;
+  border-right:1px solid var(--border);
+  position:relative;
+}
+.hstat:last-child{border-right:none;}
+.hstat-num{
+  font-size:38px;font-weight:900;line-height:1;
+  background:var(--grad-gold);
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;
+  margin-bottom:8px;
+  letter-spacing:-1px;
+}
+.hstat-num small{font-size:18px;font-weight:700;opacity:.7;}
+.hstat-lbl{font-size:13px;color:var(--text3);line-height:1.5;}
+.hstat-sub{font-size:11px;color:var(--text4);margin-top:6px;}
+
+.org-tag{
+  position:absolute;top:40px;right:40px;
+  display:flex;flex-direction:column;align-items:flex-end;gap:6px;
+  font-size:12px;color:var(--text3);
+}
+.org-tag b{color:var(--gold-soft);font-size:13px;letter-spacing:1px;}
+
+/* ============= LAYOUT ============= */
+.wrap{max-width:1180px;margin:0 auto;padding:0 32px;}
+.sec{padding:90px 0;}
+.sec-header{margin-bottom:48px;max-width:780px;}
+.sec-tag{
+  display:inline-block;
+  font-size:11px;font-weight:700;letter-spacing:4px;
+  color:var(--gold);
+  text-transform:uppercase;
+  padding-bottom:6px;
+  border-bottom:2px solid var(--gold);
+  margin-bottom:18px;
+}
+.sec-h{
+  font-size:clamp(24px,3vw,38px);
+  font-weight:800;color:#fff;
+  letter-spacing:-.5px;
+  line-height:1.25;
+  margin-bottom:14px;
+}
+.sec-desc{font-size:15px;color:var(--text2);line-height:1.85;}
+.sec-desc b{color:#fff;font-weight:600;}
+hr.divider{border:none;border-top:1px solid var(--border);margin:0;}
+
+/* ============= 痛点对比 ============= */
+.pain-grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:24px;
+}
+.pain-col{
+  background:var(--card);
+  border:1px solid var(--border);
+  border-radius:16px;
+  padding:32px;
+  position:relative;
+}
+.pain-col.left{border-top:3px solid var(--red);}
+.pain-col.right{border-top:3px solid var(--gold);}
+.pain-h{
+  font-size:16px;font-weight:800;margin-bottom:6px;
+  display:flex;align-items:center;gap:10px;
+}
+.pain-h.bad{color:#fca5a5;}
+.pain-h.good{color:var(--gold-soft);}
+.pain-sub{font-size:12px;color:var(--text3);margin-bottom:24px;}
+.pain-list{list-style:none;}
+.pain-list li{
+  padding:14px 0;
+  border-bottom:1px solid rgba(31,45,68,.5);
+  font-size:13.5px;color:var(--text2);
+  display:flex;gap:12px;
+  line-height:1.7;
+}
+.pain-list li:last-child{border-bottom:none;}
+.pain-list li::before{
+  content:'';display:inline-block;
+  width:6px;height:6px;border-radius:50%;
+  flex-shrink:0;margin-top:9px;
+}
+.pain-col.left .pain-list li::before{background:var(--red);}
+.pain-col.right .pain-list li::before{background:var(--gold);}
+.pain-list li b{color:#fff;font-weight:600;}
+
+/* ============= AGENTS GRID ============= */
+.agents-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fill,minmax(260px,1fr));
+  gap:18px;
+}
+.agent-card{
+  background:linear-gradient(180deg,var(--card) 0%,var(--card2) 100%);
+  border:1px solid var(--border);
+  border-radius:14px;
+  padding:24px;
+  transition:transform .25s,border-color .25s;
+  position:relative;
+  overflow:hidden;
+}
+.agent-card::before{
+  content:'';position:absolute;top:0;left:0;right:0;height:2px;
+  background:var(--grad-gold);opacity:.6;
+}
+.agent-card:hover{transform:translateY(-4px);border-color:var(--gold-deep);}
+.agent-id{
+  font-family:'JetBrains Mono',monospace;
+  font-size:11px;font-weight:600;
+  color:var(--gold);
+  letter-spacing:2px;
+  margin-bottom:8px;
+}
+.agent-name{font-size:18px;font-weight:800;color:#fff;margin-bottom:6px;}
+.agent-role{font-size:12px;color:var(--text3);margin-bottom:16px;letter-spacing:.5px;}
+.agent-desc{font-size:13px;color:var(--text2);line-height:1.7;margin-bottom:14px;}
+.agent-tags{display:flex;flex-wrap:wrap;gap:6px;}
+.atag{
+  font-size:10.5px;padding:3px 9px;border-radius:4px;
+  background:rgba(212,165,90,.08);
+  color:var(--gold-soft);
+  border:1px solid rgba(212,165,90,.18);
+}
+
+/* ============= TECH PILLARS ============= */
+.pillars{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+  gap:24px;
+}
+.pillar{
+  background:var(--card);
+  border:1px solid var(--border);
+  border-radius:18px;
+  padding:32px 28px;
+  position:relative;
+}
+.pillar-num{
+  position:absolute;top:24px;right:28px;
+  font-family:'JetBrains Mono',monospace;
+  font-size:48px;font-weight:900;
+  background:var(--grad-gold);
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;
+  opacity:.4;line-height:1;
+}
+.pillar-h{
+  font-size:18px;font-weight:800;color:#fff;
+  margin-bottom:8px;padding-right:60px;
+}
+.pillar-sub{
+  font-size:12px;color:var(--gold-soft);
+  letter-spacing:1px;margin-bottom:18px;
+}
+.pillar-body{font-size:13.5px;color:var(--text2);line-height:1.85;}
+.pillar-body b{color:#fff;font-weight:600;}
+.pillar-stat{
+  margin-top:18px;
+  padding:14px 16px;
+  background:rgba(212,165,90,.06);
+  border-left:3px solid var(--gold);
+  border-radius:0 6px 6px 0;
+  font-size:12px;color:var(--gold-soft);
+  line-height:1.6;
+}
+
+/* ============= 14 VALIDATORS TABLE ============= */
+.val-table{
+  width:100%;border-collapse:collapse;
+  background:var(--card);
+  border:1px solid var(--border);border-radius:14px;
+  overflow:hidden;
+}
+.val-table thead{background:rgba(212,165,90,.05);}
+.val-table th{
+  text-align:left;font-size:11px;font-weight:700;
+  color:var(--gold-soft);letter-spacing:2px;
+  padding:14px 18px;border-bottom:1px solid var(--border);
+}
+.val-table td{
+  padding:14px 18px;
+  border-bottom:1px solid rgba(31,45,68,.5);
+  font-size:13px;color:var(--text2);
+  vertical-align:top;
+}
+.val-table tr:last-child td{border-bottom:none;}
+.val-table tr:hover td{background:rgba(212,165,90,.025);}
+.val-table td b{color:#fff;font-weight:600;}
+.val-mono{font-family:'JetBrains Mono',monospace;color:var(--gold-soft);font-size:12px;}
+.p0-badge{display:inline-block;background:rgba(239,68,68,.15);color:#fca5a5;padding:2px 8px;border-radius:4px;font-size:10px;font-weight:700;letter-spacing:1px;}
+.p1-badge{display:inline-block;background:rgba(251,146,60,.12);color:#fdba74;padding:2px 8px;border-radius:4px;font-size:10px;font-weight:700;letter-spacing:1px;}
+.p2-badge{display:inline-block;background:rgba(212,165,90,.1);color:var(--gold-soft);padding:2px 8px;border-radius:4px;font-size:10px;font-weight:700;letter-spacing:1px;}
+
+/* ============= DATA ASSETS ============= */
+.assets{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
+  gap:18px;
+}
+.asset-card{
+  background:linear-gradient(135deg,var(--card) 0%,rgba(212,165,90,.04) 100%);
+  border:1px solid var(--border);border-radius:14px;
+  padding:28px;
+  text-align:center;
+}
+.asset-num{
+  font-family:'JetBrains Mono',monospace;
+  font-size:42px;font-weight:900;
+  background:var(--grad-gold);
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;
+  margin-bottom:6px;line-height:1;
+  letter-spacing:-2px;
+}
+.asset-lbl{font-size:13px;font-weight:700;color:#fff;margin-bottom:4px;}
+.asset-sub{font-size:11px;color:var(--text3);line-height:1.5;}
+
+/* ============= VALUE METRICS ============= */
+.metrics{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:24px;
+  align-items:stretch;
+}
+.metric-card{
+  background:var(--card);
+  border:1px solid var(--border);
+  border-radius:16px;
+  padding:32px;
+  position:relative;
+  overflow:hidden;
+}
+.metric-card::before{
+  content:'';position:absolute;
+  top:0;right:0;width:140px;height:140px;
+  background:radial-gradient(circle,rgba(212,165,90,.07) 0%,transparent 65%);
+  pointer-events:none;
+}
+.metric-h{
+  display:flex;align-items:baseline;gap:12px;
+  margin-bottom:8px;
+}
+.metric-h-name{font-size:16px;font-weight:800;color:#fff;}
+.metric-h-cat{font-size:11px;color:var(--gold-soft);letter-spacing:1.5px;}
+.metric-desc{font-size:13.5px;color:var(--text2);line-height:1.85;margin-bottom:18px;}
+.metric-data{
+  display:flex;gap:24px;align-items:baseline;
+  padding-top:18px;border-top:1px dashed var(--border2);
+}
+.md-num{
+  font-family:'JetBrains Mono',monospace;
+  font-size:32px;font-weight:900;color:var(--gold);
+}
+.md-lbl{font-size:11px;color:var(--text3);line-height:1.5;}
+
+/* ============= MOAT 4 LAYERS ============= */
+.moat-stack{
+  display:flex;flex-direction:column;gap:0;
+  border-radius:16px;overflow:hidden;
+  border:1px solid var(--border);
+}
+.moat-layer{
+  background:var(--card);
+  padding:24px 32px;
+  border-bottom:1px solid var(--border);
+  display:grid;
+  grid-template-columns:90px 200px 1fr;
+  gap:24px;align-items:center;
+  position:relative;
+  transition:background .2s;
+}
+.moat-layer:last-child{border-bottom:none;}
+.moat-layer:hover{background:var(--card2);}
+.moat-l-num{
+  font-family:'JetBrains Mono',monospace;
+  font-size:28px;font-weight:800;
+  color:var(--gold);
+  letter-spacing:-1px;
+}
+.moat-l-name{font-size:15px;font-weight:800;color:#fff;line-height:1.4;}
+.moat-l-sub{font-size:11px;color:var(--text3);margin-top:2px;letter-spacing:.5px;}
+.moat-l-desc{font-size:13px;color:var(--text2);line-height:1.75;}
+.moat-l-desc b{color:#fff;font-weight:600;}
+
+/* ============= ROADMAP ============= */
+.roadmap{
+  position:relative;
+  padding-left:32px;
+  border-left:1px solid var(--border2);
+}
+.road-item{
+  position:relative;
+  padding:18px 0 18px 32px;
+}
+.road-item::before{
+  content:'';position:absolute;
+  left:-7px;top:24px;
+  width:12px;height:12px;border-radius:50%;
+  border:2px solid var(--bg);
+}
+.road-item.done::before{background:var(--gold);box-shadow:0 0 0 3px rgba(212,165,90,.2);}
+.road-item.ing::before{background:var(--blue);box-shadow:0 0 0 3px rgba(79,124,255,.2);animation:pulse 2s infinite;}
+.road-item.plan::before{background:var(--text4);}
+@keyframes pulse{0%,100%{box-shadow:0 0 0 3px rgba(79,124,255,.2);}50%{box-shadow:0 0 0 6px rgba(79,124,255,.1);}}
+.road-label{
+  display:inline-block;
+  font-size:10px;font-weight:700;letter-spacing:2px;
+  padding:2px 9px;border-radius:4px;
+  margin-bottom:8px;
+}
+.road-item.done .road-label{background:rgba(212,165,90,.15);color:var(--gold-soft);}
+.road-item.ing .road-label{background:rgba(79,124,255,.15);color:#93b4ff;}
+.road-item.plan .road-label{background:rgba(60,73,96,.2);color:var(--text3);}
+.road-h{font-size:15px;font-weight:700;color:#fff;margin-bottom:4px;}
+.road-d{font-size:12.5px;color:var(--text2);line-height:1.75;}
+
+/* ============= COMPLIANCE QUOTE ============= */
+.compliance-quote{
+  background:linear-gradient(135deg,rgba(239,68,68,.06) 0%,rgba(239,68,68,.02) 100%);
+  border:1px solid rgba(239,68,68,.2);
+  border-radius:18px;
+  padding:36px 42px;
+  display:flex;gap:24px;
+  margin:32px 0 0;
+}
+.cq-icon{font-size:32px;flex-shrink:0;line-height:1;margin-top:4px;}
+.cq-body{flex:1;}
+.cq-h{font-size:17px;font-weight:800;color:#fff;margin-bottom:10px;}
+.cq-text{font-size:13.5px;color:var(--text2);line-height:1.9;}
+.cq-text b{color:#fca5a5;font-weight:700;}
+.cq-laws{
+  display:flex;flex-wrap:wrap;gap:8px;margin-top:14px;
+}
+.law-pill{
+  font-size:11px;padding:4px 12px;
+  background:rgba(239,68,68,.08);
+  border:1px solid rgba(239,68,68,.2);
+  border-radius:99px;color:#fca5a5;
+}
+
+/* ============= CLOSING ============= */
+.closing{
+  background:linear-gradient(135deg,#0d1320 0%,#15192b 100%);
+  border:1px solid var(--border);
+  border-radius:24px;
+  padding:64px 56px;
+  text-align:center;
+  position:relative;
+  overflow:hidden;
+  margin-bottom:80px;
+}
+.closing::before{
+  content:'';position:absolute;
+  top:50%;left:50%;transform:translate(-50%,-50%);
+  width:700px;height:700px;
+  background:radial-gradient(circle,rgba(212,165,90,.04) 0%,transparent 65%);
+}
+.closing-tag{
+  display:inline-block;
+  font-size:11px;letter-spacing:4px;color:var(--gold);
+  padding:4px 18px;border:1px solid var(--gold-deep);
+  border-radius:99px;
+  margin-bottom:20px;position:relative;
+}
+.closing h2{
+  font-size:clamp(24px,3.5vw,40px);font-weight:900;
+  background:linear-gradient(135deg,#fff 0%,#e8c987 100%);
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;
+  margin-bottom:18px;position:relative;letter-spacing:-1px;
+  line-height:1.25;
+}
+.closing-body{font-size:14.5px;color:var(--text2);line-height:1.9;max-width:680px;margin:0 auto 36px;position:relative;}
+.closing-body b{color:#fff;}
+.closing-cards{
+  display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));
+  gap:14px;max-width:760px;margin:0 auto;position:relative;
+}
+.cc-item{
+  padding:20px 16px;
+  background:rgba(212,165,90,.04);
+  border:1px solid rgba(212,165,90,.18);
+  border-radius:10px;
+}
+.cc-num{font-size:13px;font-weight:800;color:var(--gold);letter-spacing:2px;margin-bottom:6px;}
+.cc-text{font-size:13px;color:var(--text);line-height:1.6;}
+
+footer{
+  border-top:1px solid var(--border);
+  padding:32px;text-align:center;
+  color:var(--text4);font-size:12px;
+  line-height:1.8;
+}
+footer b{color:var(--gold-soft);}
+
+@media(max-width:880px){
+  .hero{padding:56px 24px 48px;}
+  .org-tag{position:static;flex-direction:row;margin-bottom:20px;}
+  .pain-grid{grid-template-columns:1fr;}
+  .metrics{grid-template-columns:1fr;}
+  .moat-layer{grid-template-columns:60px 1fr;gap:14px;}
+  .moat-l-name{font-size:14px;}
+  .moat-l-desc{grid-column:1/-1;font-size:12.5px;}
+  .closing{padding:42px 24px;}
+}
+
+.fade{opacity:0;transform:translateY(20px);transition:opacity .6s,transform .6s;}
+.fade.vis{opacity:1;transform:none;}
+</style>
+</head>
+<body>
+
+<!-- =============================================== HERO =============================================== -->
+<div class="hero">
+  <div class="org-tag">
+    <span>面向</span>
+    <b>上海静安高新集团</b>
+    <span>战略合作意向沟通材料</span>
+  </div>
+  <div class="hero-inner">
+    <div class="brand-line">XIBO AI · AGENT TEAM</div>
+    <h1 class="hero-title">把 AI 真正"嵌入"<br>声音培训的每一次对话</h1>
+    <p class="hero-sub">
+      喜播构建了一套 <b>9 个智能体 × 14 个实时合规校验器 × 12 维度评分体系</b> 的完整 AI 团队，
+      解决教育行业长期以来"靠话术模板拉成交、靠人力堆服务、靠运气控合规"的系统性问题。
+      <br><br>
+      这不是一个聊天机器人——这是一套<b>用数据治理销售行为</b>的运营基础设施。
+    </p>
+
+    <div class="hero-stats">
+      <div class="hstat">
+        <div class="hstat-num">9</div>
+        <div class="hstat-lbl">智能体协同分工</div>
+        <div class="hstat-sub">销售 · 服务 · 验证 · 评分 · 进化</div>
+      </div>
+      <div class="hstat">
+        <div class="hstat-num">14</div>
+        <div class="hstat-lbl">维度实时合规校验</div>
+        <div class="hstat-sub">广告法 / 消保法 / 反不正当竞争法</div>
+      </div>
+      <div class="hstat">
+        <div class="hstat-num">1,500<small>+</small></div>
+        <div class="hstat-lbl">真实学员原话语料</div>
+        <div class="hstat-sub">行业稀缺的训练资产</div>
+      </div>
+      <div class="hstat">
+        <div class="hstat-num">3,000<small>+</small></div>
+        <div class="hstat-lbl">行代码 · 6 周迭代</div>
+        <div class="hstat-sub">已上线 · 持续进化中</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="wrap">
+
+<!-- =============================================== 行业痛点 =============================================== -->
+<div class="sec fade">
+  <div class="sec-header">
+    <span class="sec-tag">SECTION 01 · 行业系统性问题</span>
+    <h2 class="sec-h">教育行业的"话术模板时代"已经走到尽头</h2>
+    <p class="sec-desc">
+      我们用关键词反向扫描了 <b>500 份真实聊天记录</b>，结果触目惊心——
+      <b>401 个班主任中有 80% 使用了违规话术</b>，1,732 条问题消息中虚假紧迫感和虚假身份背书占 87%。
+      这不是个人问题，是一套被复制粘贴的统一话术体系。
+    </p>
+  </div>
+
+  <div class="pain-grid">
+    <div class="pain-col left">
+      <div class="pain-h bad"><span>⚠</span> 旧模式：模板 + 人力 + 运气</div>
+      <div class="pain-sub">教育行业普遍现状</div>
+      <ul class="pain-list">
+        <li><span><b>合规裸奔</b>：班主任凭经验发话术，统一文案含『名额今晚截止』『我是签约主播』『月入 5 万』等违规表达</span></li>
+        <li><span><b>退款率不可控</b>：欺骗话术是退款率最强单一预测因子——已退款学员的聊天记录中违规话术密度显著更高</span></li>
+        <li><span><b>法律风险悬顶</b>：广告法 §28、反不正当竞争法 §8、消保法 §20 都有对应罚则，目前完全靠运气</span></li>
+        <li><span><b>服务质量黑箱</b>：班主任服务质量靠主观感受，没有量化体系，优秀和违规无法区分</span></li>
+        <li><span><b>数据资产流失</b>：每天上万条对话，但没有任何结构化沉淀——付费完即归零</span></li>
+        <li><span><b>规模天花板</b>：每招一个班主任都要从头培训，离职带走的是经验而不是组织能力</span></li>
+      </ul>
+    </div>
+    <div class="pain-col right">
+      <div class="pain-h good"><span>✦</span> 新模式：智能体 + 实时治理 + 数据沉淀</div>
+      <div class="pain-sub">喜播 AI 智能体团队</div>
+      <ul class="pain-list">
+        <li><span><b>合规可治理</b>：7 类欺骗话术实时拦截，关键词库来源于 1,732 条真实违规消息——是 ground truth 不是猜测</span></li>
+        <li><span><b>话术质量可量化</b>：每条对话被 12 个维度评分，输出 S/A/B/C/D 等级 + 改进建议，告别主观判断</span></li>
+        <li><span><b>法律风险全覆盖</b>：广告法 / 反不正当竞争法 / 消保法 三大维度的对应词典，违规自动拦截或上报</span></li>
+        <li><span><b>服务能力 24×7</b>：AI 助教秒级响应 + 真人班主任关键决策——人机协同而非替代</span></li>
+        <li><span><b>每次对话都是资产</b>：从对话提炼故事 / 信号 / 进化策略，资产线性累积</span></li>
+        <li><span><b>组织能力沉淀</b>：金牌班主任的话术被结构化进 4 大武器库，新人 onboard 直接复用</span></li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="compliance-quote">
+    <div class="cq-icon">⚖</div>
+    <div class="cq-body">
+      <div class="cq-h">合规层并非可选项——这是行业的"医保红线"</div>
+      <div class="cq-text">
+        我们对 500 份真实对话的扫描显示：<b>54.5%</b> 的违规消息属于"制造虚假紧迫感"（名额有限/今晚截止），<b>32.3%</b> 属于"虚假身份背书"（官方招募官/签约主播）。<br>
+        这两类话术在已退款学员的对话中密度更高——<b>欺骗话术 = 退款率的直接因果</b>，更是监管处罚的直接依据。
+      </div>
+      <div class="cq-laws">
+        <span class="law-pill">广告法 §28（虚假宣传）</span>
+        <span class="law-pill">反不正当竞争法 §8（虚假商业宣传）</span>
+        <span class="law-pill">消保法 §20（欺诈营销）</span>
+        <span class="law-pill">个人信息保护法（身份诚实披露）</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<hr class="divider">
+
+<!-- =============================================== 智能体团队 =============================================== -->
+<div class="sec fade">
+  <div class="sec-header">
+    <span class="sec-tag">SECTION 02 · 智能体团队架构</span>
+    <h2 class="sec-h">9 个智能体，覆盖从获客到长期 LTV 的全链路</h2>
+    <p class="sec-desc">
+      不是单一大模型——是一支<b>有职能分工的 AI 团队</b>，每个智能体只做自己最擅长的事，
+      通过 LangGraph 编排协同。这是教育 AI 真正走向规模化的必要架构。
+    </p>
+  </div>
+
+  <div class="agents-grid">
+    <div class="agent-card">
+      <div class="agent-id">A00</div>
+      <div class="agent-name">路由编排者</div>
+      <div class="agent-role">中枢调度</div>
+      <div class="agent-desc">基于学员状态、SOP 阶段、信号优先级，自动决定哪个智能体接手当前对话。</div>
+      <div class="agent-tags"><span class="atag">LangGraph</span><span class="atag">状态机</span></div>
+    </div>
+
+    <div class="agent-card">
+      <div class="agent-id">A01</div>
+      <div class="agent-name">销售助教</div>
+      <div class="agent-role">体验营破冰 + 三轴情报官</div>
+      <div class="agent-desc">学员入营前 3 天的主要对话方。完成身份/动机/资源三轴探测，识别购买信号，平滑移交真人。</div>
+      <div class="agent-tags"><span class="atag">SPIN</span><span class="atag">Sandler 三层</span><span class="atag">Upfront Contract</span></div>
+    </div>
+
+    <div class="agent-card">
+      <div class="agent-id">A02</div>
+      <div class="agent-name">服务班主任 AI</div>
+      <div class="agent-role">交付期陪伴</div>
+      <div class="agent-desc">付费后的日常陪伴 + 答疑 + 防退费。配套 7 类禁词清单 + 4 大金牌话术武器库。</div>
+      <div class="agent-tags"><span class="atag">退费防火墙</span><span class="atag">金牌话术</span></div>
+    </div>
+
+    <div class="agent-card">
+      <div class="agent-id">A03</div>
+      <div class="agent-name">实时合规校验器</div>
+      <div class="agent-role">14 维硬拦截</div>
+      <div class="agent-desc">AI 每一句话发出前必须通过 14 个独立验证器。违规即 rewrite，严重违规直接 escalate 给真人。</div>
+      <div class="agent-tags"><span class="atag">14 Validators</span><span class="atag">P0 拦截</span></div>
+    </div>
+
+    <div class="agent-card">
+      <div class="agent-id">A04</div>
+      <div class="agent-name">评分复盘官</div>
+      <div class="agent-role">12 维度质量评分</div>
+      <div class="agent-desc">每轮对话事后评分：8 个核心维度 + 4 个策略维度。S/A/B/C/D 等级 + 改进建议。</div>
+      <div class="agent-tags"><span class="atag">8 + 4 维</span><span class="atag">趋势分析</span></div>
+    </div>
+
+    <div class="agent-card">
+      <div class="agent-id">A05</div>
+      <div class="agent-name">真人介入决策器</div>
+      <div class="agent-role">人机交接判断</div>
+      <div class="agent-desc">基于学员意愿/信号/风险综合评估，决定何时把对话交给真人班主任。避免静默切换。</div>
+      <div class="agent-tags"><span class="atag">MEDDPICC</span><span class="atag">信任传递</span></div>
+    </div>
+
+    <div class="agent-card">
+      <div class="agent-id">A06</div>
+      <div class="agent-name">故事提炼与进化</div>
+      <div class="agent-role">资产沉淀引擎</div>
+      <div class="agent-desc">扫描好评对话→提炼成可复用案例；扫描违规对话→反哺武器库黑名单。资产线性累积。</div>
+      <div class="agent-tags"><span class="atag">七步曲</span><span class="atag">A/B 进化</span></div>
+    </div>
+
+    <div class="agent-card">
+      <div class="agent-id">A07</div>
+      <div class="agent-name">群组分析师</div>
+      <div class="agent-role">学员分层 + LTV 预测</div>
+      <div class="agent-desc">基于 5 阶段旅程（acquired→long_term）追踪学员，识别高 LTV 群体特征。</div>
+      <div class="agent-tags"><span class="atag">5 阶段 LTV</span><span class="atag">人群画像</span></div>
+    </div>
+
+    <div class="agent-card">
+      <div class="agent-id">A08·A09</div>
+      <div class="agent-name">引流文案 + 外部监控</div>
+      <div class="agent-role">前置 / 后置</div>
+      <div class="agent-desc">A08 生产引流素材；A09 监控外部舆情、平台政策变化，保持团队对外部世界感知。</div>
+      <div class="agent-tags"><span class="atag">UGC</span><span class="atag">监控</span></div>
+    </div>
+  </div>
+</div>
+
+<hr class="divider">
+
+<!-- =============================================== 四大技术支柱 =============================================== -->
+<div class="sec fade">
+  <div class="sec-header">
+    <span class="sec-tag">SECTION 03 · 技术护城河</span>
+    <h2 class="sec-h">四个支柱让 AI 团队具备"工业化"能力</h2>
+    <p class="sec-desc">
+      做一个能聊天的 AI 很容易，做一个<b>每句话都符合合规、每个决策都可量化、每次进步都能沉淀的 AI 团队</b>很难。
+      下面是我们已经构建好的四个工业化能力。
+    </p>
+  </div>
+
+  <div class="pillars">
+    <div class="pillar">
+      <div class="pillar-num">01</div>
+      <div class="pillar-h">14 维实时合规校验</div>
+      <div class="pillar-sub">REAL-TIME COMPLIANCE</div>
+      <div class="pillar-body">
+        每一句 AI 输出在发送前必须通过 <b>14 个独立验证器</b>，覆盖身份/金钱/家庭/意愿/健康/认知/承诺/期望/提问质量/复述/重复/移交意图/结构合规/欺骗话术。任一 P0 维度违规直接拦截。
+      </div>
+      <div class="pillar-stat">14 维 × 每轮对话 × 异步落库——质量可观测、可对比、可问责</div>
+    </div>
+
+    <div class="pillar">
+      <div class="pillar-num">02</div>
+      <div class="pillar-h">12 维质量评分体系</div>
+      <div class="pillar-sub">QUALITY METRICS</div>
+      <div class="pillar-body">
+        <b>8 个核心维度 + 4 个策略维度</b>（破冰期价值递交节奏 / 信号响应速度 / 痛点漏斗深度 / 学员主动意愿质量），每轮对话输出 S/A/B/C/D 等级 + 具体改进建议。
+      </div>
+      <div class="pillar-stat">从此销售质量从"老板的感觉"变成"可显示的图表"</div>
+    </div>
+
+    <div class="pillar">
+      <div class="pillar-num">03</div>
+      <div class="pillar-h">信号驱动 SOP</div>
+      <div class="pillar-sub">SIGNAL-BASED</div>
+      <div class="pillar-body">
+        基于 B2B 信号销售方法论改造——学员的<b>主动信号有半衰期</b>（T1 必须 30 分钟内响应，T3 超过 24 小时即失效）。SOP 不再按时间表机械推送，而是被信号驱动。
+      </div>
+      <div class="pillar-stat">3 层信号 × 6 类典型场景 × 30 个生产真实案例校准</div>
+    </div>
+
+    <div class="pillar">
+      <div class="pillar-num">04</div>
+      <div class="pillar-h">数据资产化引擎</div>
+      <div class="pillar-sub">ASSET ACCUMULATION</div>
+      <div class="pillar-body">
+        每条好评对话→提炼成<b>故事/案例/正例武器库</b>；每条违规对话→沉淀进黑名单/反例。这意味着 AI 团队<b>每天都在变强</b>——不像传统培训那样班主任离职就清零。
+      </div>
+      <div class="pillar-stat">武器库已有 4 大金牌正例类 + 7 大反例黑名单</div>
+    </div>
+  </div>
+</div>
+
+<hr class="divider">
+
+<!-- =============================================== 14 维 validators ============================================== -->
+<div class="sec fade">
+  <div class="sec-header">
+    <span class="sec-tag">SECTION 04 · 14 维校验器全景</span>
+    <h2 class="sec-h">让每一句 AI 输出都经过 14 道安检</h2>
+    <p class="sec-desc">
+      这是国内教育行业目前最完整的 AI 输出合规校验体系。每个维度都有明确的<b>触发条件 + 严重度 + 修复路径</b>。
+    </p>
+  </div>
+
+  <table class="val-table">
+    <thead>
+      <tr>
+        <th>#</th>
+        <th>验证维度</th>
+        <th>校验内容</th>
+        <th>严重度</th>
+        <th>数据基础</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><td class="val-mono">01</td><td><b>身份一致性</b></td><td>AI 是否前后给出矛盾的身份描述、是否冒充真人</td><td><span class="p0-badge">P0</span></td><td>身份重述协议</td></tr>
+      <tr><td class="val-mono">02</td><td><b>金钱表达</b></td><td>是否承诺收入、虚标价格、给出无法兑现的金额</td><td><span class="p0-badge">P0</span></td><td>34 条退款样本</td></tr>
+      <tr><td class="val-mono">03</td><td><b>家庭态度</b></td><td>是否粗暴询问家人意见、过早涉及家庭决策</td><td><span class="p1-badge">P1</span></td><td>家庭支持库</td></tr>
+      <tr><td class="val-mono">04</td><td><b>学习意愿</b></td><td>是否把动机误判为意愿、提前转真人</td><td><span class="p1-badge">P1</span></td><td>意愿信号库</td></tr>
+      <tr><td class="val-mono">05</td><td><b>健康状况</b></td><td>是否对学员健康/年龄做不当推断</td><td><span class="p1-badge">P1</span></td><td>退休群体语料</td></tr>
+      <tr><td class="val-mono">06</td><td><b>行业认知</b></td><td>是否传递"动动嘴月入过万"等不切实际预期</td><td><span class="p1-badge">P1</span></td><td>认知禁忌表</td></tr>
+      <tr><td class="val-mono">07</td><td><b>承诺约束</b></td><td>是否做出超能力范围的承诺（赔付/担保/兜底）</td><td><span class="p0-badge">P0</span></td><td>2026 北京豆包案前车之鉴</td></tr>
+      <tr><td class="val-mono">08</td><td><b>期望校准</b></td><td>是否拉高学员对结果的期望以促成报名</td><td><span class="p1-badge">P1</span></td><td>30 个零欺骗成交案例</td></tr>
+      <tr><td class="val-mono">09</td><td><b>提问质量</b></td><td>是否使用伪开放式问句（A vs 其他）、连续追问</td><td><span class="p1-badge">P1</span></td><td>问句类型理论</td></tr>
+      <tr><td class="val-mono">10</td><td><b>复述质量</b></td><td>学员有自我怀疑信号时是否用空鼓励敷衍</td><td><span class="p1-badge">P1</span></td><td>身份重述四步法</td></tr>
+      <tr><td class="val-mono">11</td><td><b>重复检测</b></td><td>是否反复推送相同内容造成骚扰</td><td><span class="p2-badge">P2</span></td><td>骚扰模式库</td></tr>
+      <tr><td class="val-mono">12</td><td><b>移交意图</b></td><td>移交真人时机是否准确、是否静默切换破坏信任</td><td><span class="p1-badge">P1</span></td><td>真人移交协议</td></tr>
+      <tr><td class="val-mono">13</td><td><b>结构合规</b></td><td>话术骨架（PREP / 四步法 / 缓速）是否被遵循</td><td><span class="p2-badge">P2</span></td><td>话术结构选择器</td></tr>
+      <tr><td class="val-mono">14</td><td><b>欺骗话术</b></td><td>7 类违规话术实时拦截（虚假紧迫/身份/收入/付费等）</td><td><span class="p0-badge">P0</span></td><td><b>401 真人 · 1,732 条违规</b></td></tr>
+    </tbody>
+  </table>
+</div>
+
+<hr class="divider">
+
+<!-- =============================================== 数据资产 =============================================== -->
+<div class="sec fade">
+  <div class="sec-header">
+    <span class="sec-tag">SECTION 05 · 数据资产清单</span>
+    <h2 class="sec-h">支撑系统的"地基"——独有数据资产</h2>
+    <p class="sec-desc">
+      AI 不是 prompt 写得好就行——背后<b>必须有专属于本行业的训练数据和反例库</b>。
+      喜播花了 6 周时间把以下数据资产从生产对话里抽取、清洗、结构化。
+    </p>
+  </div>
+
+  <div class="assets">
+    <div class="asset-card">
+      <div class="asset-num">1,500<small style="font-size:24px">+</small></div>
+      <div class="asset-lbl">真实学员原话语料</div>
+      <div class="asset-sub">已脱敏 / 已分类 / 已 5× 扩充</div>
+    </div>
+    <div class="asset-card">
+      <div class="asset-num">30</div>
+      <div class="asset-lbl">3 天零欺骗成交案例</div>
+      <div class="asset-sub">金标准对话样本</div>
+    </div>
+    <div class="asset-card">
+      <div class="asset-num">1,732</div>
+      <div class="asset-lbl">真人班主任违规消息</div>
+      <div class="asset-sub">反向校准用 ground truth</div>
+    </div>
+    <div class="asset-card">
+      <div class="asset-num">401</div>
+      <div class="asset-lbl">班主任行为档案</div>
+      <div class="asset-sub">含 15 名高危名单</div>
+    </div>
+    <div class="asset-card">
+      <div class="asset-num">7</div>
+      <div class="asset-lbl">类欺骗话术词典</div>
+      <div class="asset-sub">关键词全部生产数据反向抽取</div>
+    </div>
+    <div class="asset-card">
+      <div class="asset-num">12</div>
+      <div class="asset-lbl">类正向话术武器库</div>
+      <div class="asset-sub">每类含触发条件 + 替代方案</div>
+    </div>
+    <div class="asset-card">
+      <div class="asset-num">34</div>
+      <div class="asset-lbl">真实退款样本</div>
+      <div class="asset-sub">8 维顾虑共现模型</div>
+    </div>
+    <div class="asset-card">
+      <div class="asset-num">5</div>
+      <div class="asset-lbl">阶段 LTV 旅程模型</div>
+      <div class="asset-sub">acquired→long_term</div>
+    </div>
+  </div>
+</div>
+
+<hr class="divider">
+
+<!-- =============================================== 核心业务指标 =============================================== -->
+<div class="sec fade">
+  <div class="sec-header">
+    <span class="sec-tag">SECTION 06 · 核心业务价值</span>
+    <h2 class="sec-h">每一个智能体能力都对应一项可量化业务指标</h2>
+    <p class="sec-desc">
+      AI 的价值不是 demo 好看——是<b>有没有打在业务核心指标上</b>。下面是我们当前重点优化的 6 个业务杠杆。
+    </p>
+  </div>
+
+  <div class="metrics">
+    <div class="metric-card">
+      <div class="metric-h">
+        <div class="metric-h-name">合规风险消除</div>
+        <div class="metric-h-cat">LEGAL · COMPLIANCE</div>
+      </div>
+      <div class="metric-desc">7 类违规话术（虚假紧迫/身份/收入/施压/退款）实时拦截，覆盖广告法、消保法、反不正当竞争法。<b>是合规层从『靠运气』到『有兜底』的根本转变</b>。</div>
+      <div class="metric-data">
+        <div><div class="md-num">P0</div><div class="md-lbl">5 类直接拦截<br>2 类升级人工</div></div>
+        <div><div class="md-num">实时</div><div class="md-lbl">每句输出<br>双层校验</div></div>
+      </div>
+    </div>
+
+    <div class="metric-card">
+      <div class="metric-h">
+        <div class="metric-h-name">退款率下降</div>
+        <div class="metric-h-cat">REFUND RATE</div>
+      </div>
+      <div class="metric-desc">基于 34 个真实退款样本提炼的<b>8 维顾虑共现模型</b>——退款不是单点关键词触发，是经济/时间/能力/信任/家庭/健康/工具/变现多维顾虑共现。提前预警，主动干预。</div>
+      <div class="metric-data">
+        <div><div class="md-num">8 维</div><div class="md-lbl">顾虑共现<br>实时打分</div></div>
+        <div><div class="md-num">早 N 天</div><div class="md-lbl">在退款发生前<br>主动干预</div></div>
+      </div>
+    </div>
+
+    <div class="metric-card">
+      <div class="metric-h">
+        <div class="metric-h-name">24×7 服务能力</div>
+        <div class="metric-h-cat">CAPACITY</div>
+      </div>
+      <div class="metric-desc">AI 助教<b>秒级响应</b>所有非关键问题（作业提醒/直播口令/答疑），<b>真人班主任专注关键决策</b>。同等人力服务学员数 N 倍提升，且不损失服务温度。</div>
+      <div class="metric-data">
+        <div><div class="md-num">秒级</div><div class="md-lbl">AI 响应<br>学员高频问题</div></div>
+        <div><div class="md-num">3-5×</div><div class="md-lbl">真人班主任<br>服务密度提升</div></div>
+      </div>
+    </div>
+
+    <div class="metric-card">
+      <div class="metric-h">
+        <div class="metric-h-name">高 LTV 群体识别</div>
+        <div class="metric-h-cat">LTV TARGETING</div>
+      </div>
+      <div class="metric-desc">破解幸存者偏差——付费数据只代表 3% 已转化，<b>97% 未转化的真实分布</b>才是增长真相。系统识别『内容创作者』+『有钱有闲』两类高 LTV 群体，反向调整 SOP。</div>
+      <div class="metric-data">
+        <div><div class="md-num">2 类</div><div class="md-lbl">高 LTV 战略目标<br>持续追踪</div></div>
+        <div><div class="md-num">5 阶段</div><div class="md-lbl">LTV 旅程<br>全链路打通</div></div>
+      </div>
+    </div>
+
+    <div class="metric-card">
+      <div class="metric-h">
+        <div class="metric-h-name">组织能力沉淀</div>
+        <div class="metric-h-cat">ORG CAPABILITY</div>
+      </div>
+      <div class="metric-desc">金牌班主任的话术被结构化进 <b>4 大正例武器库</b>（身份识别/主动降压/降低门槛/真实边界），新人 onboard 直接复用——离职带不走经验。</div>
+      <div class="metric-data">
+        <div><div class="md-num">4 类</div><div class="md-lbl">金牌话术<br>method-based</div></div>
+        <div><div class="md-num">30 案</div><div class="md-lbl">真实成交案例<br>持续累积</div></div>
+      </div>
+    </div>
+
+    <div class="metric-card">
+      <div class="metric-h">
+        <div class="metric-h-name">数据驱动决策</div>
+        <div class="metric-h-cat">DATA-DRIVEN</div>
+      </div>
+      <div class="metric-desc">每天自动生成『质量进化日报』——14 维违规分布 + 12 维质量趋势 + 高危班主任名单 + critical 告警。<b>从此运营决策不再靠会议拍脑袋</b>。</div>
+      <div class="metric-data">
+        <div><div class="md-num">日报</div><div class="md-lbl">A06 自动生成<br>无需人工</div></div>
+        <div><div class="md-num">7 天</div><div class="md-lbl">滚动趋势<br>多维对比</div></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<hr class="divider">
+
+<!-- =============================================== 4 层护城河 =============================================== -->
+<div class="sec fade">
+  <div class="sec-header">
+    <span class="sec-tag">SECTION 07 · 战略护城河</span>
+    <h2 class="sec-h">S2B2C 模式下的四层壁垒</h2>
+    <p class="sec-desc">
+      声音培训行业的同质化已经非常严重——课程内容、价格、师资差异有限。
+      真正的差异化护城河必须在<b>数据 / IP / 社群 / 流程</b>这 4 个层面同时建立。
+    </p>
+  </div>
+
+  <div class="moat-stack">
+    <div class="moat-layer">
+      <div class="moat-l-num">L1</div>
+      <div>
+        <div class="moat-l-name">数据护城河</div>
+        <div class="moat-l-sub">DATA MOAT</div>
+      </div>
+      <div class="moat-l-desc">
+        1,500 条真实学员原话 + 30 个零欺骗成交金标准 + 1,732 条违规反例——<b>这套数据全行业其他玩家拿不到也仿不出</b>，是 AI 系统真正的"地基"。
+      </div>
+    </div>
+
+    <div class="moat-layer">
+      <div class="moat-l-num">L2</div>
+      <div>
+        <div class="moat-l-name">IP 人格护城河</div>
+        <div class="moat-l-sub">IP PERSONA</div>
+      </div>
+      <div class="moat-l-desc">
+        AI 助教是 IP 真人的"分身"——继承 IP 的人格、口吻、教学理念。学员体验到的是<b>『被同一个人持续陪伴』</b>，不是『换了一个客服』。这是教育行业最强的留存机制。
+      </div>
+    </div>
+
+    <div class="moat-layer">
+      <div class="moat-l-num">L3</div>
+      <div>
+        <div class="moat-l-name">社群协作护城河</div>
+        <div class="moat-l-sub">COMMUNITY</div>
+      </div>
+      <div class="moat-l-desc">
+        基于真实数据归档：<b>『社群协作参与』是 LTV 高倍数信号</b>（完课 + 续费 + 转介均显著抬升）。系统主动识别社群活跃度低的学员，及时干预 + PIA 戏组队邀请。
+      </div>
+    </div>
+
+    <div class="moat-layer">
+      <div class="moat-l-num">L4</div>
+      <div>
+        <div class="moat-l-name">流程标准化护城河</div>
+        <div class="moat-l-sub">PROCESS</div>
+      </div>
+      <div class="moat-l-desc">
+        从获客→体验→转化→服务→长期 LTV 的 5 阶段全流程被系统化建模。<b>新班主任入职第 1 天就能用上 401 名老班主任 6 个月才建立的经验</b>——这是组织规模化的关键。
+      </div>
+    </div>
+  </div>
+</div>
+
+<hr class="divider">
+
+<!-- =============================================== 进展路线 =============================================== -->
+<div class="sec fade">
+  <div class="sec-header">
+    <span class="sec-tag">SECTION 08 · 迭代进展与路线</span>
+    <h2 class="sec-h">6 周迭代节奏 · 已上线 4 大波次</h2>
+    <p class="sec-desc">
+      喜播 AI 团队不是 PPT 项目——是一个<b>每周都有功能落地、每次都有数据校准</b>的活系统。
+    </p>
+  </div>
+
+  <div class="roadmap">
+
+    <div class="road-item done">
+      <span class="road-label">✓ 已上线 · V1</span>
+      <div class="road-h">智能体核心架构与三轴情报体系</div>
+      <div class="road-d">9 个智能体 LangGraph 编排上线；三轴画像（identity / motivation / resource）自动采集；首版 SOP 节点完成；A04 8 维质量评分上线。</div>
+    </div>
+
+    <div class="road-item done">
+      <span class="road-label">✓ 已上线 · V2</span>
+      <div class="road-h">14 维实时校验体系</div>
+      <div class="road-d">身份/承诺/金钱/家庭/健康/认知/期望/重复/移交/复述/结构等 13 个验证器完整建成，输出端硬拦截，软提示 + 硬约束双层。</div>
+    </div>
+
+    <div class="road-item done">
+      <span class="road-label">✓ 已上线 · V3</span>
+      <div class="road-h">销售方法论体系融入</div>
+      <div class="road-d">基于 8 份 B2B 销售 skill 报告，融入 SPIN（Implication）+ Sandler（三层痛点）+ Upfront Contract（提前契约）+ 信号驱动 SOP（30 分钟半衰期）。</div>
+    </div>
+
+    <div class="road-item done">
+      <span class="road-label">✓ 已上线 · V4</span>
+      <div class="road-h">真人话术合规层（最新）</div>
+      <div class="road-d">基于 401 真人班主任 + 1,732 条违规消息分析，新建 7 类欺骗话术词典 + 实时拦截器 + 6 个 compliance API + 30 案例金标准信号库 + 4 步成交方法论入宪。</div>
+    </div>
+
+    <div class="road-item ing">
+      <span class="road-label">○ 进行中</span>
+      <div class="road-h">真人运营面板 + 高危名单可视化</div>
+      <div class="road-d">把后端的合规扫描数据通过 6 个 API 暴露给真人运营——日报告警、高危名单追踪、单条消息手动复核。</div>
+    </div>
+
+    <div class="road-item plan">
+      <span class="road-label">— 规划中</span>
+      <div class="road-h">A02 服务班主任完整落地</div>
+      <div class="road-d">交付期 AI 班主任，4 大金牌武器库直接接入 prompt；服务期退费防火墙；学员 LTV 阶段自动推进。</div>
+    </div>
+
+    <div class="road-item plan">
+      <span class="road-label">— 规划中</span>
+      <div class="road-h">企业微信 / 公众号深度对接</div>
+      <div class="road-d">从沙盒环境推进到企微生产，触达学员 / 班主任的真实工作流。同步打通真人面板的实时告警。</div>
+    </div>
+
+    <div class="road-item plan">
+      <span class="road-label">— 规划中</span>
+      <div class="road-h">LTV 策略维度 vs 留存相关性验证</div>
+      <div class="road-d">用 6 个月数据验证 4 个策略维度（价值递交节奏 / 信号响应 / 痛点深度 / 学员主动意愿）是否真预测 LTV——把直觉指标变成数据证明的预测因子。</div>
+    </div>
+
+  </div>
+</div>
+
+<hr class="divider">
+
+<!-- =============================================== 合作可能性 =============================================== -->
+<div class="sec fade">
+  <div class="closing">
+    <div class="closing-tag">PARTNERSHIP · 合作可能性</div>
+    <h2>这不是一个 demo——是一套可以被产业化复用的能力</h2>
+    <p class="closing-body">
+      喜播构建的不只是一套自用工具——而是<b>面向整个教育/培训/服务行业的合规级 AI 运营基础设施</b>。<br>
+      系统中的每一层都被设计为<b>可解耦、可输出、可被其他业务复用</b>。
+      我们希望和静安高新集团一起探索：在更大的产业语境里，这套能力可以服务哪些行业、解决哪些问题。
+    </p>
+
+    <div class="closing-cards">
+      <div class="cc-item">
+        <div class="cc-num">01</div>
+        <div class="cc-text">合规级 AI 中台<br>对外提供合规扫描 API</div>
+      </div>
+      <div class="cc-item">
+        <div class="cc-num">02</div>
+        <div class="cc-text">教培行业垂类 SaaS<br>话术质量评分 + 班主任督导</div>
+      </div>
+      <div class="cc-item">
+        <div class="cc-num">03</div>
+        <div class="cc-text">国资体系数字化样板<br>承担静安区数字经济示范项目</div>
+      </div>
+      <div class="cc-item">
+        <div class="cc-num">04</div>
+        <div class="cc-text">联合研究 · 数据资产<br>把行业话术合规标准化、产业化</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+</div><!-- /.wrap -->
+
+<footer>
+  喜播 AI 智能体团队 · 介绍材料 · <b>面向上海静安高新集团领导参阅</b><br>
+  生成时间：2026 年 5 月 · 仅限合作沟通使用，请勿外传<br>
+  技术栈：LangGraph + FastAPI + PostgreSQL + asyncpg · 当前代码量 3,000+ 行 · 6 周迭代节奏
+</footer>
+
+<script>
+const obs = new IntersectionObserver((entries) => {
+  entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('vis'); });
+}, { threshold: 0.08 });
+document.querySelectorAll('.fade').forEach(el => obs.observe(el));
+</script>
+
+</body>
+</html>
