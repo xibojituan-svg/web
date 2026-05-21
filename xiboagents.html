@@ -1,0 +1,861 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>喜播 AI 智能体团队 · 系统介绍</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#0a0e16; --bg2:#0f1521; --bg3:#141b2a;
+  --card:#141c2c; --card2:#1a2438;
+  --border:#1f2d44; --border2:#2a3a55;
+  --gold:#d4a55a; --gold-soft:#e8c987; --gold-deep:#a8803d;
+  --blue:#4f7cff; --cyan:#22d3ee; --emerald:#10b981; --purple:#a78bfa;
+  --red:#ef4444; --orange:#fb923c; --yellow:#fbbf24;
+  --text:#e8edf5; --text2:#9fb0c8; --text3:#5d6e87; --text4:#3c4960;
+  --grad-gold:linear-gradient(135deg,#e8c987 0%,#d4a55a 50%,#a8803d 100%);
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:'Noto Sans SC',sans-serif;background:var(--bg);color:var(--text);line-height:1.7;-webkit-font-smoothing:antialiased;}
+.mono{font-family:'JetBrains Mono',monospace;}
+
+/* ============= HERO ============= */
+.hero{
+  background:radial-gradient(ellipse at 70% 30%,rgba(212,165,90,.1) 0%,transparent 55%),
+             radial-gradient(ellipse at 30% 70%,rgba(79,124,255,.05) 0%,transparent 50%),
+             linear-gradient(180deg,#0a0e16 0%,#0d1320 100%);
+  padding:72px 40px 64px;position:relative;overflow:hidden;
+  border-bottom:1px solid var(--border);
+}
+.hero::before{
+  content:'';position:absolute;inset:0;
+  background-image:linear-gradient(rgba(212,165,90,.025) 1px,transparent 1px),linear-gradient(90deg,rgba(212,165,90,.025) 1px,transparent 1px);
+  background-size:50px 50px;
+  mask-image:radial-gradient(ellipse at center,black 30%,transparent 70%);
+}
+.hero-inner{max-width:1180px;margin:0 auto;position:relative;}
+.brand-tag-line{
+  display:inline-flex;align-items:center;gap:10px;
+  margin-bottom:32px;
+  font-family:'JetBrains Mono',monospace;
+  font-size:12px;letter-spacing:4px;
+  color:var(--gold-soft);
+  text-transform:uppercase;
+  padding:6px 18px;
+  border:1px solid rgba(212,165,90,.35);
+  border-radius:99px;
+  background:rgba(212,165,90,.04);
+}
+.brand-tag-line .brand-mark{color:var(--gold);font-weight:800;letter-spacing:5px;}
+.brand-tag-line .brand-dot{opacity:.5;}
+h1.hero-title{
+  font-size:clamp(32px,5.5vw,56px);font-weight:900;line-height:1.15;letter-spacing:-1px;
+  margin-bottom:22px;
+  background:linear-gradient(135deg,#fff 0%,#e8c987 60%,#d4a55a 100%);
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;
+}
+.hero-sub{color:var(--text2);font-size:17px;line-height:1.85;max-width:760px;margin-bottom:44px;}
+.hero-sub b{color:#fff;font-weight:600;}
+.hero-stats{
+  display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:0;
+  border:1px solid var(--border);border-radius:18px;
+  background:rgba(20,28,44,.4);backdrop-filter:blur(8px);overflow:hidden;
+}
+.hstat{padding:28px 26px;border-right:1px solid var(--border);}
+.hstat:last-child{border-right:none;}
+.hstat-num{
+  font-size:36px;font-weight:900;line-height:1;
+  background:var(--grad-gold);-webkit-background-clip:text;-webkit-text-fill-color:transparent;
+  margin-bottom:8px;letter-spacing:-1px;
+}
+.hstat-num small{font-size:18px;font-weight:700;opacity:.7;}
+.hstat-lbl{font-size:13px;color:var(--text3);line-height:1.5;}
+.org-tag{
+  position:absolute;top:36px;right:40px;
+  display:flex;flex-direction:column;align-items:flex-end;gap:4px;
+  font-size:11px;color:var(--text3);
+}
+.org-tag b{color:var(--gold-soft);font-size:12px;letter-spacing:1.5px;}
+
+/* ============= LAYOUT ============= */
+.wrap{max-width:1180px;margin:0 auto;padding:0 32px;}
+.sec{padding:84px 0;}
+.sec-header{margin-bottom:44px;max-width:780px;}
+.sec-tag{
+  display:inline-block;font-size:11px;font-weight:700;letter-spacing:4px;
+  color:var(--gold);text-transform:uppercase;
+  padding-bottom:6px;border-bottom:2px solid var(--gold);
+  margin-bottom:18px;
+}
+.sec-h{font-size:clamp(24px,3vw,36px);font-weight:800;color:#fff;letter-spacing:-.5px;line-height:1.25;margin-bottom:14px;}
+.sec-desc{font-size:15px;color:var(--text2);line-height:1.85;}
+.sec-desc b{color:#fff;font-weight:600;}
+hr.divider{border:none;border-top:1px solid var(--border);margin:0;}
+
+/* ============= 痛点对比 ============= */
+.pain-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px;}
+.pain-col{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:30px;position:relative;}
+.pain-col.left{border-top:3px solid var(--red);}
+.pain-col.right{border-top:3px solid var(--gold);}
+.pain-h{font-size:16px;font-weight:800;margin-bottom:4px;display:flex;align-items:center;gap:10px;}
+.pain-h.bad{color:#fca5a5;}
+.pain-h.good{color:var(--gold-soft);}
+.pain-sub{font-size:12px;color:var(--text3);margin-bottom:22px;}
+.pain-list{list-style:none;}
+.pain-list li{padding:12px 0;border-bottom:1px solid rgba(31,45,68,.5);font-size:13.5px;color:var(--text2);display:flex;gap:12px;line-height:1.7;}
+.pain-list li:last-child{border-bottom:none;}
+.pain-list li::before{content:'';display:inline-block;width:6px;height:6px;border-radius:50%;flex-shrink:0;margin-top:9px;}
+.pain-col.left .pain-list li::before{background:var(--red);}
+.pain-col.right .pain-list li::before{background:var(--gold);}
+.pain-list li b{color:#fff;font-weight:600;}
+
+/* ============= LANGGRAPH DIAGRAM ============= */
+.graph-wrap{
+  background:linear-gradient(180deg,#0e1422 0%,#0a0e16 100%);
+  border:1px solid var(--border);
+  border-radius:24px;
+  padding:48px 36px 36px;
+  position:relative;
+  overflow:hidden;
+}
+.graph-wrap::before{
+  content:'';position:absolute;inset:0;
+  background-image:radial-gradient(circle at 50% 50%,rgba(79,124,255,.04) 0%,transparent 60%);
+  pointer-events:none;
+}
+.graph-meta{
+  display:flex;justify-content:space-between;align-items:center;
+  margin-bottom:30px;flex-wrap:wrap;gap:14px;position:relative;
+}
+.graph-meta-left{display:flex;flex-direction:column;gap:4px;}
+.graph-title{
+  font-family:'JetBrains Mono',monospace;font-size:13px;
+  color:var(--gold);letter-spacing:3px;font-weight:700;
+}
+.graph-subtitle{font-size:11px;color:var(--text3);letter-spacing:1px;}
+.graph-legend{display:flex;gap:18px;flex-wrap:wrap;}
+.lg-item{display:flex;align-items:center;gap:6px;font-size:11px;color:var(--text2);}
+.lg-dot{width:10px;height:10px;border-radius:50%;}
+.lg-frontline{background:var(--gold);box-shadow:0 0 8px var(--gold);}
+.lg-validator{background:var(--red);box-shadow:0 0 8px var(--red);}
+.lg-scorer{background:var(--blue);box-shadow:0 0 8px var(--blue);}
+.lg-async{background:var(--purple);box-shadow:0 0 8px var(--purple);}
+.lg-human{background:var(--emerald);box-shadow:0 0 8px var(--emerald);}
+
+.svg-container{
+  width:100%;
+  position:relative;
+}
+.svg-container svg{
+  display:block;width:100%;height:auto;
+}
+
+/* Edge animations */
+.flow-line{
+  stroke-dasharray:6 6;
+  animation:flow 2.5s linear infinite;
+}
+@keyframes flow{to{stroke-dashoffset:-24;}}
+
+.flow-line.async{
+  stroke-dasharray:3 4;
+  animation:flow-slow 4s linear infinite;
+}
+@keyframes flow-slow{to{stroke-dashoffset:-14;}}
+
+.flow-line.rewrite{
+  stroke-dasharray:4 4;
+  animation:flow-back 2s linear infinite;
+}
+@keyframes flow-back{to{stroke-dashoffset:24;}}
+
+/* Node hover —— SVG <g> 上禁用 transform，避免与子元素 scale 动画冲突造成抖动 */
+.node-grp{cursor:default;}
+.node-grp:hover .node-glow{opacity:.45;}
+.node-glow{transition:opacity .3s;pointer-events:none;}
+
+/* Pulse on key nodes —— 仅 opacity 呼吸，不再用 scale 避免 SVG 坐标抖动 */
+.pulse-node{animation:pulse-ring 2.5s infinite ease-in-out;pointer-events:none;}
+@keyframes pulse-ring{
+  0%,100%{opacity:.35;}
+  50%{opacity:.1;}
+}
+
+.graph-callouts{
+  display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+  gap:14px;margin-top:32px;position:relative;
+}
+.callout{
+  background:rgba(20,28,44,.6);
+  border:1px solid var(--border2);
+  border-radius:10px;
+  padding:14px 16px;
+  font-size:12.5px;
+  color:var(--text2);
+  line-height:1.7;
+}
+.callout b{color:#fff;font-weight:700;font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:1px;}
+.callout .co-label{color:var(--gold-soft);font-weight:700;}
+
+/* ============= DATA ASSETS ============= */
+.assets{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px;}
+.asset-card{
+  background:linear-gradient(135deg,var(--card) 0%,rgba(212,165,90,.04) 100%);
+  border:1px solid var(--border);border-radius:14px;
+  padding:26px;text-align:center;
+}
+.asset-num{
+  font-family:'JetBrains Mono',monospace;
+  font-size:38px;font-weight:900;
+  background:var(--grad-gold);-webkit-background-clip:text;-webkit-text-fill-color:transparent;
+  margin-bottom:6px;line-height:1;letter-spacing:-2px;
+}
+.asset-lbl{font-size:13px;font-weight:700;color:#fff;margin-bottom:4px;}
+.asset-sub{font-size:11px;color:var(--text3);line-height:1.5;}
+
+/* ============= VALUE METRICS ============= */
+.metrics{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:20px;}
+.metric-card{
+  background:var(--card);border:1px solid var(--border);border-radius:16px;
+  padding:28px;position:relative;overflow:hidden;
+}
+.metric-card::before{
+  content:'';position:absolute;top:0;right:0;width:130px;height:130px;
+  background:radial-gradient(circle,rgba(212,165,90,.07) 0%,transparent 65%);
+  pointer-events:none;
+}
+.metric-icon{
+  font-family:'JetBrains Mono',monospace;
+  font-size:11px;color:var(--gold);letter-spacing:1.5px;
+  margin-bottom:8px;
+}
+.metric-h-name{font-size:18px;font-weight:800;color:#fff;margin-bottom:10px;}
+.metric-desc{font-size:13.5px;color:var(--text2);line-height:1.85;}
+.metric-desc b{color:#fff;font-weight:600;}
+
+/* ============= MOAT 4 LAYERS ============= */
+.moat-stack{display:flex;flex-direction:column;border-radius:16px;overflow:hidden;border:1px solid var(--border);}
+.moat-layer{
+  background:var(--card);padding:22px 30px;border-bottom:1px solid var(--border);
+  display:grid;grid-template-columns:80px 200px 1fr;gap:20px;align-items:center;
+  transition:background .2s;
+}
+.moat-layer:last-child{border-bottom:none;}
+.moat-layer:hover{background:var(--card2);}
+.moat-l-num{font-family:'JetBrains Mono',monospace;font-size:26px;font-weight:800;color:var(--gold);letter-spacing:-1px;}
+.moat-l-name{font-size:15px;font-weight:800;color:#fff;line-height:1.4;}
+.moat-l-sub{font-size:11px;color:var(--text3);margin-top:2px;letter-spacing:.5px;}
+.moat-l-desc{font-size:13px;color:var(--text2);line-height:1.75;}
+.moat-l-desc b{color:#fff;font-weight:600;}
+
+/* ============= CLOSING ============= */
+.closing{
+  background:linear-gradient(135deg,#0d1320 0%,#15192b 100%);
+  border:1px solid var(--border);border-radius:24px;
+  padding:56px 48px;text-align:center;position:relative;overflow:hidden;
+  margin-bottom:80px;
+}
+.closing::before{
+  content:'';position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);
+  width:700px;height:700px;
+  background:radial-gradient(circle,rgba(212,165,90,.04) 0%,transparent 65%);
+}
+.closing-tag{
+  display:inline-block;font-size:11px;letter-spacing:4px;color:var(--gold);
+  padding:4px 18px;border:1px solid var(--gold-deep);border-radius:99px;
+  margin-bottom:20px;position:relative;
+}
+.closing h2{
+  font-size:clamp(22px,3.5vw,36px);font-weight:900;
+  background:linear-gradient(135deg,#fff 0%,#e8c987 100%);
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;
+  margin-bottom:18px;position:relative;letter-spacing:-1px;line-height:1.25;
+}
+.closing-body{font-size:14.5px;color:var(--text2);line-height:1.9;max-width:680px;margin:0 auto 32px;position:relative;}
+.closing-body b{color:#fff;}
+.closing-cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:14px;max-width:760px;margin:0 auto;position:relative;}
+.cc-item{padding:18px 16px;background:rgba(212,165,90,.04);border:1px solid rgba(212,165,90,.18);border-radius:10px;}
+.cc-num{font-size:13px;font-weight:800;color:var(--gold);letter-spacing:2px;margin-bottom:6px;}
+.cc-text{font-size:13px;color:var(--text);line-height:1.6;}
+
+footer{
+  border-top:1px solid var(--border);padding:30px;text-align:center;
+  color:var(--text4);font-size:12px;line-height:1.8;
+}
+footer b{color:var(--gold-soft);}
+
+@media(max-width:880px){
+  .hero{padding:52px 22px 44px;}
+  .org-tag{position:static;flex-direction:row;margin-bottom:20px;}
+  .pain-grid{grid-template-columns:1fr;}
+  .moat-layer{grid-template-columns:50px 1fr;gap:12px;}
+  .moat-l-desc{grid-column:1/-1;font-size:12.5px;}
+  .closing{padding:36px 22px;}
+  .graph-wrap{padding:28px 18px;}
+}
+
+.fade{opacity:0;transform:translateY(20px);transition:opacity .6s,transform .6s;}
+.fade.vis{opacity:1;transform:none;}
+</style>
+</head>
+<body>
+
+<!-- ============================ HERO ============================ -->
+<div class="hero">
+  <div class="org-tag">
+    <span>面向</span><b>上海静安高新集团</b>
+    <span>战略合作意向沟通材料</span>
+  </div>
+  <div class="hero-inner">
+    <div class="brand-tag-line">
+      <span class="brand-mark">XIBO AI</span>
+      <span class="brand-dot">·</span>
+      <span>AGENT TEAM</span>
+    </div>
+    <h1 class="hero-title">把 AI 真正"嵌入"<br>声音培训的每一次对话</h1>
+    <p class="hero-sub">
+      喜播构建了一套基于 <b>LangGraph</b> 的智能体协同系统——
+      <b>9 个智能体 × 14 维实时校验 × 12 维质量评分</b>，
+      解决教育行业长期"靠话术拉成交、靠人力堆服务、靠运气控合规"的系统性问题。
+      <br><br>
+      这不是聊天机器人——是<b>用数据治理销售行为</b>的运营基础设施。
+    </p>
+    <div class="hero-stats">
+      <div class="hstat"><div class="hstat-num">9</div><div class="hstat-lbl">智能体协同分工</div></div>
+      <div class="hstat"><div class="hstat-num">14</div><div class="hstat-lbl">维度合规实时校验</div></div>
+      <div class="hstat"><div class="hstat-num">1,500<small>+</small></div><div class="hstat-lbl">真实学员原话语料</div></div>
+      <div class="hstat"><div class="hstat-num">3,000<small>+</small></div><div class="hstat-lbl">行代码 · 6 周迭代</div></div>
+    </div>
+  </div>
+</div>
+
+<div class="wrap">
+
+<!-- ============================ 01 痛点 ============================ -->
+<div class="sec fade">
+  <div class="sec-header">
+    <span class="sec-tag">SECTION 01 · 行业系统性问题</span>
+    <h2 class="sec-h">教育行业的"话术模板时代"已经走到尽头</h2>
+    <p class="sec-desc">
+      我们扫描了 <b>500 份真实聊天记录</b>，结果触目惊心——<b>401 个班主任 80% 使用违规话术</b>，
+      1,732 条问题消息中虚假紧迫感 + 虚假身份背书占 87%。这是一套被复制的统一话术体系，
+      也是退款率最强单一预测因子。
+    </p>
+  </div>
+
+  <div class="pain-grid">
+    <div class="pain-col left">
+      <div class="pain-h bad"><span>⚠</span> 旧模式：模板 + 人力 + 运气</div>
+      <div class="pain-sub">教育行业普遍现状</div>
+      <ul class="pain-list">
+        <li><span><b>合规裸奔</b>：班主任凭经验发话术，含『名额今晚截止/我是签约主播/月入 5 万』</span></li>
+        <li><span><b>退款率不可控</b>：欺骗话术 = 退款率最强预测因子</span></li>
+        <li><span><b>法律风险悬顶</b>：广告法 / 反不正当竞争法 / 消保法均有对应罚则</span></li>
+        <li><span><b>服务质量黑箱</b>：班主任服务靠主观感受，无量化体系</span></li>
+        <li><span><b>数据资产流失</b>：每天上万条对话却没有结构化沉淀</span></li>
+      </ul>
+    </div>
+    <div class="pain-col right">
+      <div class="pain-h good"><span>✦</span> 新模式：智能体 + 实时治理 + 数据沉淀</div>
+      <div class="pain-sub">喜播 AI 智能体团队</div>
+      <ul class="pain-list">
+        <li><span><b>合规可治理</b>：7 类欺骗话术实时拦截，关键词全部生产数据反向抽取</span></li>
+        <li><span><b>话术可量化</b>：每条对话 12 维评分，S/A/B/C/D + 改进建议</span></li>
+        <li><span><b>法律全覆盖</b>：广告法 / 反不正当竞争法 / 消保法对应词典</span></li>
+        <li><span><b>24×7 服务</b>：AI 助教秒级响应 + 真人班主任关键决策</span></li>
+        <li><span><b>资产线性累积</b>：好评对话→案例；违规对话→反例黑名单</span></li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<hr class="divider">
+
+<!-- ============================ 02 LangGraph 运作图 ============================ -->
+<div class="sec fade">
+  <div class="sec-header">
+    <span class="sec-tag">SECTION 02 · 核心架构</span>
+    <h2 class="sec-h">9 个智能体如何协同工作 —— LangGraph 状态机</h2>
+    <p class="sec-desc">
+      不是单一大模型——是<b>有职能分工的 AI 团队</b>，通过 LangGraph 状态机编排协同。
+      每个智能体只做自己最擅长的事，输出通过状态总线传递给下一个。
+      下图展示了<b>一次学员消息从进入到响应输出</b>的完整内部链路。
+    </p>
+  </div>
+
+  <div class="graph-wrap">
+    <div class="graph-meta">
+      <div class="graph-meta-left">
+        <div class="graph-title">XIBO_AGENT_GRAPH.STATE_MACHINE</div>
+        <div class="graph-subtitle">LangGraph · Async · Checkpointed · Production</div>
+      </div>
+      <div class="graph-legend">
+        <div class="lg-item"><span class="lg-dot lg-frontline"></span>主对话智能体</div>
+        <div class="lg-item"><span class="lg-dot lg-validator"></span>同步校验</div>
+        <div class="lg-item"><span class="lg-dot lg-human"></span>人机交接</div>
+        <div class="lg-item"><span class="lg-dot lg-scorer"></span>异步评分</div>
+        <div class="lg-item"><span class="lg-dot lg-async"></span>异步进化</div>
+      </div>
+    </div>
+
+    <div class="svg-container">
+      <svg viewBox="0 0 1100 720" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <!-- Glow filter -->
+          <filter id="glow" x="-50%" y="-50%" width="200%" height="200%">
+            <feGaussianBlur stdDeviation="3" result="blur"/>
+            <feMerge>
+              <feMergeNode in="blur"/>
+              <feMergeNode in="SourceGraphic"/>
+            </feMerge>
+          </filter>
+
+          <!-- Arrow markers -->
+          <marker id="arrow-gold" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto">
+            <path d="M0,0 L10,5 L0,10 z" fill="#d4a55a"/>
+          </marker>
+          <marker id="arrow-red" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto">
+            <path d="M0,0 L10,5 L0,10 z" fill="#ef4444"/>
+          </marker>
+          <marker id="arrow-blue" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto">
+            <path d="M0,0 L10,5 L0,10 z" fill="#4f7cff"/>
+          </marker>
+          <marker id="arrow-purple" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto">
+            <path d="M0,0 L10,5 L0,10 z" fill="#a78bfa"/>
+          </marker>
+          <marker id="arrow-emerald" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto">
+            <path d="M0,0 L10,5 L0,10 z" fill="#10b981"/>
+          </marker>
+          <marker id="arrow-cyan" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto">
+            <path d="M0,0 L10,5 L0,10 z" fill="#22d3ee"/>
+          </marker>
+
+          <!-- Node gradients -->
+          <linearGradient id="grad-frontline" x1="0" x2="0" y1="0" y2="1">
+            <stop offset="0%" stop-color="#1f2d44"/>
+            <stop offset="100%" stop-color="#141c2c"/>
+          </linearGradient>
+          <linearGradient id="grad-input" x1="0" x2="0" y1="0" y2="1">
+            <stop offset="0%" stop-color="#1a2438"/>
+            <stop offset="100%" stop-color="#0f1521"/>
+          </linearGradient>
+
+          <!-- State bus pattern -->
+          <pattern id="busPattern" x="0" y="0" width="20" height="4" patternUnits="userSpaceOnUse">
+            <line x1="0" y1="2" x2="14" y2="2" stroke="#d4a55a" stroke-width="1" opacity=".25"/>
+          </pattern>
+        </defs>
+
+        <!-- ===== Background grid lines ===== -->
+        <line x1="0" y1="120" x2="1100" y2="120" stroke="#1f2d44" stroke-width="1" stroke-dasharray="2,4" opacity=".4"/>
+        <line x1="0" y1="360" x2="1100" y2="360" stroke="#1f2d44" stroke-width="1" stroke-dasharray="2,4" opacity=".4"/>
+        <line x1="0" y1="600" x2="1100" y2="600" stroke="#1f2d44" stroke-width="1" stroke-dasharray="2,4" opacity=".4"/>
+
+        <!-- Phase labels (vertical) -->
+        <text x="20" y="60" fill="#5d6e87" font-family="JetBrains Mono" font-size="11" font-weight="700" letter-spacing="2">INPUT</text>
+        <text x="20" y="200" fill="#5d6e87" font-family="JetBrains Mono" font-size="11" font-weight="700" letter-spacing="2">ROUTE</text>
+        <text x="20" y="360" fill="#5d6e87" font-family="JetBrains Mono" font-size="11" font-weight="700" letter-spacing="2">DIALOG</text>
+        <text x="20" y="540" fill="#5d6e87" font-family="JetBrains Mono" font-size="11" font-weight="700" letter-spacing="2">VALIDATE</text>
+        <text x="20" y="680" fill="#5d6e87" font-family="JetBrains Mono" font-size="11" font-weight="700" letter-spacing="2">EVOLVE</text>
+
+        <!-- ===== INPUT layer ===== -->
+        <g class="node-grp" transform="translate(490, 30)">
+          <rect class="node-glow pulse-node" x="-12" y="-12" width="144" height="56" rx="12" fill="#d4a55a" opacity=".15"/>
+          <rect x="0" y="0" width="120" height="32" rx="8" fill="url(#grad-input)" stroke="#2a3a55" stroke-width="1"/>
+          <text x="60" y="20" text-anchor="middle" fill="#e8edf5" font-size="13" font-weight="700">📨 学员消息</text>
+        </g>
+
+        <!-- Edge: Input → A00 -->
+        <path class="flow-line" d="M 550 64 L 550 145" stroke="#d4a55a" stroke-width="2" fill="none" marker-end="url(#arrow-gold)"/>
+
+        <!-- ===== ROUTE layer (A00) ===== -->
+        <g class="node-grp" transform="translate(450, 150)">
+          <rect class="node-glow" x="-8" y="-8" width="216" height="68" rx="14" fill="#d4a55a" opacity=".1"/>
+          <rect x="0" y="0" width="200" height="52" rx="10" fill="url(#grad-frontline)" stroke="#d4a55a" stroke-width="1.5"/>
+          <text x="100" y="22" text-anchor="middle" fill="#d4a55a" font-family="JetBrains Mono" font-size="11" font-weight="700" letter-spacing="2">A00</text>
+          <text x="100" y="42" text-anchor="middle" fill="#fff" font-size="13" font-weight="700">路由编排器</text>
+        </g>
+
+        <!-- Branch arrows: A00 → A01 / A02 / A05 -->
+        <path class="flow-line" d="M 510 210 Q 320 245 220 320" stroke="#d4a55a" stroke-width="2" fill="none" marker-end="url(#arrow-gold)"/>
+        <path class="flow-line" d="M 550 210 L 550 320" stroke="#d4a55a" stroke-width="2" fill="none" marker-end="url(#arrow-gold)"/>
+        <path class="flow-line" d="M 590 210 Q 780 245 880 320" stroke="#10b981" stroke-width="2" fill="none" marker-end="url(#arrow-emerald)"/>
+
+        <text x="320" y="265" fill="#9fb0c8" font-size="10" font-family="JetBrains Mono">if 销售期</text>
+        <text x="560" y="265" fill="#9fb0c8" font-size="10" font-family="JetBrains Mono">if 交付期</text>
+        <text x="780" y="265" fill="#9fb0c8" font-size="10" font-family="JetBrains Mono">if 高意愿/危险</text>
+
+        <!-- ===== DIALOG layer (A01 / A02 / A05) ===== -->
+        <!-- A01 销售助教 -->
+        <g class="node-grp" transform="translate(120, 320)">
+          <rect class="node-glow" x="-8" y="-8" width="216" height="100" rx="14" fill="#d4a55a" opacity=".12"/>
+          <rect x="0" y="0" width="200" height="84" rx="10" fill="url(#grad-frontline)" stroke="#d4a55a" stroke-width="1.5"/>
+          <text x="100" y="22" text-anchor="middle" fill="#d4a55a" font-family="JetBrains Mono" font-size="11" font-weight="700" letter-spacing="2">A01</text>
+          <text x="100" y="44" text-anchor="middle" fill="#fff" font-size="14" font-weight="700">销售助教</text>
+          <text x="100" y="64" text-anchor="middle" fill="#9fb0c8" font-size="11">体验营破冰 · 三轴情报</text>
+          <text x="100" y="78" text-anchor="middle" fill="#5d6e87" font-size="10">SPIN + Sandler + Upfront</text>
+        </g>
+
+        <!-- A02 服务班主任 -->
+        <g class="node-grp" transform="translate(450, 320)">
+          <rect class="node-glow" x="-8" y="-8" width="216" height="100" rx="14" fill="#d4a55a" opacity=".12"/>
+          <rect x="0" y="0" width="200" height="84" rx="10" fill="url(#grad-frontline)" stroke="#d4a55a" stroke-width="1.5"/>
+          <text x="100" y="22" text-anchor="middle" fill="#d4a55a" font-family="JetBrains Mono" font-size="11" font-weight="700" letter-spacing="2">A02</text>
+          <text x="100" y="44" text-anchor="middle" fill="#fff" font-size="14" font-weight="700">服务班主任</text>
+          <text x="100" y="64" text-anchor="middle" fill="#9fb0c8" font-size="11">交付期陪伴 · 答疑</text>
+          <text x="100" y="78" text-anchor="middle" fill="#5d6e87" font-size="10">退费防火墙 · 武器库</text>
+        </g>
+
+        <!-- A05 真人决策 -->
+        <g class="node-grp" transform="translate(780, 320)">
+          <rect class="node-glow" x="-8" y="-8" width="216" height="100" rx="14" fill="#10b981" opacity=".12"/>
+          <rect x="0" y="0" width="200" height="84" rx="10" fill="url(#grad-frontline)" stroke="#10b981" stroke-width="1.5"/>
+          <text x="100" y="22" text-anchor="middle" fill="#10b981" font-family="JetBrains Mono" font-size="11" font-weight="700" letter-spacing="2">A05</text>
+          <text x="100" y="44" text-anchor="middle" fill="#fff" font-size="14" font-weight="700">真人介入决策</text>
+          <text x="100" y="64" text-anchor="middle" fill="#9fb0c8" font-size="11">人机交接 · 真人接管</text>
+          <text x="100" y="78" text-anchor="middle" fill="#5d6e87" font-size="10">信任传递桥</text>
+        </g>
+
+        <!-- A05 → 真人 (escape outside graph) -->
+        <path class="flow-line" d="M 880 414 Q 970 460 980 540" stroke="#10b981" stroke-width="2" fill="none" marker-end="url(#arrow-emerald)"/>
+        <g transform="translate(940, 555)">
+          <rect x="0" y="0" width="120" height="34" rx="8" fill="rgba(16,185,129,.08)" stroke="#10b981" stroke-width="1.2" stroke-dasharray="3,3"/>
+          <text x="60" y="22" text-anchor="middle" fill="#10b981" font-size="12" font-weight="700">👤 真人班主任</text>
+        </g>
+
+        <!-- Edges: A01/A02 → A03 -->
+        <path class="flow-line" d="M 220 404 Q 280 470 360 540" stroke="#d4a55a" stroke-width="2" fill="none" marker-end="url(#arrow-gold)"/>
+        <path class="flow-line" d="M 550 404 L 550 540" stroke="#d4a55a" stroke-width="2" fill="none" marker-end="url(#arrow-gold)"/>
+
+        <text x="260" y="470" fill="#9fb0c8" font-size="10" font-family="JetBrains Mono">draft</text>
+        <text x="560" y="470" fill="#9fb0c8" font-size="10" font-family="JetBrains Mono">draft</text>
+
+        <!-- ===== VALIDATE layer (A03) ===== -->
+        <g class="node-grp" transform="translate(310, 540)">
+          <rect class="node-glow pulse-node" x="-10" y="-10" width="500" height="84" rx="14" fill="#ef4444" opacity=".12"/>
+          <rect x="0" y="0" width="480" height="64" rx="12" fill="url(#grad-frontline)" stroke="#ef4444" stroke-width="1.5"/>
+          <text x="240" y="24" text-anchor="middle" fill="#ef4444" font-family="JetBrains Mono" font-size="11" font-weight="700" letter-spacing="2">A03 · REAL-TIME VALIDATOR</text>
+          <text x="240" y="48" text-anchor="middle" fill="#fff" font-size="14" font-weight="700">14 维实时校验 · 输出端硬拦截</text>
+        </g>
+
+        <!-- 14 validator chips -->
+        <g transform="translate(310, 615)" font-family="JetBrains Mono" font-size="9" fill="#fca5a5">
+          <rect x="0" y="0" width="60" height="16" rx="3" fill="rgba(239,68,68,.1)" stroke="#ef4444" stroke-width=".5" stroke-opacity=".5"/>
+          <text x="30" y="11" text-anchor="middle">identity</text>
+          <rect x="64" y="0" width="60" height="16" rx="3" fill="rgba(239,68,68,.1)" stroke="#ef4444" stroke-width=".5" stroke-opacity=".5"/>
+          <text x="94" y="11" text-anchor="middle">money</text>
+          <rect x="128" y="0" width="60" height="16" rx="3" fill="rgba(239,68,68,.1)" stroke="#ef4444" stroke-width=".5" stroke-opacity=".5"/>
+          <text x="158" y="11" text-anchor="middle">family</text>
+          <rect x="192" y="0" width="60" height="16" rx="3" fill="rgba(239,68,68,.1)" stroke="#ef4444" stroke-width=".5" stroke-opacity=".5"/>
+          <text x="222" y="11" text-anchor="middle">willingness</text>
+          <rect x="256" y="0" width="60" height="16" rx="3" fill="rgba(239,68,68,.1)" stroke="#ef4444" stroke-width=".5" stroke-opacity=".5"/>
+          <text x="286" y="11" text-anchor="middle">health</text>
+          <rect x="320" y="0" width="60" height="16" rx="3" fill="rgba(239,68,68,.1)" stroke="#ef4444" stroke-width=".5" stroke-opacity=".5"/>
+          <text x="350" y="11" text-anchor="middle">cognition</text>
+          <rect x="384" y="0" width="60" height="16" rx="3" fill="rgba(239,68,68,.1)" stroke="#ef4444" stroke-width=".5" stroke-opacity=".5"/>
+          <text x="414" y="11" text-anchor="middle">commit</text>
+
+          <rect x="0" y="20" width="60" height="16" rx="3" fill="rgba(239,68,68,.1)" stroke="#ef4444" stroke-width=".5" stroke-opacity=".5"/>
+          <text x="30" y="31" text-anchor="middle">expect</text>
+          <rect x="64" y="20" width="60" height="16" rx="3" fill="rgba(239,68,68,.1)" stroke="#ef4444" stroke-width=".5" stroke-opacity=".5"/>
+          <text x="94" y="31" text-anchor="middle">question</text>
+          <rect x="128" y="20" width="60" height="16" rx="3" fill="rgba(239,68,68,.1)" stroke="#ef4444" stroke-width=".5" stroke-opacity=".5"/>
+          <text x="158" y="31" text-anchor="middle">renarrat</text>
+          <rect x="192" y="20" width="60" height="16" rx="3" fill="rgba(239,68,68,.1)" stroke="#ef4444" stroke-width=".5" stroke-opacity=".5"/>
+          <text x="222" y="31" text-anchor="middle">repetition</text>
+          <rect x="256" y="20" width="60" height="16" rx="3" fill="rgba(239,68,68,.1)" stroke="#ef4444" stroke-width=".5" stroke-opacity=".5"/>
+          <text x="286" y="31" text-anchor="middle">handover</text>
+          <rect x="320" y="20" width="60" height="16" rx="3" fill="rgba(239,68,68,.1)" stroke="#ef4444" stroke-width=".5" stroke-opacity=".5"/>
+          <text x="350" y="31" text-anchor="middle">structure</text>
+          <rect x="384" y="20" width="60" height="16" rx="3" fill="rgba(212,165,90,.15)" stroke="#d4a55a" stroke-width="1"/>
+          <text x="414" y="31" text-anchor="middle" fill="#e8c987" font-weight="700">deception ★</text>
+        </g>
+
+        <!-- Rewrite loop back to A01 -->
+        <path class="flow-line rewrite" d="M 310 572 Q 220 555 180 480 Q 150 430 200 410" stroke="#ef4444" stroke-width="2" fill="none" marker-end="url(#arrow-red)" stroke-opacity=".9"/>
+        <text x="135" y="500" fill="#fca5a5" font-size="10" font-family="JetBrains Mono" font-weight="700">↺ rewrite</text>
+        <text x="120" y="514" fill="#5d6e87" font-size="9" font-family="JetBrains Mono">if verdict=fail</text>
+
+        <!-- Pass → 输出 -->
+        <path class="flow-line" d="M 790 572 Q 870 555 920 510" stroke="#d4a55a" stroke-width="2" fill="none" marker-end="url(#arrow-gold)"/>
+
+        <!-- Output node -->
+        <g class="node-grp" transform="translate(900, 460)">
+          <rect class="node-glow pulse-node" x="-12" y="-12" width="144" height="56" rx="12" fill="#d4a55a" opacity=".15"/>
+          <rect x="0" y="0" width="120" height="32" rx="8" fill="url(#grad-input)" stroke="#d4a55a" stroke-width="1.5"/>
+          <text x="60" y="20" text-anchor="middle" fill="#e8c987" font-size="13" font-weight="700">📤 已合规输出</text>
+        </g>
+
+        <!-- ===== EVOLVE layer (async branches) ===== -->
+        <!-- Async fork from validator output -->
+        <path class="flow-line async" d="M 550 615 L 550 660" stroke="#4f7cff" stroke-width="1.5" fill="none" marker-end="url(#arrow-blue)" stroke-opacity=".7"/>
+        <path class="flow-line async" d="M 470 615 Q 300 660 220 680" stroke="#4f7cff" stroke-width="1.5" fill="none" marker-end="url(#arrow-blue)" stroke-opacity=".7"/>
+        <path class="flow-line async" d="M 630 615 Q 800 660 870 680" stroke="#a78bfa" stroke-width="1.5" fill="none" marker-end="url(#arrow-purple)" stroke-opacity=".7"/>
+        <path class="flow-line async" d="M 470 615 Q 180 660 90 680" stroke="#a78bfa" stroke-width="1.5" fill="none" marker-end="url(#arrow-purple)" stroke-opacity=".7"/>
+
+        <!-- A04 评分 -->
+        <g class="node-grp" transform="translate(160, 670)">
+          <rect x="0" y="0" width="140" height="38" rx="8" fill="rgba(79,124,255,.06)" stroke="#4f7cff" stroke-width="1" stroke-dasharray="3,3"/>
+          <text x="70" y="16" text-anchor="middle" fill="#4f7cff" font-family="JetBrains Mono" font-size="10" font-weight="700">A04</text>
+          <text x="70" y="30" text-anchor="middle" fill="#fff" font-size="12" font-weight="600">12 维质量评分</text>
+        </g>
+
+        <!-- A06 故事提炼 -->
+        <g class="node-grp" transform="translate(480, 670)">
+          <rect x="0" y="0" width="140" height="38" rx="8" fill="rgba(167,139,250,.06)" stroke="#a78bfa" stroke-width="1" stroke-dasharray="3,3"/>
+          <text x="70" y="16" text-anchor="middle" fill="#a78bfa" font-family="JetBrains Mono" font-size="10" font-weight="700">A06</text>
+          <text x="70" y="30" text-anchor="middle" fill="#fff" font-size="12" font-weight="600">故事提炼 / 进化</text>
+        </g>
+
+        <!-- A07 群组分析 -->
+        <g class="node-grp" transform="translate(800, 670)">
+          <rect x="0" y="0" width="140" height="38" rx="8" fill="rgba(167,139,250,.06)" stroke="#a78bfa" stroke-width="1" stroke-dasharray="3,3"/>
+          <text x="70" y="16" text-anchor="middle" fill="#a78bfa" font-family="JetBrains Mono" font-size="10" font-weight="700">A07 + A08/A09</text>
+          <text x="70" y="30" text-anchor="middle" fill="#fff" font-size="12" font-weight="600">LTV / 引流 / 监控</text>
+        </g>
+
+        <!-- A06 → 武器库回流到 A01/A02（feedback loop） -->
+        <path class="flow-line async" d="M 550 670 Q 700 580 700 480" stroke="#a78bfa" stroke-width="1" fill="none" stroke-opacity=".4" stroke-dasharray="3 5"/>
+        <text x="720" y="540" fill="#a78bfa" font-size="9" font-family="JetBrains Mono" opacity=".7">武器库反哺</text>
+
+        <!-- ===== State Bus ===== -->
+        <rect x="40" y="700" width="1020" height="8" rx="2" fill="url(#busPattern)" stroke="#d4a55a" stroke-width=".5" stroke-opacity=".4"/>
+        <text x="1070" y="708" fill="#d4a55a" font-size="9" font-family="JetBrains Mono" letter-spacing="1" opacity=".6">STATE</text>
+
+      </svg>
+    </div>
+
+    <div class="graph-callouts">
+      <div class="callout">
+        <span class="co-label">⚡ 实时</span> · <b>SYNC</b><br>
+        A00 → A01/A02 → A03 主链路同步执行，任一验证器失败即触发 rewrite 重生成
+      </div>
+      <div class="callout">
+        <span class="co-label">↺ 回路</span> · <b>REWRITE</b><br>
+        A03 14 维校验任一不过 → 携带 hint 回退给 A01/A02 重写，最多 3 轮
+      </div>
+      <div class="callout">
+        <span class="co-label">👤 兜底</span> · <b>HUMAN</b><br>
+        A05 检测到高意愿/危险信号/critical 违规 → 触发真人接管，写交接简报
+      </div>
+      <div class="callout">
+        <span class="co-label">∞ 异步</span> · <b>EVOLVE</b><br>
+        A04 评分 / A06 故事提炼 / A07 群组分析后台并行，武器库反哺主链路
+      </div>
+    </div>
+  </div>
+</div>
+
+<hr class="divider">
+
+<!-- ============================ 03 数据资产 ============================ -->
+<div class="sec fade">
+  <div class="sec-header">
+    <span class="sec-tag">SECTION 03 · 数据资产清单</span>
+    <h2 class="sec-h">支撑系统的"地基" —— 独有数据资产</h2>
+    <p class="sec-desc">
+      AI 不是 prompt 写得好就行——背后<b>必须有专属于本行业的训练数据和反例库</b>。
+      喜播花了 6 周时间把以下数据资产从生产对话里抽取、清洗、结构化。
+      这是其他玩家拿不到也仿不出的核心壁垒。
+    </p>
+  </div>
+
+  <div class="assets">
+    <div class="asset-card">
+      <div class="asset-num">1,500<small style="font-size:22px">+</small></div>
+      <div class="asset-lbl">真实学员原话</div>
+      <div class="asset-sub">已脱敏 / 已分类</div>
+    </div>
+    <div class="asset-card">
+      <div class="asset-num">30</div>
+      <div class="asset-lbl">零欺骗成交案例</div>
+      <div class="asset-sub">3 天内完成 · 金标准</div>
+    </div>
+    <div class="asset-card">
+      <div class="asset-num">1,732</div>
+      <div class="asset-lbl">违规反例消息</div>
+      <div class="asset-sub">反向校准 ground truth</div>
+    </div>
+    <div class="asset-card">
+      <div class="asset-num">401</div>
+      <div class="asset-lbl">班主任行为档案</div>
+      <div class="asset-sub">含 15 名高危名单</div>
+    </div>
+    <div class="asset-card">
+      <div class="asset-num">7</div>
+      <div class="asset-lbl">类欺骗话术词典</div>
+      <div class="asset-sub">生产数据反向抽取</div>
+    </div>
+    <div class="asset-card">
+      <div class="asset-num">34</div>
+      <div class="asset-lbl">真实退款样本</div>
+      <div class="asset-sub">8 维顾虑共现模型</div>
+    </div>
+    <div class="asset-card">
+      <div class="asset-num">12</div>
+      <div class="asset-lbl">类正向话术武器库</div>
+      <div class="asset-sub">每类含替代方案</div>
+    </div>
+    <div class="asset-card">
+      <div class="asset-num">5</div>
+      <div class="asset-lbl">阶段 LTV 旅程</div>
+      <div class="asset-sub">acquired → long_term</div>
+    </div>
+  </div>
+</div>
+
+<hr class="divider">
+
+<!-- ============================ 04 业务价值 ============================ -->
+<div class="sec fade">
+  <div class="sec-header">
+    <span class="sec-tag">SECTION 04 · 核心业务价值</span>
+    <h2 class="sec-h">每个智能体能力都对应一项可量化业务指标</h2>
+    <p class="sec-desc">
+      AI 的价值不是 demo 好看——是<b>有没有打在业务核心指标上</b>。
+    </p>
+  </div>
+
+  <div class="metrics">
+    <div class="metric-card">
+      <div class="metric-icon">▎ LEGAL COMPLIANCE</div>
+      <div class="metric-h-name">合规风险消除</div>
+      <div class="metric-desc">7 类违规话术实时拦截，覆盖<b>广告法 §28、消保法 §20、反不正当竞争法 §8</b>。是合规层从『靠运气』到『有兜底』的根本转变。</div>
+    </div>
+    <div class="metric-card">
+      <div class="metric-icon">▎ REFUND CONTROL</div>
+      <div class="metric-h-name">退款率下降</div>
+      <div class="metric-desc"><b>8 维顾虑共现模型</b>提前预警——退款不是单点关键词触发，是多维顾虑累积。系统在退款发生前主动干预。</div>
+    </div>
+    <div class="metric-card">
+      <div class="metric-icon">▎ SERVICE CAPACITY</div>
+      <div class="metric-h-name">24×7 服务能力</div>
+      <div class="metric-desc">AI 助教<b>秒级响应</b>非关键问题，真人班主任专注关键决策。同等人力服务密度提升 3-5 倍，且不损失温度。</div>
+    </div>
+    <div class="metric-card">
+      <div class="metric-icon">▎ LTV TARGETING</div>
+      <div class="metric-h-name">高 LTV 群体识别</div>
+      <div class="metric-desc">破解幸存者偏差——付费数据只代表 3%。系统识别『<b>内容创作者</b>』+『<b>有钱有闲</b>』两类高 LTV 群体，反向调整 SOP。</div>
+    </div>
+    <div class="metric-card">
+      <div class="metric-icon">▎ ORG CAPABILITY</div>
+      <div class="metric-h-name">组织能力沉淀</div>
+      <div class="metric-desc">金牌班主任的话术被结构化进 <b>4 大正例武器库</b>，新人 onboard 直接复用——离职带不走经验。</div>
+    </div>
+    <div class="metric-card">
+      <div class="metric-icon">▎ DATA-DRIVEN</div>
+      <div class="metric-h-name">数据驱动决策</div>
+      <div class="metric-desc">每天自动生成『质量进化日报』——违规分布 + 质量趋势 + 高危名单 + critical 告警。<b>不再靠会议拍脑袋</b>。</div>
+    </div>
+  </div>
+</div>
+
+<hr class="divider">
+
+<!-- ============================ 05 战略护城河 ============================ -->
+<div class="sec fade">
+  <div class="sec-header">
+    <span class="sec-tag">SECTION 05 · 战略护城河</span>
+    <h2 class="sec-h">S2B2C 模式下的四层壁垒</h2>
+    <p class="sec-desc">
+      声音培训行业的同质化已经非常严重——课程内容、价格、师资差异有限。
+      真正的差异化必须在<b>数据 / IP / 社群 / 流程</b> 4 个层面同时建立。
+    </p>
+  </div>
+
+  <div class="moat-stack">
+    <div class="moat-layer">
+      <div class="moat-l-num">L1</div>
+      <div>
+        <div class="moat-l-name">数据护城河</div>
+        <div class="moat-l-sub">DATA MOAT</div>
+      </div>
+      <div class="moat-l-desc">
+        1,500 条真实学员原话 + 30 个零欺骗成交金标准 + 1,732 条违规反例——<b>全行业其他玩家拿不到也仿不出</b>，是 AI 系统真正的"地基"。
+      </div>
+    </div>
+    <div class="moat-layer">
+      <div class="moat-l-num">L2</div>
+      <div>
+        <div class="moat-l-name">IP 人格护城河</div>
+        <div class="moat-l-sub">IP PERSONA</div>
+      </div>
+      <div class="moat-l-desc">
+        AI 助教是 IP 真人的"分身"——继承 IP 的人格、口吻、教学理念。学员体验到的是<b>『被同一个人持续陪伴』</b>，不是『换了一个客服』。
+      </div>
+    </div>
+    <div class="moat-layer">
+      <div class="moat-l-num">L3</div>
+      <div>
+        <div class="moat-l-name">社群协作护城河</div>
+        <div class="moat-l-sub">COMMUNITY</div>
+      </div>
+      <div class="moat-l-desc">
+        基于真实数据归档：<b>『社群协作参与』是 LTV 高倍数信号</b>（完课 + 续费 + 转介均显著抬升）。系统主动识别活跃度低的学员及时干预。
+      </div>
+    </div>
+    <div class="moat-layer">
+      <div class="moat-l-num">L4</div>
+      <div>
+        <div class="moat-l-name">流程标准化护城河</div>
+        <div class="moat-l-sub">PROCESS</div>
+      </div>
+      <div class="moat-l-desc">
+        从获客→体验→转化→服务→长期 LTV 的 5 阶段流程被系统化建模。<b>新班主任入职第 1 天就能用上老班主任 6 个月积累的经验</b>。
+      </div>
+    </div>
+  </div>
+</div>
+
+<hr class="divider">
+
+<!-- ============================ Closing ============================ -->
+<div class="sec fade">
+  <div class="closing">
+    <div class="closing-tag">PARTNERSHIP · 合作可能性</div>
+    <h2>这不是一个 demo —— 是一套可以被产业化复用的能力</h2>
+    <p class="closing-body">
+      喜播构建的不只是自用工具——而是<b>面向整个教育/培训/服务行业的合规级 AI 运营基础设施</b>。<br>
+      系统中的每一层都被设计为<b>可解耦、可输出、可被复用</b>。
+      我们希望和静安高新集团一起探索：在更大的产业语境里，这套能力可以服务哪些行业、解决哪些问题。
+    </p>
+    <div class="closing-cards">
+      <div class="cc-item">
+        <div class="cc-num">01</div>
+        <div class="cc-text">合规级 AI 中台<br>对外提供合规扫描 API</div>
+      </div>
+      <div class="cc-item">
+        <div class="cc-num">02</div>
+        <div class="cc-text">教培行业垂类 SaaS<br>话术评分 + 班主任督导</div>
+      </div>
+      <div class="cc-item">
+        <div class="cc-num">03</div>
+        <div class="cc-text">国资体系数字化样板<br>承担静安数字经济示范</div>
+      </div>
+      <div class="cc-item">
+        <div class="cc-num">04</div>
+        <div class="cc-text">联合研究 · 数据资产<br>把话术合规标准化</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+</div><!-- /.wrap -->
+
+<footer>
+  喜播 AI 智能体团队 · 介绍材料 · <b>面向上海静安高新集团领导参阅</b><br>
+  生成时间：2026 年 5 月 · 仅限合作沟通使用<br>
+  技术栈：LangGraph · FastAPI · PostgreSQL · asyncpg
+</footer>
+
+<script>
+const obs = new IntersectionObserver((entries) => {
+  entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('vis'); });
+}, { threshold: 0.08 });
+document.querySelectorAll('.fade').forEach(el => obs.observe(el));
+</script>
+
+</body>
+</html>
