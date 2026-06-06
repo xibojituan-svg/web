@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>喜播教育 · 公司介绍 | 面向上海静安高新集团</title>
+<title>喜播 · AI 驱动的科技公司 · 面向优秀人才</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
 <style>
@@ -147,33 +147,59 @@ h1.hero-title .em{
 .sec-desc b{color:var(--ink);font-weight:700;}
 .sec-head{margin-bottom:46px;}
 
-/* ============ 我们是谁 ============ */
-.who-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:30px;align-items:start;}
-@media(max-width:840px){.who-grid{grid-template-columns:1fr;}}
-.who-card{
-  background:#fff;border:1px solid var(--line);border-radius:20px;
-  padding:34px;box-shadow:var(--shadow-sm);
+/* ============ 新喜播宣言三维度 ============ */
+.trans-grid{
+  display:grid;grid-template-columns:repeat(3,1fr);gap:20px;
 }
-.who-card h3{font-size:18px;font-weight:800;margin-bottom:14px;display:flex;align-items:center;gap:9px;}
-.who-card h3::before{content:'';width:5px;height:18px;background:var(--grad);border-radius:3px;}
-.who-card p{font-size:14px;color:var(--ink2);line-height:1.95;}
-.biz-tags{display:flex;flex-wrap:wrap;gap:9px;margin-top:20px;}
-.biz-tag{
-  font-size:12.5px;font-weight:600;padding:7px 14px;border-radius:8px;
-  background:var(--o-soft);color:var(--o3);border:1px solid var(--o-soft2);
-}
-.culture{display:flex;flex-direction:column;gap:14px;margin-top:6px;}
-.culture-row{
-  display:flex;gap:14px;align-items:flex-start;
-  padding:15px 18px;border-radius:13px;background:var(--o-tint);
+@media(max-width:840px){.trans-grid{grid-template-columns:1fr;}}
+.trans-card{
+  border-radius:20px;padding:32px 28px;
   border:1px solid var(--line);
 }
-.culture-key{
-  flex-shrink:0;font-size:13px;font-weight:800;color:#fff;
-  background:var(--grad);padding:5px 12px;border-radius:7px;
+.trans-card.inherit{background:#fff;}
+.trans-card.abandon{background:#FAFAFA;border-color:#E8E2DC;}
+.trans-card.embrace{background:linear-gradient(160deg,#fff 0%,var(--o-soft) 100%);border-color:var(--o-soft2);}
+.trans-label{
+  display:inline-flex;align-items:center;gap:8px;
+  font-size:11.5px;font-weight:800;letter-spacing:2px;
+  padding:5px 13px;border-radius:99px;margin-bottom:16px;
 }
-.culture-val{font-size:13.5px;color:var(--ink2);line-height:1.7;}
-.culture-val b{color:var(--ink);}
+.trans-card.inherit .trans-label{background:#F0F6F0;color:#3A7A40;}
+.trans-card.abandon .trans-label{background:#F4F0F0;color:#8B5A52;}
+.trans-card.embrace .trans-label{background:var(--grad);color:#fff;}
+.trans-card h3{font-size:20px;font-weight:900;margin-bottom:16px;line-height:1.3;}
+.trans-card.abandon h3{color:var(--ink3);}
+.trans-card.embrace h3{color:var(--o3);}
+.trans-items{display:flex;flex-direction:column;gap:10px;}
+.trans-item{
+  display:flex;align-items:flex-start;gap:10px;
+  font-size:13.5px;color:var(--ink2);line-height:1.7;
+}
+.trans-item-ico{
+  flex-shrink:0;width:20px;height:20px;border-radius:50%;
+  display:flex;align-items:center;justify-content:center;
+  font-size:10px;margin-top:2px;
+}
+.trans-card.inherit .trans-item-ico{background:#E8F4EA;color:#3A7A40;}
+.trans-card.abandon .trans-item-ico{background:#F4ECEB;color:#B06060;text-decoration:line-through;}
+.trans-card.embrace .trans-item-ico{background:var(--grad);color:#fff;}
+.trans-item b{color:var(--ink);font-weight:700;}
+.trans-item.muted{opacity:.6;}
+
+/* ============ 转型背景 (诚实叙述) ============ */
+.honest-box{
+  background:#fff;border:1px solid var(--line);border-radius:20px;
+  padding:36px 40px;margin-bottom:46px;
+  border-left:4px solid var(--o2);
+}
+.honest-box .honest-label{
+  font-size:11.5px;font-weight:800;letter-spacing:2px;color:var(--ink3);
+  margin-bottom:12px;
+}
+.honest-box h3{font-size:20px;font-weight:900;margin-bottom:12px;}
+.honest-box p{font-size:14px;color:var(--ink2);line-height:1.9;}
+.honest-box p b{color:var(--ink);font-weight:700;}
+.honest-box p + p{margin-top:10px;}
 
 /* ============ TIMELINE ============ */
 .timeline{position:relative;margin-top:10px;}
@@ -192,6 +218,8 @@ h1.hero-title .em{
 .tl-item.key::before{background:var(--grad);border-color:#fff;}
 .tl-year{font-size:14px;font-weight:900;color:var(--o3);text-align:center;margin-bottom:6px;}
 .tl-text{font-size:12px;color:var(--ink2);text-align:center;line-height:1.6;}
+.tl-item.now .tl-year{color:var(--o3);}
+.tl-item.now::before{background:var(--grad);border-color:#fff;box-shadow:0 0 0 6px rgba(244,68,30,.12);}
 @media(max-width:840px){
   .timeline::before{display:none;}
   .tl-track{grid-template-columns:1fr 1fr;gap:14px;}
@@ -200,34 +228,54 @@ h1.hero-title .em{
   .tl-year,.tl-text{text-align:left;}
 }
 
-/* ============ JOURNEY ============ */
-.journey{display:grid;grid-template-columns:repeat(5,1fr);gap:16px;}
-@media(max-width:840px){.journey{grid-template-columns:1fr 1fr;}}
-@media(max-width:520px){.journey{grid-template-columns:1fr;}}
-.jrn-card{
-  background:#fff;border:1px solid var(--line);border-radius:16px;
-  padding:26px 22px;position:relative;overflow:hidden;
+/* ============ 业务格局 ============ */
+.biz-layout{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-bottom:22px;}
+@media(max-width:840px){.biz-layout{grid-template-columns:1fr;}}
+.biz-block{
+  background:#fff;border:1px solid var(--line);border-radius:20px;
+  padding:30px;position:relative;overflow:hidden;
 }
-.jrn-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:var(--grad);}
-.jrn-year{font-size:13px;font-weight:800;color:var(--ink3);letter-spacing:1px;}
-.jrn-title{font-size:17px;font-weight:900;color:var(--o3);margin:5px 0 11px;}
-.jrn-text{font-size:12.5px;color:var(--ink2);line-height:1.8;}
+.biz-block.ai{background:linear-gradient(160deg,#fff 0%,var(--o-tint) 100%);border-color:var(--o-soft2);}
+.biz-num{
+  font-size:52px;font-weight:900;line-height:1;
+  opacity:.12;position:absolute;right:20px;top:16px;letter-spacing:-3px;
+}
+.biz-kicker{font-size:11.5px;font-weight:800;color:var(--o3);letter-spacing:1px;margin-bottom:8px;}
+.biz-block h3{font-size:19px;font-weight:900;margin-bottom:10px;}
+.biz-block p{font-size:13px;color:var(--ink2);line-height:1.85;}
+.biz-block p b{color:var(--ink);}
+.biz-tags{display:flex;flex-wrap:wrap;gap:8px;margin-top:16px;}
+.biz-tag{
+  font-size:12px;font-weight:600;padding:6px 13px;border-radius:8px;
+  background:var(--o-soft);color:var(--o3);border:1px solid var(--o-soft2);
+}
+.biz-metrics{display:flex;gap:22px;margin-top:18px;padding-top:16px;border-top:1px dashed var(--line);}
+.biz-m-num{font-size:22px;font-weight:900;color:var(--o3);line-height:1;}
+.biz-m-lbl{font-size:10.5px;color:var(--ink3);margin-top:3px;}
+
+/* ============ AI 架构 ============ */
+.ai-grid{display:grid;grid-template-columns:1fr 1fr;gap:22px;}
+@media(max-width:840px){.ai-grid{grid-template-columns:1fr;}}
+.ai-feature{
+  background:#fff;border:1px solid var(--line);border-radius:16px;padding:26px;
+}
+.ai-feature h4{font-size:16px;font-weight:800;margin-bottom:8px;display:flex;align-items:center;gap:9px;}
+.ai-chip{
+  font-size:11px;font-weight:800;color:#fff;background:var(--grad);
+  padding:3px 9px;border-radius:6px;
+}
+.ai-feature p{font-size:13px;color:var(--ink2);line-height:1.85;}
+.battle-list{display:grid;grid-template-columns:repeat(5,1fr);gap:12px;margin-top:22px;}
+@media(max-width:840px){.battle-list{grid-template-columns:1fr 1fr;}}
+.battle{
+  background:var(--o-tint);border:1px solid var(--line);border-radius:12px;
+  padding:16px 14px;text-align:center;
+}
+.battle-n{font-size:13px;font-weight:900;color:var(--o3);}
+.battle-t{font-size:12px;font-weight:700;margin:4px 0 4px;}
+.battle-d{font-size:10.5px;color:var(--ink3);line-height:1.5;}
 
 /* ============ TEAM ============ */
-.team-lead{display:grid;grid-template-columns:1fr 1fr;gap:22px;margin-bottom:22px;}
-@media(max-width:760px){.team-lead{grid-template-columns:1fr;}}
-.lead-card{
-  background:#fff;border:1px solid var(--line);border-radius:18px;
-  padding:28px;display:flex;gap:20px;box-shadow:var(--shadow-sm);
-}
-.lead-avatar{
-  flex-shrink:0;width:64px;height:64px;border-radius:16px;
-  background:var(--grad);display:flex;align-items:center;justify-content:center;
-  color:#fff;font-size:26px;font-weight:900;
-}
-.lead-name{font-size:19px;font-weight:900;}
-.lead-role{font-size:12.5px;color:var(--o3);font-weight:700;margin-bottom:9px;}
-.lead-bio{font-size:12.5px;color:var(--ink2);line-height:1.75;}
 .founders{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-bottom:24px;}
 @media(max-width:760px){.founders{grid-template-columns:1fr;}}
 .founder-card{
@@ -258,74 +306,35 @@ h1.hero-title .em{
 .dept-tag{font-size:11.5px;color:var(--o3);font-weight:700;margin:3px 0 9px;}
 .dept-bio{font-size:11.5px;color:var(--ink3);line-height:1.7;}
 
-/* ============ CURVE BANNER ============ */
-.curve-banner{
-  background:var(--grad);border-radius:22px;padding:38px 42px;color:#fff;
-  display:flex;align-items:center;gap:30px;box-shadow:var(--shadow);
-  margin-bottom:46px;position:relative;overflow:hidden;
-}
-.curve-banner::after{
-  content:'';position:absolute;right:-40px;bottom:-60px;
-  width:230px;height:230px;border-radius:50%;background:rgba(255,255,255,.1);
-}
-.curve-num{
-  flex-shrink:0;font-size:60px;font-weight:900;line-height:1;
-  opacity:.55;letter-spacing:-3px;
-}
-.curve-banner h3{font-size:23px;font-weight:900;margin-bottom:8px;}
-.curve-banner p{font-size:14px;line-height:1.85;opacity:.94;}
-
-/* ============ PRODUCT GRID ============ */
-.prod-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;}
-@media(max-width:840px){.prod-grid{grid-template-columns:1fr 1fr;}}
-@media(max-width:520px){.prod-grid{grid-template-columns:1fr;}}
-.prod-card{
+/* ============ 为什么加入 ============ */
+.join-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;}
+@media(max-width:760px){.join-grid{grid-template-columns:1fr;}}
+.join-card{
   background:#fff;border:1px solid var(--line);border-radius:16px;
-  padding:24px;transition:.22s;display:flex;flex-direction:column;
+  padding:28px;box-shadow:var(--shadow-sm);
 }
-.prod-card:hover{transform:translateY(-4px);border-color:var(--o2);box-shadow:var(--shadow-sm);}
-.prod-ico{
-  width:42px;height:42px;border-radius:11px;background:var(--o-soft);
-  display:flex;align-items:center;justify-content:center;font-size:21px;margin-bottom:14px;
-}
-.prod-name{font-size:16px;font-weight:800;margin-bottom:6px;}
-.prod-line{font-size:11.5px;color:var(--o3);font-weight:700;margin-bottom:10px;}
-.prod-desc{font-size:12.5px;color:var(--ink2);line-height:1.8;flex:1;}
-.prod-foot{
-  margin-top:14px;padding-top:13px;border-top:1px dashed var(--line);
-  display:flex;justify-content:space-between;align-items:center;
-}
-.prod-price{font-size:13px;font-weight:800;color:var(--o3);}
-.prod-link{font-size:12px;color:var(--ink3);font-weight:600;}
-.prod-card:hover .prod-link{color:var(--o3);}
+.join-ico{font-size:28px;margin-bottom:12px;}
+.join-card h4{font-size:17px;font-weight:900;margin-bottom:8px;}
+.join-card p{font-size:13px;color:var(--ink2);line-height:1.85;}
+.join-card p b{color:var(--o3);font-weight:700;}
 
-.prod-cta{
-  margin-top:26px;background:var(--o-soft);border:1px solid var(--o-soft2);
-  border-radius:16px;padding:24px 28px;display:flex;align-items:center;
-  justify-content:space-between;gap:20px;flex-wrap:wrap;
+/* ============ 我们在找谁 ============ */
+.role-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:32px;}
+@media(max-width:760px){.role-grid{grid-template-columns:1fr;}}
+.role-card{
+  background:var(--o-tint);border:1px solid var(--line);border-radius:14px;
+  padding:22px 20px;
 }
-.prod-cta-text{font-size:14px;color:var(--ink2);}
-.prod-cta-text b{color:var(--o3);font-weight:800;}
+.role-title{font-size:15px;font-weight:800;margin-bottom:5px;}
+.role-type{font-size:11.5px;color:var(--o3);font-weight:700;margin-bottom:10px;}
+.role-desc{font-size:12px;color:var(--ink2);line-height:1.75;}
+.role-fit{
+  margin-top:12px;font-size:11.5px;color:var(--ink3);
+  padding-top:10px;border-top:1px dashed var(--line);
+}
+.role-fit b{color:var(--o2);font-weight:700;}
 
-/* ============ GOAL CARDS ============ */
-.goal-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-bottom:50px;}
-@media(max-width:760px){.goal-grid{grid-template-columns:1fr;}}
-.goal-card{
-  background:#fff;border:1px solid var(--line);border-radius:16px;
-  padding:26px;box-shadow:var(--shadow-sm);
-}
-.goal-name{font-size:14px;font-weight:800;margin-bottom:8px;}
-.goal-actual{
-  font-size:32px;font-weight:900;line-height:1;letter-spacing:-1px;
-  background:var(--grad);-webkit-background-clip:text;
-  -webkit-text-fill-color:transparent;background-clip:text;
-}
-.goal-vs{font-size:12px;color:var(--ink3);margin:6px 0 14px;}
-.goal-bar{height:9px;border-radius:99px;background:var(--o-soft);overflow:hidden;}
-.goal-bar i{display:block;height:100%;background:var(--grad);border-radius:99px;}
-.goal-rate{font-size:12.5px;font-weight:800;color:var(--o3);margin-top:9px;}
-
-/* ============ ACHIEVE / VALUE ============ */
+/* ============ 口碑数据 ============ */
 .ach-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;}
 @media(max-width:840px){.ach-grid{grid-template-columns:1fr 1fr;}}
 .ach-card{
@@ -341,7 +350,7 @@ h1.hero-title .em{
 .ach-lbl{font-size:13px;font-weight:700;margin:8px 0 3px;}
 .ach-sub{font-size:11px;color:var(--ink3);line-height:1.55;}
 
-/* ============ STAR STUDENTS ============ */
+/* ============ 学员故事 ============ */
 .star-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;}
 @media(max-width:840px){.star-grid{grid-template-columns:1fr 1fr;}}
 @media(max-width:520px){.star-grid{grid-template-columns:1fr;}}
@@ -354,85 +363,6 @@ h1.hero-title .em{
 .star-tag{font-size:11px;color:var(--o3);font-weight:700;margin:4px 0 8px;}
 .star-text{font-size:12.5px;color:var(--ink2);line-height:1.75;}
 .star-text b{color:var(--ink);}
-
-/* ============ AI NATIVE ============ */
-.ai-grid{display:grid;grid-template-columns:1fr 1fr;gap:22px;}
-@media(max-width:840px){.ai-grid{grid-template-columns:1fr;}}
-.ai-feature{
-  background:#fff;border:1px solid var(--line);border-radius:16px;padding:26px;
-}
-.ai-feature h4{font-size:16px;font-weight:800;margin-bottom:8px;display:flex;align-items:center;gap:9px;}
-.ai-chip{
-  font-size:11px;font-weight:800;color:#fff;background:var(--grad);
-  padding:3px 9px;border-radius:6px;
-}
-.ai-feature p{font-size:13px;color:var(--ink2);line-height:1.85;}
-.battle-list{display:grid;grid-template-columns:repeat(5,1fr);gap:12px;margin-top:22px;}
-@media(max-width:840px){.battle-list{grid-template-columns:1fr 1fr;}}
-.battle{
-  background:var(--o-tint);border:1px solid var(--line);border-radius:12px;
-  padding:16px 14px;text-align:center;
-}
-.battle-n{font-size:13px;font-weight:900;color:var(--o3);}
-.battle-t{font-size:12px;font-weight:700;margin:4px 0 4px;}
-.battle-d{font-size:10.5px;color:var(--ink3);line-height:1.5;}
-
-/* ============ SECOND CURVE ============ */
-.sc-track{display:grid;grid-template-columns:1fr 1fr;gap:22px;}
-@media(max-width:840px){.sc-track{grid-template-columns:1fr;}}
-.sc-card{
-  background:#fff;border:1px solid var(--line);border-radius:20px;
-  padding:32px;position:relative;overflow:hidden;
-}
-.sc-card.dream{
-  background:linear-gradient(160deg,#fff 0%,var(--o-soft) 100%);
-  border-color:var(--o-soft2);
-}
-.sc-kicker{font-size:12px;font-weight:800;color:var(--o3);letter-spacing:1px;margin-bottom:8px;}
-.sc-card h3{font-size:20px;font-weight:900;margin-bottom:12px;}
-.sc-card p{font-size:13.5px;color:var(--ink2);line-height:1.9;}
-.sc-card p b{color:var(--ink);}
-.sc-metrics{display:flex;gap:24px;margin-top:20px;padding-top:18px;border-top:1px dashed var(--line);}
-.sc-m-num{font-size:25px;font-weight:900;color:var(--o3);line-height:1;}
-.sc-m-lbl{font-size:11px;color:var(--ink3);margin-top:4px;}
-.dream-points{margin-top:18px;display:flex;flex-direction:column;gap:9px;}
-.dream-point{font-size:12.5px;color:var(--ink2);display:flex;gap:9px;line-height:1.65;}
-.dream-point::before{content:'✦';color:var(--o2);flex-shrink:0;}
-
-/* ============ RESPONSIBILITY ============ */
-.resp-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;}
-@media(max-width:760px){.resp-grid{grid-template-columns:1fr;}}
-.resp-card{
-  background:#fff;border:1px solid var(--line);border-radius:16px;padding:26px;
-}
-.resp-ico{font-size:26px;margin-bottom:10px;}
-.resp-card h4{font-size:16px;font-weight:800;margin-bottom:7px;}
-.resp-card p{font-size:12.5px;color:var(--ink2);line-height:1.8;}
-.resp-stat{font-size:13px;font-weight:800;color:var(--o3);margin-top:10px;}
-
-/* ============ NAV / EXPLORE ============ */
-.explore-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;}
-@media(max-width:840px){.explore-grid{grid-template-columns:1fr 1fr;}}
-@media(max-width:520px){.explore-grid{grid-template-columns:1fr;}}
-.exp-card{
-  background:#fff;border:1px solid var(--line);border-radius:16px;
-  padding:22px;transition:.2s;
-}
-.exp-card:hover{border-color:var(--o2);box-shadow:var(--shadow-sm);}
-.exp-head{display:flex;align-items:center;gap:11px;margin-bottom:14px;}
-.exp-ico{
-  width:40px;height:40px;border-radius:11px;background:var(--o-soft);
-  display:flex;align-items:center;justify-content:center;font-size:19px;
-}
-.exp-title{font-size:15px;font-weight:800;}
-.exp-count{font-size:11px;color:var(--ink3);}
-.exp-links{display:flex;flex-direction:column;gap:5px;}
-.exp-links a{
-  font-size:12.5px;color:var(--ink2);padding:7px 11px;border-radius:8px;
-  background:var(--o-tint);transition:.15s;
-}
-.exp-links a:hover{background:var(--o-soft);color:var(--o3);}
-.exp-more{font-size:11px;color:var(--ink3);margin-top:9px;display:inline-block;}
 
 /* ============ CLOSING ============ */
 .closing{
@@ -476,8 +406,31 @@ footer{
 }
 footer b{color:var(--o3);}
 
+/* ============ PROD CTA ============ */
+.prod-cta{
+  margin-top:26px;background:var(--o-soft);border:1px solid var(--o-soft2);
+  border-radius:16px;padding:24px 28px;display:flex;align-items:center;
+  justify-content:space-between;gap:20px;flex-wrap:wrap;
+}
+.prod-cta-text{font-size:14px;color:var(--ink2);}
+.prod-cta-text b{color:var(--o3);font-weight:800;}
+
 .reveal{opacity:0;transform:translateY(26px);transition:opacity .7s ease,transform .7s ease;}
 .reveal.vis{opacity:1;transform:none;}
+
+/* ============ PRINT / PDF ============ */
+@media print{
+  *{-webkit-print-color-adjust:exact !important;print-color-adjust:exact !important;}
+  html,body{background:#fff !important;}
+  .reveal{opacity:1 !important;transform:none !important;}
+  .topbar{position:static !important;box-shadow:none;}
+  .sec{padding:40px 0 !important;break-inside:avoid;}
+  .hero{padding:48px 0 56px !important;}
+  .sec-head,.trans-card,.biz-block,.join-card,.role-card,.founder-card,.ach-card,.star-card,.closing,.honest-box,.timeline,.ai-feature{break-inside:avoid;}
+  .closing,.curve-banner{box-shadow:none !important;}
+  a[href]{text-decoration:none;color:inherit;}
+}
+@page{margin:10mm;size:A4;}
 </style>
 </head>
 <body>
@@ -487,12 +440,12 @@ footer b{color:var(--o3);}
   <div class="topbar-inner">
     <a class="logo" href="#"><img class="logo-img" src="assets/logo.png" alt="喜播集团" onerror="this.closest('.logo').classList.add('logo-fallback')"><span class="logo-mark">喜</span><span class="logo-txt">喜播集团</span></a>
     <nav class="topnav">
-      <a href="#about">关于喜播</a>
-      <a href="#first-curve">第一曲线</a>
-      <a href="#second-curve">第二曲线</a>
-      <a href="#ai">AI 进化</a>
-      <a href="#responsibility">社会责任</a>
-      <a href="#explore">深度资料</a>
+      <a href="#declaration">新喜播宣言</a>
+      <a href="#history">我们从哪里来</a>
+      <a href="#business">业务格局</a>
+      <a href="#ai">AI 原生</a>
+      <a href="#team">团队</a>
+      <a href="#join">为什么加入</a>
     </nav>
   </div>
 </div>
@@ -500,88 +453,136 @@ footer b{color:var(--o3);}
 <!-- ===================== HERO ===================== -->
 <div class="hero">
   <div class="wrap">
-    <div class="hero-badge"><i>✦</i> 面向上海静安高新集团领导 · 公司介绍材料</div>
-    <h1 class="hero-title">让再小的生命，<br>也能<span class="em">吐露芬芳</span></h1>
+    <div class="hero-badge"><i>✦</i> 2026 · 新喜播 · 正在发生</div>
+    <h1 class="hero-title">我们正在成为一家<br><span class="em">AI 驱动</span>的科技公司</h1>
     <p class="hero-sub">
-      喜播教育是源自喜马拉雅旗下的在线新职业教育与人才服务品牌，2025 年剥离为独立公司，是喜马拉雅生态企业。
-      我们用声音、用 AI、用一套完整的人才培养体系，帮助每一个普通人找到属于自己的舞台。
+      喜播用 6 年时间，在新职业教育里积累了亿级声音生态与百万级用户。<br>
+      2026 年，我们用 AI 重塑产品、组织与商业模式——从一家教育公司，进化为一家 AI 驱动的科技公司。
     </p>
     <p class="hero-vision">
       愿景 · <b>让再小的生命，也能吐露芬芳</b>　|　使命 · <b>用教育点亮人生</b>　|　核心价值观 · <b>以用户为中心，做好比做大更重要</b>
     </p>
     <div class="hero-cta">
-      <a class="btn btn-primary" href="https://jiaoyan.xibo.org.cn/pandeng.html" target="_blank">了解攀登计划产品 →</a>
-      <a class="btn btn-ghost" href="#second-curve">看见第二曲线</a>
+      <a class="btn btn-primary" href="#join">了解加入机会 →</a>
+      <a class="btn btn-ghost" href="#declaration">看新喜播宣言</a>
     </div>
-
     <div class="hero-stats">
+      <div class="hstat">
+        <div class="hstat-num">2.5<small> 亿</small></div>
+        <div class="hstat-lbl">2025 年净利润</div>
+        <div class="hstat-sub">达成目标 164%，转型有底气</div>
+      </div>
+      <div class="hstat">
+        <div class="hstat-num">560<small> 万</small></div>
+        <div class="hstat-lbl">累计学员基础</div>
+        <div class="hstat-sub">6 年声音生态积累</div>
+      </div>
       <div class="hstat">
         <div class="hstat-num">11.6<small> 亿</small></div>
         <div class="hstat-lbl">2025 年度 GMV</div>
-        <div class="hstat-sub">116,212 万元</div>
+        <div class="hstat-sub">稳健增长的第一曲线</div>
       </div>
       <div class="hstat">
-        <div class="hstat-num">9.2<small> 亿</small></div>
-        <div class="hstat-lbl">2025 年会计净收入</div>
-        <div class="hstat-sub">达成年度目标 123%</div>
-      </div>
-      <div class="hstat">
-        <div class="hstat-num">2.5<small> 亿</small></div>
-        <div class="hstat-lbl">2025 年度净利润</div>
-        <div class="hstat-sub">达成年度目标 164%</div>
-      </div>
-      <div class="hstat">
-        <div class="hstat-num">12.9<small> 万</small></div>
-        <div class="hstat-lbl">2025 年新增正价学员</div>
-        <div class="hstat-sub">129,297 人</div>
+        <div class="hstat-num">2026</div>
+        <div class="hstat-lbl">AI 原生 · 第二曲线</div>
+        <div class="hstat-sub">全面启动，正在招募同行者</div>
       </div>
     </div>
   </div>
 </div>
 
-<!-- ===================== 我们是谁 ===================== -->
-<div class="sec" id="about">
+<!-- ===================== 新喜播宣言 ===================== -->
+<div class="sec" id="declaration">
   <div class="wrap">
     <div class="sec-head reveal">
-      <span class="sec-tag">SECTION 01 · 关于喜播</span>
-      <h2 class="sec-h">一家把"做好"放在"做大"之前的教育公司</h2>
+      <span class="sec-tag">SECTION 01 · 新喜播宣言</span>
+      <h2 class="sec-h">新在哪里？继承了什么，摒弃了什么，拥抱了什么</h2>
       <p class="sec-desc">
-        喜播前身为喜马拉雅大学事业部，<b>2020 年完成独立分拆</b>成立喜播教育，
-        2021 年完成独立融资并升级为"喜播教育"品牌。我们专注服务声音兴趣及副业兼职需求人群，
-        提供从培训到兼职就业的全链条系统服务。
+        不是改个名字就叫新喜播。新喜播是一个<b>真实的选择</b>——我们清楚自己要成为什么，也清楚要告别什么，并用行动去兑现。
       </p>
     </div>
 
-    <div class="who-grid">
-      <div class="who-card reveal">
-        <h3>我们做什么</h3>
-        <p>
-          面向 30+ 宝妈、对声音表演感兴趣的上班族与退休人群、想培养"第二兴趣"和一技之长的人，
-          提供系统培训服务与兼职就业指导。从声音入门到职业进阶，从内容创作到 AI 工具应用，
-          喜播构建了一条覆盖"学习—成长—变现"的完整链条。
-        </p>
-        <div class="biz-tags">
-          <span class="biz-tag">有声演播培训</span>
-          <span class="biz-tag">AI 写作课培训</span>
-          <span class="biz-tag">AI 短视频创作者培训</span>
-          <span class="biz-tag">主播孵化</span>
-          <span class="biz-tag">硬件设备</span>
+    <div class="trans-grid reveal">
+      <!-- 继承 -->
+      <div class="trans-card inherit">
+        <div class="trans-label">✓ &nbsp;继承了什么</div>
+        <h3>值得骄傲的根基，<br>一分也不放弃</h3>
+        <div class="trans-items">
+          <div class="trans-item">
+            <div class="trans-item-ico">✓</div>
+            <div><b>喜马拉雅的声音生态势能</b>——亿级用户的音频平台，天然流量与品牌背书，任何创业公司都难以复制。</div>
+          </div>
+          <div class="trans-item">
+            <div class="trans-item-ico">✓</div>
+            <div><b>560 万学员、6 年信任积累</b>——真实帮助过的人，真实留下来的口碑，是最厚实的行业底盘。</div>
+          </div>
+          <div class="trans-item">
+            <div class="trans-item-ico">✓</div>
+            <div><b>"让再小的生命也能吐露芬芳"的初心</b>——这句话从来没有变过，它是一切业务选择的原点。</div>
+          </div>
+          <div class="trans-item">
+            <div class="trans-item-ico">✓</div>
+            <div><b>有声内容专业能力与师资体系</b>——与中传、上戏、浙传等顶级院校的产教融合关系，内容行业真实的专业积淀。</div>
+          </div>
+          <div class="trans-item">
+            <div class="trans-item-ico">✓</div>
+            <div><b>已经验证的盈利能力</b>——2025 净利润 2.5 亿，超额完成目标 164%。转型不是因为活不下去，而是主动选择做对。</div>
+          </div>
         </div>
       </div>
-      <div class="who-card reveal">
-        <h3>我们相信什么</h3>
-        <div class="culture">
-          <div class="culture-row">
-            <span class="culture-key">愿景</span>
-            <span class="culture-val"><b>让再小的生命，也能吐露芬芳</b>　每个普通人都值得被看见。</span>
+
+      <!-- 告别 -->
+      <div class="trans-card abandon">
+        <div class="trans-label">✕ &nbsp;告别了什么</div>
+        <h3>主动升级，<br>才能走得更远</h3>
+        <div class="trans-items">
+          <div class="trans-item muted">
+            <div class="trans-item-ico">✕</div>
+            <div><b>以短期成交为导向的粗放增长</b>——把"成交了多少"看得比"用户成长了多少"更重，长期看难以持续。</div>
           </div>
-          <div class="culture-row">
-            <span class="culture-key">使命</span>
-            <span class="culture-val"><b>用教育点亮人生</b>　以教育为火种，照亮每一段人生轨迹。</span>
+          <div class="trans-item muted">
+            <div class="trans-item-ico">✕</div>
+            <div><b>唯规模论的经营惯性</b>——规模是结果而非目的，我们把经营重心从"做大"转向"做好"。</div>
           </div>
-          <div class="culture-row">
-            <span class="culture-key">价值观</span>
-            <span class="culture-val"><b>以用户为中心，做好比做大更重要</b>　把用户体验作为一切决策的原点。</span>
+          <div class="trans-item muted">
+            <div class="trans-item-ico">✕</div>
+            <div><b>重营销、轻产品的发展路径</b>——真正可持续的增长，来自产品价值本身，而不是销售技巧。</div>
+          </div>
+          <div class="trans-item muted">
+            <div class="trans-item-ico">✕</div>
+            <div><b>不以用户长期价值为中心的旧模式</b>——一切决策回到一个原点：这对用户的长期成长是不是真的好。</div>
+          </div>
+          <div class="trans-item muted">
+            <div class="trans-item-ico">✕</div>
+            <div><b>依赖个体经验、难以沉淀的组织方式</b>——靠感觉做决策、经验随人流失，正在被数据驱动的体系取代。</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 拥抱 -->
+      <div class="trans-card embrace">
+        <div class="trans-label">✦ &nbsp;拥抱了什么</div>
+        <h3>新喜播真正<br>在建设的东西</h3>
+        <div class="trans-items">
+          <div class="trans-item">
+            <div class="trans-item-ico">✦</div>
+            <div><b>AI 原生的业务与组织</b>——9 个智能体协同分工，14 维合规校验，把"靠感觉"变成"有数据"，把人力解放到更高价值的工作上。</div>
+          </div>
+          <div class="trans-item">
+            <div class="trans-item-ico">✦</div>
+            <div><b>订阅制 · 长期陪伴替代一次成交</b>——从卖课到陪跑，从成交到续费，从 GMV 到 LTV，这是完全不同的产品逻辑。</div>
+          </div>
+          <div class="trans-item">
+            <div class="trans-item-ico">✦</div>
+            <div><b>用户真实成长作为第一考核指标</b>——完课率、就业率、学员作品播放量，这些才是真正值得盯紧的数字。</div>
+          </div>
+          <div class="trans-item">
+            <div class="trans-item-ico">✦</div>
+            <div><b>AI 时代"超级个体"的培养逻辑</b>——AI 工具放大每个普通人的创作力，人人都可以是内容创业者，这是真实的时代机会。</div>
+          </div>
+          <div class="trans-item">
+            <div class="trans-item-ico">✦</div>
+            <div><b>做好比做大更重要的经营哲学</b>——宁愿健康增长，不要虚胖规模。这是写进价值观的东西，也是我们真实执行的东西。</div>
           </div>
         </div>
       </div>
@@ -589,13 +590,26 @@ footer b{color:var(--o3);}
   </div>
 </div>
 
-<!-- ===================== 发展历程 ===================== -->
-<div class="sec alt">
+<!-- ===================== 我们从哪里来 ===================== -->
+<div class="sec alt" id="history">
   <div class="wrap">
     <div class="sec-head reveal">
-      <span class="sec-tag">SECTION 02 · 发展历程</span>
-      <h2 class="sec-h">从一个事业部，到一家有长期价值的公司</h2>
-      <p class="sec-desc">六年时间，喜播完成了从内部孵化到独立品牌、从单一课程到 AI 产品矩阵的跨越。</p>
+      <span class="sec-tag">SECTION 02 · 我们从哪里来</span>
+      <h2 class="sec-h">六年：从孵化到独立，在质疑中找到方向</h2>
+      <p class="sec-desc">理解喜播的过去，才能理解新喜播为什么值得相信。这里有我们走过的路，也有我们真实面对过的困难。</p>
+    </div>
+
+    <div class="honest-box reveal">
+      <div class="honest-label">关于这次转型 · 我们想说清楚</div>
+      <h3>从规模驱动，走向价值驱动</h3>
+      <p>
+        喜播在喜马拉雅生态内成长的早期，以<b>有声演播训练营</b>为主力业务，快速积累了规模与用户基础。
+        但我们也意识到：以短期成交为导向的粗放增长方式，难以支撑一家公司走得更远。
+      </p>
+      <p>
+        <b>2025 年起，我们主动把经营重心从"做大"转向"做好"——升级产品与服务模式，把用户长期价值放在第一位。</b>
+        当净利润从 1.4 亿增长到 2.5 亿，同时用户满意度达到 4.95 分、完课率 97%——这正是转型成效最真实的证明。
+      </p>
     </div>
 
     <div class="timeline reveal">
@@ -609,62 +623,255 @@ footer b{color:var(--o3);}
           <div class="tl-text">品牌升级为喜播教育，完成独立融资</div>
         </div>
         <div class="tl-item">
-          <div class="tl-year">2022.12</div>
-          <div class="tl-text">有声体验营升级为训练营，累计学员 560 万+</div>
+          <div class="tl-year">2022</div>
+          <div class="tl-text">规模快速增长，主动启动"回归用户价值"的产品与服务升级</div>
         </div>
         <div class="tl-item key">
-          <div class="tl-year">2023.10</div>
-          <div class="tl-text">喜播首个 AI 产品线诞生</div>
+          <div class="tl-year">2023</div>
+          <div class="tl-text">首个 AI 产品线诞生；坚定"做一家有长期价值的公司"方向</div>
         </div>
         <div class="tl-item key">
-          <div class="tl-year">2024.12</div>
-          <div class="tl-text">盈利突破 1.4 亿，AI 产品线单月 GMV 破 600 万</div>
+          <div class="tl-year">2024</div>
+          <div class="tl-text">盈利突破 1.4 亿，AI 产品线单月 GMV 破 600 万，用户满意度攻坚战役多次第一</div>
         </div>
-        <div class="tl-item key">
-          <div class="tl-year">2025.12</div>
-          <div class="tl-text">全年 GMV 11.6 亿、净利润 2.5 亿，超额达成年度目标</div>
+        <div class="tl-item now">
+          <div class="tl-year">2025—26</div>
+          <div class="tl-text">全年 GMV 11.6 亿、净利润 2.5 亿；AI 原生组织转型全面启动，第二曲线开跑</div>
         </div>
       </div>
     </div>
 
-    <div style="margin-top:48px" class="reveal">
-      <h3 style="font-size:17px;font-weight:800;margin-bottom:18px;">穿越周期 · 每一步都更靠近用户</h3>
-      <div class="journey">
-        <div class="jrn-card">
-          <div class="jrn-year">2021</div>
-          <div class="jrn-title">希望与启程</div>
-          <div class="jrn-text">怀着"用教育点亮人生"的初心进入教育赛道，确立长期主义方向。</div>
+    <div style="margin-top:56px" class="reveal">
+      <h3 style="font-size:17px;font-weight:800;margin-bottom:18px;">口碑与服务质量 · 转型成效的真实证明</h3>
+      <div class="ach-grid">
+        <div class="ach-card">
+          <div class="ach-num">97<small>%</small></div>
+          <div class="ach-lbl">有声产品线完课率</div>
+          <div class="ach-sub">2024 年度均值</div>
         </div>
-        <div class="jrn-card">
-          <div class="jrn-year">2022</div>
-          <div class="jrn-title">回归用户价值</div>
-          <div class="jrn-text">主动放下对规模的执念，重新把用户体验与兜底保障放在第一位。</div>
+        <div class="ach-card">
+          <div class="ach-num">4.95<small> 分</small></div>
+          <div class="ach-lbl">有声产品线满意度</div>
+          <div class="ach-sub">5 分制 · 2024 年</div>
         </div>
-        <div class="jrn-card">
-          <div class="jrn-year">2023</div>
-          <div class="jrn-title">贴近用户突破</div>
-          <div class="jrn-text">坚定"做一家有长期价值的公司"，建立倾听学员心声的常态机制。</div>
+        <div class="ach-card">
+          <div class="ach-num">4.96<small> 分</small></div>
+          <div class="ach-lbl">AI 产品线满意度</div>
+          <div class="ach-sub">5 分制 · 2024 年</div>
         </div>
-        <div class="jrn-card">
-          <div class="jrn-year">2024</div>
-          <div class="jrn-title">让学员成功</div>
-          <div class="jrn-text">把握每一个平凡的机遇，创造不凡的价值——学员成功就是喜播成功。</div>
+        <div class="ach-card">
+          <div class="ach-num">TOP 1</div>
+          <div class="ach-lbl">集团满意度攻坚战役</div>
+          <div class="ach-sub">多次取得第一名</div>
         </div>
-        <div class="jrn-card">
-          <div class="jrn-year">2025</div>
-          <div class="jrn-title">稳健增长</div>
-          <div class="jrn-text">营收与利润双双超额达成目标，第一曲线稳健造血，第二曲线全面启航。</div>
+        <div class="ach-card">
+          <div class="ach-num">49<small> 亿</small></div>
+          <div class="ach-lbl">学员作品年播放量</div>
+          <div class="ach-sub">真实的学员成长</div>
+        </div>
+        <div class="ach-card">
+          <div class="ach-num">20292<small> 张</small></div>
+          <div class="ach-lbl">学员创建专辑</div>
+          <div class="ach-sub">11298 名学员 / 年</div>
+        </div>
+        <div class="ach-card">
+          <div class="ach-num">12729<small> 个</small></div>
+          <div class="ach-lbl">就业任务机会</div>
+          <div class="ach-sub">交付机会 7381 个 / 年</div>
+        </div>
+        <div class="ach-card">
+          <div class="ach-num">7<small> 亿+</small></div>
+          <div class="ach-lbl">"有声之夜"曝光量</div>
+          <div class="ach-sub">已举办 4 届品牌赛事</div>
+        </div>
+      </div>
+    </div>
+
+    <div style="margin-top:56px" class="reveal">
+      <h3 style="font-size:17px;font-weight:800;margin-bottom:18px;">普通人在喜播，真的发出了自己的声音</h3>
+      <div class="star-grid">
+        <div class="star-card">
+          <div class="star-name">冷月浅浅</div>
+          <div class="star-tag">有声产品线 · 兼职宝妈主播</div>
+          <div class="star-text">从兼职宝妈起步，<b>结业 4 个月后获喜马拉雅独家签约</b>，把兴趣变成了稳定的事业。</div>
+        </div>
+        <div class="star-card">
+          <div class="star-name">一个志远</div>
+          <div class="star-tag">有声产品线 · 独家签约主播</div>
+          <div class="star-text">培训现场即获签约，<b>半年粉丝从 100+ 涨到 11 万+</b>，实现声音事业的快速起飞。</div>
+        </div>
+        <div class="star-card">
+          <div class="star-name">花清河</div>
+          <div class="star-tag">有声产品线 · 工程师转型</div>
+          <div class="star-text">一名美女工程师，在课程培训中现场签约喜马，完成从职场到声音演播的跨界转型。</div>
+        </div>
+        <div class="star-card">
+          <div class="star-name">金岚昕</div>
+          <div class="star-tag">AI 写作课 · 9 期优秀学员</div>
+          <div class="star-text">学习 AI 短故事短剧写作后，<b>3 部作品签约知乎盐言故事</b>，开启内容创作变现之路。</div>
+        </div>
+        <div class="star-card">
+          <div class="star-name">有声的发糕</div>
+          <div class="star-tag">AI 视频课 · 超级个体 1 期</div>
+          <div class="star-text">担任喜马拉雅悬疑季宣传片花主创，<b>做 AI 短视频 5 个月收益 3 万+</b>。</div>
+        </div>
+        <div class="star-card">
+          <div class="star-name">周聆溪</div>
+          <div class="star-tag">AI 写作课 · 6 期优秀学员</div>
+          <div class="star-text">通过 AI 写作课<b>签约两部短剧，收益近 2 万</b>，把 AI 工具变成了真实生产力。</div>
         </div>
       </div>
     </div>
   </div>
 </div>
 
-<!-- ===================== 团队 ===================== -->
-<div class="sec">
+<!-- ===================== 新业务格局 ===================== -->
+<div class="sec" id="business">
   <div class="wrap">
     <div class="sec-head reveal">
-      <span class="sec-tag">SECTION 03 · 创始团队</span>
+      <span class="sec-tag">SECTION 03 · 新业务格局</span>
+      <h2 class="sec-h">三条线，构成新喜播完整的增长逻辑</h2>
+      <p class="sec-desc">
+        不是抛弃旧业务，而是<b>让第一曲线更健康</b>，同时用两条新曲线打开真正的长期想象空间。
+      </p>
+    </div>
+
+    <div class="biz-layout reveal">
+      <div class="biz-block">
+        <div class="biz-num">01</div>
+        <div class="biz-kicker">第一曲线 · 已验证 · 持续造血</div>
+        <h3>有声 + AI 创作培训，更健康的陪跑模式</h3>
+        <p>
+          以有声演播为根基、AI 短故事短剧 + 短视频为新引擎。<b>从粗放的训练营，升级为系统化的陪跑服务</b>——
+          学员带着真实作品结业，接单、签约、创业都有路。
+          2025 年净收入 9.2 亿、净利润 2.5 亿，底盘稳健。
+        </p>
+        <div class="biz-tags">
+          <span class="biz-tag">有声演播培训</span>
+          <span class="biz-tag">AI 短故事写作</span>
+          <span class="biz-tag">AI 短视频创作</span>
+          <span class="biz-tag">主播孵化接单</span>
+          <span class="biz-tag">高级研修班</span>
+        </div>
+        <div class="biz-metrics">
+          <div>
+            <div class="biz-m-num">9.2 亿</div>
+            <div class="biz-m-lbl">2025 净收入</div>
+          </div>
+          <div>
+            <div class="biz-m-num">97%</div>
+            <div class="biz-m-lbl">完课率</div>
+          </div>
+          <div>
+            <div class="biz-m-num">4.95</div>
+            <div class="biz-m-lbl">用户满意度</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="biz-block">
+        <div class="biz-num">02</div>
+        <div class="biz-kicker">第二曲线 · 探索中 · 更大想象空间</div>
+        <h3>从"卖课程"到"长期陪伴"——会员订阅与 AI 健康陪伴</h3>
+        <p>
+          喜播正在把单次训练营升级为<b>会员订阅制服务</b>。私域沉淀超 123 万活跃用户，
+          学完一门课后依然可以持续获得练习、社群与作品扶持——喜播与用户的关系，从"一次成交"变成"长期同行"。
+        </p>
+        <p style="margin-top:10px;">
+          更远的想象：面向 35–55 岁女性的 <b>AI 健康陪伴管家</b>——
+          她们是 70% 家庭健康决策方，连接的是一整个家庭。从"用教育点亮人生"，自然生长为"用陪伴守护人生"。
+        </p>
+        <div class="biz-metrics">
+          <div>
+            <div class="biz-m-num">123 万</div>
+            <div class="biz-m-lbl">私域活跃用户</div>
+          </div>
+          <div>
+            <div class="biz-m-num">5 万</div>
+            <div class="biz-m-lbl">年付费会员目标</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="biz-block ai reveal">
+      <div class="biz-num">AI</div>
+      <div class="biz-kicker">AI 原生 · 贯穿所有业务线</div>
+      <h3>AI 不只是我们教的内容，更是我们运作的方式</h3>
+      <p>
+        喜播自己正在成为一家 <b>AI Native 公司</b>——9 个智能体团队负责销售助教、服务班主任、合规校验、质量评分与内容进化，
+        覆盖从获客到长期 LTV 的全链路。每条好对话提炼为可复用案例，每条违规沉淀为反例库。
+        <b>组织能力不再随人员流动而清零</b>——这是教育行业里稀缺的工程化能力。
+      </p>
+      <div class="biz-tags" style="margin-top:16px;">
+        <span class="biz-tag">9 智能体协同</span>
+        <span class="biz-tag">14 维合规校验</span>
+        <span class="biz-tag">12 维质量评分</span>
+        <span class="biz-tag">数据资产化引擎</span>
+        <span class="biz-tag">LangGraph 编排</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ===================== AI 原生组织 ===================== -->
+<div class="sec alt" id="ai">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="sec-tag">SECTION 04 · AI 原生组织</span>
+      <h2 class="sec-h">把 AI 真正"嵌入"教育的每一次对话</h2>
+      <p class="sec-desc">
+        我们不只是教学员用 AI——喜播自己正在成为一家 <b>AI Native 公司</b>。
+        这不是口号，是已经在运行的系统架构。
+      </p>
+    </div>
+
+    <div class="ai-grid reveal">
+      <div class="ai-feature">
+        <h4><span class="ai-chip">AI 团队</span> 9 个智能体协同分工</h4>
+        <p>路由编排、销售助教、服务班主任、评分复盘、故事进化等 9 个智能体通过 LangGraph 编排协同，覆盖从获客到长期 LTV 的全链路。人被解放去做 AI 做不了的事——创意、判断和真实的人际连接。</p>
+      </div>
+      <div class="ai-feature">
+        <h4><span class="ai-chip">合规治理</span> 14 维实时校验体系</h4>
+        <p>每一句 AI 输出在发送前都要通过 14 个独立验证器，覆盖广告法、消保法、反不正当竞争法。把合规从"靠经验"变成"有系统"——让每一次用户沟通都经得起检验。</p>
+      </div>
+      <div class="ai-feature">
+        <h4><span class="ai-chip">质量量化</span> 12 维质量评分</h4>
+        <p>每轮对话被 8 个核心维度 + 4 个策略维度评分，输出 S/A/B/C/D 等级与改进建议。销售与服务质量从"老板的感觉"变成"可显示的图表"——这是组织真正在学习的标志。</p>
+      </div>
+      <div class="ai-feature">
+        <h4><span class="ai-chip">资产沉淀</span> 知识不随人走</h4>
+        <p>每条好评对话提炼为可复用案例，每条违规对话沉淀为反例库。新人入职即可站在最优秀同事的肩膀上。AI 团队每天都在变强，<b>这是新喜播真正的护城河</b>。</p>
+      </div>
+    </div>
+
+    <div class="reveal" style="margin-top:42px;">
+      <h3 style="font-size:17px;font-weight:800;margin-bottom:6px;">2026 五大关键战役</h3>
+      <p style="font-size:13px;color:var(--ink2);margin-bottom:16px;">喜播以"健康利润 + AI 重塑组织"为主线，系统性地把公司推向 AI Native 时代。加入我们，就是加入这五场战役的建设者队伍。</p>
+      <div class="battle-list">
+        <div class="battle"><div class="battle-n">战役一</div><div class="battle-t">生存之战</div><div class="battle-d">守住合规与口碑底线</div></div>
+        <div class="battle"><div class="battle-n">战役二</div><div class="battle-t">健康利润之战</div><div class="battle-d">净利润率提升至 10%+</div></div>
+        <div class="battle"><div class="battle-n">战役三</div><div class="battle-t">产品高地攻坚</div><div class="battle-d">新 SKU 持续上线</div></div>
+        <div class="battle"><div class="battle-n">战役四</div><div class="battle-t">降本增效战</div><div class="battle-d">AI 助教提升人效</div></div>
+        <div class="battle"><div class="battle-n">战役五</div><div class="battle-t">AI Native 重塑</div><div class="battle-d">关键岗位 AI 化 80%</div></div>
+      </div>
+    </div>
+
+    <div class="prod-cta reveal" style="margin-top:30px;">
+      <div class="prod-cta-text">
+        想深度了解喜播 AI 智能体团队？<br>
+        <b>9 个智能体 × 14 维合规校验 × 12 维评分体系</b>——完整技术介绍
+      </div>
+      <a class="btn btn-primary" href="xiboagents.html">查看 AI 智能体团队 →</a>
+    </div>
+  </div>
+</div>
+
+<!-- ===================== 团队 ===================== -->
+<div class="sec" id="team">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="sec-tag">SECTION 05 · 创始团队</span>
       <h2 class="sec-h">一支既懂教育、又懂互联网与 AI 的团队</h2>
       <p class="sec-desc">喜播由喜马拉雅创始人余建军发起，蒋德铭、马长久领衔经营。核心团队来自腾讯、流利说、精锐教育、PayPal 等，跨界经验沉淀为组织能力。</p>
     </div>
@@ -708,7 +915,7 @@ footer b{color:var(--o3);}
       <div class="dept-card">
         <div class="dept-name">杜康杰</div>
         <div class="dept-tag">政府事务及用户体验</div>
-        <div class="dept-bio">政府事务及用户体验负责人。负责政府事务与监管关系对接，统筹用户体验保障、投诉风险治理与服务满意度提升。</div>
+        <div class="dept-bio">政府事务及用户体验负责人。负责政府事务与监管关系对接，统筹用户体验保障与服务满意度提升。</div>
       </div>
       <div class="dept-card">
         <div class="dept-name">王聪</div>
@@ -719,427 +926,112 @@ footer b{color:var(--o3);}
   </div>
 </div>
 
-<!-- ===================== 第一曲线 ===================== -->
-<div class="sec alt" id="first-curve">
+<!-- ===================== 为什么加入 ===================== -->
+<div class="sec alt" id="join">
   <div class="wrap">
-    <div class="curve-banner reveal">
-      <div class="curve-num">01</div>
-      <div>
-        <h3>第一曲线 · 主营训练业务</h3>
-        <p>以有声演播为根基、以 AI 创作为新引擎的职业培训矩阵——成熟、稳健、持续造血，是喜播持续向前的底盘。</p>
-      </div>
-    </div>
-
     <div class="sec-head reveal">
-      <span class="sec-tag">产品矩阵</span>
-      <h2 class="sec-h">从声音入门到职业进阶的完整成长阶梯</h2>
+      <span class="sec-tag">SECTION 06 · 为什么加入新喜播</span>
+      <h2 class="sec-h">新喜播，等真正想把事做好的人</h2>
       <p class="sec-desc">
-        喜播为不同基础、不同目标的学员设计了清晰的产品路径。
-        每一门课都通向真实的接单机会与职业发展——
-        完整课程体系详见 <b><a href="https://jiaoyan.xibo.org.cn/pandeng.html" target="_blank" style="color:var(--o3)">攀登计划官方页面</a></b>。
+        不是每家公司都愿意在最赚钱的时候，主动选择一条更难、但更长期的路。喜播在 2025 年净利润 2.5 亿的背景下，主动启动了 AI 转型。
+        <b>这一年，是最值得加入的时机。</b>
       </p>
     </div>
 
-    <div class="prod-grid reveal">
-      <a class="prod-card" href="https://jiaoyan.xibo.org.cn/pandeng.html" target="_blank">
-        <div class="prod-ico">🎙️</div>
-        <div class="prod-name">有声主播 · L1 / L2</div>
-        <div class="prod-line">攀登计划 · 入门到专业</div>
-        <div class="prod-desc">系统学习有声书录制：发音发声、角色演播、旁白技巧与专辑运营。小班社群陪跑，大咖 + 辅导双直播。</div>
-        <div class="prod-foot"><span class="prod-price">L1 3980 / L2 3400 元</span><span class="prod-link">查看详情 →</span></div>
-      </a>
-      <a class="prod-card" href="https://jiaoyan.xibo.org.cn/pandeng.html" target="_blank">
-        <div class="prod-ico">🎚️</div>
-        <div class="prod-name">音频后期训练营</div>
-        <div class="prod-line">攀登计划 · 制作技能</div>
-        <div class="prod-desc">掌握 AU 软件、声学处理、音效音乐设计，能完成精配质量有声后期及播客等延展类商单。</div>
-        <div class="prod-foot"><span class="prod-price">2399 元</span><span class="prod-link">查看详情 →</span></div>
-      </a>
-      <a class="prod-card" href="https://jiaoyan.xibo.org.cn/pandeng.html" target="_blank">
-        <div class="prod-ico">🏅</div>
-        <div class="prod-name">有声主播高级研修班</div>
-        <div class="prod-line">攀登计划 · 职业化进阶</div>
-        <div class="prod-desc">线下大咖面对面个性化指导，联合中传、上戏、浙传等名校，颁发权威研修证书，助力主播职业化。</div>
-        <div class="prod-foot"><span class="prod-price">15800 元</span><span class="prod-link">查看详情 →</span></div>
-      </a>
-      <a class="prod-card" href="https://jiaoyan.xibo.org.cn/pandeng.html" target="_blank">
-        <div class="prod-ico">✍️</div>
-        <div class="prod-name">AI 短故事短剧写作课</div>
-        <div class="prod-line">AI 产品线 · 内容创作</div>
-        <div class="prod-desc">教授爆款短故事 + 短剧编剧方法论与 AI 写作工具，培养能通过投稿变现的专业 AI 故事写作者。</div>
-        <div class="prod-foot"><span class="prod-price">基础 2880 / 旗舰 4380 元</span><span class="prod-link">查看详情 →</span></div>
-      </a>
-      <a class="prod-card" href="https://jiaoyan.xibo.org.cn/pandeng.html" target="_blank">
-        <div class="prod-ico">🎬</div>
-        <div class="prod-name">AI 短视频创作陪跑课</div>
-        <div class="prod-line">AI 产品线 · AIGC 风口</div>
-        <div class="prod-desc">用 AI 工具完成短视频全流程创作，抓住 AIGC + 短视频双风口，通过账号搭建与商单获取副业收益。</div>
-        <div class="prod-foot"><span class="prod-price">2980 元</span><span class="prod-link">查看详情 →</span></div>
-      </a>
-      <a class="prod-card" href="https://jiaoyan.xibo.org.cn/pandeng.html" target="_blank">
-        <div class="prod-ico">🚀</div>
-        <div class="prod-name">主播孵化 · 接单通道</div>
-        <div class="prod-line">人才服务 · 学练赚一体</div>
-        <div class="prod-desc">试音接单绿色通道、线上兼职岗位、优秀学员扶持——把学习成果直接对接真实的就业与变现机会。</div>
-        <div class="prod-foot"><span class="prod-price">学练赚闭环</span><span class="prod-link">查看详情 →</span></div>
-      </a>
-    </div>
-
-    <div class="prod-cta reveal">
-      <div class="prod-cta-text">
-        想完整了解攀登计划的课程体系、师资阵容与报名方式？<br>
-        <b>访问喜播攀登计划官方产品页 →</b>
-      </div>
-      <a class="btn btn-primary" href="https://jiaoyan.xibo.org.cn/pandeng.html" target="_blank">前往攀登计划 →</a>
-    </div>
-  </div>
-</div>
-
-<!-- ===================== 经营成果 ===================== -->
-<div class="sec">
-  <div class="wrap">
-    <div class="sec-head reveal">
-      <span class="sec-tag">SECTION 04 · 经营成果</span>
-      <h2 class="sec-h">2025 年，营收与利润双双超额达成</h2>
-      <p class="sec-desc">截至 2025 年底，喜播在守住口碑的同时实现了经营质量的全面跃升——<b>会计净收入与净利润均显著超过年度目标</b>，第一曲线展现出健康、可持续的造血能力。</p>
-    </div>
-
-    <div class="goal-grid reveal">
-      <div class="goal-card">
-        <div class="goal-name">2025 年会计净收入</div>
-        <div class="goal-actual">9.21 亿</div>
-        <div class="goal-vs">年度目标 7.5 亿元 · 实际 92,119 万元</div>
-        <div class="goal-bar"><i style="width:100%"></i></div>
-        <div class="goal-rate">目标达成率 123%</div>
-      </div>
-      <div class="goal-card">
-        <div class="goal-name">2025 年度净利润</div>
-        <div class="goal-actual">2.54 亿</div>
-        <div class="goal-vs">年度目标 1.55 亿元 · 实际 25,422 万元</div>
-        <div class="goal-bar"><i style="width:100%"></i></div>
-        <div class="goal-rate">目标达成率 164%</div>
-      </div>
-      <div class="goal-card">
-        <div class="goal-name">2025 年度 GMV</div>
-        <div class="goal-actual">11.62 亿</div>
-        <div class="goal-vs">全年 GMV 116,212 万元 · 较 2024 稳健增长</div>
-        <div class="goal-bar"><i style="width:100%"></i></div>
-        <div class="goal-rate">全年新增正价学员 12.9 万人</div>
-      </div>
-    </div>
-
-    <div class="sec-head reveal" style="margin-bottom:28px;">
-      <span class="sec-tag">口碑与服务质量</span>
-      <h2 class="sec-h" style="font-size:24px;">扎实的口碑，来自对每一位学员的认真</h2>
-    </div>
-
-    <div class="ach-grid reveal">
-      <div class="ach-card">
-        <div class="ach-num">97<small>%</small></div>
-        <div class="ach-lbl">有声产品线完课率</div>
-        <div class="ach-sub">2024 年度均值</div>
-      </div>
-      <div class="ach-card">
-        <div class="ach-num">4.95<small> 分</small></div>
-        <div class="ach-lbl">有声产品线满意度</div>
-        <div class="ach-sub">5 分制 · 2024 年</div>
-      </div>
-      <div class="ach-card">
-        <div class="ach-num">4.96<small> 分</small></div>
-        <div class="ach-lbl">AI 产品线满意度</div>
-        <div class="ach-sub">5 分制 · 2024 年</div>
-      </div>
-      <div class="ach-card">
-        <div class="ach-num">TOP 1</div>
-        <div class="ach-lbl">集团满意度攻坚战役</div>
-        <div class="ach-sub">多次取得第一名</div>
-      </div>
-      <div class="ach-card">
-        <div class="ach-num">49<small> 亿</small></div>
-        <div class="ach-lbl">学员作品年播放量</div>
-        <div class="ach-sub">累计有效播放 / 年</div>
-      </div>
-      <div class="ach-card">
-        <div class="ach-num">20292<small> 张</small></div>
-        <div class="ach-lbl">学员创建专辑</div>
-        <div class="ach-sub">11298 名学员 / 年</div>
-      </div>
-      <div class="ach-card">
-        <div class="ach-num">12729<small> 个</small></div>
-        <div class="ach-lbl">就业任务机会</div>
-        <div class="ach-sub">交付机会 7381 个 / 年</div>
-      </div>
-      <div class="ach-card">
-        <div class="ach-num">7<small> 亿+</small></div>
-        <div class="ach-lbl">"有声之夜"曝光量</div>
-        <div class="ach-sub">已举办 4 届大赛</div>
-      </div>
-    </div>
-
-    <div class="sec-head reveal" style="margin-top:56px;margin-bottom:28px;">
-      <span class="sec-tag">学员故事</span>
-      <h2 class="sec-h" style="font-size:24px;">普通人在喜播，真的发出了自己的声音</h2>
-    </div>
-    <div class="star-grid reveal">
-      <div class="star-card">
-        <div class="star-name">冷月浅浅</div>
-        <div class="star-tag">有声产品线 · 兼职宝妈主播</div>
-        <div class="star-text">从兼职宝妈起步，<b>结业 4 个月后获喜马拉雅独家签约</b>，把兴趣变成了稳定的事业。</div>
-      </div>
-      <div class="star-card">
-        <div class="star-name">一个志远</div>
-        <div class="star-tag">有声产品线 · 独家签约主播</div>
-        <div class="star-text">培训现场即获签约，<b>半年粉丝从 100+ 涨到 11 万+</b>，实现声音事业的快速起飞。</div>
-      </div>
-      <div class="star-card">
-        <div class="star-name">花清河</div>
-        <div class="star-tag">有声产品线 · 工程师转型</div>
-        <div class="star-text">一名美女工程师，在课程培训中现场签约喜马，完成从职场到声音演播的跨界转型。</div>
-      </div>
-      <div class="star-card">
-        <div class="star-name">金岚昕</div>
-        <div class="star-tag">AI 写作课 · 9 期优秀学员</div>
-        <div class="star-text">学习 AI 短故事短剧写作后，<b>3 部作品签约知乎盐言故事</b>，开启内容创作变现之路。</div>
-      </div>
-      <div class="star-card">
-        <div class="star-name">有声的发糕</div>
-        <div class="star-tag">AI 视频课 · 超级个体 1 期</div>
-        <div class="star-text">担任喜马拉雅悬疑季宣传片花主创，<b>做 AI 短视频 5 个月收益 3 万+</b>。</div>
-      </div>
-      <div class="star-card">
-        <div class="star-name">周聆溪</div>
-        <div class="star-tag">AI 写作课 · 6 期优秀学员</div>
-        <div class="star-text">通过 AI 写作课<b>签约两部短剧，收益近 2 万</b>，把 AI 工具变成了真实生产力。</div>
-      </div>
-    </div>
-  </div>
-</div>
-
-<!-- ===================== 第二曲线 ===================== -->
-<div class="sec alt" id="second-curve">
-  <div class="wrap">
-    <div class="curve-banner reveal">
-      <div class="curve-num">02</div>
-      <div>
-        <h3>第二曲线 · 探索更大的想象空间</h3>
-        <p>当第一曲线稳健造血，喜播把目光投向更长期的价值——从一次性培训，走向陪伴用户更久、更深的关系。</p>
-      </div>
-    </div>
-
-    <div class="sc-track">
-      <div class="sc-card reveal">
-        <div class="sc-kicker">已落地 · 会员订阅业务</div>
-        <h3>从"卖课程"到"长期陪伴"</h3>
+    <div class="join-grid reveal">
+      <div class="join-card">
+        <div class="join-ico">⚡</div>
+        <h4>AI 原生转型的最前线</h4>
         <p>
-          喜播正在把单次训练营升级为<b>会员订阅制服务</b>——以 APP 为载体，让用户在学完一门课后，
-          依然能持续获得练习、陪伴、社群与作品扶持。截至 2025 年底，喜播私域已沉淀
-          <b>超 123 万活跃用户</b>，为会员订阅业务提供了坚实的转化基础——喜播与用户的关系，
-          正从"一次成交"变成"长期同行"。
+          不是用 AI 做 PPT，而是<b>用 AI 重建一套服务体系</b>——智能体、合规校验、质量评分、数据资产化。
+          这是教育行业里真实运行的 AI Native 实践，不是 Demo。加入就是直接参与建设。
         </p>
-        <div class="sc-metrics">
-          <div>
-            <div class="sc-m-num">5 万</div>
-            <div class="sc-m-lbl">年付费会员目标</div>
-          </div>
-          <div>
-            <div class="sc-m-num">90%</div>
-            <div class="sc-m-lbl">会员第 7 天留存目标</div>
-          </div>
-          <div>
-            <div class="sc-m-num">50%</div>
-            <div class="sc-m-lbl">首月续费率目标</div>
-          </div>
-        </div>
       </div>
-
-      <div class="sc-card dream reveal">
-        <div class="sc-kicker">面向未来 · AI 健康陪伴</div>
-        <h3>把声音生态延伸进"健康复利"</h3>
+      <div class="join-card">
+        <div class="join-ico">🎯</div>
+        <h4>有底盘，不是从零开始</h4>
         <p>
-          喜播沉淀了一个其他玩家难以复制的资产——<b>大量 35+ 女性用户、声音生态与长期信任关系</b>。
-          基于此，喜播正在探索一条更具想象力的新曲线：面向 35–55 岁女性的
-          <b>AI 健康陪伴管家</b>，陪她们走过中年代谢拐点这段最被忽视、却最决定未来的人生十年。
+          2.5 亿净利润、560 万学员、喜马拉雅生态背书——<b>转型是站在稳固底盘上的主动选择</b>，而非被动应对。
+          你来这里，有真实的资源和用户基础可以作战，而不是在沙地上建高楼。
         </p>
-        <div class="dream-points">
-          <div class="dream-point">声音生态 + AI 长期记忆 + 社群——构建"身份关系"而非"工具关系"</div>
-          <div class="dream-point">35+ 女性是 70% 家庭健康决策方，一个用户连接的是一整个家庭</div>
-          <div class="dream-point">从"用教育点亮人生"，自然生长为"用陪伴守护人生"</div>
-        </div>
       </div>
-    </div>
-  </div>
-</div>
-
-<!-- ===================== AI 进化 ===================== -->
-<div class="sec" id="ai">
-  <div class="wrap">
-    <div class="sec-head reveal">
-      <span class="sec-tag">SECTION 05 · 未来已至，拥抱 AI</span>
-      <h2 class="sec-h">把 AI 真正"嵌入"教育的每一次对话</h2>
-      <p class="sec-desc">
-        喜播不只是教学员用 AI——喜播自己正在成为一家 <b>AI Native 公司</b>。
-        我们构建了一套智能体团队，把销售、服务、合规、评分、进化全部交给可量化、可治理的系统。
-      </p>
-    </div>
-
-    <div class="ai-grid reveal">
-      <div class="ai-feature">
-        <h4><span class="ai-chip">AI 团队</span> 9 个智能体协同分工</h4>
-        <p>路由编排、销售助教、服务班主任、评分复盘、故事进化等 9 个智能体通过 LangGraph 编排协同，覆盖从获客到长期 LTV 的全链路——这是教育 AI 走向规模化的必要架构。</p>
+      <div class="join-card">
+        <div class="join-ico">🌱</div>
+        <h4>做有意义的事，不只是赚钱</h4>
+        <p>
+          "让再小的生命也能吐露芬芳"不是 slogan，是真实在发生的故事——宝妈签约主播、工程师转型、普通人靠 AI 写作变现。
+          <b>你的工作，是真实影响了这些人的人生。</b>
+        </p>
       </div>
-      <div class="ai-feature">
-        <h4><span class="ai-chip">合规治理</span> 14 维实时校验体系</h4>
-        <p>每一句 AI 输出在发送前都要通过 14 个独立验证器，覆盖广告法、消保法、反不正当竞争法。把合规从"靠运气"变成"有兜底"，是行业里稀缺的工程化能力。</p>
+      <div class="join-card">
+        <div class="join-ico">🔓</div>
+        <h4>文化上的诚实</h4>
+        <p>
+          一家敢于直面问题、把用户长期价值放在首位的公司，
+          <b>比一家只说自己完美的公司更值得信赖</b>。我们在构建一种氛围：
+          实事求是比粉饰太平勇敢，做对比做快更重要。
+        </p>
       </div>
-      <div class="ai-feature">
-        <h4><span class="ai-chip">质量量化</span> 12 维质量评分</h4>
-        <p>每轮对话被 8 个核心维度 + 4 个策略维度评分，输出 S/A/B/C/D 等级与改进建议。销售与服务质量从"老板的感觉"变成"可显示的图表"。</p>
+      <div class="join-card">
+        <div class="join-ico">📈</div>
+        <h4>转型关键期 · 建功立业的窗口期</h4>
+        <p>
+          第二曲线刚刚开跑，AI 原生组织还在搭建。<b>早期加入的人，参与定义新喜播的样子</b>——
+          这种机会不常有：既有稳健的造血能力做托底，又有真正的空白和不确定性供你探索。
+        </p>
       </div>
-      <div class="ai-feature">
-        <h4><span class="ai-chip">资产沉淀</span> 数据资产化引擎</h4>
-        <p>每条好评对话提炼为可复用案例，每条违规对话沉淀为反例库。AI 团队每天都在变强，组织能力不再随人员流动而清零。</p>
+      <div class="join-card">
+        <div class="join-ico">🤝</div>
+        <h4>一一位级的格局与支持</h4>
+        <p>
+          CEO 蒋德铭亲自主导 AI 转型与第二曲线战略，COO 马长久深耕规模化经营。
+          <b>在喜播，你能和真正在思考的人一起工作</b>——而不是在多层级里等待决策。
+        </p>
       </div>
     </div>
 
-    <div class="reveal" style="margin-top:42px;">
-      <h3 style="font-size:17px;font-weight:800;margin-bottom:6px;">2026 五大关键战役 · 第一曲线解毒 + 第二曲线探索</h3>
-      <p style="font-size:13px;color:var(--ink2);margin-bottom:8px;">喜播以"健康利润 + AI 重塑组织"为主线，系统性地把公司推向 AI Native 时代。</p>
-      <div class="battle-list">
-        <div class="battle"><div class="battle-n">战役一</div><div class="battle-t">生存之战</div><div class="battle-d">守住合规与口碑底线</div></div>
-        <div class="battle"><div class="battle-n">战役二</div><div class="battle-t">健康利润之战</div><div class="battle-d">净利润率提升至 10%+</div></div>
-        <div class="battle"><div class="battle-n">战役三</div><div class="battle-t">产品高地攻坚</div><div class="battle-d">新 SKU 持续上线</div></div>
-        <div class="battle"><div class="battle-n">战役四</div><div class="battle-t">降本增效战</div><div class="battle-d">AI 助教提升人效</div></div>
-        <div class="battle"><div class="battle-n">战役五</div><div class="battle-t">AI Native 重塑</div><div class="battle-d">关键岗位 AI 化 80%</div></div>
+    <div style="margin-top:56px" class="reveal">
+      <div class="sec-head" style="margin-bottom:28px;">
+        <span class="sec-tag">我们在找什么样的人</span>
+        <h2 class="sec-h" style="font-size:26px;">不只看经验，更看你是否相信这件事</h2>
+        <p class="sec-desc">以下是当前最需要的方向。如果你在其中找到了共鸣，来聊聊。</p>
       </div>
-    </div>
-
-    <div class="prod-cta reveal" style="margin-top:30px;">
-      <div class="prod-cta-text">
-        喜播 AI 智能体团队完整介绍 ——
-        <b>9 个智能体 × 14 维合规校验 × 12 维评分体系</b><br>
-        专为静安高新集团领导整理的系统性技术介绍材料。
-      </div>
-      <a class="btn btn-primary" href="xiboagents.html">查看 AI 智能体团队 →</a>
-    </div>
-  </div>
-</div>
-
-<!-- ===================== 社会责任 ===================== -->
-<div class="sec alt" id="responsibility">
-  <div class="wrap">
-    <div class="sec-head reveal">
-      <span class="sec-tag">SECTION 06 · 社会责任</span>
-      <h2 class="sec-h">教育的价值，最终要落在真实的人生改变上</h2>
-      <p class="sec-desc">喜播把"用教育点亮人生"写进每一项业务——促进就业、产教融合、为产业培养人才。</p>
-    </div>
-
-    <div class="resp-grid reveal">
-      <div class="resp-card">
-        <div class="resp-ico">💼</div>
-        <h4>促进灵活就业</h4>
-        <p>为宝妈、退休人群、职场副业人群提供线上兼职岗位与接单机会，让"声音"成为一份可持续的收入。</p>
-        <div class="resp-stat">线上兼职岗位 3000+ / 年 · 参与 5000+ 人 / 年</div>
-      </div>
-      <div class="resp-card">
-        <div class="resp-ico">🎓</div>
-        <h4>产教融合 · 校企合作</h4>
-        <p>与中国传媒大学、华东师范大学、上海戏剧学院、浙江传媒学院等开展产教融合，构建"双侧驱动、多链融合"协同育人模式。</p>
-        <div class="resp-stat">覆盖 12 省 / 自治区 · 合作高校 30+ 所</div>
-      </div>
-      <div class="resp-card">
-        <div class="resp-ico">🌱</div>
-        <h4>为产业培养新人才</h4>
-        <p>面向网络视听新媒体产业输送有声演播、AI 创作等新职业人才，让普通人也能搭上数字内容产业的快车。</p>
-        <div class="resp-stat">每年过百万产业项目链接高校</div>
-      </div>
-    </div>
-  </div>
-</div>
-
-<!-- ===================== 深度资料 ===================== -->
-<div class="sec" id="explore">
-  <div class="wrap">
-    <div class="sec-head reveal">
-      <span class="sec-tag">SECTION 07 · 深度资料</span>
-      <h2 class="sec-h">想进一步了解喜播？这里有更详细的资料</h2>
-      <p class="sec-desc">以下为喜播内部的战略、运营、用户洞察与 AI 建设资料，供静安高新集团领导参阅。</p>
-    </div>
-
-    <div class="explore-grid reveal">
-      <div class="exp-card">
-        <div class="exp-head">
-          <div class="exp-ico">🎯</div>
-          <div><div class="exp-title">用户画像与洞察</div><div class="exp-count">12 个页面</div></div>
+      <div class="role-grid">
+        <div class="role-card">
+          <div class="role-title">AI 产品经理 / 产品负责人</div>
+          <div class="role-type">产品 · 核心岗位</div>
+          <div class="role-desc">负责 AI 订阅产品或 AI 健康陪伴方向的 0→1 探索。能跨越技术与用户之间的鸿沟，既懂 Agent 编排，也懂用户真实需求。</div>
+          <div class="role-fit"><b>最适合：</b>做过 ToC 订阅产品 + 对 LLM 有实际动手经验的人</div>
         </div>
-        <div class="exp-links">
-          <a href="personas/user_tiering_atlas.html">用户「三轴」分层图谱</a>
-          <a href="personas.html">人群画像总览</a>
-          <a href="personas/customer_cases.html">客户案例与洞察</a>
+        <div class="role-card">
+          <div class="role-title">AI 工程师 / 智能体开发</div>
+          <div class="role-type">技术 · 核心岗位</div>
+          <div class="role-desc">扩展现有的 LangGraph 智能体架构，负责销售/服务/合规/评分等智能体的迭代与新智能体开发。代码直接运行在生产环境。</div>
+          <div class="role-fit"><b>最适合：</b>用过 LangChain/LangGraph，写过 LLM 调用生产代码的工程师</div>
         </div>
-        <span class="exp-more">· 完整列表见 personas/ 目录 ·</span>
-      </div>
-
-      <div class="exp-card">
-        <div class="exp-head">
-          <div class="exp-ico">📊</div>
-          <div><div class="exp-title">战略分析</div><div class="exp-count">8 个页面</div></div>
+        <div class="role-card">
+          <div class="role-title">课程产品 / 教研负责人</div>
+          <div class="role-type">内容 · 核心岗位</div>
+          <div class="role-desc">重新定义 AI 时代的内容培训产品——不是传统课件，而是真正帮助学员产出作品、完成变现的陪跑体系。</div>
+          <div class="role-fit"><b>最适合：</b>做过职业技能培训或内容创作类产品，自己也用 AI 创作过</div>
         </div>
-        <div class="exp-links">
-          <a href="strategy/bsc_2026_campaigns.html">2026 年度战役规划</a>
-          <a href="strategy/six_targets_report.html">六大战略目标报告</a>
-          <a href="strategy/cross_business_strategy.html">跨品类转化策略</a>
-          <a href="strategy/financial_dashboard.html">财务 UE 看板</a>
-          <a href="strategy/competitor_analysis.html">竞品分析</a>
+        <div class="role-card">
+          <div class="role-title">增长 / 运营负责人</div>
+          <div class="role-type">运营 · 核心岗位</div>
+          <div class="role-desc">在口碑导向而非 GMV 导向的框架下做增长——用户 LTV、订阅留存率、复购率是你盯的核心指标。</div>
+          <div class="role-fit"><b>最适合：</b>做过订阅产品运营或会员体系，靠产品价值而非促销套路留住用户</div>
         </div>
-      </div>
-
-      <div class="exp-card">
-        <div class="exp-head">
-          <div class="exp-ico">⚙️</div>
-          <div><div class="exp-title">运营管理</div><div class="exp-count">6 个页面</div></div>
+        <div class="role-card">
+          <div class="role-title">数据分析师 / BI 负责人</div>
+          <div class="role-type">数据 · 支撑岗位</div>
+          <div class="role-desc">帮助公司把"靠感觉"变成"靠数据"——建立从学员成长到业务健康的全链路数据体系，支持 AI 智能体的质量量化。</div>
+          <div class="role-fit"><b>最适合：</b>做过 ToC 教育或订阅产品的数据分析，熟悉 LTV / cohort 分析</div>
         </div>
-        <div class="exp-links">
-          <a href="operations/class_manager_best_practices.html">班主任最佳实践</a>
-          <a href="operations/ai_copilot_monthly.html">AI 建设月度小结</a>
-          <a href="operations/compliance_audit.html">合规审计</a>
-          <a href="operations/incentive_plan.html">激励方案 V1</a>
-        </div>
-      </div>
-
-      <div class="exp-card">
-        <div class="exp-head">
-          <div class="exp-ico">🤖</div>
-          <div><div class="exp-title">AI 智能体与组织</div><div class="exp-count">6 个页面</div></div>
-        </div>
-        <div class="exp-links">
-          <a href="xiboagents.html">AI 智能体团队 · 系统介绍</a>
-          <a href="agent/ai_agent_flow.html">智能体架构流程图</a>
-          <a href="agent/ai_native_three_axes.html">AI 原生落地三板斧</a>
-          <a href="agent/ai_era_org_thinking.html">AI 时代组织思考</a>
-          <a href="personas/talent_atlas.html">长期人才图谱</a>
-        </div>
-      </div>
-
-      <div class="exp-card">
-        <div class="exp-head">
-          <div class="exp-ico">🎓</div>
-          <div><div class="exp-title">培训与交流</div><div class="exp-count">课程材料</div></div>
-        </div>
-        <div class="exp-links">
-          <a href="training/training_poster.html">AI 时代培训海报</a>
-          <a href="xiboAiClass/培训海报.html">AI 时代个人能力重构</a>
-          <a href="xiboAiClass/喜播交流_周鸿斌_20260522_v1.html">喜播交流分享材料</a>
-        </div>
-      </div>
-
-      <div class="exp-card">
-        <div class="exp-head">
-          <div class="exp-ico">🗂️</div>
-          <div><div class="exp-title">完整站点导航</div><div class="exp-count">全部页面</div></div>
-        </div>
-        <div class="exp-links">
-          <a href="sitemap.html">查看全部页面导航 →</a>
-          <a href="https://jiaoyan.xibo.org.cn/pandeng.html" target="_blank">攀登计划产品官网 →</a>
+        <div class="role-card">
+          <div class="role-title">合规 · 用户体验负责人</div>
+          <div class="role-type">品质 · 支撑岗位</div>
+          <div class="role-desc">把"合规从靠运气变成有兜底"，与 AI 团队一起维护 14 维合规校验体系，代表用户声音参与产品决策。</div>
+          <div class="role-fit"><b>最适合：</b>做过互联网消保 / 政府事务，能用技术工具理解合规风险</div>
         </div>
       </div>
     </div>
@@ -1149,26 +1041,70 @@ footer b{color:var(--o3);}
 <!-- ===================== CLOSING ===================== -->
 <div class="wrap" style="padding-bottom:80px;">
   <div class="closing reveal">
-    <div class="closing-tag">PARTNERSHIP · 合作展望</div>
-    <h2>从"让再小的生命吐露芬芳"，<br>到与静安一起，让更多人被听见</h2>
+    <div class="closing-tag">JOIN US · 加入新喜播</div>
+    <h2>新喜播，<br>等真正想和用户站在一起的人</h2>
     <p class="closing-body">
-      喜播是一家有底盘、有口碑、又敢于拥抱 AI 与新曲线的教育公司。
-      我们希望与上海静安高新集团一起，探索教育、AI、数字内容产业在更大语境下的合作可能。
+      我们是一家正在快速进化的 AI 驱动科技公司。
+      如果你相信"做好比做大重要"，相信 AI 可以让普通人获得超级个体的力量，
+      相信好的产品最终应该以用户真实改变为衡量——那你应该来聊聊。
     </p>
     <div class="closing-cards">
-      <div class="cc"><div class="cc-n">01</div><div class="cc-t">新职业教育与人才服务的产业样板</div></div>
-      <div class="cc"><div class="cc-n">02</div><div class="cc-t">AI Native 组织转型的可复用经验</div></div>
-      <div class="cc"><div class="cc-n">03</div><div class="cc-t">合规级 AI 能力的产业化输出</div></div>
-      <div class="cc"><div class="cc-n">04</div><div class="cc-t">第二曲线 · 健康陪伴的新增长想象</div></div>
+      <div class="cc"><div class="cc-n">有底盘</div><div class="cc-t">2.5亿净利润 · 不是赌注，是弹药</div></div>
+      <div class="cc"><div class="cc-n">有使命</div><div class="cc-t">让再小的生命，也能吐露芬芳</div></div>
+      <div class="cc"><div class="cc-n">有战场</div><div class="cc-t">AI 原生 + 第二曲线，正在建造</div></div>
+      <div class="cc"><div class="cc-n">有诚意</div><div class="cc-t">以用户长期价值为中心，说到做到</div></div>
     </div>
-    <a class="btn btn-white" href="https://jiaoyan.xibo.org.cn/pandeng.html" target="_blank">了解喜播产品体系 →</a>
+    <a class="btn btn-white" href="mailto:hr@xibo.org.cn">联系我们 · 了解加入机会 →</a>
+  </div>
+</div>
+
+<!-- ===================== 深度资料（保留，置于页底） ===================== -->
+<div class="sec" style="padding:56px 0 40px;" id="explore">
+  <div class="wrap">
+    <div class="sec-head reveal" style="margin-bottom:28px;">
+      <span class="sec-tag">延伸阅读 · 深度资料</span>
+      <h2 class="sec-h" style="font-size:26px;">想深入了解喜播？</h2>
+      <p class="sec-desc">以下为喜播的战略、运营、用户洞察与 AI 建设深度资料。</p>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:16px;" class="reveal">
+      <a href="xiboagents.html" style="display:block;background:#fff;border:1px solid var(--line);border-radius:14px;padding:20px 18px;transition:.2s;" onmouseover="this.style.borderColor='var(--o2)'" onmouseout="this.style.borderColor='var(--line)'">
+        <div style="font-size:22px;margin-bottom:8px;">🤖</div>
+        <div style="font-size:15px;font-weight:800;margin-bottom:4px;">AI 智能体团队</div>
+        <div style="font-size:12px;color:var(--ink3);">9 智能体 × 14 维合规 × 12 维评分的完整系统</div>
+      </a>
+      <a href="strategy/bsc_2026_campaigns.html" style="display:block;background:#fff;border:1px solid var(--line);border-radius:14px;padding:20px 18px;transition:.2s;" onmouseover="this.style.borderColor='var(--o2)'" onmouseout="this.style.borderColor='var(--line)'">
+        <div style="font-size:22px;margin-bottom:8px;">📊</div>
+        <div style="font-size:15px;font-weight:800;margin-bottom:4px;">2026 年度战役规划</div>
+        <div style="font-size:12px;color:var(--ink3);">五大战役目标、关键指标与执行路径</div>
+      </a>
+      <a href="agent/ai_era_org_thinking.html" style="display:block;background:#fff;border:1px solid var(--line);border-radius:14px;padding:20px 18px;transition:.2s;" onmouseover="this.style.borderColor='var(--o2)'" onmouseout="this.style.borderColor='var(--line)'">
+        <div style="font-size:22px;margin-bottom:8px;">🏗️</div>
+        <div style="font-size:15px;font-weight:800;margin-bottom:4px;">AI 时代组织思考</div>
+        <div style="font-size:12px;color:var(--ink3);">新喜播如何重构组织形态与工作方式</div>
+      </a>
+      <a href="personas.html" style="display:block;background:#fff;border:1px solid var(--line);border-radius:14px;padding:20px 18px;transition:.2s;" onmouseover="this.style.borderColor='var(--o2)'" onmouseout="this.style.borderColor='var(--line)'">
+        <div style="font-size:22px;margin-bottom:8px;">🎯</div>
+        <div style="font-size:15px;font-weight:800;margin-bottom:4px;">用户画像与洞察</div>
+        <div style="font-size:12px;color:var(--ink3);">我们服务的用户是谁、他们真正需要什么</div>
+      </a>
+      <a href="strategy/financial_dashboard.html" style="display:block;background:#fff;border:1px solid var(--line);border-radius:14px;padding:20px 18px;transition:.2s;" onmouseover="this.style.borderColor='var(--o2)'" onmouseout="this.style.borderColor='var(--line)'">
+        <div style="font-size:22px;margin-bottom:8px;">💰</div>
+        <div style="font-size:15px;font-weight:800;margin-bottom:4px;">财务 UE 看板</div>
+        <div style="font-size:12px;color:var(--ink3);">真实的业务经济模型与健康度分析</div>
+      </a>
+      <a href="sitemap.html" style="display:block;background:#fff;border:1px solid var(--line);border-radius:14px;padding:20px 18px;transition:.2s;" onmouseover="this.style.borderColor='var(--o2)'" onmouseout="this.style.borderColor='var(--line)'">
+        <div style="font-size:22px;margin-bottom:8px;">🗂️</div>
+        <div style="font-size:15px;font-weight:800;margin-bottom:4px;">完整站点导航</div>
+        <div style="font-size:12px;color:var(--ink3);">所有页面和资料的索引入口</div>
+      </a>
+    </div>
   </div>
 </div>
 
 <footer>
-  <b>喜播教育</b> · 喜马拉雅旗下在线新职业教育与人才服务品牌<br>
+  <b>喜播</b> · 喜马拉雅旗下 AI 驱动的新职业教育科技公司<br>
   愿景：让再小的生命，也能吐露芬芳　|　使命：用教育点亮人生<br>
-  本页面为面向上海静安高新集团领导的公司介绍材料 · 2026 年 5 月
+  新喜播 · 2026 · 正在发生
 </footer>
 
 <script>

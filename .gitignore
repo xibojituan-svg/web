@@ -1,0 +1,11 @@
+# 学员隐私报告 —— 含 UID，禁止公开
+user-reports/
+
+# 本地配置与系统文件
+.claude/
+.DS_Store
+
+# 本地临时/草稿文件
+d.docx
+d.md
+新喜播-公司介绍.pdf
